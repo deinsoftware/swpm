@@ -1,0 +1,33 @@
+{
+  "name": "swpm",
+  "version": "1.0.0",
+  "description": "Switch Package Manager",
+  "main": "index.js",
+  "bin": "./index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deinsoftware/swpm.git"
+  },
+  "keywords": [
+    "npm",
+    "yarn",
+    "pnpm"
+  ],
+  "author": "deinsoftware",
+  "contributors": [
+    "equiman"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deinsoftware/swpm/issues"
+  },
+  "homepage": "https://github.com/deinsoftware/swpm#readme",
+  "type": "module",
+  "volta": {
+    "node": "18.1.0",
+    "npm": "8.8.0"
+  }
+}
