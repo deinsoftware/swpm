@@ -5,6 +5,7 @@
     "paypal",
     "pnpm",
     "swpm",
+    "unpublish",
     "volta"
   ],
   "files.exclude": {
@@ -33,5 +34,18 @@
   "eslint.validate": ["javascript"],
   "[javascript][typescript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[json][jsonc]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4
+  },
+  "[markdown]": {
+    "editor.formatOnSave": false,
+    "editor.quickSuggestions": true,
+    "editor.tabSize": 2
+  },
+  "markdownlint.config": {
+    "MD024": { "siblings_only": true },
+    "MD033": false
   }
 }
