@@ -1,0 +1,37 @@
+{
+  "cSpell.words": [
+    "buymeacoffee",
+    "patreon",
+    "paypal",
+    "pnpm",
+    "swpm",
+    "volta"
+  ],
+  "files.exclude": {
+    "**/*.js.map": {
+      "when": "$(basename)"
+    },
+    "**/node_modules": true
+  },
+  "javascript.autoClosingTags": true,
+  "javascript.suggest.autoImports": true,
+  "search.exclude": {
+    "**/coverage": true,
+    "**/node_modules": true
+  },
+  "typescript.autoClosingTags": true,
+  "typescript.suggest.autoImports": true,
+
+  "editor.formatOnSave": true,
+  "javascript.format.enable": false,
+  "javascript.validate.enable": true,
+  "typescript.format.enable": false,
+  "typescript.validate.enable": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": ["javascript"],
+  "[javascript][typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  }
+}

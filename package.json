@@ -5,7 +5,12 @@
   "main": "index.js",
   "bin": "./index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint:l": "eslint .",
+    "lint:f": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
+    "test": "vitest --run --reporter verbose",
+    "test:w": "vitest",
+    "test:c": "vitest run --coverage",
+    "test:cw": "vitest watch --coverage"
   },
   "repository": {
     "type": "git",
@@ -29,5 +34,17 @@
   "volta": {
     "node": "18.1.0",
     "npm": "8.8.0"
-  }
+  },
+  "dependencies": {
+    "args": "5.0.3"
+  },
+  "devDependencies": {
+    "eslint": "8.15.0",
+    "eslint-config-standard": "17.0.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-n": "15.2.0",
+    "eslint-plugin-promise": "6.0.0",
+    "vitest": "0.12.6"
+  },
+  "swpm": "yarn"
 }
