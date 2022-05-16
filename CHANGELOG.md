@@ -9,10 +9,11 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
-## [0.0.1] - 2022/05/15
+## [0.0.1] - 2022/05/16
 
 ### Added
 
 - Main project structure
 - Package Manager detection
 - `pin`, `use`, `get` and `see` option
+- Pinned validation
