@@ -1,5 +1,7 @@
 # Switch Package Manager
 
+![swpm](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/social/preview.png)
+
 When switching between JavaScript projects, it's often easy to forget which package manager should be used. JavaScript package managers aren't quite compatible either and each one resolves dependencies differently, so accidentally installing with `npm` could cause a `yarn` or `pnpm` project to break.
 
 `swpm` intend to solve this problem unifying the commands for the most common Node Package Managers into one. It will recognize the Package Manager used on the project and automatically will translate those commands.

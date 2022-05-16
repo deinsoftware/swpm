@@ -9,7 +9,13 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
-## [0.0.1] - 2022/05/16
+## [0.0.2] - 2022/05/16
+
+### Added
+
+- Icons, social and logos
+
+## [0.0.1] - 2022/05/15
 
 ### Added
 
