@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 import { getPackageInformation, lockFileExists } from '../helpers/files.js'
-import packagesList from '../packages/list.js'
+import packagesList, { validPackageName } from '../packages/list.js'
 
 const packageName = 'package.json'
 
@@ -9,7 +9,15 @@ const searchOnPackageJson = () => {
   if (!packageJson || !('swpm' in packageJson)) {
     return undefined
   }
-  return packageJson?.swpm
+
+  const pinned = packageJson?.swpm
+  if (pinned && validPackageName(pinned)) {
+    return packageJson?.swpm
+  }
+
+  console.log(`${chalk.red.bold('Error')}: Package Manager (${chalk.bold(pinned)}) pinned on ${chalk.bold(packageName)} file is not valid.`)
+  console.log(`Use ${chalk.blue.bold('npm --pin <npm|yarn|pnpm>')} to fix it.`)
+  process.exit(1)
 }
 
 const searchForLockFiles = async () => {

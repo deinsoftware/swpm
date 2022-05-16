@@ -47,5 +47,5 @@
     "eslint-plugin-promise": "6.0.0",
     "vitest": "0.12.6"
   },
-  "swpm": "npm"
+  "swpm": "npma"
 }

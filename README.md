@@ -46,6 +46,8 @@ It will store this in your `package.json` so you can commit your choice of tools
 }
 ```
 
+You also can set it manually.
+
 ### Use
 
 The `swpm --use` command allows you to choose your Package Manager for a project.

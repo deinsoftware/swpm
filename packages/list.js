@@ -12,4 +12,8 @@ export const packageNameList = () => {
   return list.map((pkg) => pkg.cmd)
 }
 
+export const validPackageName = (pkg) => {
+  return packageNameList().includes(pkg)
+}
+
 export default list
