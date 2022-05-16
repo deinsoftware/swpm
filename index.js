@@ -4,7 +4,8 @@ import yargv from './yargs.js'
 
 import { getCurrentPackageManager } from './options/get.js'
 import { pinPackageManager } from './options/pin.js'
-import { cmd, cleanSwpmArguments } from './helpers/cmd.js'
+import { runCommand, cleanSwpmArguments, showCommand } from './helpers/cmd.js'
+import yargs from 'yargs'
 
 let command = ''
 const args = argv.slice(2)
@@ -18,6 +19,12 @@ if (yargv.pin) {
   await pinPackageManager(yargv.pin)
 }
 
+if (yargs.see) {
+  cleanSwpmArguments(args, '--see', '-s')
+  showCommand(command, args)
+  process.exit(1)
+}
+
 if (!command || yargv.get) {
   command = await getCurrentPackageManager()
 
@@ -29,5 +36,6 @@ if (!command || yargv.get) {
 console.log(args)
 
 if (command) {
-  cmd(command, args)
+  showCommand(command, args)
+  runCommand(command, args)
 }

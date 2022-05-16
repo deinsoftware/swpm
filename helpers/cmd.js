@@ -1,8 +1,11 @@
 import { spawn } from 'node:child_process'
 import chalk from 'chalk'
 
-export const cmd = (command, args) => {
+export const showCommand = (command, args) => {
   console.log(`${chalk.green.bold(command)} ${args.join(' ')}`)
+}
+
+export const runCommand = (command, args) => {
   spawn(command, [...args], { stdio: 'inherit' })
 }
 

@@ -19,6 +19,14 @@ const argv = yargs(hideBin(process.argv))
     }
   )
   .option(
+    'see',
+    {
+      alias: 's',
+      describe: 'show equivalent command in a package manager',
+      choices: ['npm', 'yarn', 'pnpm']
+    }
+  )
+  .option(
     'get',
     {
       alias: 'g',
