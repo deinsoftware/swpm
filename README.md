@@ -1,7 +1,10 @@
 # Switch Package Manager
 
-`swpm` is a project to unify the command for the most common Node Package Managers, and it will translate automatically into the current package manager used.
-We will start with most used command and the idea is extend it to include all commands.
+When switching between JavaScript projects, it's often easy to forget which package manager should be used. JavaScript package managers aren't quite compatible either and each one resolves dependencies differently, so accidentally installing with `npm` could cause a `yarn` or `pnpm` project to break.
+
+`swpm` intend to solve this problem unifying the commands for the most common Node Package Managers into one. It will recognize the Package Manager used on the project and automatically will translate those commands.
+
+> WIP: we will start with most used command, then other commands will be added gradually.
 
 ## Install
 
@@ -11,16 +14,25 @@ yarn global add swpm
 pnpm install -global swpm 
 ```
 
-### Package Manager
+### Pinning Package Manager
 
-You can set the desired package manager to use in a project adding a `swpm` property with one of the supported package managers `npm`, `yarn`, `pnpm`
+The `swpm pin` command allows you to choose your Package Manager for a project.
+
+```bash
+swpm pin <npm|yarn|pnpm>
+```
+
+It will stor this in your `package.json` so you can commit your choice of tools to version control:
 
 ```diff
 {
-+ "swpm": "<package-name>"
++ "swpm": "<package-manager-name>"
 }
 ```
 
+### Automatic Discovery
+
+You can set the desired package manager to use in a project adding a `swpm` property with one of the supported package managers `npm`, `yarn`, `pnpm`
 But if the `package.json` doesn't have this property, it will try to infer the Package Manager in use, with help of the `lock` file.
 
 ---

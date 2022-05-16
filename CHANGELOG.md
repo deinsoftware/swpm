@@ -15,3 +15,4 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 - Main project structure
 - Package Manager detection
+- pin, use and get option

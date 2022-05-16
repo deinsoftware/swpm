@@ -6,7 +6,8 @@
     "pnpm",
     "swpm",
     "unpublish",
-    "volta"
+    "volta",
+    "yargv"
   ],
   "files.exclude": {
     "**/*.js.map": {
