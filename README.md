@@ -81,6 +81,12 @@ swpm -g
 
 It will search firs the `swpm` property on the `package.json` file, and if doesn't not found it, will try to infer the Package Manager in use with help of the `lock`'s file.
 
+| Lock File           | PM     |
+| ------------------- | ------ |
+| `package-lock.json` | `npm`  |
+| `yarn.lock`         | `yarn` |
+| `pnpm-lock.yaml`    | `pnpm` |
+
 ### Info
 
 The `swpm --info` command show the version of the current Package Manager used in the project.
