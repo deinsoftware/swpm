@@ -15,5 +15,5 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 - Main project structure
 - Package Manager detection
-- `pin`, `use`, `get` and `see` option
+- `pin`, `use`, `get`, `see` and `info` options
 - Pinned validation

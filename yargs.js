@@ -35,6 +35,13 @@ const argv = yargs(hideBin(process.argv))
       describe: 'get current package manager'
     }
   )
+  .option(
+    'info',
+    {
+      alias: 'i',
+      describe: 'current package manager information'
+    }
+  )
   .help()
   .version()
   .argv

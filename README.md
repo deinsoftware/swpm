@@ -81,6 +81,17 @@ swpm -g
 
 It will search firs the `swpm` property on the `package.json` file, and if doesn't not found it, will try to infer the Package Manager in use with help of the `lock`'s file.
 
+### Info
+
+The `swpm --info` command show the version of the current Package Manager used in the project.
+
+```bash
+swpm --info
+swpm -i
+```
+
+It will search firs the `swpm` property on the `package.json` file, and if doesn't not found it, will try to infer the Package Manager in use with help of the `lock`'s file.
+
 ### Run
 
 The `swpm` command will run the command switching automatically to the pinned Package Manager.

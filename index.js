@@ -7,7 +7,7 @@ import { pinPackageManager } from './options/pin.js'
 import { runCommand, cleanSwpmArguments, showCommand } from './helpers/cmd.js'
 
 let command = ''
-const args = argv.slice(2)
+let args = argv.slice(2)
 
 if (yargv.use) {
   command = yargv.use
@@ -24,8 +24,12 @@ if (yargv.see) {
   process.exit(1)
 }
 
-if (!command || yargv.get) {
+if (!command || yargv.get || yargv.info) {
   command = await getCurrentPackageManager()
+
+  if (yargv.info) {
+    args = ['--version']
+  }
 
   if (yargv.get) {
     process.exit(1)
