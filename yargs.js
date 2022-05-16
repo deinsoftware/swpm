@@ -1,5 +1,6 @@
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
+import { packageNameList } from './packages/list.js'
 
 const argv = yargs(hideBin(process.argv))
   .option(
@@ -7,7 +8,7 @@ const argv = yargs(hideBin(process.argv))
     {
       alias: 'p',
       describe: 'pin a package manager',
-      choices: ['npm', 'yarn', 'pnpm']
+      choices: packageNameList()
     }
   )
   .option(
@@ -15,15 +16,16 @@ const argv = yargs(hideBin(process.argv))
     {
       alias: 'u',
       describe: 'use a package manager',
-      choices: ['npm', 'yarn', 'pnpm']
+      choices: packageNameList()
     }
+
   )
   .option(
     'see',
     {
       alias: 's',
-      describe: 'show equivalent command in a package manager',
-      choices: ['npm', 'yarn', 'pnpm']
+      describe: 'show equivalent command',
+      choices: packageNameList()
     }
   )
   .option(

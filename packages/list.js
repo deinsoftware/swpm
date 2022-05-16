@@ -8,4 +8,8 @@ const list = [
   pnpm
 ]
 
+export const packageNameList = () => {
+  return list.map((pkg) => pkg.cmd)
+}
+
 export default list

@@ -6,14 +6,12 @@ export const showCommand = (command, args) => {
 }
 
 export const runCommand = (command, args) => {
+  showCommand(command, args)
   spawn(command, [...args], { stdio: 'inherit' })
 }
 
 export const cleanSwpmArguments = (args, key, alias) => {
-  console.log({ args, key, alias })
-
   const findKey = args.findIndex((arg) => arg === key)
-  console.log({ findKey })
   if (findKey !== -1) {
     args.splice(findKey, 2)
   }

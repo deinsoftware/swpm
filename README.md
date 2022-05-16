@@ -14,15 +14,31 @@ yarn global add swpm
 pnpm install -global swpm 
 ```
 
-### Pinning Package Manager
+## Commands
 
-The `swpm pin` command allows you to choose your Package Manager for a project.
+With `swpm --help` it will show a command help resume.
 
 ```bash
-swpm pin <npm|yarn|pnpm>
+swpm --help
+Options:
+  -p, --pin      pin a package manager          [choices: "npm", "yarn", "pnpm"]
+  -u, --use      use a package manager          [choices: "npm", "yarn", "pnpm"]
+  -s, --see      show equivalent command        [choices: "npm", "yarn", "pnpm"]
+  -g, --get      get current package manager
+      --help     Show help                                             [boolean]
+      --version  Show version number                                   [boolean]
 ```
 
-It will stor this in your `package.json` so you can commit your choice of tools to version control:
+### Pinning
+
+The `swpm --pin` command allows you to choose your Package Manager for a project.
+
+```bash
+swpm --pin <npm|yarn|pnpm>
+swpm -p <npm|yarn|pnpm>
+```
+
+It will store this in your `package.json` so you can commit your choice of tools to version control:
 
 ```diff
 {
@@ -30,10 +46,48 @@ It will stor this in your `package.json` so you can commit your choice of tools 
 }
 ```
 
-### Automatic Discovery
+### Use
 
-You can set the desired package manager to use in a project adding a `swpm` property with one of the supported package managers `npm`, `yarn`, `pnpm`
-But if the `package.json` doesn't have this property, it will try to infer the Package Manager in use, with help of the `lock` file.
+The `swpm --use` command allows you to choose your Package Manager for a project.
+
+```bash
+swpm --use <npm|yarn|pnpm> [args]
+swpm -u <npm|yarn|pnpm> [args]
+```
+
+It will run a command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
+
+### Show
+
+The `swpm --show` command show the equivalent command using the selected Package Manager. **It will not run the command**
+
+```bash
+swpm --show <npm|yarn|pnpm> [options]
+swpm -s <npm|yarn|pnpm> [options]
+```
+
+It will run a command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
+
+### Get
+
+The `swpm --get` command show the current Package Manager used in the project.
+
+```bash
+swpm --get
+swpm -g
+```
+
+It will search firs the `swpm` property on the `package.json` file, and if doesn't not found it, will try to infer the Package Manager in use with help of the `lock`'s file.
+
+### Run
+
+The `swpm` command will run the command switching automatically to the pinned Package Manager.
+
+```bash
+swpm [args]
+```
+
+> Work In Progress
 
 ---
 
