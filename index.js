@@ -2,7 +2,7 @@
 import { argv } from 'node:process'
 import yargv from './yargs.js'
 
-import { getCurrentPackageManager } from './options/get.js'
+import { getCurrentPackageManager, showCurrentPackageManager } from './options/get.js'
 import { pinPackageManager } from './options/pin.js'
 import { runCommand, cleanSwpmArguments, showCommand } from './helpers/cmd.js'
 import { getPackageInformation } from './options/info.js'
@@ -28,12 +28,12 @@ if (yargv.see) {
 if (!pkg || yargv.get || yargv.info) {
   pkg = await getCurrentPackageManager()
 
-  if (yargv.info) {
-    await getPackageInformation(pkg)
+  if (yargv.get) {
+    await showCurrentPackageManager(pkg)
   }
 
-  if (yargv.get || yargv.info) {
-    process.exit(1)
+  if (yargv.info) {
+    await getPackageInformation(pkg)
   }
 }
 

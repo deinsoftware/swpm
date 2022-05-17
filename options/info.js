@@ -21,4 +21,5 @@ export const getPackageInformation = async (pkg) => {
 
   console.log(`${chalk.hex('#689e65').bold('Node')}: \t${nodeVersion}`)
   console.log(`${chalk.hex(config.color).bold(pkg)}: \t${packageVersion}`)
+  process.exit(1)
 }

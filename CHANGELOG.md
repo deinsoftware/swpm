@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.0.4] - 2022/05/17
+
+### Fixed
+
+- get command
+
 ## [0.0.3] - 2022/05/17
 
 ### Fixed

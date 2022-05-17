@@ -1,8 +1,14 @@
 import chalk from 'chalk'
 import { getPackageJson, lockFileExists } from '../helpers/files.js'
-import packagesList, { packageExists } from '../packages/list.js'
+import packagesList, { getPackageConfiguration, packageExists } from '../packages/list.js'
 
 const packageName = 'package.json'
+
+export const showCurrentPackageManager = async (pkg) => {
+  const config = await getPackageConfiguration(pkg)
+  console.log(`This project ues: ${chalk.hex(config.color).bold(pkg)} as Package Manager`)
+  process.exit(1)
+}
 
 const searchOnPackageJson = () => {
   const packageJson = getPackageJson()
@@ -42,4 +48,5 @@ export const getCurrentPackageManager = async () => {
   }
 
   console.log(`${chalk.yellow.bold('Warning')}: there is no Package Manager pinned on ${chalk.bold(packageName)} or a ${chalk.bold('lock')} file to infer it.`)
+  process.exit(1)
 }
