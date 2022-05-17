@@ -6,12 +6,12 @@ const packageName = 'package.json'
 
 export const showCurrentPackageManager = async (pkg) => {
   const config = await getPackageConfiguration(pkg)
-  console.log(`This project ues: ${chalk.hex(config.color).bold(pkg)} as Package Manager`)
+  console.log(`Package Manager: ${chalk.hex(config.color).bold(pkg)}`)
   process.exit(1)
 }
 
-const searchOnPackageJson = () => {
-  const packageJson = getPackageJson()
+const searchOnPackageJson = async () => {
+  const packageJson = await getPackageJson()
   if (!packageJson || !('swpm' in packageJson)) {
     return undefined
   }
@@ -28,7 +28,8 @@ const searchOnPackageJson = () => {
 
 const searchForLockFiles = async () => {
   for (const pkg of packagesList) {
-    if (lockFileExists(pkg.lockFile)) {
+    const exists = await lockFileExists(pkg.lockFile)
+    if (exists) {
       return pkg.cmd
     }
   }
@@ -37,7 +38,7 @@ const searchForLockFiles = async () => {
 }
 
 export const getCurrentPackageManager = async () => {
-  const pinned = searchOnPackageJson()
+  const pinned = await searchOnPackageJson()
   if (pinned) {
     return pinned
   }

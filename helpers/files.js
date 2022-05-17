@@ -1,24 +1,27 @@
 import fs from 'node:fs/promises'
 import { resolve as resolvePath } from 'node:path'
-import { createRequire } from 'module'
 import chalk from 'chalk'
 
 const packageName = 'package.json'
 
 export const fileExists = async (path) => {
   try {
-    await fs.access(path)
+    await fs.stat(path)
     return true
-  } catch {
+  } catch (error) {
     return false
   }
 }
 
-export const getPackageJson = (path = import.meta.url) => {
-  const require = createRequire(path)
+export const getPackageJson = async () => {
   try {
-    return require(`../${packageName}`)
-  } catch (error) {
+    const path = resolvePath(process.cwd(), packageName)
+    const pkg = await fs.readFile(path)
+    if (pkg) {
+      const config = JSON.parse(pkg)
+      return config
+    }
+  } catch {
     return undefined
   }
 }

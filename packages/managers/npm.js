@@ -1,6 +1,6 @@
 const npm = {
   cmd: 'npm',
-  color: '#e12b3b',
+  color: '#ffffff',
   url: 'https://www.npmjs.com/',
   version: '',
   lockFile: 'package-lock.json'

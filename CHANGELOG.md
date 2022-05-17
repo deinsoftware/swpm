@@ -9,6 +9,13 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.0.5] - 2022/05/17
+
+### Fixed
+
+- local path with ESM
+- file existing validation
+
 ## [0.0.4] - 2022/05/17
 
 ### Fixed
