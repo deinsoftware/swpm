@@ -5,12 +5,13 @@ import yargv from './yargs.js'
 import { getCurrentPackageManager } from './options/get.js'
 import { pinPackageManager } from './options/pin.js'
 import { runCommand, cleanSwpmArguments, showCommand } from './helpers/cmd.js'
+import { getPackageInformation } from './options/info.js'
 
-let command = ''
-let args = argv.slice(2)
+let pkg = ''
+const args = argv.slice(2)
 
 if (yargv.use) {
-  command = yargv.use
+  pkg = yargv.use
   cleanSwpmArguments(args, '--use', '-u')
 }
 
@@ -20,22 +21,22 @@ if (yargv.pin) {
 
 if (yargv.see) {
   cleanSwpmArguments(args, '--see', '-s')
-  showCommand(command, args)
+  await showCommand(pkg, args)
   process.exit(1)
 }
 
-if (!command || yargv.get || yargv.info) {
-  command = await getCurrentPackageManager()
+if (!pkg || yargv.get || yargv.info) {
+  pkg = await getCurrentPackageManager()
 
   if (yargv.info) {
-    args = ['--version']
+    await getPackageInformation(pkg)
   }
 
-  if (yargv.get) {
+  if (yargv.get || yargv.info) {
     process.exit(1)
   }
 }
 
-if (command) {
-  runCommand(command, args)
+if (pkg) {
+  await runCommand(pkg, args)
 }

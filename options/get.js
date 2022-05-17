@@ -1,17 +1,17 @@
 import chalk from 'chalk'
-import { getPackageInformation, lockFileExists } from '../helpers/files.js'
-import packagesList, { validPackageName } from '../packages/list.js'
+import { getPackageJson, lockFileExists } from '../helpers/files.js'
+import packagesList, { packageExists } from '../packages/list.js'
 
 const packageName = 'package.json'
 
 const searchOnPackageJson = () => {
-  const packageJson = getPackageInformation()
+  const packageJson = getPackageJson()
   if (!packageJson || !('swpm' in packageJson)) {
     return undefined
   }
 
   const pinned = packageJson?.swpm
-  if (pinned && validPackageName(pinned)) {
+  if (pinned && packageExists(pinned)) {
     return packageJson?.swpm
   }
 

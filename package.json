@@ -1,6 +1,6 @@
 {
   "name": "swpm",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Switch Package Manager",
   "main": "index.js",
   "bin": "./index.js",
@@ -47,5 +47,5 @@
     "eslint-plugin-promise": "6.0.0",
     "vitest": "0.12.6"
   },
-  "swpm": "pnpm"
+  "swpm": "yarn"
 }

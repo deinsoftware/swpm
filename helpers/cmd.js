@@ -1,13 +1,24 @@
-import { spawn } from 'node:child_process'
+import { spawn, execSync } from 'node:child_process'
 import chalk from 'chalk'
+import { getPackageConfiguration } from '../packages/list.js'
 
-export const showCommand = (command, args) => {
-  console.log(`${chalk.green.bold(command)} ${args.join(' ')}`)
+export const execCommand = (command) => {
+  try {
+    const result = execSync(command)
+    return result.toString().trim()
+  } catch (error) {
+    return false
+  }
 }
 
-export const runCommand = (command, args) => {
-  showCommand(command, args)
-  spawn(command, [...args], { stdio: 'inherit' })
+export const showCommand = async (pkg, args) => {
+  const config = await getPackageConfiguration(pkg)
+  console.log(`${chalk.hex(config.color).bold(pkg)} ${args.join(' ')}`)
+}
+
+export const runCommand = async (pkg, args) => {
+  await showCommand(pkg, args)
+  spawn(pkg, [...args], { stdio: 'inherit' })
 }
 
 export const cleanSwpmArguments = (args, key, alias) => {

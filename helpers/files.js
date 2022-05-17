@@ -14,7 +14,7 @@ export const fileExists = async (path) => {
   }
 }
 
-export const getPackageInformation = (path = import.meta.url) => {
+export const getPackageJson = (path = import.meta.url) => {
   const require = createRequire(path)
   try {
     return require(`../${packageName}`)
@@ -29,7 +29,7 @@ export const lockFileExists = async (fileName) => {
   return result
 }
 
-export const savePackageManager = async (data) => {
+export const savePackageJson = async (data) => {
   if (!fileExists(packageName)) {
     console.log(`${chalk.red.bold('Error')}: there is no ${chalk.red.bold(packageName)} file on current path.`)
     return undefined

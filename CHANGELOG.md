@@ -9,6 +9,17 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.0.3] - 2022/05/17
+
+### Fixed
+
+- readme help command and link
+
+### Changed
+
+- social image preview
+- show command with the package color
+
 ## [0.0.2] - 2022/05/16
 
 ### Added

@@ -8,12 +8,17 @@ const list = [
   pnpm
 ]
 
-export const packageNameList = () => {
+export const availablePackages = () => {
   return list.map((pkg) => pkg.cmd)
 }
 
-export const validPackageName = (pkg) => {
-  return packageNameList().includes(pkg)
+export const packageExists = (pkg) => {
+  return availablePackages().includes(pkg)
+}
+
+export const getPackageConfiguration = async (pkg) => {
+  const config = await import(`./managers/${pkg}.js`)
+  return config.default
 }
 
 export default list

@@ -27,6 +27,7 @@ Options:
   -u, --use      use a package manager          [choices: "npm", "yarn", "pnpm"]
   -s, --see      show equivalent command        [choices: "npm", "yarn", "pnpm"]
   -g, --get      get current package manager
+  -i, --info     current package manager information
       --help     Show help                                             [boolean]
       --version  Show version number                                   [boolean]
 ```
