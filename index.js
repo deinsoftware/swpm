@@ -1,42 +1,28 @@
 #!/usr/bin/env node
-import { argv } from 'node:process'
+
 import yargv from './yargs.js'
 
-import { getCurrentPackageManager, showCurrentPackageManager } from './options/get.js'
 import { pinPackageManager } from './options/pin.js'
-import { runCommand, cleanSwpmArguments, showCommand } from './helpers/cmd.js'
+import { runCommand } from './helpers/cmd.js'
 import { getPackageInformation } from './options/info.js'
+import { testCommand } from './options/test.js'
 
-let pkg = ''
-const args = argv.slice(2)
-
-if (yargv.use) {
-  pkg = yargv.use
-  cleanSwpmArguments(args, '--use', '-u')
+if (yargv.debug) {
+  console.log(yargv)
 }
 
-if (yargv.pin) {
-  await pinPackageManager(yargv.pin)
+if (yargv?.pin) {
+  await pinPackageManager(yargv.pkg)
 }
 
-if (yargv.see) {
-  cleanSwpmArguments(args, '--see', '-s')
-  await showCommand(pkg, args)
-  process.exit(1)
+if (yargv?.test) {
+  await testCommand(yargv.pkg)
 }
 
-if (!pkg || yargv.get || yargv.info) {
-  pkg = await getCurrentPackageManager()
-
-  if (yargv.get) {
-    await showCurrentPackageManager(pkg)
-  }
-
-  if (yargv.info) {
-    await getPackageInformation(pkg)
-  }
+if (yargv?.info) {
+  await getPackageInformation(yargv.pkg)
 }
 
-if (pkg) {
-  await runCommand(pkg, args)
+if (yargv?.pkg?.cmd) {
+  await runCommand(yargv.pkg)
 }

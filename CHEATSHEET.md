@@ -22,7 +22,8 @@ This is a cheat sheet that you can use as a handy reference for [npm](https://ww
 | uninstall package                      | `npm uninstall <package> [--global]`         | `yarn [global] remove <package>`                | `pnpm uninstall <package> [--global]`           |
 | update package                         | `npm update [<package>] [--global]`          | `yarn [global] upgrade [<package>] [--latest]`  | `pnpm update [<package>] [--latest] [--global]` |
 | update interactive                     | `npx npm-check -u`                           | `yarn upgrade-interactive`                      | `pnpm update --interactive`                     |
-| link local package                     | `npm link <dir>`                             | `yarn link <dir>`                               | `pnpm link <dir>`                               |
+| link local package                     | `npm link [<dir>]`                           | `yarn link [<dir>]`                             | `pnpm link [<dir>]`                             |
+| unlink local package                   | `npm unlink [<package>]`                     | `yarn unlink [<package>]`                       | `pnpm unlink [<package>]`                       |
 | list all package at the top level      | `npm list --depth 0`                         | `yarn list --depth 0`                           | `pnpm list --depth 0`                           |
 | audit vulnerable dependencies          | `npm audit [fix]`                            | `yarn audit [fix]`                              | `pnpm audit [fix]`                              |
 | list outdated packages                 | `npm outdated`                               | `yarn outdated`                                 | `pnpm outdated`                                 |

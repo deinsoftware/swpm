@@ -1,6 +1,5 @@
 import { spawn, execSync } from 'node:child_process'
 import chalk from 'chalk'
-import { getPackageConfiguration } from '../packages/list.js'
 
 export const execCommand = (command) => {
   try {
@@ -11,17 +10,18 @@ export const execCommand = (command) => {
   }
 }
 
-export const showCommand = async (pkg, args) => {
-  const config = await getPackageConfiguration(pkg)
-  console.log(`${chalk.hex(config.color).bold(pkg)} ${args.join(' ')}`)
+export const showCommand = async ({ cmd, args, config }) => {
+  console.log(`${chalk.hex(config.color).bold(cmd)} ${args.join(' ')}`)
 }
 
-export const runCommand = async (pkg, args) => {
-  await showCommand(pkg, args)
-  spawn(pkg, [...args], { stdio: 'inherit' })
+export const runCommand = async (pkg) => {
+  const { cmd, args } = pkg
+  await showCommand(pkg)
+
+  spawn(cmd, [...args], { stdio: 'inherit' })
 }
 
-export const cleanSwpmArguments = (args, key, alias) => {
+export const cleanArguments = (args, key, alias) => {
   const findKey = args.findIndex((arg) => arg === key)
   if (findKey !== -1) {
     args.splice(findKey, 2)

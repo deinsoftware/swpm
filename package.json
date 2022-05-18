@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "chalk": "5.0.1",
+    "common-tags": "1.8.2",
     "yargs": "17.5.1"
   },
   "devDependencies": {
@@ -46,5 +47,6 @@
     "eslint-plugin-n": "15.2.0",
     "eslint-plugin-promise": "6.0.0",
     "vitest": "0.12.6"
-  }
+  },
+  "swpm": "npm"
 }

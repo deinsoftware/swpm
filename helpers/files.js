@@ -33,9 +33,10 @@ export const lockFileExists = async (fileName) => {
 }
 
 export const savePackageJson = async (data) => {
-  if (!fileExists(packageName)) {
+  const exists = await fileExists(packageName)
+  if (!exists) {
     console.log(`${chalk.red.bold('Error')}: there is no ${chalk.red.bold(packageName)} file on current path.`)
-    return undefined
+    process.exit(1)
   }
 
   const path = resolvePath(process.cwd(), packageName)

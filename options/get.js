@@ -1,14 +1,8 @@
 import chalk from 'chalk'
 import { getPackageJson, lockFileExists } from '../helpers/files.js'
-import packagesList, { getPackageConfiguration, packageExists } from '../packages/list.js'
+import packagesList, { packageExists } from '../packages/list.js'
 
 const packageName = 'package.json'
-
-export const showCurrentPackageManager = async (pkg) => {
-  const config = await getPackageConfiguration(pkg)
-  console.log(`Package Manager: ${chalk.hex(config.color).bold(pkg)}`)
-  process.exit(1)
-}
 
 const searchOnPackageJson = async () => {
   const packageJson = await getPackageJson()
@@ -48,6 +42,11 @@ export const getCurrentPackageManager = async () => {
     return lock
   }
 
-  console.log(`${chalk.yellow.bold('Warning')}: there is no Package Manager pinned on ${chalk.bold(packageName)} or a ${chalk.bold('lock')} file to infer it.`)
+  console.log(`
+${chalk.red.bold('Error')}: no Package Manager was found.
+
+Please review if the current path has a ${chalk.bold('package.json')} or a ${chalk.bold('lock')} file.
+Highly recommend pin a Package Manager with ${chalk.blue.bold('swpm --pin <npm|yarn|pnpm>')} command.
+`)
   process.exit(1)
 }

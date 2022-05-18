@@ -9,6 +9,24 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.1.0] - 2022/05/17
+
+### Added
+
+- yargs middleware to preprocess the Package Manager to use
+- yargs `install` and `add` commands
+- `common-tags` library to stylize output messages
+
+### Changed
+
+- `see` option renamed to `test`
+- `version` option was renamed and merged with `info` option
+
+### Fixed
+
+- get selected Package Manager configuration one time
+- `fileExists` validation problem with `async` calls
+
 ## [0.0.5] - 2022/05/17
 
 ### Fixed

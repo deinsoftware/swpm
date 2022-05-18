@@ -25,11 +25,10 @@ swpm --help
 Options:
   -p, --pin      pin a package manager          [choices: "npm", "yarn", "pnpm"]
   -u, --use      use a package manager          [choices: "npm", "yarn", "pnpm"]
-  -s, --see      show equivalent command        [choices: "npm", "yarn", "pnpm"]
+  -s, --test     test command (without running) [choices: "npm", "yarn", "pnpm"]
   -g, --get      get current package manager
-  -i, --info     current package manager information
+  -s, --version  show versions number
       --help     Show help                                             [boolean]
-      --version  Show version number                                   [boolean]
 ```
 
 ### Pinning
@@ -120,6 +119,9 @@ swpm [args]
 * [VS Code](https://code.visualstudio.com/) - Code editing redefined.
 * [WSL](https://docs.microsoft.com/en-us/windows/wsl/) - Windows Subsystem for Linux.
 * [Widows Terminal](https://github.com/Microsoft/Terminal/) - A modern terminal application for users of command-line tools and shells.
+* [Chalk](https://github.com/chalk/chalk) - Terminal string styling done right
+* [Yargs](https://yargs.js.org/) - Yargs be a node.js library fer hearties tryin' ter parse optstrings
+* [common-tags](https://www.npmjs.com/package/common-tags) - A set of well-tested, commonly used template literal tag functions for use in ES2015+
 
 ### Versioning
 

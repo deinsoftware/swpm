@@ -9,16 +9,16 @@ const list = [
 ]
 
 export const availablePackages = () => {
-  return list.map((pkg) => pkg.cmd)
+  return list.map(({ cmd }) => cmd)
 }
 
-export const packageExists = (pkg) => {
-  return availablePackages().includes(pkg)
+export const packageExists = (cmd) => {
+  return availablePackages().includes(cmd)
 }
 
-export const getPackageConfiguration = async (pkg) => {
-  const config = await import(`./managers/${pkg}.js`)
-  return config.default
+export const getPackageConfiguration = async (cmd) => {
+  const config = await import(`./managers/${cmd}.js`)
+  return config.default ?? {}
 }
 
 export default list
