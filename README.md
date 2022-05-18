@@ -16,15 +16,16 @@
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)  
   - [Installing](#installing)
-  - [Help](#help)  
-- [Flags](#flags)
-  - [Use](#use)
-  - [Pin](#pin)
-  - [Test](#test)
-  - [Info](#info)
-- [Commands](#commands)
-  - [Install](#install)
-  - [Add](#add)
+  - [Help](#help)
+- [Usage](#usage)
+  - [Flags](#flags)
+    - [Use](#use)
+    - [Pin](#pin)
+    - [Test](#test)
+    - [Info](#info)
+  - [Commands](#commands)
+    - [Install](#install)
+    - [Add](#add)
 - [FAQ](#faq)
 - [About](#about)
   - [Built With](#built-with)
@@ -80,9 +81,17 @@ Options:
 
 ---
 
-## Flags
+## Usage
 
-### Use
+The `swpm` will run the command switching automatically to the pinned Package Manager.
+
+```bash
+swpm [FLAGS] <command> [--] [args]
+```
+
+### Flags
+
+#### Use
 
 The `swpm --use` flag allows you to choose your Package Manager for a project.
 
@@ -93,7 +102,7 @@ swpm -u <npm|yarn|pnpm> <command> [--] [args]
 
 > It will run the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
 
-### Pin
+#### Pin
 
 The `swpm --pin` flag allows you to choose your Package Manager for a project.
 
@@ -112,7 +121,7 @@ It will store the pinned Package Manager in the `package.json` file, so you can 
 
 > You also can set it manually. Just take care writing a valid Package Manager: `npm`, `yarn` or `pnpm`.
 
-### Test
+#### Test
 
 The `swpm --test` flag show the equivalent command using the selected Package Manager, but **it will not run the command**
 
@@ -123,7 +132,7 @@ swpm -t <npm|yarn|pnpm> <command> [--] [args]
 
 > It will show the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
 
-### Info
+#### Info
 
 The `swpm --info` flag show the current Package Manager used and some versions information.
 
@@ -134,19 +143,9 @@ swpm -i
 
 It will search firs the `swpm` property on the `package.json` file, and if doesn't not found it, will try to infer the Package Manager in use with help of the `lock`'s file.
 
-⇧ [Back to menu](#menu)
+### Commands
 
----
-
-## Commands
-
-The `swpm` will run the command switching automatically to the pinned Package Manager.
-
-```bash
-swpm [FLAGS] <command> [--] [args]
-```
-
-### Install
+#### Install
 
 By default, will install all modules listed as dependencies in `package.json`.
 
@@ -156,7 +155,7 @@ swpm install
 
 This command installs a package and any packages that it depends on. If the package has a `lock` file, the installation of dependencies will be driven by that.
 
-### Add
+#### Add
 
 This command, no arguments, will add a package to local `package.json` file.
 
