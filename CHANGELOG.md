@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.2.0] - 2022/05/18
+
+### Added
+
+- add `packageManager` property to `getCurrentPackageManager` method
+
 ## [0.1.2] - 2022/05/18
 
 ### Changed

@@ -1,22 +1,24 @@
+import { stripIndents } from 'common-tags'
 import chalk from 'chalk'
 import { getPackageJson, lockFileExists } from '../helpers/files.js'
 import packagesList, { packageExists } from '../packages/list.js'
 
 const packageName = 'package.json'
 
-const searchOnPackageJson = async () => {
-  const packageJson = await getPackageJson()
-  if (!packageJson || !('swpm' in packageJson)) {
+const searchForProperty = async (packageJson, property) => {
+  if (!packageJson || !(property in packageJson)) {
     return undefined
   }
 
-  const pinned = packageJson?.swpm
-  if (pinned && packageExists(pinned)) {
-    return packageJson?.swpm
+  const prop = packageJson?.[property]
+  if (prop && packageExists(prop)) {
+    return packageJson?.[property]
   }
 
-  console.log(`${chalk.red.bold('Error')}: Package Manager (${chalk.bold(pinned)}) pinned on ${chalk.bold(packageName)} file is not valid.`)
-  console.log(`Use ${chalk.blue.bold('npm --pin <npm|yarn|pnpm>')} to fix it.`)
+  console.log(stripIndents`
+    ${chalk.red.bold('Error')}: the value in (${chalk.bold(prop)}) property on ${chalk.bold(packageName)} file is not valid.
+    Use ${chalk.blue.bold('npm --pin <npm|yarn|pnpm>')} to fix it.
+  `)
   process.exit(1)
 }
 
@@ -32,9 +34,17 @@ const searchForLockFiles = async () => {
 }
 
 export const getCurrentPackageManager = async () => {
-  const pinned = await searchOnPackageJson()
+  const packageJson = await getPackageJson()
+
+  const pinned = await searchForProperty(packageJson, 'swpm')
   if (pinned) {
     return pinned
+  }
+
+  // https://nodejs.org/api/corepack.html
+  const packageManager = await searchForProperty(packageJson, 'packageManager')
+  if (packageManager) {
+    return packageManager
   }
 
   const lock = await searchForLockFiles()
@@ -42,11 +52,11 @@ export const getCurrentPackageManager = async () => {
     return lock
   }
 
-  console.log(`
-${chalk.red.bold('Error')}: no Package Manager was found.
+  console.log(stripIndents`
+    ${chalk.red.bold('Error')}: no Package Manager was found.
 
-Please review if the current path has a ${chalk.bold('package.json')} or a ${chalk.bold('lock')} file.
-Highly recommend pin a Package Manager with ${chalk.blue.bold('swpm --pin <npm|yarn|pnpm>')} command.
-`)
+    Please review if the current path has a ${chalk.bold('package.json')} or a ${chalk.bold('lock')} file.
+    Highly recommend pin a Package Manager with ${chalk.blue.bold('swpm --pin <npm|yarn|pnpm>')} command.
+  `)
   process.exit(1)
 }

@@ -161,7 +161,7 @@ This command installs a package and any packages that it depends on. If the pack
 
 ### Add
 
-This command, no arguments, will add a package to local `package.json` file. 
+This command, no arguments, will add a package to local `package.json` file.
 
 ```bash
 swpm add <package> [--save-dev --global]
@@ -184,14 +184,15 @@ swpm add <package> [--save-dev --global]
 
 `swpm` use two stages to infer what is the current Package Manager, following this order.
 
-1. Search the `swpm` property on the `package.json` file
-1. Search for `lock`'s files.
+1. Search the `swpm` property on `package.json` file
+1. Search the `packageManager` property on `package.json` file
+1. Search for `lock`'s files
 
-| Lock File           | Package Manager |
-| ------------------- | --------------- |
-| `package-lock.json` | `npm`           |
-| `yarn.lock`         | `yarn`          |
-| `pnpm-lock.yaml`    | `pnpm`          |
+  | Lock File           | Package Manager |
+  | ------------------- | --------------- |
+  | `package-lock.json` | `npm`           |
+  | `yarn.lock`         | `yarn`          |
+  | `pnpm-lock.yaml`    | `pnpm`          |
 
 ⇧ [Back to menu](#menu)
 
