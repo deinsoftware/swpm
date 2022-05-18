@@ -1,7 +1,8 @@
 # Switch Package Manager
 
-[![github-actions-build](https://github.com/deinsoftware/swpm/workflows/build/badge.svg?branch=master)](https://github.com/deinsoftware/swpm/actions?query=workflow%3Abuild)
-[![github-actions-publish](https://github.com/deinsoftware/swpm/workflows/publish/badge.svg?branch=master)](https://github.com/deinsoftware/swpm/actions?query=workflow%3Apublish)
+[![build](https://github.com/deinsoftware/swpm/actions/workflows/build.yml/badge.svg)](https://github.com/deinsoftware/swpm/actions/workflows/build.yml)
+[![publish](https://github.com/deinsoftware/swpm/actions/workflows/publish.yml/badge.svg?branch=main)](https://github.com/deinsoftware/swpm/actions/workflows/publish.yml)
+[![npm-version](https://badge.fury.io/js/swpm.svg)](https://badge.fury.io/js/swpm)
 [![license](https://img.shields.io/github/license/deinsoftware/swpm)](LICENSE.md)
 
 ![swpm](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/social/preview.png)
