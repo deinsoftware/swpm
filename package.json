@@ -1,6 +1,6 @@
 {
   "name": "swpm",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Switch Package Manager",
   "main": "index.js",
   "bin": "./index.js",
