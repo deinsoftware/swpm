@@ -11,7 +11,7 @@ export const getPackageInformation = async ({ cmd, config }) => {
   const isInstalled = !!execCommand(`command -v ${cmd}`)
   const packageVersion = isInstalled ? execCommand(`${cmd} --version`) : 'not found'
 
-  const { version: swpmVersion } = require('../package.json')
+  const { version: swpmVersion } = require('../../package.json')
 
   let message = `
     ${chalk.bold('Using:')}

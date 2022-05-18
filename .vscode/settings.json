@@ -50,5 +50,8 @@
   "markdownlint.config": {
     "MD024": { "siblings_only": true },
     "MD033": false
+  },
+  "explorer.fileNesting.patterns": {
+    "README*": "CHANGELOG*, CODE_OF_CONDUCT.md, CONTRIBUTING.md, LICENSE*, README*, CHEATSHEET*"
   }
 }

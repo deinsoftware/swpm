@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import yargv from './yargs.js'
+import yargv from './src/yargs.js'
 
-import { pinPackageManager } from './options/pin.js'
-import { runCommand } from './helpers/cmd.js'
-import { getPackageInformation } from './options/info.js'
-import { testCommand } from './options/test.js'
+import { pinPackageManager } from './src/options/pin.js'
+import { runCommand } from './src/helpers/cmd.js'
+import { getPackageInformation } from './src/options/info.js'
+import { testCommand } from './src/options/test.js'
 
 if (yargv.debug) {
   console.log(yargv)
