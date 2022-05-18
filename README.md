@@ -1,7 +1,7 @@
 # Switch Package Manager
 
 [![build](https://github.com/deinsoftware/swpm/actions/workflows/build.yml/badge.svg)](https://github.com/deinsoftware/swpm/actions/workflows/build.yml)
-[![publish](https://github.com/deinsoftware/swpm/actions/workflows/publish.yml/badge.svg?branch=main)](https://github.com/deinsoftware/swpm/actions/workflows/publish.yml)
+[![publish](https://github.com/deinsoftware/swpm/actions/workflows/publish.yml/badge.svg)](https://github.com/deinsoftware/swpm/actions/workflows/publish.yml)
 [![npm-version](https://img.shields.io/npm/v/swpm.svg?color=blue)](https://www.npmjs.com/package/swpm)
 [![npm-downloads](https://img.shields.io/npm/dt/swpm)](https://www.npmjs.com/package/swpm)
 [![node-engine](https://img.shields.io/node/v/swpm.svg)](https://nodejs.org)
