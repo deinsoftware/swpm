@@ -51,6 +51,6 @@
     "eslint-plugin-promise": "6.0.0",
     "vitest": "0.12.6"
   },
-  "packageManager": "pnpm@7.1.1",
-  "swpm": "pnpm"
+  "packageManager": "npm@8.8.0",
+  "swpm": "npm"
 }

@@ -1,4 +1,3 @@
-import { type } from 'node:os'
 import { argv } from 'node:process'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
