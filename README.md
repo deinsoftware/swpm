@@ -197,7 +197,7 @@ swpm add <package> [args]
 
 ## Brand
 
-If you want to help, spread the word of `swpm` in a project or web, please this usage guide.
+If you want to help, spread the word of `swpm` in a project or web, please use this brans images.
 
 ### Badge
 
