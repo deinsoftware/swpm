@@ -1,14 +1,54 @@
 # Switch Package Manager
 
+[![github-actions-build](https://github.com/deinsoftware/swpm/workflows/build/badge.svg?branch=master)](https://github.com/deinsoftware/swpm/actions?query=workflow%3Abuild)
+[![github-actions-publish](https://github.com/deinsoftware/swpm/workflows/publish/badge.svg?branch=master)](https://github.com/deinsoftware/swpm/actions?query=workflow%3Apublish)
+[![license](https://img.shields.io/github/license/deinsoftware/swpm)](LICENSE.md)
+
 ![swpm](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/social/preview.png)
+
+---
+
+## Menu
+
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)  
+  - [Installing](#installing)
+  - [Help](#help)  
+- [Options](#options)
+  - [Use](#use)
+  - [Pin](#pin)
+  - [Test](#test)
+  - [Info](#info)
+  - [Run](#run)
+- [Commands](#commands)
+  - [Install](#install)
+  - [Add](#add)
+- [FAQ](#faq)
+- [About](#about)
+  - [Built With](#built-with)
+  - [Contributing](#contributing)
+  - [Versioning](#versioning)
+  - [Authors](#authors)
+  - [Sponsors](#sponsors)
+  - [License](#license)
+
+---
+
+## Getting Started
 
 When switching between JavaScript projects, it's often easy to forget which package manager should be used. JavaScript package managers aren't quite compatible either and each one resolves dependencies differently, so accidentally installing with `npm` could cause a `yarn` or `pnpm` project to break.
 
-`swpm` intend to solve this problem unifying the commands for the most common Node Package Managers into one. It will recognize the Package Manager used on the project and automatically will translate those commands.
+`swpm` intend to solve this problem unifying the most used commands for the most common Node Package Managers into one. It will recognize the Package Manager used on the project and automatically will translate those commands.
 
 > WIP: we will start with most used command, then other commands will be added gradually.
 
-## Install
+### Prerequisites
+
+What things you need to install?
+
+- [node.js](https://nodejs.org)
+
+### Installing
 
 ```bash
 npm install --global swpm
@@ -16,31 +56,51 @@ yarn global add swpm
 pnpm install -global swpm 
 ```
 
-## Commands
+### Help
 
 With `swpm --help` it will show a command help resume.
 
-```bash
-swpm --help
+```text
+Commands:
+  swpm install        install packages from package.json            [aliases: i]
+  swpm add <package>  add package                                   [aliases: a]
+
 Options:
-  -p, --pin      pin a package manager          [choices: "npm", "yarn", "pnpm"]
-  -u, --use      use a package manager          [choices: "npm", "yarn", "pnpm"]
-  -s, --test     test command (without running) [choices: "npm", "yarn", "pnpm"]
-  -g, --get      get current package manager
-  -s, --version  show versions number
-      --help     Show help                                             [boolean]
+  -d, --debug  debug yargs parameters                 [boolean] [default: false]
+  -u, --use    use a package manager            [choices: "npm", "yarn", "pnpm"]
+  -p, --pin    pin a package manager            [choices: "npm", "yarn", "pnpm"]
+  -t, --test   test command (without running)   [choices: "npm", "yarn", "pnpm"]
+      --info   show information and versions                           [boolean]
+      --help   Show help                                               [boolean]
 ```
 
-### Pinning
+⇧ [Back to menu](#menu)
 
-The `swpm --pin` command allows you to choose your Package Manager for a project.
+---
+
+## Options
+
+### Use
+
+The `swpm --use` option allows you to choose your Package Manager for a project.
+
+```bash
+swpm --use <npm|yarn|pnpm> [args]
+swpm -u <npm|yarn|pnpm> [args]
+```
+
+> It will run the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
+
+### Pin
+
+The `swpm --pin` option allows you to choose your Package Manager for a project.
 
 ```bash
 swpm --pin <npm|yarn|pnpm>
 swpm -p <npm|yarn|pnpm>
 ```
 
-It will store this in your `package.json` so you can commit your choice of tools to version control:
+It will store the pinned Package Manager in the `package.json` file, so you can commit your choice of tools to version control:
 
 ```diff
 {
@@ -48,50 +108,22 @@ It will store this in your `package.json` so you can commit your choice of tools
 }
 ```
 
-You also can set it manually.
+> You also can set it manually. Just take care writing a valid Package Manager: `npm`, `yarn` or `pnpm`.
 
-### Use
+### Test
 
-The `swpm --use` command allows you to choose your Package Manager for a project.
-
-```bash
-swpm --use <npm|yarn|pnpm> [args]
-swpm -u <npm|yarn|pnpm> [args]
-```
-
-It will run a command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
-
-### Show
-
-The `swpm --show` command show the equivalent command using the selected Package Manager. **It will not run the command**
+The `swpm --test` option show the equivalent command using the selected Package Manager. **It will not run the command**
 
 ```bash
-swpm --show <npm|yarn|pnpm> [options]
-swpm -s <npm|yarn|pnpm> [options]
+swpm --test <npm|yarn|pnpm> [options]
+swpm -t <npm|yarn|pnpm> [options]
 ```
 
-It will run a command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
-
-### Get
-
-The `swpm --get` command show the current Package Manager used in the project.
-
-```bash
-swpm --get
-swpm -g
-```
-
-It will search firs the `swpm` property on the `package.json` file, and if doesn't not found it, will try to infer the Package Manager in use with help of the `lock`'s file.
-
-| Lock File           | PM     |
-| ------------------- | ------ |
-| `package-lock.json` | `npm`  |
-| `yarn.lock`         | `yarn` |
-| `pnpm-lock.yaml`    | `pnpm` |
+> It will show the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
 
 ### Info
 
-The `swpm --info` command show the version of the current Package Manager used in the project.
+The `swpm --info` option show the current Package Manager used and some versions information.
 
 ```bash
 swpm --info
@@ -108,7 +140,57 @@ The `swpm` command will run the command switching automatically to the pinned Pa
 swpm [args]
 ```
 
-> Work In Progress
+⇧ [Back to menu](#menu)
+
+---
+
+## Commands
+
+### Install
+
+By default, will install all modules listed as dependencies in `package.json`.
+
+```bash
+swpm install
+```
+
+This command installs a package and any packages that it depends on. If the package has a `lock` file, the installation of dependencies will be driven by that.
+
+### Add
+
+This command, no arguments, will add a package to local `package.json` file. 
+
+```bash
+swpm add <package> [--save-dev --global]
+```
+
+`swpm add <package>` saves any specified packages into dependencies by default. Additionally, you can control where and how they get saved with some additional flags:
+
+| Option       | Alias | Description |
+| ------------ | ----- | ----------- |
+| `--save-dev` | `-D`  | Package will appear in your **devDependencies** |
+| `--global`   | `-g`  | installs the current package context as a global package |
+
+⇧ [Back to menu](#menu)
+
+---
+
+## FAQ
+
+### How knows?
+
+`swpm` use two stages to infer what is the current Package Manager, following this order.
+
+1. Search the `swpm` property on the `package.json` file
+1. Search for `lock`'s files.
+
+| Lock File           | Package Manager |
+| ------------------- | --------------- |
+| `package-lock.json` | `npm`           |
+| `yarn.lock`         | `yarn`          |
+| `pnpm-lock.yaml`    | `pnpm`          |
+
+⇧ [Back to menu](#menu)
 
 ---
 
@@ -116,12 +198,16 @@ swpm [args]
 
 ### Built With
 
-* [VS Code](https://code.visualstudio.com/) - Code editing redefined.
-* [WSL](https://docs.microsoft.com/en-us/windows/wsl/) - Windows Subsystem for Linux.
-* [Widows Terminal](https://github.com/Microsoft/Terminal/) - A modern terminal application for users of command-line tools and shells.
-* [Chalk](https://github.com/chalk/chalk) - Terminal string styling done right
-* [Yargs](https://yargs.js.org/) - Yargs be a node.js library fer hearties tryin' ter parse optstrings
-* [common-tags](https://www.npmjs.com/package/common-tags) - A set of well-tested, commonly used template literal tag functions for use in ES2015+
+- [VS Code](https://code.visualstudio.com/) - Code editing redefined.
+- [WSL](https://docs.microsoft.com/en-us/windows/wsl/) - Windows Subsystem for Linux.
+- [Widows Terminal](https://github.com/Microsoft/Terminal/) - A modern terminal application for users of command-line tools and shells.
+- [Chalk](https://github.com/chalk/chalk) - Terminal string styling done right
+- [Yargs](https://yargs.js.org/) - Yargs be a node.js library fer hearties tryin' ter parse optstrings
+- [common-tags](https://www.npmjs.com/package/common-tags) - A set of well-tested, commonly used template literal tag functions for use in ES2015+
+
+### Contributing
+
+Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ### Versioning
 
@@ -129,7 +215,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ### Authors
 
-* **Camilo Martinez** [[Equiman](http://github.com/equiman)]
+- **Camilo Martinez** [[Equiman](http://github.com/equiman)]
 
 See also the list of [contributors](https://github.com/deinsoftware/swpm/contributors) who participated in this project.
 
@@ -144,3 +230,5 @@ If this project helps you, consider buying me a cup of coffee.
 ### License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
+
+⇧ [Back to menu](#menu)

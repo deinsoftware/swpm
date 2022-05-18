@@ -9,6 +9,13 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.1.1] - 2022/05/18
+
+### Fixed
+
+- github actions
+- readme commands
+
 ## [0.1.0] - 2022/05/17
 
 ### Added

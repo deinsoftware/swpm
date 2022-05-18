@@ -67,7 +67,8 @@ const yargv = await yargs(hideBin(process.argv))
       alias: 'd',
       describe: 'debug yargs parameters',
       type: 'boolean',
-      default: false
+      default: false,
+      hidden: true
     }
   )
 
