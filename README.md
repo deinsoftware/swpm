@@ -182,7 +182,7 @@ swpm add <package> [--save-dev --global]
 
 ### How knows?
 
-`swpm` use two stages to infer what is the current Package Manager, following this order.
+`swpm` use three stages to infer what is the current Package Manager, following this order.
 
 1. Search the `swpm` property on `package.json` file
 1. Search the `packageManager` property on `package.json` file
