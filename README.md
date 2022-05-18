@@ -27,6 +27,7 @@
     - [Install](#install)
     - [Add](#add)
 - [FAQ](#faq)
+- [Logos and Usage](#logos-and-usage)
 - [About](#about)
   - [Built With](#built-with)
   - [Contributing](#contributing)
