@@ -27,7 +27,7 @@
     - [Install](#install)
     - [Add](#add)
 - [FAQ](#faq)
-- [Logos and Usage](#logos-and-usage)
+- [Brand](#brand)
 - [About](#about)
   - [Built With](#built-with)
   - [Contributing](#contributing)
@@ -195,7 +195,7 @@ swpm add <package> [args]
 
 ---
 
-## Logos and Usage
+## Brand
 
 If you want to help, spread the word of `swpm` in a project or web, please this usage guide.
 
@@ -215,7 +215,7 @@ If you want to help, spread the word of `swpm` in a project or web, please this 
 [![swpm-icon-64](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon_64.png)](https://www.npmjs.com/package/swpm)
 ```
 
-### Brand
+### Logos
 
 [![swpm-logo](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/brand/logo.png)](https://www.npmjs.com/package/swpm)
 
