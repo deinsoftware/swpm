@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.2.3] - 2022/05/18
+
+### Changed
+
+- options to flags
+
 ## [0.2.2] - 2022/05/18
 
 ### Fixed
