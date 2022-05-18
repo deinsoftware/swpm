@@ -13,7 +13,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ### Changed
 
-- default package manager
+- add `engine` and `packageManager` properties
 
 ## [0.1.1] - 2022/05/18
 
