@@ -1,6 +1,9 @@
 {
   "name": "swpm",
-  "version": "0.1.1",
+  "version": "0.1.2",
+  "engines": {
+    "node": ">=16.15.0"
+  },
   "description": "Switch Package Manager",
   "main": "index.js",
   "bin": "./index.js",
@@ -48,5 +51,6 @@
     "eslint-plugin-promise": "6.0.0",
     "vitest": "0.12.6"
   },
-  "swpm": "npm"
+  "packageManager": "pnpm@7.1.1",
+  "swpm": "pnpm"
 }
