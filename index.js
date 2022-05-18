@@ -2,10 +2,10 @@
 
 import yargv from './src/yargs.js'
 
-import { pinPackageManager } from './src/options/pin.js'
+import { pinPackageManager } from './src/flags/pin.js'
 import { runCommand } from './src/helpers/cmd.js'
-import { getPackageInformation } from './src/options/info.js'
-import { testCommand } from './src/options/test.js'
+import { getPackageInformation } from './src/flags/info.js'
+import { testCommand } from './src/flags/test.js'
 
 if (yargv.debug) {
   console.log(yargv)

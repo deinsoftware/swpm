@@ -2,7 +2,7 @@ import { argv } from 'node:process'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import { cleanArguments } from './helpers/cmd.js'
-import { getCurrentPackageManager } from './options/get.js'
+import { getCurrentPackageManager } from './flags/get.js'
 import { availablePackages, getPackageConfiguration } from './packages/list.js'
 
 const yargv = await yargs(hideBin(process.argv))
@@ -29,7 +29,7 @@ const yargv = await yargs(hideBin(process.argv))
     command: 'add <package>',
     aliases: ['a'],
     desc: 'add package',
-    usage: '$0 add <package> [--save-dev --global]',
+    usage: '$0 add <package> [FLAGS]',
     conflicts: ['install'],
     builder: (yargs) => {
       yargs.positional('package', {
@@ -140,6 +140,7 @@ const yargv = await yargs(hideBin(process.argv))
     }
   })
 
+  .usage('$0 [FLAGS] <command> [--] [args]')
   .help()
   .version(false)
   .epilog('dein Software - copyright 2022')
