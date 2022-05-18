@@ -194,6 +194,56 @@ swpm add <package> [args]
 
 ---
 
+## Logos and Usage
+
+If you want to help, spread the word of `swpm` in a project or web, please this usage guide.
+
+### Badge
+
+[![swpm-version](https://img.shields.io/npm/v/swpm.svg?color=blue&label=swpm&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFRSURBVHgBrVO9SsNQGD2x/7VaxTbQ6lARW8GCWoR2Kzi4CA7ubs6+gE/gkzg4+ARJfADpFFycBGlMKiL5sUbTxHtv4rXYybQHvnAOl+/kOzf5EARBjZQS/B83tBcRiQtFoE8QyLIMXdcphSiKaD+/wDctppOrFfiWzXW6sYnsQTc8QwRJkqCqKuPNZhPbvXt4fY3pzH4LI8J/dP74iBvMYUpMbcAjrByeorpnM14qF1A6uUTw/sa0UMzAvG4hEUVIViuTBg8DG72nV37gf9wSg8doTAGfd0V+B4kxg9lFqJcX8MsLELK7EPLrYYSlHaQaKf7m9FZ90qBvDqGRoqgsZnE+uOC6tbYMd/4KhvPFdHto4eyvge16vEEzc4yPa88wYJCicByHTzC7O+huiGT0HONVEsFyC6RGXAudDmw7/Mz0T+WIuYl8I6lBLeZGKrT3G+NcbiaXShWYAAAAAElFTkSuQmCC)](https://www.npmjs.com/package/swpm)
+
+```markdown
+[![swpm-version](https://img.shields.io/npm/v/swpm.svg?color=blue&label=swpm&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFRSURBVHgBrVO9SsNQGD2x/7VaxTbQ6lARW8GCWoR2Kzi4CA7ubs6+gE/gkzg4+ARJfADpFFycBGlMKiL5sUbTxHtv4rXYybQHvnAOl+/kOzf5EARBjZQS/B83tBcRiQtFoE8QyLIMXdcphSiKaD+/wDctppOrFfiWzXW6sYnsQTc8QwRJkqCqKuPNZhPbvXt4fY3pzH4LI8J/dP74iBvMYUpMbcAjrByeorpnM14qF1A6uUTw/sa0UMzAvG4hEUVIViuTBg8DG72nV37gf9wSg8doTAGfd0V+B4kxg9lFqJcX8MsLELK7EPLrYYSlHaQaKf7m9FZ90qBvDqGRoqgsZnE+uOC6tbYMd/4KhvPFdHto4eyvge16vEEzc4yPa88wYJCicByHTzC7O+huiGT0HONVEsFyC6RGXAudDmw7/Mz0T+WIuYl8I6lBLeZGKrT3G+NcbiaXShWYAAAAAElFTkSuQmCC)](https://www.npmjs.com/package/swpm)
+```
+
+### Logomark
+
+[![swpm-icon64](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon_64.png)](https://www.npmjs.com/package/swpm)
+
+```markdown
+[![swpm-icon-64](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon_64.png)](https://www.npmjs.com/package/swpm)
+```
+
+### Brand
+
+[![swpm-logo](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/brand/logo.png)](https://www.npmjs.com/package/swpm)
+
+```markdown
+[![swpm-logo](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/brand/logo.png)](https://www.npmjs.com/package/swpm)
+```
+
+[![swpm-logo-color](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/brand/logo-color.png)](https://www.npmjs.com/package/swpm)
+
+```markdown
+[![swpm-logo-color](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/brand/logo-color.png)](https://www.npmjs.com/package/swpm)
+```
+
+[![swpm-img](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/brand/img.png)](https://www.npmjs.com/package/swpm)
+
+```markdown
+[![swpm-img](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/brand/img.png)](https://www.npmjs.com/package/swpm)
+```
+
+[![swpm-img-color](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/brand/img-color.png)](https://www.npmjs.com/package/swpm)
+
+```markdown
+[![swpm-img-color](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/brand/img-color.png)](https://www.npmjs.com/package/swpm)
+```
+
+⇧ [Back to menu](#menu)
+
+---
+
 ## About
 
 ### Built With
