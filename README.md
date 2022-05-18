@@ -14,27 +14,10 @@
 ## Menu
 
 - [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)  
-  - [Installing](#installing)
-  - [Help](#help)
 - [Usage](#usage)
-  - [Flags](#flags)
-    - [Use](#use)
-    - [Pin](#pin)
-    - [Test](#test)
-    - [Info](#info)
-  - [Commands](#commands)
-    - [Install](#install)
-    - [Add](#add)
 - [FAQ](#faq)
 - [Brand](#brand)
 - [About](#about)
-  - [Built With](#built-with)
-  - [Contributing](#contributing)
-  - [Versioning](#versioning)
-  - [Authors](#authors)
-  - [Sponsors](#sponsors)
-  - [License](#license)
 
 ---
 
