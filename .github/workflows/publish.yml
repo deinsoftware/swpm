@@ -29,12 +29,9 @@ jobs:
       - uses: Eomm/why-don-t-you-tweet@v1
         if: ${{ !github.event.repository.private }}
         with:
-          tweet-message: "swpm ${{ github.event.release.tag_name }} 🐛🔨 is here 🥳\n
-          \n
-          $ npm update swpm --global\n
-          \n
-          #swpm #cli #npm #yarn #pnpm #nodejs #javascript\n
-          \n
+          tweet-message: "swpm ${{ github.event.release.tag_name }} 🐛🔨 is here 🥳\n\n
+          $ npm update swpm --global\n\n
+          #swpm #cli #npm #yarn #pnpm #nodejs #javascript\n\n
           https://github.com/deinsoftware/swpm"
         env:
           TWITTER_CONSUMER_API_KEY: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
