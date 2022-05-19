@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.3.2] - 2022/05/19
+
+### Fixed
+
+- version name on message
+
 ## [0.3.1] - 2022/05/19
 
 ### Changed
