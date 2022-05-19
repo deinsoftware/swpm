@@ -27,7 +27,6 @@ jobs:
     if: ${{ success() }}
     runs-on: ubuntu-latest
     name: message
-    needs: pack
     steps:
       - uses: actions/checkout@v2
       - name: setup Twitter

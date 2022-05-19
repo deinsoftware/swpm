@@ -13,7 +13,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ### Added
 
-- github action tu tween on publish
+- github action to tween on publishing
 
 ## [0.2.3] - 2022/05/18
 
