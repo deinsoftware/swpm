@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.3.0] - 2022/05/19
+
+### Added
+
+- github action tu tween on publish
+
 ## [0.2.3] - 2022/05/18
 
 ### Changed

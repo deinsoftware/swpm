@@ -21,3 +21,24 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+  tweet:
+    needs: publish
+    if: ${{ success() }}
+    runs-on: ubuntu-latest
+    name: message
+    needs: pack
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup Twitter
+        uses: ethomson/send-tweet-action@v1
+        with:
+          status: "swpm - Switch Package Manager\n
+          ${{ github.event.release.tag_name }} 🐛🛠 version available as npm package\n
+          $ npm install swpm --global\n
+          \n
+          https://github.com/deinsoftware/swpm"
+          consumer-key: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
+          consumer-secret: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
+          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
