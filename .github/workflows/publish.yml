@@ -26,18 +26,20 @@ jobs:
     needs: publish
     if: ${{ success() }}
     runs-on: ubuntu-latest
-    name: message
     steps:
-      - uses: actions/checkout@v2
-      - name: setup Twitter
-        uses: ethomson/send-tweet-action@v1
+      - uses: Eomm/why-don-t-you-tweet@v1
+        if: ${{ !github.event.repository.private }}
         with:
-          status: "swpm - Switch Package Manager\n
-          ${{ github.event.release.tag_name }} 🐛🛠 version available as npm package\n
-          $ npm install swpm --global\n
+          tweet-message: "swpm ${{ github.event.release.tag_name }} is here 🔂\n
           \n
-          https://github.com/deinsoftware/swpm"
-          consumer-key: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
-          consumer-secret: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
-          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-          access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          $ npm update swpm --global\n
+          \n
+          #swpm #cli #npm #yarn #pnpm #nodejs #javascript\n
+          \n
+          ⚡ npm package:
+          https://www.npmjs.com/package/swpm"
+        env:
+          TWITTER_CONSUMER_API_KEY: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
+          TWITTER_CONSUMER_API_SECRET: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
