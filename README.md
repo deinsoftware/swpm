@@ -116,8 +116,8 @@ swpm a <package> [args]
 The `swpm --use` flag allows you to choose your Package Manager for a project.
 
 ```bash
-swpm <command> [--] [args] --use <npm|yarn|pnpm> 
-swpm [--] [args] -u <npm|yarn|pnpm> <command> 
+swpm <command> [--] [args] --use <npm|yarn|pnpm>
+swpm <command> [--] [args] --u <npm|yarn|pnpm>
 ```
 
 > It will run the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
