@@ -49,7 +49,7 @@ pnpm install -global swpm
 With `swpm --help` it will show a command help resume.
 
 ```text
-swpm <command> [--] [args] [FLAGS]
+swpm [<command>] [--] [args] [FLAGS]
 
 Commands:
   swpm install [FLAGS]        install packages from package.json    [aliases: i]
