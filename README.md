@@ -28,6 +28,7 @@ When switching between JavaScript projects, it's often easy to forget which pack
 `swpm` is a CLI that intends to solve this problem by unifying the most used commands for the most common Node Package Managers into one. It will recognize the Package Manager used on the project and automatically will translate those commands.
 
 > WIP: we will start with most used command, then other commands will be added gradually.
+> Track the project progress on [CHEATSHEET](CHEATSHEET.md)
 
 ### Prerequisites
 
@@ -89,7 +90,7 @@ This command installs a package and any packages that it depends on. If the pack
 
 | Args                | Alias | Description |
 | ------------------- | ----- | ----------- |
-| `--frozen-lockfile` | `-FL` | install dependencies from lock file (without updating it). Also know as `ci` |
+| `--frozen-lockfile` | `-FL` | install dependencies from lock file (without updating it). Also known as `ci` |
 
 #### Add
 
