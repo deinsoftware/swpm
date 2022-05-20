@@ -74,6 +74,40 @@ The `swpm` will run the command switching automatically to the pinned Package Ma
 swpm <command> [--] [args] [FLAGS]
 ```
 
+### Commands
+
+#### Install
+
+By default, will install all modules listed as dependencies in `package.json`.
+
+```bash
+swpm install [args]
+swpm i [args]
+```
+
+This command installs a package and any packages that it depends on. If the package has a `lock` file, the installation of dependencies will be driven by that.
+
+| Args                | Alias | Description |
+| ------------------- | ----- | ----------- |
+| `--frozen-lockfile` | `-FL` | install dependencies from lock file (without updating it). Also know as `ci` |
+
+#### Add
+
+This command, no arguments, will add a package to local `package.json` file.
+
+```bash
+swpm add <package> [args]
+swpm a <package> [args]
+```
+
+`swpm add <package>` saves any specified packages into dependencies by default. Additionally, you can control where and how they get saved with some additional flags:
+
+| Args           | Alias | Description |
+| -------------- | ----- | ----------- |
+| `--save-dev`   | `-D`  | Package will appear in your **devDependencies** |
+| `--save-exact` | `-E`  | Dependencies will be configured with an exact version rather than using default semver range operator. |
+| `--global`     | `-g`  | installs the current package context as a global package |
+
 ### Flags
 
 #### Use
@@ -127,38 +161,6 @@ swpm -i
 ```
 
 It will search firs the `swpm` property on the `package.json` file, and if doesn't not found it, will try to infer the Package Manager in use with help of the `lock`'s file.
-
-### Commands
-
-#### Install
-
-By default, will install all modules listed as dependencies in `package.json`.
-
-```bash
-swpm install
-```
-
-This command installs a package and any packages that it depends on. If the package has a `lock` file, the installation of dependencies will be driven by that.
-
-| Args                | Alias | Description |
-| ------------------- | ----- | ----------- |
-| `--frozen-lockfile` | `-FL` | install dependencies from lock file (without updating it). Also know as `ci` |
-
-#### Add
-
-This command, no arguments, will add a package to local `package.json` file.
-
-```bash
-swpm add <package> [args]
-```
-
-`swpm add <package>` saves any specified packages into dependencies by default. Additionally, you can control where and how they get saved with some additional flags:
-
-| Args           | Alias | Description |
-| -------------- | ----- | ----------- |
-| `--save-dev`   | `-D`  | Package will appear in your **devDependencies** |
-| `--save-exact` | `-E`  | Dependencies will be configured with an exact version rather than using default semver range operator. |
-| `--global`     | `-g`  | installs the current package context as a global package |
 
 ⇧ [Back to menu](#menu)
 
