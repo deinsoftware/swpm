@@ -25,7 +25,7 @@
 
 When switching between JavaScript projects, it's often easy to forget which package manager should be used. JavaScript package managers aren't quite compatible either and each one resolves dependencies differently, so accidentally installing with `npm` could cause a `yarn` or `pnpm` project to break.
 
-`swpm` intend to solve this problem unifying the most used commands for the most common Node Package Managers into one. It will recognize the Package Manager used on the project and automatically will translate those commands.
+`swpm` is a CLI that intends to solve this problem by unifying the most used commands for the most common Node Package Managers into one. It will recognize the Package Manager used on the project and automatically will translate those commands.
 
 > WIP: we will start with most used command, then other commands will be added gradually.
 
@@ -180,7 +180,7 @@ swpm add <package> [args]
 
 ## Brand
 
-If you want to help, spread the word of `swpm` in a project or web, please use this brans images.
+If you want to help, spread the word of `swpm` in a project or web, please use this brand's images.
 
 ### Badge
 
