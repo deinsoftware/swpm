@@ -63,6 +63,12 @@ Options:
       --help  Show help                                                [boolean]
 ```
 
+### Example
+
+Same command, three projects with different package manager.
+
+![swpm-example](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/social/example.png)
+
 ⇧ [Back to menu](#menu)
 
 ---
