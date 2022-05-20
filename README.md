@@ -27,6 +27,10 @@ When switching between JavaScript projects, it's often easy to forget which pack
 
 `swpm` is a CLI that intends to solve this problem by unifying the most used commands for the most common Node Package Managers into one. It will recognize the Package Manager used on the project and automatically will translate those commands.
 
+This is an example of how #swpm works. The same command, no matter the package manager used on the project.
+
+![swpm-example](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/social/example.png)
+
 > **Note**:  
 > We will start with most used command, then other commands will be added gradually.  
 > Track the project progress on [CHEATSHEET](CHEATSHEET.md)
@@ -63,12 +67,6 @@ Options:
       --info  show information and versions                            [boolean]
       --help  Show help                                                [boolean]
 ```
-
-### Example
-
-That's an example how #swpm works. Same command, no matter the package manager used on the project.
-
-![swpm-example](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/social/example.png)
 
 ⇧ [Back to menu](#menu)
 
