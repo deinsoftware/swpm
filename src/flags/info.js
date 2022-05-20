@@ -1,15 +1,15 @@
 import { stripIndents } from 'common-tags'
 import chalk from 'chalk'
 import { createRequire } from 'module'
-import { execCommand } from '../helpers/cmd.js'
+import { getCommandResult } from '../helpers/cmd.js'
 
 const require = createRequire(import.meta.url)
 
 export const getPackageInformation = async ({ cmd, config }) => {
-  const nodeVersion = execCommand('node --version').replace(/v/, '')
+  const nodeVersion = getCommandResult('node --version').replace(/v/, '')
 
-  const isInstalled = !!execCommand(`command -v ${cmd}`)
-  const packageVersion = isInstalled ? execCommand(`${cmd} --version`) : 'not found'
+  const isInstalled = !!getCommandResult(`command -v ${cmd}`)
+  const packageVersion = isInstalled ? getCommandResult(`${cmd} --version`) : 'not found'
 
   const { version: swpmVersion } = require('../../package.json')
 

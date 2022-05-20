@@ -7,7 +7,7 @@ const packageName = 'package.json'
 
 const searchForProperty = async (packageJson, property) => {
   if (!packageJson || !(property in packageJson)) {
-    return undefined
+    return
   }
 
   const prop = (property === 'packageManager') ? packageJson?.[property]?.split('@')?.[0] : packageJson?.[property]
@@ -29,8 +29,6 @@ const searchForLockFiles = async () => {
       return pkg.cmd
     }
   }
-
-  return undefined
 }
 
 export const getCurrentPackageManager = async () => {

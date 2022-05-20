@@ -1,28 +1,31 @@
 #!/usr/bin/env node
 
-import yargv from './src/yargs.js'
+import yargv from './src/cli/yargs.js'
 
 import { pinPackageManager } from './src/flags/pin.js'
-import { runCommand } from './src/helpers/cmd.js'
+import { showCommand, runCommand } from './src/helpers/cmd.js'
 import { getPackageInformation } from './src/flags/info.js'
 import { testCommand } from './src/flags/test.js'
 
 if (yargv.debug) {
-  console.log(yargv)
+  const { yargs, pkg } = globalThis
+  console.debug(yargs)
+  console.debug(pkg)
 }
 
 if (yargv?.pin) {
-  await pinPackageManager(yargv.pkg)
+  await pinPackageManager(globalThis.pkg)
 }
 
 if (yargv?.test) {
-  await testCommand(yargv.pkg)
+  testCommand(globalThis.pkg)
 }
 
 if (yargv?.info) {
-  await getPackageInformation(yargv.pkg)
+  await getPackageInformation(globalThis.pkg)
 }
 
-if (yargv?.pkg?.cmd) {
-  await runCommand(yargv.pkg)
+if (globalThis?.pkg?.cmd) {
+  showCommand(globalThis.pkg)
+  runCommand(globalThis.pkg)
 }

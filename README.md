@@ -48,17 +48,18 @@ pnpm install -global swpm
 With `swpm --help` it will show a command help resume.
 
 ```text
+swpm <command> [--] [args] [FLAGS]
+
 Commands:
-  swpm install        install packages from package.json            [aliases: i]
-  swpm add <package>  add package                                   [aliases: a]
+  swpm install [FLAGS]        install packages from package.json    [aliases: i]
+  swpm add <package> [FLAGS]  add package                           [aliases: a]
 
 Options:
-  -d, --debug  debug yargs parameters                 [boolean] [default: false]
-  -u, --use    use a package manager            [choices: "npm", "yarn", "pnpm"]
-  -p, --pin    pin a package manager            [choices: "npm", "yarn", "pnpm"]
-  -t, --test   test command (without running)   [choices: "npm", "yarn", "pnpm"]
-      --info   show information and versions                           [boolean]
-      --help   Show help                                               [boolean]
+  -u, --use   use a package manager             [choices: "npm", "yarn", "pnpm"]
+  -p, --pin   pin a package manager             [choices: "npm", "yarn", "pnpm"]
+  -t, --test  test command (without running)    [choices: "npm", "yarn", "pnpm"]
+      --info  show information and versions                            [boolean]
+      --help  Show help                                                [boolean]
 ```
 
 ⇧ [Back to menu](#menu)
@@ -70,7 +71,7 @@ Options:
 The `swpm` will run the command switching automatically to the pinned Package Manager.
 
 ```bash
-swpm [FLAGS] <command> [--] [args]
+swpm <command> [--] [args] [FLAGS]
 ```
 
 ### Flags
@@ -80,8 +81,8 @@ swpm [FLAGS] <command> [--] [args]
 The `swpm --use` flag allows you to choose your Package Manager for a project.
 
 ```bash
-swpm --use <npm|yarn|pnpm> <command> [--] [args]
-swpm -u <npm|yarn|pnpm> <command> [--] [args]
+swpm <command> [--] [args] --use <npm|yarn|pnpm> 
+swpm [--] [args] -u <npm|yarn|pnpm> <command> 
 ```
 
 > It will run the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
@@ -110,8 +111,8 @@ It will store the pinned Package Manager in the `package.json` file, so you can 
 The `swpm --test` flag show the equivalent command using the selected Package Manager, but **it will not run the command**
 
 ```bash
-swpm --test <npm|yarn|pnpm> <command> [--] [args]
-swpm -t <npm|yarn|pnpm> <command> [--] [args]
+swpm <command> [--] [args] --test <npm|yarn|pnpm> 
+swpm <command> [--] [args] -t <npm|yarn|pnpm>
 ```
 
 > It will show the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
@@ -139,6 +140,10 @@ swpm install
 
 This command installs a package and any packages that it depends on. If the package has a `lock` file, the installation of dependencies will be driven by that.
 
+| Args                | Alias | Description |
+| ------------------- | ----- | ----------- |
+| `--frozen-lockfile` | `-FL` | install dependencies from lock file (without updating it). Also know as `ci` |
+
 #### Add
 
 This command, no arguments, will add a package to local `package.json` file.
@@ -149,10 +154,11 @@ swpm add <package> [args]
 
 `swpm add <package>` saves any specified packages into dependencies by default. Additionally, you can control where and how they get saved with some additional flags:
 
-| Option       | Alias | Description |
-| ------------ | ----- | ----------- |
-| `--save-dev` | `-D`  | Package will appear in your **devDependencies** |
-| `--global`   | `-g`  | installs the current package context as a global package |
+| Args           | Alias | Description |
+| -------------- | ----- | ----------- |
+| `--save-dev`   | `-D`  | Package will appear in your **devDependencies** |
+| `--save-exact` | `-E`  | Dependencies will be configured with an exact version rather than using default semver range operator. |
+| `--global`     | `-g`  | installs the current package context as a global package |
 
 ⇧ [Back to menu](#menu)
 
@@ -173,6 +179,23 @@ swpm add <package> [args]
   | `package-lock.json` | `npm`           |
   | `yarn.lock`         | `yarn`          |
   | `pnpm-lock.yaml`    | `pnpm`          |
+
+### Package
+
+The `<package>` parameter should follow one of these structures:
+
+```bash
+[<@scope>/]<name>
+[<@scope>/]<name>@<tag>
+[<@scope>/]<name>@<version>
+[<@scope>/]<name>@<version range>
+<alias>@npm:<name>
+<git-host>:<git-user>/<repo-name>
+<git repo url>
+<tarball file>
+<tarball url>
+<folder>
+```
 
 ⇧ [Back to menu](#menu)
 

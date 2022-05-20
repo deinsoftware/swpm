@@ -9,6 +9,17 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.4.0] - 2022/05/20
+
+### Added
+
+- first version that translate commands `install` (`--frozen-lockfile`) and `add` (`--global`, `--save-dev`, `--save-exact`) commands
+
+### Changed
+
+- yargs refactor
+- structure project reorder
+
 ## [0.3.2] - 2022/05/19
 
 ### Fixed

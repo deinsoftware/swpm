@@ -12,7 +12,7 @@ This is a cheat sheet that you can use as a handy reference for [npm](https://ww
 | install from `package.json`            | `npm install`                                | `yarn [install]`                                | `pnpm install`                                  |
 | don't read or generate a lockfile.     | `npm install --no-package-lock`              | `yarn install --no-lockfile`                    |                                                 |
 | don't generate a lockfile.             |                                              | `yarn install --pure-lockfile`                  |                                                 |
-| lockfile is not updated                |                                              | `yarn install --frozen-lockfile`                | `pnpm install --frozen-lockfile`                |
+| lockfile is not updated                | `npm ci`                                     | `yarn install --frozen-lockfile`                | `pnpm install --frozen-lockfile`                |
 | add package                            | `npm install <package> [--global]`           | `yarn [global] add <package>`                   | `pnpm add <package> [--global]`                 |
 | add package as `dependencies`          | `npm install <package> [--save-prod]`        | `yarn add <package>`                            | `pnpm add <package> --save-prod`                |
 | add package as `peerDependencies`      |                                              | `yarn add <package> --peer`                     | `pnpm add <package> --save-peer`                |
