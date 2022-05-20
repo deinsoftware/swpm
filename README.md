@@ -65,7 +65,7 @@ Options:
 
 ### Example
 
-Same command, three projects with different package manager.
+That's an example how #swpm works. Same command, no matter the package manager used on the project.
 
 ![swpm-example](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/social/example.png)
 
