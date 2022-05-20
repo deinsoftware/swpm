@@ -167,6 +167,7 @@ dist
 # Ignore code-workspaces
 *.code-workspace
 
-# OS files 
+# OS generated files
 .DS_Store
+.DS_Store?
 *Zone.Identifier
