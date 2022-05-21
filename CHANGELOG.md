@@ -14,6 +14,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 ### Fixed
 
 - [volta](https://volta.sh/) pinned compatibility
+- `--save-*` flags exclusion on `add` command
 
 ### Added
 
@@ -23,7 +24,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ### Added
 
-- first version that translate commands `install` (`--frozen-lockfile`) and `add` (`--global`, `--save-dev`, `--save-exact`) commands
+- first version that translate commands `install` [`--frozen-lockfile`] and `add` [`--global`, `--save-dev`, `--save-exact`] commands
 
 ### Changed
 
