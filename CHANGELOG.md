@@ -14,7 +14,10 @@ Security    to invite users to upgrade in case of vulnerabilities.
 ### Fixed
 
 - [volta](https://volta.sh/) pinned compatibility
-- supported commands documentation
+
+### Added
+
+- supported shared commands to documentation
 
 ## [0.4.0] - 2022/05/20
 
