@@ -117,7 +117,7 @@ swpm a <package> [args]
 
 ### Shared Commands
 
-Commands who share the same structure as all package managers
+This are commands that don't need the `swpm` translation tool, because share the same structure as all package managers.
 
 #### Init
 
@@ -127,8 +127,10 @@ Commands who share the same structure as all package managers
 swpm init
 swpm init --yes
 swpm init <name>
-swpm create vite
+swpm create <name>
 ```
+
+> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm>` at the end
 
 #### Scripts
 
@@ -153,6 +155,8 @@ swpm login
 swpm logout
 ```
 
+> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm>` at the end
+
 #### Publish
 
 Commands to `publish`, `unpublish` or `deprecate` a package on [https://www.npmjs.com/](https://www.npmjs.com/).
@@ -172,6 +176,8 @@ swpm config list
 swpm config set save-exact true
 swpm config set save-prefix '~'
 ```
+
+> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm>` at the end
 
 ### Flags
 
@@ -222,7 +228,6 @@ The `swpm --info` flag show the current Package Manager used and some versions i
 
 ```bash
 swpm --info
-swpm -i
 ```
 
 It will search firs the `swpm` property on the `package.json` file, and if doesn't not found it, will try to infer the Package Manager in use with help of the `lock`'s file.
@@ -263,6 +268,10 @@ The `<package>` parameter should follow one of these structures:
 <tarball url>
 <folder>
 ```
+
+### Non documented commands
+
+`swpm` will try to infer the package manager and preserve the rest of the command and arguments without changes and run them.
 
 ⇧ [Back to menu](#menu)
 
