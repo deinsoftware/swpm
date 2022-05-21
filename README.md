@@ -33,7 +33,7 @@ This is an example of how #swpm works. The same command, no matter the package m
 
 > **Note**:  
 > We will start with most used command, then other commands will be added gradually.  
-> Track the project progress on [CHEATSHEET](CHEATSHEET.md)
+> Track the command progress implementation on [CHEATSHEET](CHEATSHEET.md)
 
 ### Prerequisites
 
