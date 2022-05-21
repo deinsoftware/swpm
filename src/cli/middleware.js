@@ -34,11 +34,11 @@ const middleware = async (yargs) => {
 
   if (!globalThis?.pkg?.cmd || yargs?.info) {
     globalThis.pkg.cmd = await getCurrentPackageManager()
+    globalThis.pkg.volta = await detectVoltaPin()
   }
 
   if (globalThis?.pkg?.cmd) {
     globalThis.pkg.config = await getPackageConfiguration(globalThis.pkg.cmd)
-    globalThis.pkg.volta = await detectVoltaPin()
   }
 
   if ('global' in yargs) {

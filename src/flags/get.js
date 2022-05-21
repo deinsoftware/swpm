@@ -38,15 +38,17 @@ const searchForLockFiles = async () => {
 export const getCurrentPackageManager = async () => {
   const packageJson = await getPackageJson()
 
-  const pinned = await getPropertyValue(packageJson, 'swpm')
-  if (pinned) { return pinned }
+  if (packageJson) {
+    const pinned = await getPropertyValue(packageJson, 'swpm')
+    if (pinned) { return pinned }
 
-  // https://nodejs.org/api/corepack.html
-  const packageManager = await getPropertyValue(packageJson, 'packageManager')
-  if (packageManager) { return packageManager }
+    // https://nodejs.org/api/corepack.html
+    const packageManager = await getPropertyValue(packageJson, 'packageManager')
+    if (packageManager) { return packageManager }
 
-  const lock = await searchForLockFiles()
-  if (lock) { return lock }
+    const lock = await searchForLockFiles()
+    if (lock) { return lock }
+  }
 
   console.log(stripIndents`
     ${chalk.red.bold('Error')}: no Package Manager was found.
@@ -57,10 +59,12 @@ export const getCurrentPackageManager = async () => {
   process.exit(1)
 }
 
+// https://volta.sh/
 export const detectVoltaPin = async () => {
-  // https://volta.sh/
   const packageJson = await getPackageJson()
 
-  const exists = propertyExists(packageJson, 'volta')
-  return exists
+  if (packageJson) {
+    const exists = propertyExists(packageJson, 'volta')
+    return exists
+  }
 }

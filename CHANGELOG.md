@@ -9,6 +9,13 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.4.2] - 2022/05/21
+
+### Fixed
+
+- [volta](https://volta.sh/) detection for `--use` flag
+- add volta detection to `--info` flag
+
 ## [0.4.1] - 2022/05/20
 
 ### Fixed
