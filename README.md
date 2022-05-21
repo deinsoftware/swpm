@@ -4,7 +4,8 @@
 [![publish](https://github.com/deinsoftware/swpm/actions/workflows/publish.yml/badge.svg)](https://github.com/deinsoftware/swpm/actions/workflows/publish.yml)
 [![npm-version](https://img.shields.io/npm/v/swpm.svg?color=blue)](https://www.npmjs.com/package/swpm)
 [![npm-downloads](https://img.shields.io/npm/dt/swpm)](https://www.npmjs.com/package/swpm)
-[![node-engine](https://img.shields.io/node/v/swpm.svg)](https://nodejs.org)
+[![node-engine](https://img.shields.io/node/v/swpm.svg?color=blue)](https://nodejs.org)
+[![volta](https://img.shields.io/badge/%E2%9A%A1%20volta-compatible-blue)](https://volta.sh)
 [![license](https://img.shields.io/github/license/deinsoftware/swpm)](LICENSE.md)
 
 ![swpm](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/social/preview.png)
@@ -113,6 +114,64 @@ swpm a <package> [args]
 | `--save-dev`   | `-D`  | Package will appear in your **devDependencies** |
 | `--save-exact` | `-E`  | Dependencies will be configured with an exact version rather than using default semver range operator. |
 | `--global`     | `-g`  | installs the current package context as a global package |
+
+### Shared Commands
+
+Commands who share the same structure as all package managers
+
+#### Init
+
+`init` or `create` can be used to set up a new or existing package.
+
+```bash
+swpm init
+swpm init --yes
+swpm init <name>
+swpm create vite
+```
+
+#### Scripts
+
+This runs an arbitrary command from a package's "scripts" object.  
+If no "command" is provided, it will list the available scripts.  
+
+```bash
+swpm run <command> [-- <args>]
+swpm test
+swpm build
+```
+
+> You can run `test` and `build` "scripts" without the `run` prefix.
+
+#### Login/Logout
+
+Login and logout to [https://www.npmjs.com/](https://www.npmjs.com/).  
+Commonly used when you need to publish or admin packages.
+
+```bash
+swpm login
+swpm logout
+```
+
+#### Publish
+
+Commands to `publish`, `unpublish` or `deprecate` a package on [https://www.npmjs.com/](https://www.npmjs.com/).
+
+```bash
+swpm publish
+swpm unpublish <package>[@#.#.#]
+swpm deprecate <package>[@#.#.#] <message>
+```
+
+#### Config
+
+See the local configuration, or setup default values.
+
+```bash
+swpm config list
+swpm config set save-exact true
+swpm config set save-prefix '~'
+```
 
 ### Flags
 

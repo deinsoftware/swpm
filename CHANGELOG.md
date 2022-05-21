@@ -9,6 +9,13 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.4.1] - 2022/05/20
+
+### Fixed
+
+- [volta](https://volta.sh/) pinned compatibility
+- supported commands documentation
+
 ## [0.4.0] - 2022/05/20
 
 ### Added

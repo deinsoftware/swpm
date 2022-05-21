@@ -16,8 +16,7 @@ const add = {
       type: 'boolean',
       desc: 'add package as devDependencies',
       usage: '$0 add <package> --save-dev',
-      implies: ['package'],
-      conflicts: ['save-exact']
+      implies: ['package']
     })
 
     yargs.option('save-exact', {
@@ -25,8 +24,7 @@ const add = {
       type: 'boolean',
       desc: 'add package as devDependencies',
       usage: '$0 add <package> --save-exact',
-      implies: ['package'],
-      conflicts: ['save-dev']
+      implies: ['package']
     })
 
     yargs.option('global', {

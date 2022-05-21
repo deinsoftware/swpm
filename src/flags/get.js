@@ -5,8 +5,12 @@ import packagesList, { packageExists } from '../packages/list.js'
 
 const packageName = 'package.json'
 
-const searchForProperty = async (packageJson, property) => {
-  if (!packageJson || !(property in packageJson)) {
+const propertyExists = (packageJson, property) => {
+  return (property in packageJson)
+}
+
+const getPropertyValue = async (packageJson, property) => {
+  if (!packageJson || !propertyExists(packageJson, property)) {
     return
   }
 
@@ -34,11 +38,11 @@ const searchForLockFiles = async () => {
 export const getCurrentPackageManager = async () => {
   const packageJson = await getPackageJson()
 
-  const pinned = await searchForProperty(packageJson, 'swpm')
+  const pinned = await getPropertyValue(packageJson, 'swpm')
   if (pinned) { return pinned }
 
   // https://nodejs.org/api/corepack.html
-  const packageManager = await searchForProperty(packageJson, 'packageManager')
+  const packageManager = await getPropertyValue(packageJson, 'packageManager')
   if (packageManager) { return packageManager }
 
   const lock = await searchForLockFiles()
@@ -51,4 +55,12 @@ export const getCurrentPackageManager = async () => {
     Highly recommend pin a Package Manager with ${chalk.blue.bold('swpm --pin <npm|yarn|pnpm>')} command.
   `)
   process.exit(1)
+}
+
+export const detectVoltaPin = async () => {
+  // https://volta.sh/
+  const packageJson = await getPackageJson()
+
+  const exists = propertyExists(packageJson, 'volta')
+  return exists
 }

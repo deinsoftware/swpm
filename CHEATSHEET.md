@@ -32,19 +32,20 @@ This is a cheat sheet that you can use as a handy reference for [npm](https://ww
 
 Use the same command structure between package managers.
 
-| command                                | swpm | npm                                          | yarn                                            | pnpm                                            |
-| -------------------------------------- | ---- | -------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| init                                   |      | `npm init`                                   | `yarn init`                                     | `pnpm init`                                     |
-| login/logout                           |      | `npm <login\|logout>`                        | `yarn <login\|logout>`                          | `pnpm <login\|logout>`                          |
-| run scripts                            |      | `npm run <script>`                           | `yarn run <script>`                             | `pnpm [run] <script>`                           |
-| run test                               |      | `npm test`                                   | `yarn test`                                     | `pnpm test`                                     |
-| crate bundle package                   |      | `npm build`                                  | `yarn build`                                    | `pnpm build`                                    |
-| publish                                |      | `npm publish`                                | `yarn publish`                                  | `pnpm publish`                                  |
-| unpublish                              |      | `npm unpublish <package>[@#.#.#]`            | `yarn unpublish <package>[@#.#.#]`              | `pnpm unpublish <package>[@#.#.#]`              |
-| deprecate                              |      | `npm deprecate <package>[@#.#.#] <message>`  | `yarn deprecate <package>[@#.#.#] <message>`    | `pnpm deprecate <package>[@#.#.#] <message>`    |
-| config list                            |      | `npm config list`                            | `yarn config list`                              | `pnpm config list`                              |
-| config `--save-default` as default     |      | `npm config set save-exact true`             | `yarn config set save-exact true`               | `pnpm config set save-exact true`               |
-| config `~` as default instead `^`      |      | `npm config set save-prefix '~'`             | `yarn config set save-prefix '~'`               | `pnpm config set save-prefix '~'`               |
+| command                                | swpm                                         | npm                                          | yarn                                            | pnpm                                            |
+| -------------------------------------- | -------------------------------------------- | -------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| init                                   | `swpm init`                                  | `npm init`                                   | `yarn init`                                     | `pnpm init`                                     |
+| create                                 | `swpm create`                                | `npm create`                                 | `yarn create`                                   | `pnpm create`                                   |
+| login/logout                           | `swpm <login\|logout>`                       | `npm <login\|logout>`                        | `yarn <login\|logout>`                          | `pnpm <login\|logout>`                          |
+| run scripts                            | `swpm run <script>`                          | `npm run <script>`                           | `yarn run <script>`                             | `pnpm [run] <script>`                           |
+| run test                               | `swpm test`                                  | `npm test`                                   | `yarn test`                                     | `pnpm test`                                     |
+| crate bundle package                   | `swpm build`                                 | `npm build`                                  | `yarn build`                                    | `pnpm build`                                    |
+| publish                                | `swpm publish`                               | `npm publish`                                | `yarn publish`                                  | `pnpm publish`                                  |
+| unpublish                              | `swpm unpublish <package>[@#.#.#]`           | `npm unpublish <package>[@#.#.#]`            | `yarn unpublish <package>[@#.#.#]`              | `pnpm unpublish <package>[@#.#.#]`              |
+| deprecate                              | `swpm deprecate <package>[@#.#.#] <message>` | `npm deprecate <package>[@#.#.#] <message>`  | `yarn deprecate <package>[@#.#.#] <message>`    | `pnpm deprecate <package>[@#.#.#] <message>`    |
+| config list                            | `swpm config list`                           | `npm config list`                            | `yarn config list`                              | `pnpm config list`                              |
+| config `--save-default` as default     | `swpm config set save-exact true`            | `npm config set save-exact true`             | `yarn config set save-exact true`               | `pnpm config set save-exact true`               |
+| config `~` as default instead `^`      | `swpm config set save-prefix '~'`            | `npm config set save-prefix '~'`             | `yarn config set save-prefix '~'`               | `pnpm config set save-prefix '~'`               |
 
 ## Run Remotely
 

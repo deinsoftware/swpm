@@ -5,7 +5,11 @@ export const showCommand = ({ cmd, args, config }) => {
   console.log(`${chalk.hex(config?.color ?? '').bold(cmd)} ${args?.join(' ')}`)
 }
 
-export const runCommand = ({ cmd, args }) => {
+export const runCommand = ({ cmd, args, volta }) => {
+  if (volta) {
+    args = ['run', cmd, ...args]
+    cmd = 'volta'
+  }
   spawn(cmd, [...args], { stdio: 'inherit' })
 }
 
