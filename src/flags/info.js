@@ -16,7 +16,7 @@ export const getPackageInformation = async ({ cmd, config, volta }) => {
   let message = `
     ${chalk.bold('Using:')}
     ${chalk.bold('pm')}: \t${chalk.hex(config.color).bold(cmd)}
-    ${(volta && chalk.bold('volta') + ': \tdetected ' + chalk.yellow.bold('⚡'))}
+    ${(volta && chalk.bold('volta') + ': \tpinned ' + chalk.yellow.bold('⚡'))}
     
     ${chalk.bold('Versions:')}
     ${chalk.hex('#368fb9').bold('s')}${chalk.hex('#4e4e4e').bold('w')}${chalk.hex('#f8ae01').bold('p')}${chalk.hex('#e32e37').bold('m')}: \t${swpmVersion}
