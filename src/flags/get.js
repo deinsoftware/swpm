@@ -1,3 +1,4 @@
+import { env } from 'node:process'
 import { stripIndents } from 'common-tags'
 import chalk from 'chalk'
 import { getPackageJson, lockFileExists } from '../helpers/files.js'
@@ -35,6 +36,23 @@ const searchForLockFiles = async () => {
   }
 }
 
+const searchForEnv = (name) => {
+  if (!(name in env)) {
+    return
+  }
+
+  const value = env[name]
+  if (value && packageExists(value)) {
+    return value
+  }
+
+  console.log(stripIndents`
+    ${chalk.red.bold('Error')}: the value (${chalk.bold(value)}) in SWPM environment variable is not valid.
+    Fix it using one of this values ${chalk.blue.bold('<npm|yarn|pnpm>')}.
+  `)
+  process.exit(1)
+}
+
 export const getCurrentPackageManager = async () => {
   const packageJson = await getPackageJson()
 
@@ -46,12 +64,15 @@ export const getCurrentPackageManager = async () => {
     const packageManager = await getPropertyValue(packageJson, 'packageManager')
     if (packageManager) { return packageManager }
 
+    const envSwpm = searchForEnv('SWPM')
+    if (envSwpm) { return envSwpm }
+
     const lock = await searchForLockFiles()
     if (lock) { return lock }
   }
 
   console.log(stripIndents`
-    ${chalk.red.bold('Error')}: no Package Manager was found.
+    ${chalk.red.bold('Error')}: no Package Manager or Environment Variable was found.
 
     Please review if the current path has a ${chalk.bold(packageName)} or a ${chalk.bold('lock')} file.
     Highly recommend pin a Package Manager with ${chalk.blue.bold('swpm --pin <npm|yarn|pnpm>')} command.

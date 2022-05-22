@@ -177,7 +177,7 @@ swpm config set save-exact true
 swpm config set save-prefix '~'
 ```
 
-> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm>` at the end
+> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm>` at the end.
 
 ### Flags
 
@@ -190,7 +190,15 @@ swpm <command> [--] [args] --use <npm|yarn|pnpm>
 swpm <command> [--] [args] --u <npm|yarn|pnpm>
 ```
 
-> It will run the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
+It will run the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
+
+> In order to avoid the `--use` flag on paths where no exist a `package.json` can set a **global** package manager creating an `SWPM` environment variable with one of this values `<npm|yarn|pnpm>`.
+
+| OS    | Command                                                |
+| ----- | ------------------------------------------------------ |
+| win   | `setx SWPM "<npm|yarn|pnpm>"`                          |
+| macOS | `echo 'export SWPM="npm"' >> ~/<.bash_profile|.zshrc>` |
+| linux | `echo 'export SWPM="npm"' >> ~/<.bash_profile|.zshrc>` |
 
 #### Pin
 
@@ -220,7 +228,7 @@ swpm <command> [--] [args] --test <npm|yarn|pnpm>
 swpm <command> [--] [args] -t <npm|yarn|pnpm>
 ```
 
-> It will show the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
+It will show the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
 
 #### Info
 
@@ -244,6 +252,7 @@ It will search firs the `swpm` property on the `package.json` file, and if doesn
 
 1. Search the `swpm` property on `package.json` file
 1. Search the `packageManager` property on `package.json` file
+1. Search a `SWPM` environment variable
 1. Search for `lock`'s files
 
   | Lock File           | Package Manager |
