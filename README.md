@@ -194,11 +194,11 @@ It will run the command using the selected Package Manager, no matter the `swpm`
 
 > In order to avoid the `--use` flag on paths where no exist a `package.json` can set a **global** package manager creating an `SWPM` environment variable with one of this values `<npm|yarn|pnpm>`.
 
-| OS    | Command                                                |
-| ----- | ------------------------------------------------------ |
-| win   | `setx SWPM "<npm|yarn|pnpm>"`                          |
-| macOS | `echo 'export SWPM="npm"' >> ~/<.bash_profile|.zshrc>` |
-| linux | `echo 'export SWPM="npm"' >> ~/<.bash_profile|.zshrc>` |
+| OS    | Command                                                   |
+| ----- | --------------------------------------------------------- |
+| win   | `setx SWPM "<npm\|yarn\|pnpm>"`                           |
+| macOS | `echo 'export SWPM="npm"' >> <~/.bash_profile\|~/.zshrc>` |
+| linux | `echo 'export SWPM="npm"' >> <~/.bash_profile\|~/.zshrc>` |
 
 #### Pin
 
