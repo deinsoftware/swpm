@@ -1,6 +1,6 @@
 import { argv } from 'node:process'
 import { cleanFlag, translateFlag } from '../helpers/args.js'
-import { detectVoltaPin, getCurrentPackageManager } from '../flags/get.js'
+import { detectVoltaPin, getCurrentPackageManager } from '../helpers/get.js'
 import { getPackageConfiguration } from '../packages/list.js'
 
 const middleware = async (yargs) => {
@@ -33,7 +33,9 @@ const middleware = async (yargs) => {
   }
 
   if (!globalThis?.pkg?.cmd || yargs?.info) {
-    globalThis.pkg.cmd = await getCurrentPackageManager()
+    const { origin, pkg } = await getCurrentPackageManager()
+    globalThis.pkg.cmd = pkg
+    globalThis.pkg.origin = origin
     globalThis.pkg.volta = await detectVoltaPin()
   }
 

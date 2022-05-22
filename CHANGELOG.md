@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.6.0] - 2022/05/22
+
+### Added
+
+- prefix command with an icon, showing the source of the package manager detection
+
 ## [0.5.0] - 2022/05/21
 
 ### Added

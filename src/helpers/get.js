@@ -1,7 +1,7 @@
 import { env } from 'node:process'
 import { stripIndents } from 'common-tags'
 import chalk from 'chalk'
-import { getPackageJson, lockFileExists } from '../helpers/files.js'
+import { getPackageJson, lockFileExists } from './files.js'
 import packagesList, { packageExists } from '../packages/list.js'
 
 const packageName = 'package.json'
@@ -53,22 +53,28 @@ const searchForEnv = (name) => {
   process.exit(1)
 }
 
+const icons = { pinned: '📌', packageManager: '📦', environment: '🌐', lock: '🔒' }
+
+export const getOriginIcon = (name) => {
+  return icons[name]
+}
+
 export const getCurrentPackageManager = async () => {
   const packageJson = await getPackageJson()
 
   if (packageJson) {
     const pinned = await getPropertyValue(packageJson, 'swpm')
-    if (pinned) { return pinned }
+    if (pinned) { return { origin: 'pinned', pkg: pinned } }
 
     // https://nodejs.org/api/corepack.html
     const packageManager = await getPropertyValue(packageJson, 'packageManager')
-    if (packageManager) { return packageManager }
+    if (packageManager) { return { origin: 'packageManager', pkg: packageManager } }
 
     const envSwpm = searchForEnv('SWPM')
-    if (envSwpm) { return envSwpm }
+    if (envSwpm) { return { origin: 'environment', pkg: envSwpm } }
 
     const lock = await searchForLockFiles()
-    if (lock) { return lock }
+    if (lock) { return { origin: 'lock', pkg: lock } }
   }
 
   console.log(stripIndents`

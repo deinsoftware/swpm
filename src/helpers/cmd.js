@@ -1,8 +1,9 @@
 import { spawn, execSync } from 'node:child_process'
 import chalk from 'chalk'
+import { getOriginIcon } from './get.js'
 
-export const showCommand = ({ cmd, args, config }) => {
-  console.log(`${chalk.hex(config?.color ?? '').bold(cmd)} ${args?.join(' ')}`)
+export const showCommand = ({ origin, cmd, args, config }) => {
+  console.log(`${origin && getOriginIcon(origin) + ' '}${chalk.hex(config?.color ?? '').bold(cmd)} ${args?.join(' ')}`)
 }
 
 export const runCommand = ({ cmd, args, volta }) => {

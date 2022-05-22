@@ -246,22 +246,18 @@ It will search firs the `swpm` property on the `package.json` file, and if doesn
 
 ## FAQ
 
-### How knows?
+### How infer the Package Manager?
 
-`swpm` use three stages to infer what is the current Package Manager, following this order.
+`swpm` search some characteristics following this order.
 
-1. Search the `swpm` property on `package.json` file
-1. Search the `packageManager` property on `package.json` file
-1. Search a `SWPM` environment variable
-1. Search for `lock`'s files
+| Icon | Stage    |
+| :--: | ------------------------------------------------------------ |
+| 📌   | Search the `swpm` property pinned on `package.json` file     |
+| 📦   | Search the `packageManager` property on `package.json` file  |
+| 🌐   | Search a `SWPM` environment variable                         |
+| 🔒   | Search for a `lock` file                                     |
 
-  | Lock File           | Package Manager |
-  | ------------------- | --------------- |
-  | `package-lock.json` | `npm`           |
-  | `yarn.lock`         | `yarn`          |
-  | `pnpm-lock.yaml`    | `pnpm`          |
-
-### Package
+### What can I use as Package parameter?
 
 The `<package>` parameter should follow one of these structures:
 

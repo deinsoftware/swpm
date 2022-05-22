@@ -2,10 +2,11 @@ import { stripIndents } from 'common-tags'
 import chalk from 'chalk'
 import { createRequire } from 'module'
 import { getCommandResult } from '../helpers/cmd.js'
+import { getOriginIcon } from '../helpers/get.js'
 
 const require = createRequire(import.meta.url)
 
-export const getPackageInformation = async ({ cmd, config, volta }) => {
+export const getPackageInformation = async ({ origin, cmd, config, volta }) => {
   const nodeVersion = getCommandResult('node --version').replace(/v/, '')
 
   const isInstalled = !!getCommandResult(`command -v ${cmd}`)
@@ -14,9 +15,9 @@ export const getPackageInformation = async ({ cmd, config, volta }) => {
   const { version: swpmVersion } = require('../../package.json')
 
   let message = `
-    ${chalk.bold('Using:')}
-    ${chalk.bold('pm')}: \t${chalk.hex(config.color).bold(cmd)}
-    ${(volta && chalk.bold('volta') + ': \tpinned ' + chalk.yellow.bold('⚡'))}
+    ${chalk.bold('using')}: \t${chalk.hex(config.color).bold(cmd)}
+    ${(origin && chalk.bold('origin') + `: ${getOriginIcon(origin)} ${origin}`)}
+    ${(volta && chalk.bold('volta') + `: \t${chalk.yellow('⚡')} detected`)}
     
     ${chalk.bold('Versions:')}
     ${chalk.hex('#368fb9').bold('s')}${chalk.hex('#4e4e4e').bold('w')}${chalk.hex('#f8ae01').bold('p')}${chalk.hex('#e32e37').bold('m')}: \t${swpmVersion}
