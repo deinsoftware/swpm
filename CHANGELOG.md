@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.6.1] - 2022/05/22
+
+### Fixed
+
+- not showing icons with `--use` flag
+
 ## [0.6.0] - 2022/05/22
 
 ### Added
