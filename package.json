@@ -22,7 +22,13 @@
   "keywords": [
     "npm",
     "yarn",
-    "pnpm"
+    "pnpm",
+    "cli",
+    "command-line",
+    "package-manager",
+    "javascript",
+    "node",
+    "nodejs"
   ],
   "author": "deinsoftware",
   "contributors": [
