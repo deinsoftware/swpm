@@ -4,6 +4,7 @@
 [![publish](https://github.com/deinsoftware/swpm/actions/workflows/publish.yml/badge.svg)](https://github.com/deinsoftware/swpm/actions/workflows/publish.yml)
 [![npm-version](https://img.shields.io/npm/v/swpm.svg?color=blue)](https://www.npmjs.com/package/swpm)
 [![npm-downloads](https://img.shields.io/npm/dt/swpm)](https://www.npmjs.com/package/swpm)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?color=yellow)](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)
 [![node-engine](https://img.shields.io/node/v/swpm.svg?color=blue)](https://nodejs.org)
 [![volta](https://img.shields.io/badge/%E2%9A%A1%20volta-compatible-blue)](https://volta.sh)
 [![license](https://img.shields.io/github/license/deinsoftware/swpm)](LICENSE.md)
