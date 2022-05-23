@@ -147,7 +147,7 @@ This are commands that don't need the `swpm` translation tool, because share the
 `init` or `create` can be used to set up a new or existing package.
 
 ```bash
-swpm init [FLAGS]
+swpm init
 swpm init --yes
 swpm init <name>
 swpm create <name>
