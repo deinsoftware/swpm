@@ -2,7 +2,7 @@ import { translateFlag } from '../../helpers/args.js'
 
 const remove = {
   command: 'remove <package> [FLAGS]',
-  aliases: ['r, rm, uninstall, un'],
+  aliases: ['r', 'rm', 'uninstall', 'un'],
   desc: 'remove package',
   conflicts: ['install, add'],
   builder: (yargs) => {

@@ -9,7 +9,13 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
-## [0.7.0] - 2022/05/22
+## [0.7.1] - 2022/05/23
+
+### Fixed
+
+- `remove` command alias
+
+## [0.7.0] - 2022/05/23
 
 ### Added
 

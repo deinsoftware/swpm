@@ -59,8 +59,9 @@ With `swpm --help` it will show a command help resume.
 swpm [<command>] [--] [args] [FLAGS]
 
 Commands:
-  swpm install [FLAGS]        install packages from package.json    [aliases: i]
-  swpm add <package> [FLAGS]  add package                           [aliases: a]
+  swpm install [FLAGS]           install packages from package.json [aliases: i]
+  swpm add <package> [FLAGS]     add package                        [aliases: a]
+  swpm remove <package> [FLAGS]  remove package  [aliases: r, rm, uninstall, un]
 
 Options:
   -u, --use   use a package manager             [choices: "npm", "yarn", "pnpm"]
