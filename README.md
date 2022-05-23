@@ -90,7 +90,7 @@ swpm <command> [--] [args] [FLAGS]
 By default, will install all modules listed as dependencies in `package.json`.
 
 ```bash
-swpm install [args]
+swpm install [args] [FLAGS]
 ```
 
 > Alias: `i`
@@ -106,8 +106,7 @@ This command installs a package and any packages that it depends on. If the pack
 This command, no arguments, will add a package to local `package.json` file. Package will appear as **dependencies** by default.
 
 ```bash
-swpm add <package> [args]
-swpm a <package> [args]
+swpm add <package> [args] [FLAGS]
 ```
 
 > Alias: `a`
@@ -127,7 +126,7 @@ swpm a <package> [args]
 This command, no arguments, will remove a package to local `package.json` file. Package will be removed as **dependencies** by default.
 
 ```bash
-swpm remove <package> [args]
+swpm remove <package> [args] [FLAGS]
 ```
 
 > Aliases: `r`, `rm`, `uninstall`, `un`
@@ -148,7 +147,7 @@ This are commands that don't need the `swpm` translation tool, because share the
 `init` or `create` can be used to set up a new or existing package.
 
 ```bash
-swpm init
+swpm init [FLAGS]
 swpm init --yes
 swpm init <name>
 swpm create <name>
