@@ -17,6 +17,8 @@
 
 - [Getting Started](#getting-started)
 - [Usage](#usage)
+  - [Commands](#commands)
+  - [Flags](#flags)
 - [FAQ](#faq)
 - [Brand](#brand)
 - [About](#about)
