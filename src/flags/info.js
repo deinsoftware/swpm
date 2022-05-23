@@ -1,12 +1,13 @@
 import { stripIndents } from 'common-tags'
 import chalk from 'chalk'
 import { createRequire } from 'module'
-import { getCommandResult } from '../helpers/cmd.js'
+import { getCommandResult } from '../helpers/cmds.js'
 import { getOriginIcon } from '../helpers/get.js'
 
 const require = createRequire(import.meta.url)
 
-export const getPackageInformation = async ({ origin, cmd, config, volta }) => {
+export const getPackageInformation = async () => {
+  const { origin, cmd, config, volta } = globalThis.pkg
   const nodeVersion = getCommandResult('node --version').replace(/v/, '')
 
   const isInstalled = !!getCommandResult(`command -v ${cmd}`)

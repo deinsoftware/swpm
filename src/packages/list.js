@@ -16,7 +16,8 @@ export const packageExists = (cmd) => {
   return availablePackages().includes(cmd)
 }
 
-export const getPackageConfiguration = async (cmd) => {
+export const getPackageConfiguration = async () => {
+  const { cmd } = globalThis.pkg
   const config = await import(`./managers/${cmd}.js`)
   return config.default ?? {}
 }

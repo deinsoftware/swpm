@@ -9,6 +9,17 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.7.0] - 2022/05/22
+
+### Added
+
+- `--save-optional` and `--save-peer` flags to `add` command
+- `remove` command
+
+### Fixed
+
+- No `<package>` validations on `install` command
+
 ## [0.6.1] - 2022/05/22
 
 ### Fixed

@@ -4,7 +4,12 @@ const npm = {
   url: 'https://www.npmjs.com/',
   version: '',
   lockFile: 'package-lock.json',
-  cmds: {},
+  cmds: {
+    remove: 'uninstall',
+    r: 'uninstall',
+    rm: 'uninstall',
+    un: 'uninstall'
+  },
   args: {
     '--frozen-lockfile': {
       i: 'ci',

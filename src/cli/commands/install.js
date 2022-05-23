@@ -4,8 +4,7 @@ const install = {
   command: 'install [FLAGS]',
   aliases: ['i'],
   desc: 'install packages from package.json',
-  usage: '$0 install',
-  conflicts: ['add'],
+  conflicts: ['add, remove'],
   builder: (yargs) => {
     yargs.option('package-lock', {
       alias: 'PL',
@@ -26,6 +25,11 @@ const install = {
     yargs.middleware((yargs) => {
       if ('frozen-lockfile' in yargs) {
         translateFlag('--frozen-lockfile', '--FL')
+      }
+
+      if ('FLAGS' in yargs) {
+        console.log('To install a specific <package> please use `add` command')
+        process.exit(1)
       }
     })
 

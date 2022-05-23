@@ -89,31 +89,53 @@ By default, will install all modules listed as dependencies in `package.json`.
 
 ```bash
 swpm install [args]
-swpm i [args]
 ```
+
+> Alias: `i`
 
 This command installs a package and any packages that it depends on. If the package has a `lock` file, the installation of dependencies will be driven by that.
 
-| Args                | Alias | Description |
-| ------------------- | ----- | ----------- |
+| Args                | Alias | Description                                                                   |
+| ------------------- | ----- | ----------------------------------------------------------------------------- |
 | `--frozen-lockfile` | `-FL` | install dependencies from lock file (without updating it). Also known as `ci` |
 
 #### Add
 
-This command, no arguments, will add a package to local `package.json` file.
+This command, no arguments, will add a package to local `package.json` file. Package will appear as **dependencies** by default.
 
 ```bash
 swpm add <package> [args]
 swpm a <package> [args]
 ```
 
+> Alias: `a`
+
 `swpm add <package>` saves any specified packages into dependencies by default. Additionally, you can control where and how they get saved with some additional flags:
 
-| Args           | Alias | Description |
-| -------------- | ----- | ----------- |
-| `--save-dev`   | `-D`  | Package will appear in your **devDependencies** |
-| `--save-exact` | `-E`  | Dependencies will be configured with an exact version rather than using default semver range operator. |
-| `--global`     | `-g`  | installs the current package context as a global package |
+| Args              | Alias | Description                                                                                            |
+| ----------------- | ----- | ------------------------------------------------------------------------------------------------------ |
+| `--save-dev`      | `-D`  | Package will appear in **devDependencies**                                                             |
+| `--save-optional` | `-O`  | Package will appear in **optionalDependencies**                                                        |
+| `--save-peer`     |       | Package will appear in **peerDependencies**                                                            |
+| `--save-exact`    | `-E`  | Dependencies will be configured with an exact version rather than using default semver range operator. |
+| `--global`        | `-g`  | Remove the current package context as a global package                                                 |
+
+#### Remove
+
+This command, no arguments, will remove a package to local `package.json` file. Package will be removed as **dependencies** by default.
+
+```bash
+swpm remove <package> [args]
+```
+
+> Aliases: `r`, `rm`, `uninstall`, `un`
+
+| Args              | Alias | Description                                            |
+| ----------------- | ----- | ------------------------------------------------------ |
+| `--save-dev`      | `-D`  | Package will be removed from **devDependencies**       |
+| `--save-optional` | `-O`  | Package will be removed from **optionalDependencies**  |
+| `--save-peer`     |       | Package will be removed from **peerDependencies**      |
+| `--global`        | `-g`  | Remove the current package context as a global package |
 
 ### Shared Commands
 
@@ -173,6 +195,12 @@ See the local configuration, or setup default values.
 
 ```bash
 swpm config list
+swpm config set <key> <value>
+```
+
+Example:
+
+```bash
 swpm config set save-exact true
 swpm config set save-prefix '~'
 ```

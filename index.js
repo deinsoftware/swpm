@@ -3,7 +3,7 @@
 import yargv from './src/cli/yargs.js'
 
 import { pinPackageManager } from './src/flags/pin.js'
-import { showCommand, runCommand } from './src/helpers/cmd.js'
+import { showCommand, runCommand } from './src/helpers/cmds.js'
 import { getPackageInformation } from './src/flags/info.js'
 import { testCommand } from './src/flags/test.js'
 
@@ -14,18 +14,18 @@ if (yargv.debug) {
 }
 
 if (yargv?.pin) {
-  await pinPackageManager(globalThis.pkg)
+  await pinPackageManager()
 }
 
 if (yargv?.test) {
-  testCommand(globalThis.pkg)
+  testCommand()
 }
 
 if (yargv?.info) {
-  await getPackageInformation(globalThis.pkg)
+  await getPackageInformation()
 }
 
 if (globalThis?.pkg?.cmd) {
-  showCommand(globalThis.pkg)
-  runCommand(globalThis.pkg)
+  showCommand()
+  runCommand()
 }

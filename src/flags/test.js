@@ -1,6 +1,6 @@
-import { showCommand } from '../helpers/cmd.js'
+import { showCommand } from '../helpers/cmds.js'
 
-export const testCommand = ({ cmd, args, config }) => {
-  showCommand({ cmd, args, config })
+export const testCommand = () => {
+  showCommand()
   process.exit(0)
 }

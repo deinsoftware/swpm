@@ -25,12 +25,6 @@ export const cleanFlag = (option) => {
   }
 }
 
-// const processAction = (yargs, flag, action) => {
-//   if (typeof action === 'array') {
-
-//   }
-// }
-
 const replaceFlag = (option, newOption) => {
   const { pkg } = globalThis
 
