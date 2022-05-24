@@ -18,6 +18,7 @@
 - [Getting Started](#getting-started)
 - [Usage](#usage)
   - [Commands](#commands)
+  - [Shared Commands](#shared-commands)
   - [Flags](#flags)
 - [FAQ](#faq)
 - [Brand](#brand)
