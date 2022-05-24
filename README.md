@@ -149,10 +149,8 @@ This are commands that don't need the `swpm` translation tool, because share the
 `init` or `create` can be used to set up a new or existing package.
 
 ```bash
-swpm init
-swpm init --yes
-swpm init <name>
-swpm create <name>
+swpm init [<name> --yes]
+swpm create [<name> --yes]
 ```
 
 > To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm>` at the end
@@ -188,8 +186,8 @@ Commands to `publish`, `unpublish` or `deprecate` a package on [https://www.npmj
 
 ```bash
 swpm publish
-swpm unpublish <package>[@#.#.#]
-swpm deprecate <package>[@#.#.#] <message>
+swpm unpublish <package>
+swpm deprecate <package> <message>
 ```
 
 #### Config
@@ -211,6 +209,8 @@ swpm config set save-prefix '~'
 > To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm>` at the end.
 
 ### Flags
+
+Flags are important to `swpm` because can modify or set his behavior.
 
 #### Use
 
