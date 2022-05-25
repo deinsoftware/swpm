@@ -2,6 +2,10 @@
 
 [![build](https://github.com/deinsoftware/swpm/actions/workflows/build.yml/badge.svg)](https://github.com/deinsoftware/swpm/actions/workflows/build.yml)
 [![publish](https://github.com/deinsoftware/swpm/actions/workflows/publish.yml/badge.svg)](https://github.com/deinsoftware/swpm/actions/workflows/publish.yml)
+[![Sonar-reliability](https://sonarcloud.io/api/project_badges/measure?project=dein%3Aswpm&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=dein%3Aswpm)
+[![sonar-security](https://sonarcloud.io/api/project_badges/measure?project=dein%3Aswpm&metric=security_rating)](https://sonarcloud.io/dashboard?id=dein%3Aswpm)
+[![sonar-maintainability](https://sonarcloud.io/api/project_badges/measure?project=dein%3Aswpm&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=dein%3Aswpm)
+[![sonar-coverage](https://sonarcloud.io/api/project_badges/measure?project=dein%3Aswpm&metric=coverage)](https://sonarcloud.io/dashboard?id=dein%3Aswpm)
 [![npm-version](https://img.shields.io/npm/v/swpm.svg?color=blue)](https://www.npmjs.com/package/swpm)
 [![npm-downloads](https://img.shields.io/npm/dt/swpm)](https://www.npmjs.com/package/swpm)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?color=yellow)](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)
