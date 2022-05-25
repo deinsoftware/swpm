@@ -20,6 +20,15 @@ jobs:
       - run: npm ci
       - run: npm run test:c
 
+      - name: Display coverage files
+        run: ls -R
+        working-directory: coverage
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: coverage-artifact
+          path: coverage/lcov.info
+
   sonar:
     needs: build
     if: ${{ success() }}
