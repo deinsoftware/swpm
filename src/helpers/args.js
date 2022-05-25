@@ -1,40 +1,38 @@
-const findFlagIndex = (flag) => {
-  const { pkg } = globalThis
+const findFlagIndex = (pkg, flag) => {
   return pkg?.args?.findIndex((arg) => arg === flag)
 }
 
-const getKey = (option) => {
-  return option?.replace(/^-+/, '')
+const getKey = (flag) => {
+  return flag?.replace(/^-+/, '')
 }
 
-export const cleanFlag = (option) => {
+export const cleanFlag = (flag) => {
   const { yargs, pkg } = globalThis
-  const key = getKey(option)
+  const key = getKey(flag)
 
   if (key in yargs) {
     let places = 1
-
     if (typeof yargs?.[key] !== 'boolean') {
       places = 2
     }
 
-    const indexFlag = findFlagIndex(option)
+    const indexFlag = findFlagIndex(pkg, flag)
     if (indexFlag && indexFlag !== -1) {
       pkg.args.splice(indexFlag, places)
     }
   }
 }
 
-const replaceFlag = (option, newOption) => {
+const replaceFlag = (flag, newFlag) => {
   const { pkg } = globalThis
 
-  const indexFlag = findFlagIndex(option)
+  const indexFlag = findFlagIndex(pkg, flag)
   if (indexFlag && indexFlag !== -1) {
-    pkg.args[indexFlag] = newOption
+    pkg.args[indexFlag] = newFlag
   }
 }
 
-const insertFlag = (option) => {
+const moveFlag = (option) => {
   const [action, position] = option
   const { pkg } = globalThis
 
@@ -56,26 +54,26 @@ const replaceCommand = (action) => {
   }
 }
 
-export const translateFlag = (option, alias) => {
+export const translateFlag = (flag, alias) => {
   const { yargs, pkg } = globalThis
-  const key = getKey(option)
+  const key = getKey(flag)
 
   if (key in yargs) {
-    const action = pkg?.config?.args?.[option]
+    const action = pkg?.config?.args?.[flag]
 
     if (typeof action === 'string') {
-      cleanFlag()
-      replaceFlag(option, action)
+      console.log({ flag, alias, key })
+      replaceFlag(flag, action)
     }
 
     if (Array.isArray(action)) {
-      cleanFlag(option)
+      cleanFlag(flag)
       cleanFlag(alias)
-      insertFlag(action)
+      moveFlag(action)
     }
 
     if (typeof action === 'object') {
-      cleanFlag(option)
+      cleanFlag(flag)
       cleanFlag(alias)
       replaceCommand(action)
     }
