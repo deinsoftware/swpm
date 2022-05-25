@@ -8,9 +8,9 @@
 [![sonar-coverage](https://sonarcloud.io/api/project_badges/measure?project=dein%3Aswpm&metric=coverage)](https://sonarcloud.io/dashboard?id=dein%3Aswpm)  
 [![npm-version](https://img.shields.io/npm/v/swpm.svg?color=blue)](https://www.npmjs.com/package/swpm)
 [![npm-downloads](https://img.shields.io/npm/dt/swpm)](https://www.npmjs.com/package/swpm)
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?color=yellow)](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)
 [![node-engine](https://img.shields.io/node/v/swpm.svg?color=blue)](https://nodejs.org)
 [![volta](https://img.shields.io/badge/%E2%9A%A1%20volta-compatible-blue)](https://volta.sh)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?color=yellow)](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)
 [![license](https://img.shields.io/github/license/deinsoftware/swpm)](LICENSE.md)
 
 ![swpm](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/social/preview.png)
