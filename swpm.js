@@ -7,26 +7,23 @@ import { showCommand, runCommand } from './src/helpers/cmds.js'
 import { showPackageInformation } from './src/flags/info.js'
 import { testCommand } from './src/flags/test.js'
 
-const { pkg } = globalThis
-
 if (yargs.debug) {
   console.debug(yargs)
-  console.debug(pkg)
 }
 
 if (yargs?.pin) {
-  await pinPackageManager(pkg)
+  await pinPackageManager(yargs.pkg)
 }
 
 if (yargs?.test) {
-  testCommand(pkg)
+  testCommand(yargs.pkg)
 }
 
 if (yargs?.info) {
-  await showPackageInformation(pkg)
+  await showPackageInformation(yargs.pkg)
 }
 
-if (pkg?.cmd) {
-  showCommand(pkg)
-  runCommand(pkg)
+if (yargs?.pkg?.cmd) {
+  showCommand(yargs.pkg)
+  runCommand(yargs.pkg)
 }
