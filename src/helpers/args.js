@@ -55,7 +55,6 @@ export const translateFlag = (yargs, pkg, flag, alias) => {
     const action = pkg?.config?.args?.[flag]
 
     if (typeof action === 'string') {
-      console.log({ flag, alias, key })
       replaceFlag(pkg, flag, action)
     }
 

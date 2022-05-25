@@ -10,7 +10,6 @@ const middleware = async (yargs) => {
     args: argv.slice(2)
   }
   globalThis.pkg = pkg
-  globalThis.yargs = yargs
 
   if ('debug' in yargs) {
     cleanFlag(yargs, pkg, '--debug')
