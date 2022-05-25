@@ -6,8 +6,7 @@ const getKey = (flag) => {
   return flag?.replace(/^-+/, '')
 }
 
-export const cleanFlag = (flag) => {
-  const { yargs, pkg } = globalThis
+export const cleanFlag = (yargs, pkg, flag) => {
   const key = getKey(flag)
 
   if (key in yargs) {
@@ -67,14 +66,14 @@ export const translateFlag = (flag, alias) => {
     }
 
     if (Array.isArray(action)) {
-      cleanFlag(flag)
-      cleanFlag(alias)
+      cleanFlag(yargs, pkg, flag)
+      cleanFlag(yargs, pkg, alias)
       moveFlag(action)
     }
 
     if (typeof action === 'object') {
-      cleanFlag(flag)
-      cleanFlag(alias)
+      cleanFlag(yargs, pkg, flag)
+      cleanFlag(yargs, pkg, alias)
       replaceCommand(action)
     }
   }
