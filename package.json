@@ -7,8 +7,8 @@
   "description": "Switch Package Manager",
   "main": "index.js",
   "bin": {
-    "swpm": "./swpm.js",
-    "swpx": "./swpx.js"
+    "swpm": "./src/swpm.js",
+    "swpx": "./src/swpx.js"
   },
   "scripts": {
     "lint:l": "eslint .",

@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import yargs from './src/cli/yargs.js'
+import yargs from './cli/yargs.js'
 
-import { pinPackageManager } from './src/flags/pin.js'
-import { showCommand, runCommand } from './src/helpers/cmds.js'
-import { showPackageInformation } from './src/flags/info.js'
-import { testCommand } from './src/flags/test.js'
+import { pinPackageManager } from './flags/pin.js'
+import { showCommand, runCommand } from './helpers/cmds.js'
+import { showPackageInformation } from './flags/info.js'
+import { testCommand } from './flags/test.js'
 
 if (yargs.debug) {
   console.debug(yargs)
