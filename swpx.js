@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 
-console.log('runner js')
+console.log('npx runner js')
