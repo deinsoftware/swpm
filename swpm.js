@@ -4,7 +4,7 @@ import yargs from './src/cli/yargs.js'
 
 import { pinPackageManager } from './src/flags/pin.js'
 import { showCommand, runCommand } from './src/helpers/cmds.js'
-import { getPackageInformation } from './src/flags/info.js'
+import { showPackageInformation } from './src/flags/info.js'
 import { testCommand } from './src/flags/test.js'
 
 const { pkg } = globalThis
@@ -23,7 +23,7 @@ if (yargs?.test) {
 }
 
 if (yargs?.info) {
-  await getPackageInformation()
+  await showPackageInformation(pkg)
 }
 
 if (pkg?.cmd) {

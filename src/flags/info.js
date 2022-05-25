@@ -6,8 +6,7 @@ import { getOriginIcon } from '../helpers/get.js'
 
 const require = createRequire(import.meta.url)
 
-export const getPackageInformation = async () => {
-  const { origin, cmd, config, volta } = globalThis.pkg
+export const showPackageInformation = async ({ origin, cmd, config, volta }) => {
   const nodeVersion = getCommandResult('node --version').replace(/v/, '')
 
   const isInstalled = !!getCommandResult(`command -v ${cmd}`)
