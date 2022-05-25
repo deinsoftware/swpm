@@ -5,12 +5,12 @@ import { detectVoltaPin, getCurrentPackageManager } from '../helpers/get.js'
 import { getPackageConfiguration } from '../packages/list.js'
 
 const middleware = async (yargs) => {
-  globalThis.yargs = yargs
   const pkg = {
     cmd: '',
     args: argv.slice(2)
   }
   globalThis.pkg = pkg
+  globalThis.yargs = yargs
 
   if ('debug' in yargs) {
     cleanFlag('--debug')
@@ -20,28 +20,28 @@ const middleware = async (yargs) => {
   if ('use' in yargs) {
     cleanFlag('--use')
     cleanFlag('-u')
-    globalThis.pkg.cmd = yargs.use
+    pkg.cmd = yargs.use
   }
 
   if ('pin' in yargs) {
-    globalThis.pkg.cmd = yargs.pin
+    pkg.cmd = yargs.pin
   }
 
   if ('test' in yargs) {
     cleanFlag('--test')
     cleanFlag('-t')
-    globalThis.pkg.cmd = yargs.test
+    pkg.cmd = yargs.test
   }
 
-  if (!globalThis?.pkg?.cmd || yargs?.info) {
-    const { origin, pkg } = await getCurrentPackageManager()
-    globalThis.pkg.cmd = pkg
-    globalThis.pkg.origin = origin
-    globalThis.pkg.volta = await detectVoltaPin()
+  if (!pkg?.cmd || yargs?.info) {
+    const { origin, cmd } = await getCurrentPackageManager()
+    pkg.origin = origin
+    pkg.cmd = cmd
+    pkg.volta = await detectVoltaPin()
   }
 
-  if (globalThis?.pkg?.cmd) {
-    globalThis.pkg.config = await getPackageConfiguration()
+  if (pkg?.cmd) {
+    pkg.config = await getPackageConfiguration()
   }
 
   if ('global' in yargs) {

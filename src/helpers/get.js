@@ -64,17 +64,17 @@ export const getCurrentPackageManager = async () => {
 
   if (packageJson) {
     const pinned = await getPropertyValue(packageJson, 'swpm')
-    if (pinned) { return { origin: 'pinned', pkg: pinned } }
+    if (pinned) { return { origin: 'pinned', cmd: pinned } }
 
     // https://nodejs.org/api/corepack.html
     const packageManager = await getPropertyValue(packageJson, 'packageManager')
-    if (packageManager) { return { origin: 'packageManager', pkg: packageManager } }
+    if (packageManager) { return { origin: 'packageManager', cmd: packageManager } }
 
     const envSwpm = searchForEnv('SWPM')
-    if (envSwpm) { return { origin: 'environment', pkg: envSwpm } }
+    if (envSwpm) { return { origin: 'environment', cmd: envSwpm } }
 
     const lock = await searchForLockFiles()
-    if (lock) { return { origin: 'lock', pkg: lock } }
+    if (lock) { return { origin: 'lock', cmd: lock } }
   }
 
   console.log(stripIndents`
