@@ -6,7 +6,10 @@
   },
   "description": "Switch Package Manager",
   "main": "index.js",
-  "bin": "./index.js",
+  "bin": {
+    "swpm": "./swpm.js",
+    "swpx": "./swpx.js"
+  },
   "scripts": {
     "lint:l": "eslint .",
     "lint:f": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
