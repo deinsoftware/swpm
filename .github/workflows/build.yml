@@ -19,4 +19,39 @@ jobs:
           node-version: 18
       - run: npm ci
       - run: npm test
+
+  sonar:
+    needs: build
+    if: ${{ success() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+  
+      - uses: actions/download-artifact@master
+        with:
+          name: coverage-artifact
+          path: coverage
+
+      - name: Display coverage files
+        run: ls -R
+        working-directory: coverage
+
+      - name: Get package info
+        id: package
+        uses: codex-team/action-nodejs-package-info@v1
       
+      - name: Analyze with SonarCloud
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=dein:swpm
+            -Dsonar.organization=dein
+            -Dsonar.projectName=swpm
+            -Dsonar.projectVersion=${{ steps.package.outputs.version }}
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.coverage.exclusions=**/*.test.js
