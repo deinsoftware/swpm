@@ -1,5 +1,5 @@
-const findFlagIndex = (pkg, flag) => {
-  return pkg?.args?.findIndex((arg) => arg === flag)
+const findFlagIndex = (args, flag) => {
+  return args?.findIndex((arg) => arg === flag)
 }
 
 const getKey = (flag) => {
@@ -15,15 +15,15 @@ export const cleanFlag = (yargs, flag) => {
       places = 2
     }
 
-    const indexFlag = findFlagIndex(yargs?.pkg, flag)
+    const indexFlag = findFlagIndex(yargs?.pkg?.args, flag)
     if (indexFlag && indexFlag !== -1) {
-      yargs.pkg.args.splice(indexFlag, places)
+      yargs?.pkg?.args.splice(indexFlag, places)
     }
   }
 }
 
 const replaceFlag = (pkg, flag, newFlag) => {
-  const indexFlag = findFlagIndex(pkg, flag)
+  const indexFlag = findFlagIndex(pkg?.args, flag)
   if (indexFlag && indexFlag !== -1) {
     pkg.args[indexFlag] = newFlag
   }
