@@ -1,8 +1,7 @@
 import chalk from 'chalk'
 import { getPackageJson, savePackageJson } from '../helpers/files.js'
 
-export const pinPackageManager = async () => {
-  const { cmd, config } = globalThis.pkg
+export const pinPackageManager = async ({ cmd, config }) => {
   const packageJson = await getPackageJson()
 
   if (packageJson) {

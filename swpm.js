@@ -15,7 +15,7 @@ if (yargs.debug) {
 }
 
 if (yargs?.pin) {
-  await pinPackageManager()
+  await pinPackageManager(pkg)
 }
 
 if (yargs?.test) {
