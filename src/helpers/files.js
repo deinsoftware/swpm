@@ -18,8 +18,7 @@ export const getPackageJson = async () => {
     const path = resolvePath(process.cwd(), packageName)
     const pkg = await fs.readFile(path)
     if (pkg) {
-      const config = JSON.parse(pkg)
-      return config
+      return JSON.parse(pkg)
     }
   } catch {
     return undefined
@@ -28,8 +27,7 @@ export const getPackageJson = async () => {
 
 export const lockFileExists = async (fileName) => {
   const path = resolvePath(process.cwd(), fileName)
-  const result = await fileExists(path)
-  return result
+  return await fileExists(path)
 }
 
 export const savePackageJson = async (data) => {

@@ -91,7 +91,6 @@ export const detectVoltaPin = async () => {
   const packageJson = await getPackageJson()
 
   if (packageJson) {
-    const exists = propertyExists(packageJson, 'volta')
-    return exists
+    return propertyExists(packageJson, 'volta')
   }
 }

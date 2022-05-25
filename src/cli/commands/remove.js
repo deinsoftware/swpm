@@ -1,5 +1,19 @@
 import { translateFlag } from '../../helpers/args.js'
 
+const middleware = (yargs) => {
+  if ('save-dev' in yargs) {
+    translateFlag(yargs, '--save-dev', '-D')
+  }
+
+  if ('save-optional' in yargs) {
+    translateFlag(yargs, '--save-optional', '-O')
+  }
+
+  if ('save-peer' in yargs) {
+    translateFlag(yargs, '--save-peer')
+  }
+}
+
 const remove = {
   command: 'remove <package> [FLAGS]',
   aliases: ['r', 'rm', 'uninstall', 'un'],
@@ -45,19 +59,7 @@ const remove = {
       implies: ['package']
     })
 
-    yargs.middleware((yargs) => {
-      if ('save-dev' in yargs) {
-        translateFlag(yargs, '--save-dev', '-D')
-      }
-
-      if ('save-optional' in yargs) {
-        translateFlag(yargs, '--save-optional', '-O')
-      }
-
-      if ('save-peer' in yargs) {
-        translateFlag(yargs, '--save-peer')
-      }
-    })
+    yargs.middleware(middleware)
 
     return yargs
   }

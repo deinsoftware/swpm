@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import yargs from './cli/yargs.js'
+import yargs from './cli/config.js'
 
 import { pinPackageManager } from './flags/pin.js'
 import { showCommand, runCommand } from './helpers/cmds.js'

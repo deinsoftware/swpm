@@ -1,5 +1,16 @@
 import { translateFlag } from '../../helpers/args.js'
 
+const middleware = (yargs) => {
+  if ('frozen-lockfile' in yargs) {
+    translateFlag(yargs, '--frozen-lockfile', '--FL')
+  }
+
+  if ('FLAGS' in yargs) {
+    console.log('To install a specific <package> please use `add` command')
+    process.exit(1)
+  }
+}
+
 const install = {
   command: 'install [FLAGS]',
   aliases: ['i'],
@@ -22,16 +33,7 @@ const install = {
       conflicts: ['package-lock']
     })
 
-    yargs.middleware((yargs) => {
-      if ('frozen-lockfile' in yargs) {
-        translateFlag(yargs, '--frozen-lockfile', '--FL')
-      }
-
-      if ('FLAGS' in yargs) {
-        console.log('To install a specific <package> please use `add` command')
-        process.exit(1)
-      }
-    })
+    yargs.middleware(middleware)
 
     return yargs
   }

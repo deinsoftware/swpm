@@ -1,5 +1,23 @@
 import { translateFlag } from '../../helpers/args.js'
 
+const middleware = (yargs) => {
+  if ('save-dev' in yargs) {
+    translateFlag(yargs, '--save-dev', '-D')
+  }
+
+  if ('save-optional' in yargs) {
+    translateFlag(yargs, '--save-optional', '-O')
+  }
+
+  if ('save-peer' in yargs) {
+    translateFlag(yargs, '--save-peer')
+  }
+
+  if ('save-exact' in yargs) {
+    translateFlag(yargs, '--save-exact', '-E')
+  }
+}
+
 const add = {
   command: 'add <package> [FLAGS]',
   aliases: ['a'],
@@ -53,23 +71,7 @@ const add = {
       implies: ['package']
     })
 
-    yargs.middleware((yargs) => {
-      if ('save-dev' in yargs) {
-        translateFlag(yargs, '--save-dev', '-D')
-      }
-
-      if ('save-optional' in yargs) {
-        translateFlag(yargs, '--save-optional', '-O')
-      }
-
-      if ('save-peer' in yargs) {
-        translateFlag(yargs, '--save-peer')
-      }
-
-      if ('save-exact' in yargs) {
-        translateFlag(yargs, '--save-exact', '-E')
-      }
-    })
+    yargs.middleware(middleware)
 
     return yargs
   }
