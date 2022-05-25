@@ -2,9 +2,7 @@ import { spawn, execSync } from 'node:child_process'
 import chalk from 'chalk'
 import { getOriginIcon } from './get.js'
 
-export const translateCommand = (key) => {
-  const { pkg } = globalThis
-
+export const translateCommand = (pkg, key) => {
   const action = pkg?.config?.cmds?.[key]
 
   if (typeof action === 'string') {
@@ -12,14 +10,11 @@ export const translateCommand = (key) => {
   }
 }
 
-export const showCommand = () => {
-  const { origin, cmd, args, config } = globalThis.pkg
+export const showCommand = ({ origin, cmd, args, config }) => {
   console.log(`${(origin ? getOriginIcon(origin) + ' ' : '')}${chalk.hex(config?.color ?? '').bold(cmd)} ${args?.join(' ')}`)
 }
 
-export const runCommand = () => {
-  let { cmd, args, volta } = globalThis.pkg
-
+export const runCommand = ({ cmd, args, volta }) => {
   if (volta) {
     args = ['run', cmd, ...args]
     cmd = 'volta'

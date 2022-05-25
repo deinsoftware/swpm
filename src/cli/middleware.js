@@ -49,7 +49,7 @@ const middleware = async (yargs) => {
   }
 
   if (yargs._.length) {
-    translateCommand(yargs._[0])
+    translateCommand(pkg, yargs._[0])
   }
 }
 
