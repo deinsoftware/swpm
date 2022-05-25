@@ -14,8 +14,7 @@
     "swpx",
     "tryin",
     "unpublish",
-    "volta",
-    "yargv"
+    "volta"
   ],
   "files.exclude": {
     "**/*.js.map": {
