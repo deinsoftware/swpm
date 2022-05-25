@@ -41,7 +41,7 @@ const middleware = async (yargs) => {
   }
 
   if (pkg?.cmd) {
-    pkg.config = await getPackageConfiguration()
+    pkg.config = await getPackageConfiguration(globalThis.pkg)
   }
 
   if ('global' in yargs) {
