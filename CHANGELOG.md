@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.8.0] - 2022/05/25
+
+### Added
+
+- `swpx` command for testing purpose
+
+### Changed
+
+- refactor code removing `globalThis`
+
 ## [0.7.1] - 2022/05/23
 
 ### Fixed
