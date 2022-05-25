@@ -12,13 +12,13 @@ const middleware = async (yargs) => {
   yargs.pkg = pkg
 
   if ('debug' in yargs) {
-    cleanFlag(yargs, pkg, '--debug')
-    cleanFlag(yargs, pkg, '-d')
+    cleanFlag(yargs, '--debug')
+    cleanFlag(yargs, '-d')
   }
 
   if ('use' in yargs) {
-    cleanFlag(yargs, pkg, '--use')
-    cleanFlag(yargs, pkg, '-u')
+    cleanFlag(yargs, '--use')
+    cleanFlag(yargs, '-u')
     pkg.cmd = yargs.use
   }
 
@@ -27,8 +27,8 @@ const middleware = async (yargs) => {
   }
 
   if ('test' in yargs) {
-    cleanFlag(yargs, pkg, '--test')
-    cleanFlag(yargs, pkg, '-t')
+    cleanFlag(yargs, '--test')
+    cleanFlag(yargs, '-t')
     pkg.cmd = yargs.test
   }
 
@@ -45,7 +45,7 @@ const middleware = async (yargs) => {
   }
 
   if ('global' in yargs) {
-    translateFlag(yargs, pkg, '--global', '-g')
+    translateFlag(yargs, '--global', '-g')
   }
 
   if (yargs._.length) {

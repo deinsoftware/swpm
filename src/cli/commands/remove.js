@@ -47,15 +47,15 @@ const remove = {
 
     yargs.middleware((yargs) => {
       if ('save-dev' in yargs) {
-        translateFlag(yargs, yargs.pkg, '--save-dev', '-D')
+        translateFlag(yargs, '--save-dev', '-D')
       }
 
       if ('save-optional' in yargs) {
-        translateFlag(yargs, yargs.pkg, '--save-optional', '-O')
+        translateFlag(yargs, '--save-optional', '-O')
       }
 
       if ('save-peer' in yargs) {
-        translateFlag(yargs, yargs.pkg, '--save-peer')
+        translateFlag(yargs, '--save-peer')
       }
     })
 
