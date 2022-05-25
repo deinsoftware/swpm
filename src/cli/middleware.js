@@ -37,6 +37,7 @@ const middleware = async (yargs) => {
     const { origin, cmd } = await getCurrentPackageManager()
     pkg.origin = origin
     pkg.cmd = cmd
+
     pkg.volta = await detectVoltaPin()
   }
 
@@ -45,7 +46,7 @@ const middleware = async (yargs) => {
   }
 
   if ('global' in yargs) {
-    translateFlag('--global', '-g')
+    translateFlag(yargs, pkg, '--global', '-g')
   }
 
   if (yargs._.length) {

@@ -22,18 +22,15 @@ export const cleanFlag = (yargs, pkg, flag) => {
   }
 }
 
-const replaceFlag = (flag, newFlag) => {
-  const { pkg } = globalThis
-
+const replaceFlag = (pkg, flag, newFlag) => {
   const indexFlag = findFlagIndex(pkg, flag)
   if (indexFlag && indexFlag !== -1) {
     pkg.args[indexFlag] = newFlag
   }
 }
 
-const moveFlag = (option) => {
+const moveFlag = (pkg, option) => {
   const [action, position] = option
-  const { pkg } = globalThis
 
   if (position === -1) {
     // TODO: not available on this package manager
@@ -43,9 +40,7 @@ const moveFlag = (option) => {
   pkg.args.splice(position, 0, action)
 }
 
-const replaceCommand = (action) => {
-  const { yargs, pkg } = globalThis
-
+const replaceCommand = (yargs, pkg, action) => {
   const cmd = yargs._
 
   if (cmd in action) {
@@ -53,8 +48,7 @@ const replaceCommand = (action) => {
   }
 }
 
-export const translateFlag = (flag, alias) => {
-  const { yargs, pkg } = globalThis
+export const translateFlag = (yargs, pkg, flag, alias) => {
   const key = getKey(flag)
 
   if (key in yargs) {
@@ -62,19 +56,19 @@ export const translateFlag = (flag, alias) => {
 
     if (typeof action === 'string') {
       console.log({ flag, alias, key })
-      replaceFlag(flag, action)
+      replaceFlag(pkg, flag, action)
     }
 
     if (Array.isArray(action)) {
       cleanFlag(yargs, pkg, flag)
       cleanFlag(yargs, pkg, alias)
-      moveFlag(action)
+      moveFlag(pkg, action)
     }
 
     if (typeof action === 'object') {
       cleanFlag(yargs, pkg, flag)
       cleanFlag(yargs, pkg, alias)
-      replaceCommand(action)
+      replaceCommand(yargs, pkg, action)
     }
   }
 }

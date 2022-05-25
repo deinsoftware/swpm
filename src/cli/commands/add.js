@@ -54,20 +54,22 @@ const add = {
     })
 
     yargs.middleware((yargs) => {
+      const { pkg } = globalThis
+
       if ('save-dev' in yargs) {
-        translateFlag('--save-dev', '-D')
+        translateFlag(yargs, pkg, '--save-dev', '-D')
       }
 
       if ('save-optional' in yargs) {
-        translateFlag('--save-optional', '-O')
+        translateFlag(yargs, pkg, '--save-optional', '-O')
       }
 
       if ('save-peer' in yargs) {
-        translateFlag('--save-peer')
+        translateFlag(yargs, pkg, '--save-peer')
       }
 
       if ('save-exact' in yargs) {
-        translateFlag('--save-exact', '-E')
+        translateFlag(yargs, pkg, '--save-exact', '-E')
       }
     })
 

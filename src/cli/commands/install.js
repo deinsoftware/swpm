@@ -23,8 +23,10 @@ const install = {
     })
 
     yargs.middleware((yargs) => {
+      const { pkg } = globalThis
+
       if ('frozen-lockfile' in yargs) {
-        translateFlag('--frozen-lockfile', '--FL')
+        translateFlag(yargs, pkg, '--frozen-lockfile', '--FL')
       }
 
       if ('FLAGS' in yargs) {
