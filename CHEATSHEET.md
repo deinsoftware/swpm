@@ -55,7 +55,7 @@ Use the same command structure between package managers.
 
 Run a command without installing it.
 
-| command                                | swpm | npm                                          | yarn                                            | pnpm                                            |
+| command                                | swpx | npm                                          | yarn                                            | pnpm                                            |
 | -------------------------------------- | ---- | -------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
 | run package                            |      | `npx <package>`                              | `yarn dlx <package>`                            | `pnpm dlx <package>`                            |
 
