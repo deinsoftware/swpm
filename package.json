@@ -44,8 +44,8 @@
   "homepage": "https://github.com/deinsoftware/swpm#readme",
   "type": "module",
   "volta": {
-    "node": "18.1.0",
-    "npm": "8.8.0"
+    "node": "18.2.0",
+    "npm": "8.11.0"
   },
   "dependencies": {
     "chalk": "5.0.1",
@@ -54,12 +54,12 @@
   },
   "devDependencies": {
     "c8": "7.11.3",
-    "eslint": "8.15.0",
+    "eslint": "8.16.0",
     "eslint-config-standard": "17.0.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-n": "15.2.0",
     "eslint-plugin-promise": "6.0.0",
-    "vitest": "0.12.6"
+    "vitest": "0.12.9"
   },
   "packageManager": "npm@8.8.0",
   "swpm": "npm"

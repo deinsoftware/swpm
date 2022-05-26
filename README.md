@@ -158,7 +158,19 @@ swpm init [<name> --yes]
 swpm create [<name> --yes]
 ```
 
-> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm>` at the end
+> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm>` at the end or setup an `SWPM` environment variable.
+
+#### Login/Logout
+
+Login and logout to [https://www.npmjs.com/](https://www.npmjs.com/).  
+Commonly used when you need to publish or admin packages.
+
+```bash
+swpm login
+swpm logout
+```
+
+> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm>` at the end or setup an `SWPM` environment variable.
 
 #### Scripts
 
@@ -172,18 +184,6 @@ swpm build
 ```
 
 > You can run `test` and `build` "scripts" without the `run` prefix.
-
-#### Login/Logout
-
-Login and logout to [https://www.npmjs.com/](https://www.npmjs.com/).  
-Commonly used when you need to publish or admin packages.
-
-```bash
-swpm login
-swpm logout
-```
-
-> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm>` at the end
 
 #### Publish
 
@@ -212,6 +212,16 @@ swpm config set save-prefix '~'
 ```
 
 > To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm>` at the end.
+
+#### Versions
+
+`outdated` will check the registry to see if any (or, specific) installed packages are currently outdated.
+
+```bash
+swpm outdated [<package>] [--global]
+```
+
+> To run this commands in a path where a `package.json` didn't exist with flag `--global` add the flag `--use <npm|yarn|pnpm>` at the end or setup an `SWPM` environment variable.
 
 ### Flags
 
@@ -312,7 +322,9 @@ The `<package>` parameter should follow one of these structures:
 
 ### Non documented commands
 
-`swpm` will try to infer the package manager and preserve the rest of the command and arguments without changes and run them.
+`swpm` is not restrictive, if a command translations was not included yet, you can write the command as the package manager expect, then `swpm` will try to infer the package manager and preserve the rest of the command and arguments without changes and run them.
+
+But, if you found one of this cases, please open a [command compatibility](https://github.com/deinsoftware/swpm/issues/new?assignees=&labels=command-request&template=command-compatibility.md&title=) issue.
 
 ⇧ [Back to menu](#menu)
 
