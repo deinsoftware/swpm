@@ -22,15 +22,15 @@ swpm ...
 
 ## Expected Result
 
-| Package Manager | Command  |
-| ------------------- | ------------- |
-| `npm`                    | `npm ...`      |
-| `yarn`                    | `yarn ...`       |
-| `pnpm`                 | `pnpm ...`     |
+| Package Manager | Command       |
+| --------------- | ------------- |
+| `npm`           | `npm ...`     |
+| `yarn`          | `yarn ...`    |
+| `pnpm`          | `pnpm ...`    |
 
 ### Context
 
-Please provide any relevant information about your setup. 
+Please provide any relevant information about your setup.
 
 - swpm Version:
 - node Version:
