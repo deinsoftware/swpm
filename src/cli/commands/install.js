@@ -5,7 +5,7 @@ const middleware = (yargs) => {
     translateFlag(yargs, '--frozen-lockfile', '--FL')
   }
 
-  if ('FLAGS' in yargs) {
+  if ('FLAGS' in yargs) { // TODO: chalk format Error:
     console.log('To install a specific <package> please use `add` command')
     process.exit(1)
   }

@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest'
-import { cleanFlag } from './args.js'
+import { cleanFlag, translateFlag } from './args.js'
 
 describe('helpers/args', () => {
   describe('cleanFlag()', () => {
@@ -45,6 +45,93 @@ describe('helpers/args', () => {
       cleanFlag(yargs, flag)
       expect(yargs.pkg.args.includes(flag)).toBeFalsy()
       expect(yargs.pkg.args.includes(value)).toBeFalsy()
+    })
+  })
+
+  describe('translateFlag()', () => {
+    test('should not fail if flag, alias or args is empty or not exists', () => {
+      const flag = ''
+      const alias = ''
+      const yargs = {
+        pkg: {
+          args: []
+        }
+      }
+      const result = translateFlag(yargs, flag, alias)
+      expect(result).toBeUndefined()
+    })
+
+    test('should not fail when flag is not present on yargs', () => {
+      const flag = '--not-exists'
+      const yargs = {}
+      const result = translateFlag(yargs, flag)
+      expect(result).toBeUndefined()
+    })
+
+    test('should replace a flag with his config translation', () => {
+      const cmd = 'command'
+      const flag = '--flag'
+      const replace = '--new-flag'
+      const yargs = {
+        _: [cmd],
+        flag: true,
+        pkg: {
+          args: [cmd, flag],
+          config: {
+            args: {
+              [flag]: replace
+            }
+          }
+        }
+      }
+      translateFlag(yargs, flag)
+      expect(yargs.pkg.args.includes(flag)).toBeFalsy()
+      expect(yargs.pkg.args[1]).toBe(replace)
+    })
+
+    test('should move a flag with his config translation', () => {
+      const cmd = 'command'
+      const flag = '--flag'
+      const replace = ['flag', 1]
+      const yargs = {
+        flag: true,
+        pkg: {
+          _: [cmd],
+          args: [cmd, 'package', flag],
+          config: {
+            args: {
+              [flag]: replace
+            }
+          }
+        }
+      }
+      translateFlag(yargs, flag)
+      expect(yargs.pkg.args.includes(flag)).toBeFalsy()
+      expect(yargs.pkg.args[1]).toBe(replace[0])
+    })
+
+    test('should replace the command when detect some flag', () => {
+      const cmd = 'command'
+      const flag = '--flag'
+      const replace = {
+        [flag]: {
+          [cmd]: 'new-command'
+        }
+      }
+      const yargs = {
+        flag: true,
+        _: [cmd],
+        pkg: {
+          args: [cmd, 'package', flag],
+          config: {
+            args: replace
+          }
+        }
+      }
+      translateFlag(yargs, flag)
+      expect(yargs.pkg.args.includes(cmd)).toBeFalsy()
+      expect(yargs.pkg.args.includes(flag)).toBeFalsy()
+      expect(yargs.pkg.args[0]).toBe(replace[flag][cmd])
     })
   })
 })
