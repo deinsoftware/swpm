@@ -23,6 +23,7 @@ swpm ...
 ## Expected Result
 
 | Package Manager | Command  |
+| ------------------- | ------------- |
 | `npm`                    | `npm ...`      |
 | `yarn`                    | `yarn ...`       |
 | `pnpm`                 | `pnpm ...`     |
