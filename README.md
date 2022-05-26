@@ -387,9 +387,13 @@ If you want to help, spread the word of `swpm` in a project or web, please use t
 - [VS Code](https://code.visualstudio.com/) - Code editing redefined.
 - [WSL](https://docs.microsoft.com/en-us/windows/wsl/) - Windows Subsystem for Linux.
 - [Widows Terminal](https://github.com/Microsoft/Terminal/) - A modern terminal application for users of command-line tools and shells.
+- [Node.js](https://nodejs.org/) - A JavaScript runtime built on Chrome's V8 JavaScript engine.
 - [Chalk](https://github.com/chalk/chalk) - Terminal string styling done right
 - [Yargs](https://yargs.js.org/) - Yargs be a node.js library fer hearties tryin' ter parse optstrings
 - [common-tags](https://www.npmjs.com/package/common-tags) - A set of well-tested, commonly used template literal tag functions for use in ES2015+
+- [update-notifier](https://www.npmjs.com/package/update-notifier) - Update notifications for your CLI app
+- [ESLint](https://eslint.org/) - Find and fix problems in your JavaScript code
+- [vitest](https://vitest.dev/) - A blazing fast unit-test framework powered by Vite ⚡️
 
 ### Contributing
 

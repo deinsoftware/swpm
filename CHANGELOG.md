@@ -9,6 +9,17 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.9.0] - 2022/05/26
+
+### Added
+
+- `args` helpers unit testing
+- update notifier message
+
+### Changed
+
+- `eslint` and `vitest` versions
+
 ## [0.8.0] - 2022/05/25
 
 ### Added
@@ -18,7 +29,6 @@ Security    to invite users to upgrade in case of vulnerabilities.
 ### Changed
 
 - refactor code removing `globalThis`
-- `eslint` and `vitest` versions
 
 ## [0.7.1] - 2022/05/23
 

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import updateNotifier from 'update-notifier'
 import yargs from './cli/config.js'
 
 import { pinPackageManager } from './flags/pin.js'
@@ -27,3 +28,7 @@ if (yargs?.pkg?.cmd) {
   showCommand(yargs.pkg)
   runCommand(yargs.pkg)
 }
+
+const pkg = require('./package.json')
+const notifier = updateNotifier({ pkg })
+notifier.notify()
