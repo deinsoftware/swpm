@@ -16,7 +16,7 @@ Please answer the following questions for yourself before submitting an issue.
 
 ## Command to add
 
-```
+```bash
 swpm ...
 ```
 
