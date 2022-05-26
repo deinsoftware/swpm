@@ -18,6 +18,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 ### Changed
 
 - refactor code removing `globalThis`
+- `eslint` and `vitest` versions
 
 ## [0.7.1] - 2022/05/23
 
