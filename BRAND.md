@@ -10,10 +10,16 @@
 
 ## Logomark
 
-| Theme | Image | Markdown |
-| ----- | :---: | -------  |
-| light | [![swpm-icon](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon_64.png)](https://www.npmjs.com/package/swpm) | `[![swpm-icon-64](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon_64.png)](https://www.npmjs.com/package/swpm)`  |
-| dark  | [![swpm-icon4](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon-dark_64.png)](https://www.npmjs.com/package/swpm) | `[![swpm-icon-64](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon-dark_64.png)](https://www.npmjs.com/package/swpm)`  |
+| Theme | Size | Image | Markdown |
+| ----- | ---- | :---: | -------  |
+| light | 16   | [![swpm-icon](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon_16.png)](https://www.npmjs.com/package/swpm)      | `[![swpm-icon](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon_16.png)](https://www.npmjs.com/package/swpm)`       |
+| dark  | 16   | [![swpm-icon](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon-dark_16.png)](https://www.npmjs.com/package/swpm) | `[![swpm-icon](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon-dark_16.png)](https://www.npmjs.com/package/swpm)`  |
+| light | 32   | [![swpm-icon](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon_32.png)](https://www.npmjs.com/package/swpm)      | `[![swpm-icon](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon_32.png)](https://www.npmjs.com/package/swpm)`       |
+| dark  | 32   | [![swpm-icon](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon-dark_32.png)](https://www.npmjs.com/package/swpm) | `[![swpm-icon](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon-dark_32.png)](https://www.npmjs.com/package/swpm)`  |
+| light | 48   | [![swpm-icon](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon_48.png)](https://www.npmjs.com/package/swpm)      | `[![swpm-icon](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon_48.png)](https://www.npmjs.com/package/swpm)`       |
+| dark  | 48   | [![swpm-icon](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon-dark_48.png)](https://www.npmjs.com/package/swpm) | `[![swpm-icon](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon-dark_48.png)](https://www.npmjs.com/package/swpm)`  |
+| light | 64   | [![swpm-icon](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon_64.png)](https://www.npmjs.com/package/swpm)      | `[![swpm-icon](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon_64.png)](https://www.npmjs.com/package/swpm)`       |
+| dark  | 64   | [![swpm-icon](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon-dark_64.png)](https://www.npmjs.com/package/swpm) | `[![swpm-icon](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/icons/icon-dark_64.png)](https://www.npmjs.com/package/swpm)`  |
 
 ## Logos
 
@@ -23,6 +29,8 @@
 | light colors | [![swpm-logo](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/brand/logo-color.png)](https://www.npmjs.com/package/swpm) | `[![swpm-logo-color](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/brand/logo-color.png)](https://www.npmjs.com/package/swpm)`  |
 | dark         | [![swpm-logo](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/brand/logo-dark.png)](https://www.npmjs.com/package/swpm) | `[![swpm-logo](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/brand/logo-dark.png)](https://www.npmjs.com/package/swpm)`  |
 | daark colors | [![swpm-logo](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/brand/logo-dark-color.png)](https://www.npmjs.com/package/swpm) | `[![swpm-logo-color](https://raw.githubusercontent.com/deinsoftware/swpm/main/.github/brand/logo-dark-color.png)](https://www.npmjs.com/package/swpm)`  |
+
+### Sticker
 
 | Theme        | Image | Markdown |
 | ------------ | :---: | -------  |

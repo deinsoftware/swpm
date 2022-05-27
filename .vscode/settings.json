@@ -61,7 +61,7 @@
     "MD033": false
   },
   "explorer.fileNesting.patterns": {
-    "README*": "CHANGELOG*, CODE_OF_CONDUCT.md, CONTRIBUTING.md, LICENSE*, README*, CHEATSHEET*",
+    "README*": "BRAND*, CHANGELOG*, CODE_OF_CONDUCT.md, CONTRIBUTING.md, LICENSE*, README*, CHEATSHEET*",
     "package*": "sonar-project*, .gitignore"
   }
 }
