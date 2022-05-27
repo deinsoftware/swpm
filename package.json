@@ -50,6 +50,7 @@
   "dependencies": {
     "chalk": "5.0.1",
     "common-tags": "1.8.2",
+    "node-sass": "7.0.1",
     "update-notifier": "5.1.0",
     "yargs": "17.5.1"
   },

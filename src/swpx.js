@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
-import updateNotifier from 'update-notifier'
+import { autoUpdate } from './helpers/autoUpdate.js'
 
 console.log('npx runner js')
 
-const pkg = require('./package.json')
-const notifier = updateNotifier({ pkg })
-notifier.notify()
+await autoUpdate()

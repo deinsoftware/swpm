@@ -9,6 +9,13 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.9.1] - 2022/05/27
+
+### Fixed
+
+- update notifier message with ESM compatibility
+- not available flags message warning
+
 ## [0.9.0] - 2022/05/26
 
 ### Added

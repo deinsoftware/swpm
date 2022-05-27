@@ -1,3 +1,6 @@
+import chalk from 'chalk'
+import { stripIndents } from 'common-tags'
+
 const findFlagIndex = (args, flag) => {
   return args?.findIndex((arg) => arg === flag)
 }
@@ -29,15 +32,16 @@ const replaceFlag = (pkg, flag, newFlag) => {
   }
 }
 
-const moveFlag = (pkg, option) => {
+const moveFlag = (pkg, flag, option) => {
   const [action, position] = option
 
   if (position === -1) {
-    // TODO: not available on this package manager
-    return
+    console.log(stripIndents`
+      ${chalk.yellow.bold('Warning')}: the ${chalk.bold(flag)} flag is not compatible on ${chalk.bold(pkg?.cmd)} Package Manager.
+    `)
+  } else {
+    pkg.args.splice(position, 0, action)
   }
-
-  pkg.args.splice(position, 0, action)
 }
 
 const replaceCommand = (yargs, action) => {
@@ -61,7 +65,7 @@ export const translateFlag = (yargs, flag, alias) => {
     if (Array.isArray(action)) {
       cleanFlag(yargs, flag)
       cleanFlag(yargs, alias)
-      moveFlag(yargs?.pkg, action)
+      moveFlag(yargs?.pkg, flag, action)
     }
 
     if (typeof action === 'object') {

@@ -1,10 +1,8 @@
 import { stripIndents } from 'common-tags'
 import chalk from 'chalk'
-import { createRequire } from 'module'
 import { getCommandResult } from '../helpers/cmds.js'
 import { getOriginIcon } from '../helpers/get.js'
-
-const require = createRequire(import.meta.url)
+import { getSwpmInfo } from '../helpers/info.js'
 
 export const showPackageInformation = async ({ origin, cmd, config, volta }) => {
   const nodeVersion = getCommandResult('node --version').replace(/v/, '')
@@ -12,7 +10,7 @@ export const showPackageInformation = async ({ origin, cmd, config, volta }) => 
   const isInstalled = !!getCommandResult(`command -v ${cmd}`)
   const packageVersion = isInstalled ? getCommandResult(`${cmd} --version`) : 'not found'
 
-  const { version: swpmVersion } = require('../../package.json')
+  const { version: swpmVersion } = await getSwpmInfo()
 
   let message = `
     ${chalk.bold('using')}: \t${chalk.hex(config.color).bold(cmd)}

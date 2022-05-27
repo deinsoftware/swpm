@@ -1,3 +1,5 @@
+import chalk from 'chalk'
+import { stripIndents } from 'common-tags'
 import { translateFlag } from '../../helpers/args.js'
 
 const middleware = (yargs) => {
@@ -5,8 +7,16 @@ const middleware = (yargs) => {
     translateFlag(yargs, '--frozen-lockfile', '--FL')
   }
 
-  if ('FLAGS' in yargs) { // TODO: chalk format Error:
-    console.log('To install a specific <package> please use `add` command')
+  if ('FLAGS' in yargs) {
+    console.log(stripIndents`
+      ${chalk.red.bold('Error')}: to install a specific ${chalk.bold('<package>')} 
+      please use ${chalk.bold('add')} command.
+
+      ${chalk.blue.bold('swpm add <package> [FLAGS]')}
+    `)
+
+    // TODO: ask to auto transform
+
     process.exit(1)
   }
 }

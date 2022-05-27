@@ -16,6 +16,10 @@ const middleware = (yargs) => {
   if ('save-exact' in yargs) {
     translateFlag(yargs, '--save-exact', '-E')
   }
+
+  if ('latest' in yargs) {
+    translateFlag(yargs, '--latest', '-L')
+  }
 }
 
 const add = {
