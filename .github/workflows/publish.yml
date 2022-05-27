@@ -32,7 +32,7 @@ jobs:
           tweet-message: "swpm ${{ github.event.release.tag_name }} 🐛🔨 is here 🥳\n\n
           $ npm install swpm@latest --global\n\n
           #swpm #cli #npm #yarn #pnpm #nodejs #javascript\n\n
-          https://github.com/deinsoftware/swpm"
+          https://github.com/deinsoftware/swpm/blob/main/CHANGELOG.md"
         env:
           TWITTER_CONSUMER_API_KEY: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
           TWITTER_CONSUMER_API_SECRET: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
