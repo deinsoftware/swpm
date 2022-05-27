@@ -11,10 +11,6 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ## [0.9.1] - 2022/05/27
 
-### Added
-
-- github package publishing
-
 ### Fixed
 
 - update notifier message with ESM compatibility
