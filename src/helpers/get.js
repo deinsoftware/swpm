@@ -1,4 +1,4 @@
-import { env } from 'node:process'
+import { exit, env } from 'node:process'
 import { stripIndents } from 'common-tags'
 import chalk from 'chalk'
 import { getPackageJson, lockFileExists } from './files.js'
@@ -24,7 +24,7 @@ const getPropertyValue = async (packageJson, property) => {
     ${chalk.red.bold('Error')}: the value (${chalk.bold(prop)}) in property on ${chalk.bold(packageName)} file is not valid.
     Use ${chalk.blue.bold('npm --pin <npm|yarn|pnpm>')} to fix it.
   `)
-  process.exit(1)
+  exit(1)
 }
 
 const searchForLockFiles = async () => {
@@ -50,7 +50,7 @@ const searchForEnv = (name) => {
     ${chalk.red.bold('Error')}: the value (${chalk.bold(value)}) in SWPM environment variable is not valid.
     Fix it using one of this values ${chalk.blue.bold('<npm|yarn|pnpm>')}.
   `)
-  process.exit(1)
+  exit(1)
 }
 
 const icons = { pinned: '📌', packageManager: '📦', environment: '🌐', lock: '🔒' }
@@ -83,7 +83,7 @@ export const getCurrentPackageManager = async () => {
     Please review if the current path has a ${chalk.bold(packageName)} or a ${chalk.bold('lock')} file.
     Highly recommend pin a Package Manager with ${chalk.blue.bold('swpm --pin <npm|yarn|pnpm>')} command.
   `)
-  process.exit(1)
+  exit(1)
 }
 
 // https://volta.sh/

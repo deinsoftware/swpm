@@ -1,3 +1,4 @@
+import { exit } from 'node:process'
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
 import { translateFlag } from '../../helpers/args.js'
@@ -17,7 +18,7 @@ const middleware = (yargs) => {
 
     // TODO: ask to auto transform
 
-    process.exit(1)
+    exit(1)
   }
 }
 

@@ -1,3 +1,4 @@
+import { exit } from 'node:process'
 import { stripIndents } from 'common-tags'
 import chalk from 'chalk'
 import { getCommandResult } from '../helpers/cmds.js'
@@ -30,5 +31,5 @@ export const showPackageInformation = async ({ origin, cmd, config, volta }) => 
   }
   console.log(stripIndents`${message}`)
 
-  process.exit(0)
+  exit(0)
 }

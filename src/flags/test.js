@@ -1,6 +1,7 @@
+import { exit } from 'node:process'
 import { showCommand } from '../helpers/cmds.js'
 
 export const testCommand = (pkg) => {
   showCommand(pkg)
-  process.exit(0)
+  exit(0)
 }
