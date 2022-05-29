@@ -12,5 +12,10 @@ export default defineConfig({
       functions: 28,
       lines: 26,
     },
+    exclude: [
+      "package-lock.json",
+      "package.json",
+      "vitest.config.ts",
+    ]
   },
 });
