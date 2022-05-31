@@ -4,7 +4,6 @@ import { getOriginIcon } from './get.js'
 
 export const translateCommand = (pkg, key) => {
   const action = pkg?.config?.cmds?.[key]
-
   if (typeof action === 'string') {
     pkg.args[0] = action
   }

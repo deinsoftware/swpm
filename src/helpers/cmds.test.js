@@ -1,5 +1,58 @@
 import { describe, test, expect } from 'vitest'
-import { getCommandResult } from './cmds.js'
+import { translateCommand, getCommandResult } from './cmds.js'
+
+describe('translateCommand()', () => {
+  test('should not fail if does not receive pkg or key parameters', () => {
+    const result = translateCommand()
+    expect(result).toBeFalsy()
+  })
+
+  test('should not fail if pkg or key are empty', () => {
+    const key = ''
+    const yargs = {
+      pkg: {
+        args: [],
+        config: {
+          cmds: {}
+        }
+      }
+    }
+    const result = translateCommand(yargs.pkg, key)
+    expect(result).toBeFalsy()
+  })
+
+  test('should not change args if key does not exists', () => {
+    const key = 'command'
+    const yargs = {
+      pkg: {
+        args: [key],
+        config: {
+          cmds: {}
+        }
+      }
+    }
+    translateCommand(yargs.pkg, key)
+    expect(yargs.pkg.args.includes(key)).toBeTruthy()
+  })
+
+  test('should replace args if key exists', () => {
+    const key = 'command'
+    const replaceCommand = 'new-command'
+    const yargs = {
+      pkg: {
+        args: [key],
+        config: {
+          cmds: {
+            [key]: replaceCommand
+          }
+        }
+      }
+    }
+    translateCommand(yargs.pkg, key)
+    expect(yargs.pkg.args.includes(key)).toBeFalsy()
+    expect(yargs.pkg.args.includes(replaceCommand)).toBeTruthy()
+  })
+})
 
 describe('getCommandResult()', () => {
   test('should return false when can run the command', () => {

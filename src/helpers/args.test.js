@@ -2,7 +2,7 @@ import { describe, test, expect } from 'vitest'
 import { cleanFlag, translateFlag } from './args.js'
 
 describe('cleanFlag()', () => {
-  test('should not fail if flag or args is empty or not exists', () => {
+  test('should not fail if flag or args are empty or not exists', () => {
     const flag = ''
     const yargs = {
       pkg: {
