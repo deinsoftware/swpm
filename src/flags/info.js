@@ -17,11 +17,11 @@ export const showPackageInformation = async ({ origin, cmd, config, volta }) => 
   message += `${chalk.bold('using')}: \t${chalk.hex(config.color).bold(cmd)} \n`
 
   if (origin) {
-    message += `${(chalk.bold('origin') + `: ${getOriginIcon(origin)} ${origin}`)} \n`
+    message += `${chalk.bold('origin')}: ${getOriginIcon(origin)} ${origin} \n`
   }
 
   if (volta) {
-    message += `${(chalk.bold('volta') + `: \t${chalk.yellow('⚡')} detected`)} \n`
+    message += `${chalk.bold('volta')}: \t${chalk.yellow('⚡')} detected \n`
   }
 
   message += `
