@@ -53,11 +53,6 @@ const searchForEnv = (name) => {
   exit(1)
 }
 
-const icons = { pinned: '📌', packageManager: '📦', environment: '🌐', lock: '🔒' }
-export const getOriginIcon = (name) => {
-  return icons[name] ?? ''
-}
-
 export const getCurrentPackageManager = async () => {
   const packageJson = await getPackageJson()
 

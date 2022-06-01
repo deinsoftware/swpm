@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest'
-import { getOriginIcon } from './get.js'
+import { getOriginIcon } from './icons.js'
 
 describe('getOriginIcon()', () => {
   test('should return an empty string if name was not send', () => {
