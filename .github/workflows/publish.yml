@@ -30,7 +30,7 @@ jobs:
         if: ${{ !github.event.repository.private }}
         with:
           tweet-message: "swpm ${{ github.event.release.tag_name }} 🐛🔨 is here 🥳\n\n
-          $ npm install swpm@latest --global\n\n
+          $ npm install swpm@latest --location=global\n\n
           #swpm #cli #npm #yarn #pnpm #nodejs #javascript\n\n
           https://github.com/deinsoftware/swpm/blob/main/CHANGELOG.md"
         env:

@@ -16,8 +16,11 @@ const npm = {
       i: 'ci',
       install: 'ci'
     },
+    '--global': '--location=global',
+    '-g': '--location=global',
     '--latest': ['', -1],
-    '-L': ['', -1]
+    '-L': ['', -1],
+    '--local': '--location=local'
   }
 }
 

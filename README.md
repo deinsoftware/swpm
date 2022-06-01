@@ -146,7 +146,7 @@ swpm remove <package> [args] [FLAGS]
 
 #### Clean
 
-This command not exist in the package managers, but is one of the most repetitive tasks, deleting files.
+This command does not exist in the package managers, but is one of the most repetitive tasks, deleting files.
 
 ```bash
 swpm clean [args]
@@ -161,7 +161,7 @@ swpm clean [args]
 | `--log`           |       | Delete **log** files            |
 | `--build`         |       | Delete **build** folder         |
 | `--coverage`      |       | Delete **coverage** folder      |
-| `--all`           |       | Run all flags                   |
+| `--all`           |       | Run all args                    |
 
 ### Shared Commands
 

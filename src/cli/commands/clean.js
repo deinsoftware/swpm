@@ -4,7 +4,7 @@ import { deleteLockFiles, deleteLogFiles, deletePath } from '../../helpers/delet
 
 const middleware = async (yargs) => {
   console.log(`🧽 ${chalk.bold('Cleaning')}: `)
-  
+
   if ('all' in yargs || 'node-modules' in yargs) {
     await deletePath('node_modules')
   }
@@ -24,7 +24,7 @@ const middleware = async (yargs) => {
   if ('all' in yargs || 'coverage' in yargs) {
     await deletePath('coverage')
   }
-  
+
   exit(0)
 }
 

@@ -15,11 +15,11 @@ const yarn = {
   args: {
     '--global': ['global', 1],
     '-g': ['global', 1],
+    '-L': '--latest',
     '--save-dev': '--dev',
     '--save-optional': '--optional',
     '--save-peer': '--peer',
-    '--save-exact': '--exact',
-    '-L': '--latest'
+    '--save-exact': '--exact'
   }
 }
 

@@ -8,6 +8,8 @@ import { showCommand, runCommand } from './helpers/cmds.js'
 import { showPackageInformation } from './flags/info.js'
 import { testCommand } from './flags/test.js'
 
+await autoUpdate()
+
 if (yargs.debug) {
   console.debug(yargs)
 }
@@ -28,5 +30,3 @@ if (yargs?.pkg?.cmd) {
   showCommand(yargs.pkg)
   runCommand(yargs.pkg)
 }
-
-await autoUpdate()

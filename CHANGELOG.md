@@ -9,6 +9,13 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.10.1] - 2022/06/01
+
+### Fixed
+
+- avoid duplications when use flag and alias
+- update deprecated `--global` flag on `npm`
+
 ## [0.10.0] - 2022/06/01
 
 ### Added

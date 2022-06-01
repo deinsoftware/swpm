@@ -5,12 +5,15 @@ const findFlagIndex = (args, flag) => {
   return args?.findIndex((arg) => arg === flag)
 }
 
-const getKey = (flag) => {
-  return flag?.replace(/^-+/, '')
+const getKey = (args, flag) => {
+  const indexFlag = findFlagIndex(args, flag)
+  if (indexFlag && indexFlag !== -1) {
+    return flag?.replace(/^-+/, '')
+  }
 }
 
 export const cleanFlag = (yargs, flag) => {
-  const key = getKey(flag)
+  const key = getKey(yargs?.pkg?.args, flag)
 
   if (key in yargs) {
     let places = 1
@@ -53,9 +56,10 @@ const replaceCommand = (yargs, action) => {
 }
 
 export const translateFlag = (yargs, flag, alias) => {
-  const key = getKey(flag)
+  const flagKey = getKey(yargs?.pkg?.args, flag)
+  const aliasKey = getKey(yargs?.pkg?.args, alias)
 
-  if (key in yargs) {
+  if (flagKey in yargs) {
     const action = yargs?.pkg?.config?.args?.[flag]
 
     if (typeof action === 'string') {
@@ -64,12 +68,33 @@ export const translateFlag = (yargs, flag, alias) => {
 
     if (Array.isArray(action)) {
       cleanFlag(yargs, flag)
-      cleanFlag(yargs, alias)
       moveFlag(yargs?.pkg, flag, action)
     }
 
     if (typeof action === 'object') {
       cleanFlag(yargs, flag)
+      replaceCommand(yargs, action)
+    }
+  }
+
+  if (aliasKey in yargs) {
+    if (flagKey) {
+      cleanFlag(yargs, alias)
+      return
+    }
+
+    const action = yargs?.pkg?.config?.args?.[alias]
+
+    if (typeof action === 'string') {
+      replaceFlag(yargs?.pkg, alias, action)
+    }
+
+    if (Array.isArray(action)) {
+      cleanFlag(yargs, alias)
+      moveFlag(yargs?.pkg, alias, action)
+    }
+
+    if (typeof action === 'object') {
       cleanFlag(yargs, alias)
       replaceCommand(yargs, action)
     }

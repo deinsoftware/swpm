@@ -2,6 +2,6 @@
 
 import { autoUpdate } from './helpers/autoUpdate.js'
 
-console.log('npx runner js')
-
 await autoUpdate()
+
+console.log('npx runner js')
