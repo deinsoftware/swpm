@@ -1,16 +1,16 @@
-import { translateFlag } from '../../helpers/args.js'
+import { translateArgs } from '../../helpers/args.js'
 
 const middleware = (yargs) => {
   if ('save-dev' in yargs) {
-    translateFlag(yargs, '--save-dev', '-D')
+    translateArgs(yargs, '--save-dev', '-D')
   }
 
   if ('save-optional' in yargs) {
-    translateFlag(yargs, '--save-optional', '-O')
+    translateArgs(yargs, '--save-optional', '-O')
   }
 
   if ('save-peer' in yargs) {
-    translateFlag(yargs, '--save-peer')
+    translateArgs(yargs, '--save-peer')
   }
 }
 

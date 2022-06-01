@@ -1,11 +1,11 @@
 import { exit } from 'node:process'
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
-import { translateFlag } from '../../helpers/args.js'
+import { translateArgs } from '../../helpers/args.js'
 
 const middleware = (yargs) => {
   if ('frozen-lockfile' in yargs) {
-    translateFlag(yargs, '--frozen-lockfile', '--FL')
+    translateArgs(yargs, '--frozen-lockfile', '--FL')
   }
 
   if ('FLAGS' in yargs) {

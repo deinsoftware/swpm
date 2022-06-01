@@ -55,48 +55,42 @@ const replaceCommand = (yargs, action) => {
   }
 }
 
-export const translateFlag = (yargs, flag, alias) => {
+const getAction = (args, key) => {
+  return args?.[key]
+}
+
+function translateFlag (yargs, name) {
+  const action = getAction(yargs?.pkg?.config?.args, name)
+
+  if (typeof action === 'string') {
+    replaceFlag(yargs?.pkg, name, action)
+  }
+
+  if (Array.isArray(action)) {
+    cleanFlag(yargs, name)
+    moveFlag(yargs?.pkg, name, action)
+  }
+
+  if (typeof action === 'object') {
+    cleanFlag(yargs, name)
+    replaceCommand(yargs, action)
+  }
+}
+
+export const translateArgs = (yargs, flag, alias) => {
   const flagKey = getKey(yargs?.pkg?.args, flag)
-  const aliasKey = getKey(yargs?.pkg?.args, alias)
+  let aliasKey = getKey(yargs?.pkg?.args, alias)
+
+  if (flagKey && aliasKey) {
+    cleanFlag(yargs, alias)
+    aliasKey = ''
+  }
 
   if (flagKey in yargs) {
-    const action = yargs?.pkg?.config?.args?.[flag]
-
-    if (typeof action === 'string') {
-      replaceFlag(yargs?.pkg, flag, action)
-    }
-
-    if (Array.isArray(action)) {
-      cleanFlag(yargs, flag)
-      moveFlag(yargs?.pkg, flag, action)
-    }
-
-    if (typeof action === 'object') {
-      cleanFlag(yargs, flag)
-      replaceCommand(yargs, action)
-    }
+    translateFlag(yargs, flag)
   }
 
   if (aliasKey in yargs) {
-    if (flagKey) {
-      cleanFlag(yargs, alias)
-      return
-    }
-
-    const action = yargs?.pkg?.config?.args?.[alias]
-
-    if (typeof action === 'string') {
-      replaceFlag(yargs?.pkg, alias, action)
-    }
-
-    if (Array.isArray(action)) {
-      cleanFlag(yargs, alias)
-      moveFlag(yargs?.pkg, alias, action)
-    }
-
-    if (typeof action === 'object') {
-      cleanFlag(yargs, alias)
-      replaceCommand(yargs, action)
-    }
+    translateFlag(yargs, alias)
   }
 }

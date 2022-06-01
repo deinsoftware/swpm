@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest'
-import { cleanFlag, translateFlag } from './args.js'
+import { cleanFlag, translateArgs } from './args.js'
 
 describe('cleanFlag()', () => {
   test('should not fail if flag or args are empty or not exists', () => {
@@ -56,14 +56,14 @@ describe('translateFlag()', () => {
         args: []
       }
     }
-    const result = translateFlag(yargs, flag, alias)
+    const result = translateArgs(yargs, flag, alias)
     expect(result).toBeUndefined()
   })
 
   test('should not fail when flag is not present on yargs', () => {
     const flag = '--not-exists'
     const yargs = {}
-    const result = translateFlag(yargs, flag)
+    const result = translateArgs(yargs, flag)
     expect(result).toBeUndefined()
   })
 
@@ -83,7 +83,7 @@ describe('translateFlag()', () => {
         }
       }
     }
-    translateFlag(yargs, flag)
+    translateArgs(yargs, flag)
     expect(yargs.pkg.args.includes(flag)).toBeFalsy()
     expect(yargs.pkg.args[1]).toBe(replace)
   })
@@ -104,7 +104,7 @@ describe('translateFlag()', () => {
         }
       }
     }
-    translateFlag(yargs, flag)
+    translateArgs(yargs, flag)
     expect(yargs.pkg.args.includes(flag)).toBeFalsy()
     expect(yargs.pkg.args[1]).toBe(replace[0])
   })
@@ -127,7 +127,7 @@ describe('translateFlag()', () => {
         }
       }
     }
-    translateFlag(yargs, flag)
+    translateArgs(yargs, flag)
     expect(yargs.pkg.args.includes(cmd)).toBeFalsy()
     expect(yargs.pkg.args.includes(flag)).toBeFalsy()
     expect(yargs.pkg.args[0]).toBe(replace[flag][cmd])
