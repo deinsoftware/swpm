@@ -18,7 +18,7 @@ const remove = {
   command: 'remove <package> [FLAGS]',
   aliases: ['r', 'rm', 'uninstall', 'un'],
   desc: 'remove package',
-  conflicts: ['install, add'],
+  conflicts: ['add', 'clean', 'install'],
   builder: (yargs) => {
     yargs.positional('package', {
       type: 'string',
@@ -31,7 +31,7 @@ const remove = {
       desc: 'remove package as devDependencies',
       usage: '$0 remove <package> --save-dev',
       implies: ['package'],
-      conflicts: ['save-optional, save-peer']
+      conflicts: ['save-optional', 'save-peer']
     })
 
     yargs.option('save-optional', {
@@ -40,7 +40,7 @@ const remove = {
       desc: 'remove package as optionalDependencies',
       usage: '$0 remove <package> --save-optional',
       implies: ['package'],
-      conflicts: ['save-dev, save-peer']
+      conflicts: ['save-dev', 'save-peer']
     })
 
     yargs.option('save-peer', {

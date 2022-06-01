@@ -26,7 +26,7 @@ const add = {
   command: 'add <package> [FLAGS]',
   aliases: ['a'],
   desc: 'add package',
-  conflicts: ['install, remove'],
+  conflicts: ['clean', 'install', 'remove'],
   builder: (yargs) => {
     yargs.positional('package', {
       type: 'string',
@@ -39,7 +39,7 @@ const add = {
       desc: 'add package as devDependencies',
       usage: '$0 add <package> --save-dev',
       implies: ['package'],
-      conflicts: ['save-optional, save-peer']
+      conflicts: ['save-optional', 'save-peer']
     })
 
     yargs.option('save-optional', {
@@ -48,7 +48,7 @@ const add = {
       desc: 'add package as optionalDependencies',
       usage: '$0 add <package> --save-optional',
       implies: ['package'],
-      conflicts: ['save-dev, save-peer']
+      conflicts: ['save-dev', 'save-peer']
     })
 
     yargs.option('save-peer', {

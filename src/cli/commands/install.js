@@ -26,7 +26,7 @@ const install = {
   command: 'install [FLAGS]',
   aliases: ['i'],
   desc: 'install packages from package.json',
-  conflicts: ['add, remove'],
+  conflicts: ['add', 'clean', 'remove'],
   builder: (yargs) => {
     yargs.option('package-lock', {
       alias: 'PL',
