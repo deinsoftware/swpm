@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.10.2] - 2022/06/01
+
+### Fixed
+
+- get package manager from environment variable or lock files
+
 ## [0.10.1] - 2022/06/01
 
 ### Fixed

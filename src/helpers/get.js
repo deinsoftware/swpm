@@ -63,13 +63,13 @@ export const getCurrentPackageManager = async () => {
     // https://nodejs.org/api/corepack.html
     const packageManager = await getPropertyValue(packageJson, 'packageManager')
     if (packageManager) { return { origin: 'packageManager', cmd: packageManager } }
-
-    const envSwpm = searchForEnv('SWPM')
-    if (envSwpm) { return { origin: 'environment', cmd: envSwpm } }
-
-    const lock = await searchForLockFiles()
-    if (lock) { return { origin: 'lock', cmd: lock } }
   }
+
+  const envSwpm = searchForEnv('SWPM')
+  if (envSwpm) { return { origin: 'environment', cmd: envSwpm } }
+
+  const lock = await searchForLockFiles()
+  if (lock) { return { origin: 'lock', cmd: lock } }
 
   console.log(stripIndents`
     ${chalk.red.bold('Error')}: no Package Manager or Environment Variable was found.
