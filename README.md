@@ -22,6 +22,10 @@
 - [Getting Started](#getting-started)
 - [Usage](#usage)
   - [Commands](#commands)
+    - [Install](#install)
+    - [Add](#add)
+    - [Remove](#remove)
+    - [Clean](#clean)
   - [Shared Commands](#shared-commands)
   - [Flags](#flags)
 - [FAQ](#faq)
@@ -68,6 +72,7 @@ Commands:
   swpm install [FLAGS]           install packages from package.json [aliases: i]
   swpm add <package> [FLAGS]     add package                        [aliases: a]
   swpm remove <package> [FLAGS]  remove package  [aliases: r, rm, uninstall, un]
+  swpm clean [FLAGS]             clean packages                     [aliases: c]
 
 Options:
   -u, --use   use a package manager             [choices: "npm", "yarn", "pnpm"]
@@ -163,9 +168,13 @@ swpm clean [args]
 | `--coverage`      |       | Delete **coverage** folder      |
 | `--all`           |       | Run all args                    |
 
+⇧ [Back to menu](#menu)
+
+---
+
 ### Shared Commands
 
-This are commands that don't need the `swpm` translation tool, because share the same structure as all package managers.
+There are commands that don't need the `swpm` translation tool, because share the same structure as all package managers.
 
 #### Init
 
@@ -240,6 +249,10 @@ swpm outdated [<package>] [--global]
 ```
 
 > To run this commands in a path where a `package.json` didn't exist with flag `--global` add the flag `--use <npm|yarn|pnpm>` at the end or setup an `SWPM` environment variable.
+
+⇧ [Back to menu](#menu)
+
+---
 
 ### Flags
 
