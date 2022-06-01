@@ -9,6 +9,17 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.10.0] - 2022/06/01
+
+### Added
+
+- `clean` command
+
+### Fixed
+
+- `info` command not using volta
+- conflicts commands and flags exclusion
+
 ## [0.9.1] - 2022/05/27
 
 ### Fixed

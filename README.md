@@ -119,13 +119,13 @@ swpm add <package> [args] [FLAGS]
 
 `swpm add <package>` saves any specified packages into dependencies by default. Additionally, you can control where and how they get saved with some additional flags:
 
-| Args              | Alias | Description                                                                                            |
-| ----------------- | ----- | ------------------------------------------------------------------------------------------------------ |
-| `--save-dev`      | `-D`  | Package will appear in **devDependencies**                                                             |
-| `--save-optional` | `-O`  | Package will appear in **optionalDependencies**                                                        |
-| `--save-peer`     |       | Package will appear in **peerDependencies**                                                            |
-| `--save-exact`    | `-E`  | Dependencies will be configured with an exact version rather than using default semver range operator. |
-| `--global`        | `-g`  | Remove the current package context as a global package                                                 |
+| Args              | Alias | Description                                                                                           |
+| ----------------- | ----- | ----------------------------------------------------------------------------------------------------- |
+| `--save-dev`      | `-D`  | Package will appear in **devDependencies**                                                            |
+| `--save-optional` | `-O`  | Package will appear in **optionalDependencies**                                                       |
+| `--save-peer`     |       | Package will appear in **peerDependencies**                                                           |
+| `--save-exact`    | `-E`  | Dependencies will be configured with an exact version rather than using default semver range operator |
+| `--global`        | `-g`  | Remove the current package context as a global package                                                |
 
 #### Remove
 
@@ -143,6 +143,25 @@ swpm remove <package> [args] [FLAGS]
 | `--save-optional` | `-O`  | Package will be removed from **optionalDependencies**  |
 | `--save-peer`     |       | Package will be removed from **peerDependencies**      |
 | `--global`        | `-g`  | Remove the current package context as a global package |
+
+#### Clean
+
+This command not exist in the package managers, but is one of the most repetitive tasks, deleting files.
+
+```bash
+swpm clean [args]
+```
+
+> Alias: `c`
+
+| Args              | Alias | Description                     |
+| ----------------- | ----- | ------------------------------- |
+| `--node-modules`  |       | Delete **node_modules** folder  |
+| `--lock`          |       | Delete **lock** files           |
+| `--log`           |       | Delete **log** files            |
+| `--build`         |       | Delete **build** folder         |
+| `--coverage`      |       | Delete **coverage** folder      |
+| `--all`           |       | Run all flags                   |
 
 ### Shared Commands
 
