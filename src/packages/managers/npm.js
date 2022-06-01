@@ -4,6 +4,7 @@ const npm = {
   url: 'https://www.npmjs.com/',
   version: '',
   lockFile: 'package-lock.json',
+  logFile: 'npm-debug.log',
   cmds: {
     remove: 'uninstall',
     r: 'uninstall',

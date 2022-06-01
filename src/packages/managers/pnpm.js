@@ -4,6 +4,7 @@ const pnpm = {
   url: 'https://pnpm.io/',
   version: '',
   lockFile: 'pnpm-lock.yaml',
+  logFile: 'pnpm-debug.log',
   cmds: {
     remove: 'uninstall',
     r: 'uninstall',

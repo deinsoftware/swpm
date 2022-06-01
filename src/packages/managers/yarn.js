@@ -4,6 +4,7 @@ const yarn = {
   url: 'https://yarnpkg.com/',
   version: '',
   lockFile: 'yarn.lock',
+  logFile: 'yarn-error.log',
   cmds: {
     i: 'install',
     a: 'add',
