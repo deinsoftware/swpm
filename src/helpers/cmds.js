@@ -1,6 +1,6 @@
 import { spawn, execSync } from 'node:child_process'
 import chalk from 'chalk'
-import { getOriginIcon } from './get.js'
+import { getOriginIcon } from './icons.js'
 
 export const translateCommand = (pkg, key) => {
   const action = pkg?.config?.cmds?.[key]
@@ -13,7 +13,7 @@ export const showCommand = ({ origin, cmd, args, config }) => {
   console.log(`${(origin ? getOriginIcon(origin) + ' ' : '')}${chalk.hex(config?.color ?? '').bold(cmd)} ${args?.join(' ')}`)
 }
 
-export const runCommand = ({ cmd, args, volta }) => {
+export const runCommand = ({ cmd, args, volta = false }) => {
   if (volta) {
     args = ['run', cmd, ...args]
     cmd = 'volta'
@@ -21,8 +21,12 @@ export const runCommand = ({ cmd, args, volta }) => {
   spawn(cmd, [...args], { stdio: 'inherit' })
 }
 
-export const getCommandResult = (command) => {
+export const getCommandResult = (command, volta = false) => {
   try {
+    if (volta) {
+      command = `volta run ${command}`
+    }
+
     const result = execSync(command)
     return result.toString().trim()
   } catch (error) {
