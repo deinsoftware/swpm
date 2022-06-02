@@ -166,7 +166,7 @@ This command will update all the packages listed to the latest version (specifie
 swpm update [<package>] [args] [FLAGS]
 ```
 
-> Alias: `up`, `ud`
+> Aliases: `up`, `ud`
 
 | Args              | Alias | Description                                                                                           |
 | ----------------- | ----- | ----------------------------------------------------------------------------------------------------- |
