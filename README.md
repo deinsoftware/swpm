@@ -176,7 +176,7 @@ swpm update [<package>] [args] [FLAGS]
 
 #### Upgrade
 
-This command will upgrade the packages to the latest version.
+This command will upgrade the packages to the latest version, ignoring ranges specified in `package.json`.
 
 ```bash
 swpm upgrade <package> [args] [FLAGS]
@@ -195,14 +195,19 @@ swpm upgrade <package> [args] [FLAGS]
 
 Show outdated dependencies and select which ones to upgrade.
 
-> **Note**:  
-> Sadly, is not available on **npm** Package Manager
-
 ```bash
 swpm interactive [FLAGS]
 ```
 
 > Alias: `ui`
+
+| Args              | Alias | Description                                                           |
+| ----------------- | ----- | --------------------------------------------------------------------- |
+| `--latest`        | `-L`  | Updates all dependencies, ignoring ranges specified in `package.json` |
+| `--global`        | `-g`  | Remove the current package context as a global package                |
+
+> **Note**:  
+> Sadly, this command is not available on **npm** Package Manager.
 
 #### Clean
 

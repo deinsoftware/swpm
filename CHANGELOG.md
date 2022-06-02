@@ -9,6 +9,13 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.11.2] - 2022/06/02
+
+### Fixed
+
+- `interactive` command not requires a package parameter
+- add missing `latest` flag to `interactive` command
+
 ## [0.11.1] - 2022/06/02
 
 ### Fixed

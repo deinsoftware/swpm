@@ -25,7 +25,7 @@ const upgrade = {
       alias: 'L',
       type: 'boolean',
       desc: 'upgrade the latest version of the package',
-      usage: '$0 upgrade <package> --save-exact',
+      usage: '$0 upgrade <package> --latest',
       implies: ['package']
     })
 
