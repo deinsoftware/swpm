@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.11.3] - 2022/06/02
+
+### Fixed
+
+- clean flags used for `swpm` on translated command
+
 ## [0.11.2] - 2022/06/02
 
 ### Fixed

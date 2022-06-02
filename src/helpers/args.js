@@ -7,7 +7,7 @@ const findFlagIndex = (args, flag) => {
 
 const getKey = (args, flag) => {
   const indexFlag = findFlagIndex(args, flag)
-  if (indexFlag && indexFlag !== -1) {
+  if (indexFlag !== -1) {
     return flag?.replace(/^-+/, '')
   }
 }
@@ -22,7 +22,7 @@ export const cleanFlag = (yargs, flag) => {
     }
 
     const indexFlag = findFlagIndex(yargs?.pkg?.args, flag)
-    if (indexFlag && indexFlag !== -1) {
+    if (indexFlag !== -1) {
       yargs?.pkg?.args.splice(indexFlag, places)
     }
   }
