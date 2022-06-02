@@ -7,9 +7,17 @@
     {
       "type": "pwa-node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "swpm",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/swpm.js"
+      "program": "${workspaceFolder}/src/swpm.js"
+    },
+    {
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "info",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/src/swpm.js",
+      "args": ["--info"]
     }
   ]
 }
