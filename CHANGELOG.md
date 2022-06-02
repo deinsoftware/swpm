@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.11.1] - 2022/06/02
+
+### Fixed
+
+- update notifier
+
 ## [0.11.0] - 2022/06/01
 
 ### Added

@@ -8,8 +8,10 @@ export const autoUpdate = async () => {
     pkg: {
       name,
       version
-    }
+    },
+    shouldNotifyInNpmScript: true,
+    updateCheckInterval: 0
   }
   const notifier = updateNotifier(option)
-  notifier.notify()
+  await notifier.notify()
 }
