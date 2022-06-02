@@ -28,8 +28,8 @@ This is a cheat sheet that you can use as a handy reference for [npm](https://ww
 | upgrade package on `package.json`           | `swpm upgrade <package> [--global]`     | `npm install <package>@latest [--location=global]`  | `yarn [global] upgrade <package> --latest`      | `pnpm update <package> --latest [--global]`     |
 | upgrade interactive                         | `swpm interactive`                      |                                                     | `yarn upgrade-interactive`                      | `pnpm update --interactive`                     |
 | link local package                          |                                         | `npm link [<folder>]`                               | `yarn link [<folder>]`                          | `pnpm link [<folder>]`                          |
-| unlink local package                        |                                         | `npm unlink [<package> --no-save]`                  | `yarn unlink [<package>]`                       | `pnpm unlink [<package>]`                       |
-| list all package at the top level           |                                         | `npm list --depth 0`                                | `yarn list --depth 0`                           | `pnpm list --depth 0`                           |
+| unlink local package                        |                                         | `npm unlink [<folder\|package> --no-save]`          | `yarn unlink [<folder\|package>]`               | `pnpm unlink [<folder\|package>]`               |
+| list all package at the top level           |                                         | `npm list --depth 0 [--location=global]`            | `yarn [global] list --depth 0`                  | `pnpm list --depth 0 [--global]`                |
 | audit vulnerable dependencies               |                                         | `npm audit [fix]`                                   | `yarn audit`                                    | `pnpm audit [--fix]`                            |
 
 ## Shared Commands
