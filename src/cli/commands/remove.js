@@ -15,10 +15,10 @@ const middleware = (yargs) => {
 }
 
 const remove = {
-  command: 'remove <package> [FLAGS]',
+  command: 'remove <package> [args] [FLAGS]',
   aliases: ['r', 'rm', 'uninstall', 'un'],
   desc: 'remove package',
-  conflicts: ['add', 'clean', 'install'],
+  conflicts: ['add', 'clean', 'install', 'update', 'upgrade'],
   builder: (yargs) => {
     yargs.positional('package', {
       type: 'string',

@@ -35,16 +35,21 @@ const replaceFlag = (pkg, flag, newFlag) => {
   }
 }
 
-const moveFlag = (pkg, flag, option) => {
-  const [action, position] = option
+const moveFlag = (yargs, flag, option) => {
+  let [action, start] = option
+  let count = 0
 
-  if (position === -1) {
+  if (start === -1) {
     console.log(stripIndents`
       ${chalk.yellow.bold('Warning')}: the ${chalk.bold(flag)} flag is not compatible on ${chalk.bold(pkg?.cmd)} Package Manager.
     `)
-  } else {
-    pkg.args.splice(position, 0, action)
   }
+
+  if (action.includes('<package>')) {
+    count = 1
+    action = action.replace('<package>', yargs.package)
+  }
+  yargs.pkg.args.splice(start, count, action)
 }
 
 const replaceCommand = (yargs, action) => {
@@ -68,7 +73,7 @@ function translateFlag (yargs, name) {
 
   if (Array.isArray(action)) {
     cleanFlag(yargs, name)
-    moveFlag(yargs?.pkg, name, action)
+    moveFlag(yargs, name, action)
   }
 
   if (typeof action === 'object') {

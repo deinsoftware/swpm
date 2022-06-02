@@ -9,7 +9,12 @@ const npm = {
     remove: 'uninstall',
     r: 'uninstall',
     rm: 'uninstall',
-    un: 'uninstall'
+    un: 'uninstall',
+    up: 'update',
+    ud: 'update',
+    upgrade: ['install', '--latest'],
+    ug: ['install', '--latest'],
+    interactive: ['', -1]
   },
   args: {
     '--frozen-lockfile': {
@@ -18,9 +23,8 @@ const npm = {
     },
     '--global': '--location=global',
     '-g': '--location=global',
-    '--latest': ['', -1],
-    '-L': ['', -1],
-    '--local': '--location=local'
+    '--latest': ['<package>@latest', 1],
+    '-L': ['<package>@latest', 1]
   }
 }
 

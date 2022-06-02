@@ -10,12 +10,21 @@ const yarn = {
     a: 'add',
     r: 'remove',
     rm: 'remove',
-    un: 'remove'
+    un: 'remove',
+    interactive: 'upgrade-interactive',
+    ui: 'upgrade-interactive',
+    update: 'upgrade',
+    up: 'upgrade',
+    ud: 'upgrade',
+    upgrade: ['upgrade', '--latest'],
+    ug: ['upgrade', '--latest']
   },
   args: {
     '--global': ['global', 1],
     '-g': ['global', 1],
-    '-L': '--latest',
+    '--interactive': {
+      upgrade: ''
+    },
     '--save-dev': '--dev',
     '--save-optional': '--optional',
     '--save-peer': '--peer',

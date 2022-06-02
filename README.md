@@ -25,6 +25,9 @@
     - [Install](#install)
     - [Add](#add)
     - [Remove](#remove)
+    - [Update](#update)
+    - [Upgrade](#upgrade)
+    - [Interactive](#interactive)
     - [Clean](#clean)
   - [Shared Commands](#shared-commands)
   - [Flags](#flags)
@@ -69,10 +72,16 @@ With `swpm --help` it will show a command help resume.
 swpm [<command>] [--] [args] [FLAGS]
 
 Commands:
-  swpm install [FLAGS]           install packages from package.json [aliases: i]
-  swpm add <package> [FLAGS]     add package                        [aliases: a]
-  swpm remove <package> [FLAGS]  remove package  [aliases: r, rm, uninstall, un]
-  swpm clean [FLAGS]             clean packages                     [aliases: c]
+  swpm install [FLAGS]                   install packages from package.json
+                                                                    [aliases: i]
+  swpm add <package> [args] [FLAGS]      add package                [aliases: a]
+  swpm remove <package> [args] [FLAGS]   remove package
+                                                 [aliases: r, rm, uninstall, un]
+  swpm update <package> [args] [FLAGS]   update package        [aliases: up, ud]
+  swpm upgrade <package> [args] [FLAGS]  upgrade package to latest [aliases: ug]
+  swpm interactive [FLAGS]               update packages interactive
+                                                                   [aliases: ui]
+  swpm clean [FLAGS]                     clean packages             [aliases: c]
 
 Options:
   -u, --use   use a package manager             [choices: "npm", "yarn", "pnpm"]
@@ -148,6 +157,52 @@ swpm remove <package> [args] [FLAGS]
 | `--save-optional` | `-O`  | Package will be removed from **optionalDependencies**  |
 | `--save-peer`     |       | Package will be removed from **peerDependencies**      |
 | `--global`        | `-g`  | Remove the current package context as a global package |
+
+#### Update
+
+This command will update all the packages listed to the latest version (specified by the `tag` config), respecting the semver constraints of both your package and its dependencies (if they also require the same package). It will also install missing packages.
+
+```bash
+swpm update [<package>] [args] [FLAGS]
+```
+
+> Alias: `up`, `ud`
+
+| Args              | Alias | Description                                                                                           |
+| ----------------- | ----- | ----------------------------------------------------------------------------------------------------- |
+| `--global`        | `-g`  | Remove the current package context as a global package                                                |
+
+> It will not made modifications on `package.json` file
+
+#### Upgrade
+
+This command will upgrade the packages to the latest version.
+
+```bash
+swpm upgrade <package> [args] [FLAGS]
+```
+
+> Alias: `ug`
+
+| Args              | Alias | Description                                                                                           |
+| ----------------- | ----- | ----------------------------------------------------------------------------------------------------- |
+| `--save-exact`    | `-E`  | Dependencies will be configured with an exact version rather than using default semver range operator |
+| `--global`        | `-g`  | Remove the current package context as a global package                                                |
+
+> It will save new version on `package.json` file
+
+#### Interactive
+
+Show outdated dependencies and select which ones to upgrade.
+
+> **Note**:  
+> Sadly, is not available on **npm** Package Manager
+
+```bash
+swpm interactive [FLAGS]
+```
+
+> Alias: `ui`
 
 #### Clean
 

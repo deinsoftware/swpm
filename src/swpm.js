@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { inspect } from 'node:util'
 import yargs from './cli/config.js'
 
 import { autoUpdate } from './helpers/autoUpdate.js'
@@ -11,7 +12,16 @@ import { testCommand } from './flags/test.js'
 await autoUpdate()
 
 if (yargs.debug) {
-  console.debug(yargs)
+  console.log(
+    inspect(
+      yargs,
+      {
+        showHidden: false,
+        depth: null,
+        colors: true
+      }
+    )
+  )
 }
 
 if (yargs?.pin) {

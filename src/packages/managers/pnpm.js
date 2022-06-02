@@ -9,9 +9,18 @@ const pnpm = {
     remove: 'uninstall',
     r: 'uninstall',
     rm: 'uninstall',
-    un: 'uninstall'
+    un: 'uninstall',
+    up: 'update',
+    ud: 'update',
+    upgrade: ['update', '--latest'],
+    ug: ['update', '--latest'],
+    interactive: ['upgrade', '--interactive'],
+    ui: ['upgrade', '--interactive']
   },
-  args: {}
+  args: {
+    '--audit': ['', -1],
+    '-A': ['', -1]
+  }
 }
 
 export default pnpm

@@ -32,7 +32,7 @@ const clean = {
   command: 'clean [FLAGS]',
   aliases: ['c'],
   desc: 'clean packages',
-  conflicts: ['add', 'install', 'remove'],
+  conflicts: ['add', 'install', 'remove', 'update', 'upgrade'],
   builder: (yargs) => {
     yargs.option('all', {
       type: 'boolean',

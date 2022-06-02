@@ -16,17 +16,13 @@ const middleware = (yargs) => {
   if ('save-exact' in yargs) {
     translateArgs(yargs, '--save-exact', '-E')
   }
-
-  if ('latest' in yargs) {
-    translateArgs(yargs, '--latest', '-L')
-  }
 }
 
 const add = {
-  command: 'add <package> [FLAGS]',
+  command: 'add <package> [args] [FLAGS]',
   aliases: ['a'],
   desc: 'add package',
-  conflicts: ['clean', 'install', 'remove'],
+  conflicts: ['clean', 'install', 'remove', 'update', 'upgrade'],
   builder: (yargs) => {
     yargs.positional('package', {
       type: 'string',
@@ -62,7 +58,7 @@ const add = {
     yargs.option('save-exact', {
       alias: 'E',
       type: 'boolean',
-      desc: 'add package as devDependencies',
+      desc: 'add package as exact version',
       usage: '$0 add <package> --save-exact',
       implies: ['package']
     })

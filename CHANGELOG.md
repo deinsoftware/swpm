@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.11.0] - 2022/06/01
+
+### Added
+
+- `update`, `upgrade` and `interactive` command
+
+### Changed
+
+- `debug` now use inspect to print the full depth object
+
 ## [0.10.2] - 2022/06/01
 
 ### Fixed

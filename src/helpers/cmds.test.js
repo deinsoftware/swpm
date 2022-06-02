@@ -8,7 +8,6 @@ describe('translateCommand()', () => {
   })
 
   test('should not fail if pkg or key are empty', () => {
-    const key = ''
     const yargs = {
       pkg: {
         args: [],
@@ -17,13 +16,14 @@ describe('translateCommand()', () => {
         }
       }
     }
-    const result = translateCommand(yargs.pkg, key)
+    const result = translateCommand(yargs)
     expect(result).toBeFalsy()
   })
 
   test('should not change args if key does not exists', () => {
     const key = 'command'
     const yargs = {
+      _: [key],
       pkg: {
         args: [key],
         config: {
@@ -31,7 +31,7 @@ describe('translateCommand()', () => {
         }
       }
     }
-    translateCommand(yargs.pkg, key)
+    translateCommand(yargs)
     expect(yargs.pkg.args.includes(key)).toBeTruthy()
   })
 
@@ -39,6 +39,7 @@ describe('translateCommand()', () => {
     const key = 'command'
     const replaceCommand = 'new-command'
     const yargs = {
+      _: [key],
       pkg: {
         args: [key],
         config: {
@@ -48,7 +49,8 @@ describe('translateCommand()', () => {
         }
       }
     }
-    translateCommand(yargs.pkg, key)
+    translateCommand(yargs)
+    console.log(yargs.pkg.args)
     expect(yargs.pkg.args.includes(key)).toBeFalsy()
     expect(yargs.pkg.args.includes(replaceCommand)).toBeTruthy()
   })
