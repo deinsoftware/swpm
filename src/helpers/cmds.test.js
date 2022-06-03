@@ -50,7 +50,6 @@ describe('translateCommand()', () => {
       }
     }
     translateCommand(yargs)
-    console.log(yargs.pkg.args)
     expect(yargs.pkg.args.includes(key)).toBeFalsy()
     expect(yargs.pkg.args.includes(replaceCommand)).toBeTruthy()
   })
