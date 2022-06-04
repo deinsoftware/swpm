@@ -58,11 +58,13 @@ What things you need to install?
 
 ### Installing
 
-```bash
-npm install --global swpm
-yarn global add swpm
-pnpm install -global swpm 
-```
+Install as global with any of this package managers
+
+| Package Manager | Install Command |
+| --------------- | --------------- |
+| npm  | `npm install swpm --location=global` |
+| yarn | `yarn global add swpm` |
+| pnpm | `pnpm install swpm --global` |
 
 ### Help
 
