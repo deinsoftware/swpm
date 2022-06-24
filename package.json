@@ -37,6 +37,9 @@
   "contributors": [
     "equiman"
   ],
+  "sponsor": {
+    "url": "https://ko-fi.com/equiman"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/deinsoftware/swpm/issues"
