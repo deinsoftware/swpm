@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.12.0] - 2022/07/01
+
+### Changed
+
+- security update on `update-notifier` package
+
 ## [0.11.3] - 2022/06/02
 
 ### Fixed
