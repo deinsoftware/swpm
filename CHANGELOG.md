@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.12.1] - 2022/07/25
+
+### Fixed
+
+- `main` property on package
+
 ## [0.12.0] - 2022/07/01
 
 ### Changed
