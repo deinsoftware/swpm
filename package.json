@@ -1,11 +1,11 @@
 {
   "name": "swpm",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "engines": {
     "node": ">=16"
   },
   "description": "Switch Package Manager",
-  "main": "index.js",
+  "main": "swpm.js",
   "bin": {
     "swpm": "./src/swpm.js",
     "swpx": "./src/swpx.js"
