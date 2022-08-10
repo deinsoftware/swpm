@@ -429,7 +429,7 @@ But, if you found one of this cases, please open a [command compatibility](https
 
 - [VS Code](https://code.visualstudio.com/) - Code editing redefined.
 - [WSL](https://docs.microsoft.com/en-us/windows/wsl/) - Windows Subsystem for Linux.
-- [Widows Terminal](https://github.com/Microsoft/Terminal/) - A modern terminal application for users of command-line tools and shells.
+- [Windows Terminal](https://github.com/Microsoft/Terminal/) - A modern terminal application for users of command-line tools and shells.
 - [Node.js](https://nodejs.org/) - A JavaScript runtime built on Chrome's V8 JavaScript engine.
 - [Chalk](https://github.com/chalk/chalk) - Terminal string styling done right.
 - [Yargs](https://yargs.js.org/) - Yargs be a node.js library fer hearties tryin' ter parse optstrings.
