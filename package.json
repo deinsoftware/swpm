@@ -11,8 +11,8 @@
     "swpx": "./src/swpx.js"
   },
   "scripts": {
-    "lint:l": "eslint .",
-    "lint:f": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
     "test": "vitest --run --reporter verbose",
     "test:w": "vitest",
     "test:c": "vitest run --coverage",
@@ -47,23 +47,23 @@
   "homepage": "https://github.com/deinsoftware/swpm#readme",
   "type": "module",
   "volta": {
-    "node": "18.10.0",
+    "node": "18.12.0",
     "npm": "8.19.2"
   },
   "dependencies": {
-    "chalk": "5.0.1",
+    "chalk": "5.1.0",
     "common-tags": "1.8.2",
     "update-notifier": "6.0.2",
-    "yargs": "17.5.1"
+    "yargs": "17.6.0"
   },
   "devDependencies": {
     "c8": "7.12.0",
-    "eslint": "8.20.0",
+    "eslint": "8.25.0",
     "eslint-config-standard": "17.0.0",
     "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-n": "15.2.4",
-    "eslint-plugin-promise": "6.0.0",
-    "vitest": "0.19.1"
+    "eslint-plugin-n": "15.3.0",
+    "eslint-plugin-promise": "6.0.1",
+    "vitest": "0.24.1"
   },
   "packageManager": "npm@8.8.0",
   "swpm": "npm"
