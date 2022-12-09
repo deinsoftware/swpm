@@ -31,6 +31,7 @@
     - [Clean](#clean)
   - [Shared Commands](#shared-commands)
   - [Flags](#flags)
+  - [Default](#default)
 - [FAQ](#faq)
 - [About](#about)
 
@@ -331,14 +332,6 @@ swpm <command> [--] [args] --u <npm|yarn|pnpm>
 
 It will run the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
 
-> In order to avoid the `--use` flag on paths where no exist a `package.json` can set a **global** package manager creating an `SWPM` environment variable with one of this values `<npm|yarn|pnpm>`.
-
-| OS    | Command                                                   |
-| ----- | --------------------------------------------------------- |
-| win   | `setx SWPM "<npm\|yarn\|pnpm>"`                           |
-| macOS | `echo 'export SWPM="npm"' >> <~/.bash_profile\|~/.zshrc>` |
-| linux | `echo 'export SWPM="npm"' >> <~/.bash_profile\|~/.zshrc>` |
-
 #### Pin
 
 The `swpm --pin` flag allows you to choose your Package Manager for a project.
@@ -378,6 +371,16 @@ swpm --info
 ```
 
 It will search firs the `swpm` property on the `package.json` file, and if doesn't not found it, will try to infer the Package Manager in use with help of the `lock`'s file.
+
+### Default
+
+In order to avoid the `--use` flag on paths where no exist a `package.json` or `--pin` flag on each project. You can set a **global** package manager creating an `SWPM` environment variable with one of this values `<npm|yarn|pnpm>`.
+
+| OS    | Command                                                                 |
+| ----- | ----------------------------------------------------------------------- |
+| win   | `setx SWPM "<npm\|yarn\|pnpm>"`                                         |
+| macOS | `echo 'export SWPM="<npm\|yarn\|pnpm>"' >> <~/.bash_profile\|~/.zshrc>` |
+| linux | `echo 'export SWPM="<npm\|yarn\|pnpm>"' >> <~/.bash_profile\|~/.zshrc>` |
 
 ⇧ [Back to menu](#menu)
 

@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.12.2] - 2022/12/09
+
+### Fixed
+
+- Clarification about how to use a package manager by default
+
 ## [0.12.1] - 2022/07/25
 
 ### Fixed
