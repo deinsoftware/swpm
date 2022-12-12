@@ -20,6 +20,8 @@ const yarn = {
     ug: ['upgrade', '--latest']
   },
   args: {
+    '--frozen-lockfile': '--immutable',
+    '-F': '--immutable',
     '--global': ['global', 1],
     '-g': ['global', 1],
     '--interactive': {
@@ -28,7 +30,9 @@ const yarn = {
     '--save-dev': '--dev',
     '--save-optional': '--optional',
     '--save-peer': '--peer',
-    '--save-exact': '--exact'
+    '--save-exact': '--exact',
+    '--package-lock': '--no-lockfile',
+    '-P': '--no-lockfile'
   }
 }
 

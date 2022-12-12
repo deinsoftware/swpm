@@ -41,7 +41,7 @@ Please provide any relevant information about your setup. This is important in c
 
 - swpm Version:
 - node Version:
-- Package Manager: <`npm`, `yarn`, `pnpm`>
+- Package Manager: <`npm`, `yarn`, `pnpm`, `bun`>
 - Package Manager Version:
 - Operating System:
 

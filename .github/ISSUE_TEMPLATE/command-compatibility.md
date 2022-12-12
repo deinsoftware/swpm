@@ -27,6 +27,7 @@ swpm ...
 | `npm`           | `npm ...`     |
 | `yarn`          | `yarn ...`    |
 | `pnpm`          | `pnpm ...`    |
+| `bun`           | `bun ...`     |
 
 ### Context
 

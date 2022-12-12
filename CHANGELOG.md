@@ -9,6 +9,22 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.13.0] - 2022/12/12
+
+### Added
+
+- Support basic `bun` commands as package manager
+- `--package-lock` flag for `install` command
+
+### Changed
+
+- Replace `--frozen-lock` to `--immutable` on yarn
+- Alias for `--frozen-lock` and `package-lock` for `install` command
+
+### Fixed
+
+- Not compatible flag warning message
+
 ## [0.12.2] - 2022/12/09
 
 ### Fixed

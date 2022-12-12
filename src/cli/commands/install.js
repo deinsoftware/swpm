@@ -4,13 +4,17 @@ import { stripIndents } from 'common-tags'
 import { translateArgs } from '../../helpers/args.js'
 
 const middleware = (yargs) => {
+  if ('package-lock' in yargs) {
+    translateArgs(yargs, '--package-lock', '-P')
+  }
+
   if ('frozen-lockfile' in yargs) {
-    translateArgs(yargs, '--frozen-lockfile', '--FL')
+    translateArgs(yargs, '--frozen-lockfile', '-F')
   }
 
   if ('FLAGS' in yargs) {
     console.log(stripIndents`
-      ${chalk.red.bold('Error')}: to install a specific ${chalk.bold('<package>')} 
+      ${chalk.red.bold('Error')}: to install a specific ${chalk.bold('<package>')}
       please use ${chalk.bold('add')} command.
 
       ${chalk.blue.bold('swpm add <package> [FLAGS]')}
@@ -29,7 +33,7 @@ const install = {
   conflicts: ['add', 'clean', 'remove', 'update', 'upgrade'],
   builder: (yargs) => {
     yargs.option('package-lock', {
-      alias: 'PL',
+      alias: 'P',
       type: 'boolean',
       description: 'ignore lock file when installing and prevents writing',
       usage: '$0 install --package-lock',
@@ -37,7 +41,7 @@ const install = {
     })
 
     yargs.option('frozen-lockfile', {
-      alias: 'FL',
+      alias: 'F',
       type: 'boolean',
       description: 'install from lock file (without updating it)',
       usage: '$0 install --frozen-lockfile',

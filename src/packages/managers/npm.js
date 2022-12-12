@@ -21,10 +21,16 @@ const npm = {
       i: 'ci',
       install: 'ci'
     },
+    '-F': {
+      i: 'ci',
+      install: 'ci'
+    },
     '--global': '--location=global',
     '-g': '--location=global',
     '--latest': ['<package>@latest', 1],
-    '-L': ['<package>@latest', 1]
+    '-L': ['<package>@latest', 1],
+    '--package-lock': '--no-package-lock',
+    '-P': '--no-package-lock'
   }
 }
 

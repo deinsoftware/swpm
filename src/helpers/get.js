@@ -22,7 +22,7 @@ const getPropertyValue = async (packageJson, property) => {
 
   console.log(stripIndents`
     ${chalk.red.bold('Error')}: the value (${chalk.bold(prop)}) in property on ${chalk.bold(packageName)} file is not valid.
-    Use ${chalk.blue.bold('npm --pin <npm|yarn|pnpm>')} to fix it.
+    Use ${chalk.blue.bold('npm --pin <npm|yarn|pnpm|bun>')} to fix it.
   `)
   exit(1)
 }
@@ -48,7 +48,7 @@ const searchForEnv = (name) => {
 
   console.log(stripIndents`
     ${chalk.red.bold('Error')}: the value (${chalk.bold(value)}) in SWPM environment variable is not valid.
-    Fix it using one of this values ${chalk.blue.bold('<npm|yarn|pnpm>')}.
+    Fix it using one of this values ${chalk.blue.bold('<npm|yarn|pnpm|bun>')}.
   `)
   exit(1)
 }
@@ -75,7 +75,7 @@ export const getCurrentPackageManager = async () => {
     ${chalk.red.bold('Error')}: no Package Manager or Environment Variable was found.
 
     Please review if the current path has a ${chalk.bold(packageName)} or a ${chalk.bold('lock')} file.
-    Highly recommend pin a Package Manager with ${chalk.blue.bold('swpm --pin <npm|yarn|pnpm>')} command.
+    Highly recommend pin a Package Manager with ${chalk.blue.bold('swpm --pin <npm|yarn|pnpm|bun>')} command.
   `)
   exit(1)
 }
