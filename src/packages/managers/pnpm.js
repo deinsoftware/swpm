@@ -18,8 +18,8 @@ const pnpm = {
     ui: ['upgrade', '--interactive']
   },
   args: {
-    '--audit': ['', -1],
-    '-A': ['', -1]
+    '--package-lock': ['', -1],
+    '-P': ['', -1]
   }
 }
 

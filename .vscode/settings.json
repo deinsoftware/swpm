@@ -1,10 +1,14 @@
 {
   "cSpell.words": [
+    "bun",
     "buymeacoffee",
     "CHEATSHEET",
     "cmds",
     "Dsonar",
     "Eomm",
+    "lcov",
+    "linux",
+    "lockb",
     "Logomark",
     "npmrc",
     "optstrings",
@@ -34,7 +38,6 @@
   },
   "typescript.autoClosingTags": true,
   "typescript.suggest.autoImports": true,
-
   "editor.formatOnSave": true,
   "javascript.format.enable": false,
   "javascript.validate.enable": true,
@@ -43,26 +46,18 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "eslint.validate": ["javascript"],
+  "eslint.alwaysShowStatus": true,
+  "eslint.probe": [
+    "javascript",
+    "typescript",
+  ],
   "[javascript][typescript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[json][jsonc]": {
-    "editor.formatOnSave": true,
-    "editor.tabSize": 4
-  },
-  "[markdown]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "editor.formatOnSave": false,
-    "editor.quickSuggestions": {
-      "comments": "on",
-      "strings": "on",
-      "other": "on"
-    },
-    "editor.tabSize": 2
-  },
-  "markdownlint.config": {
-    "MD024": { "siblings_only": true },
-    "MD033": false
+    "editor.codeActionsOnSave": [
+      "source.formatDocument",
+      "source.fixAll.eslint"
+    ],
   },
   "explorer.fileNesting.patterns": {
     "README*": "BRAND*, CHANGELOG*, CODE_OF_CONDUCT.md, CONTRIBUTING.md, LICENSE*, README*, CHEATSHEET*, TEMPLATES*",

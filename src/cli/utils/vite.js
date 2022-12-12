@@ -12,4 +12,6 @@ export const vite = () => {
 
   // # pnpm
   // pnpm create vite my-vue-app -- --template vue
+
+  // # bun
 }

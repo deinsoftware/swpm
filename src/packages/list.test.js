@@ -3,7 +3,7 @@ import { availablePackages, packageExists, getPackageConfiguration } from './lis
 
 describe('availablePackages()', () => {
   test('should return a list of available packages', () => {
-    const expectedResult = ['npm', 'yarn', 'pnpm']
+    const expectedResult = ['npm', 'yarn', 'pnpm', 'bun']
     const result = availablePackages()
     expect(result).toEqual(
       expect.arrayContaining(expectedResult)

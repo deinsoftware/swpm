@@ -41,7 +41,7 @@ const moveFlag = (yargs, flag, option) => {
 
   if (start === -1) {
     console.log(stripIndents`
-      ${chalk.yellow.bold('Warning')}: the ${chalk.bold(flag)} flag is not compatible on ${chalk.bold(pkg?.cmd)} Package Manager.
+      ${chalk.yellow.bold('Warning')}: the ${chalk.bold(flag)} flag is not compatible on ${chalk.bold(yargs?.pkg?.cmd)} Package Manager.
     `)
   }
 

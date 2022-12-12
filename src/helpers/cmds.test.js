@@ -62,7 +62,7 @@ describe('getCommandResult()', () => {
   })
 
   test('should return the command result', () => {
-    const cmd = 'echo "a"'
+    const cmd = 'echo a'
     const print = 'a'
     const result = getCommandResult(cmd)
     expect(result).toBe(print)

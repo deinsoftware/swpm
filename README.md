@@ -31,6 +31,7 @@
     - [Clean](#clean)
   - [Shared Commands](#shared-commands)
   - [Flags](#flags)
+  - [Default](#default)
 - [FAQ](#faq)
 - [About](#about)
 
@@ -38,7 +39,7 @@
 
 ## Getting Started
 
-When switching between JavaScript projects, it's often easy to forget which package manager should be used. JavaScript package managers aren't quite compatible either and each one resolves dependencies differently, so accidentally installing with `npm` could cause a `yarn` or `pnpm` project to break.
+When switching between JavaScript projects, it's often easy to forget which package manager should be used. JavaScript package managers aren't quite compatible either and each one resolves dependencies differently, so accidentally installing with `npm` could cause a `yarn`, `pnpm` or `bun` project to break.
 
 `swpm` is a CLI that intends to solve this problem by unifying the most used commands for the most common Node Package Managers into one. It will recognize the Package Manager used on the project and automatically will translate those commands.
 
@@ -60,11 +61,12 @@ What things you need to install?
 
 Install as global with any of this package managers
 
-| Package Manager | Install Command |
-| --------------- | --------------- |
-| npm  | `npm install swpm --location=global` |
-| yarn | `yarn global add swpm` |
-| pnpm | `pnpm install swpm --global` |
+| Package Manager | Install Command                      |
+| --------------- | ------------------------------------ |
+| npm             | `npm install swpm --location=global` |
+| yarn            | `yarn global add swpm`               |
+| pnpm            | `pnpm install swpm --global`         |
+| bun             | `bun install -g swpm`                |
 
 ### Help
 
@@ -81,14 +83,15 @@ Commands:
                                                  [aliases: r, rm, uninstall, un]
   swpm update <package> [args] [FLAGS]   update package        [aliases: up, ud]
   swpm upgrade <package> [args] [FLAGS]  upgrade package to latest [aliases: ug]
-  swpm interactive [FLAGS]               update packages interactive
+  swpm interactive [args] [FLAGS]        update packages interactive
                                                                    [aliases: ui]
   swpm clean [FLAGS]                     clean packages             [aliases: c]
 
 Options:
-  -u, --use   use a package manager             [choices: "npm", "yarn", "pnpm"]
-  -p, --pin   pin a package manager             [choices: "npm", "yarn", "pnpm"]
-  -t, --test  test command (without running)    [choices: "npm", "yarn", "pnpm"]
+  -u, --use   use a package manager      [choices: "npm", "yarn", "pnpm", "bun"]
+  -p, --pin   pin a package manager      [choices: "npm", "yarn", "pnpm", "bun"]
+  -t, --test  test command (without running)
+                                         [choices: "npm", "yarn", "pnpm", "bun"]
       --info  show information and versions                            [boolean]
       --help  Show help                                                [boolean]
 ```
@@ -121,7 +124,8 @@ This command installs a package and any packages that it depends on. If the pack
 
 | Args                | Alias | Description                                                                   |
 | ------------------- | ----- | ----------------------------------------------------------------------------- |
-| `--frozen-lockfile` | `-FL` | install dependencies from lock file (without updating it). Also known as `ci` |
+| `--frozen-lockfile` | `-F`  | install dependencies from lock file (without updating it). Also known as `ci` |
+| `--package-lock`    | `-P`  | install dependencies but don't read or generate a lockfile                    |
 
 #### Add
 
@@ -247,7 +251,7 @@ swpm init [<name> --yes]
 swpm create [<name> --yes]
 ```
 
-> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm>` at the end or setup an `SWPM` environment variable.
+> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm|bun>` at the end or setup an `SWPM` environment variable.
 
 #### Login/Logout
 
@@ -259,7 +263,7 @@ swpm login
 swpm logout
 ```
 
-> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm>` at the end or setup an `SWPM` environment variable.
+> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm|bun>` at the end or setup an `SWPM` environment variable.
 
 #### Scripts
 
@@ -300,7 +304,7 @@ swpm config set save-exact true
 swpm config set save-prefix '~'
 ```
 
-> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm>` at the end.
+> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm|bun>` at the end.
 
 #### Versions
 
@@ -310,7 +314,7 @@ swpm config set save-prefix '~'
 swpm outdated [<package>] [--global]
 ```
 
-> To run this commands in a path where a `package.json` didn't exist with flag `--global` add the flag `--use <npm|yarn|pnpm>` at the end or setup an `SWPM` environment variable.
+> To run this commands in a path where a `package.json` didn't exist with flag `--global` add the flag `--use <npm|yarn|pnpm|bun>` at the end or setup an `SWPM` environment variable.
 
 ⇧ [Back to menu](#menu)
 
@@ -325,27 +329,19 @@ Flags are important to `swpm` because can modify or set his behavior.
 The `swpm --use` flag allows you to choose your Package Manager for a project.
 
 ```bash
-swpm <command> [--] [args] --use <npm|yarn|pnpm>
-swpm <command> [--] [args] --u <npm|yarn|pnpm>
+swpm <command> [--] [args] --use <npm|yarn|pnpm|bun>
+swpm <command> [--] [args] --u <npm|yarn|pnpm|bun>
 ```
 
 It will run the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
-
-> In order to avoid the `--use` flag on paths where no exist a `package.json` can set a **global** package manager creating an `SWPM` environment variable with one of this values `<npm|yarn|pnpm>`.
-
-| OS    | Command                                                   |
-| ----- | --------------------------------------------------------- |
-| win   | `setx SWPM "<npm\|yarn\|pnpm>"`                           |
-| macOS | `echo 'export SWPM="npm"' >> <~/.bash_profile\|~/.zshrc>` |
-| linux | `echo 'export SWPM="npm"' >> <~/.bash_profile\|~/.zshrc>` |
 
 #### Pin
 
 The `swpm --pin` flag allows you to choose your Package Manager for a project.
 
 ```bash
-swpm --pin <npm|yarn|pnpm>
-swpm -p <npm|yarn|pnpm>
+swpm --pin <npm|yarn|pnpm|bun>
+swpm -p <npm|yarn|pnpm|bun>
 ```
 
 It will store the pinned Package Manager in the `package.json` file, so you can commit your choice of tools to version control:
@@ -356,15 +352,15 @@ It will store the pinned Package Manager in the `package.json` file, so you can 
 }
 ```
 
-> You also can set it manually. Just take care writing a valid Package Manager: `npm`, `yarn` or `pnpm`.
+> You also can set it manually. Just take care writing a valid Package Manager: `npm`, `yarn`, `pnpm` or `bun`.
 
 #### Test
 
 The `swpm --test` flag show the equivalent command using the selected Package Manager, but **it will not run the command**
 
 ```bash
-swpm <command> [--] [args] --test <npm|yarn|pnpm> 
-swpm <command> [--] [args] -t <npm|yarn|pnpm>
+swpm <command> [--] [args] --test <npm|yarn|pnpm|bun> 
+swpm <command> [--] [args] -t <npm|yarn|pnpm|bun>
 ```
 
 It will show the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
@@ -378,6 +374,16 @@ swpm --info
 ```
 
 It will search firs the `swpm` property on the `package.json` file, and if doesn't not found it, will try to infer the Package Manager in use with help of the `lock`'s file.
+
+### Default
+
+In order to avoid the `--use` flag on paths where no exist a `package.json` or `--pin` flag on each project. You can set a **global** package manager creating an `SWPM` environment variable with one of this values `<npm|yarn|pnpm>`.
+
+| OS    | Command                                                                     |
+| ----- | --------------------------------------------------------------------------- |
+| win   | `setx SWPM "<npm\|yarn\|pnpm|bun>"`                                         |
+| macOS | `echo 'export SWPM="<npm\|yarn\|pnpm|bun>"' >> <~/.bash_profile\|~/.zshrc>` |
+| linux | `echo 'export SWPM="<npm\|yarn\|pnpm|bun>"' >> <~/.bash_profile\|~/.zshrc>` |
 
 ⇧ [Back to menu](#menu)
 
@@ -429,7 +435,7 @@ But, if you found one of this cases, please open a [command compatibility](https
 
 - [VS Code](https://code.visualstudio.com/) - Code editing redefined.
 - [WSL](https://docs.microsoft.com/en-us/windows/wsl/) - Windows Subsystem for Linux.
-- [Widows Terminal](https://github.com/Microsoft/Terminal/) - A modern terminal application for users of command-line tools and shells.
+- [Windows Terminal](https://github.com/Microsoft/Terminal/) - A modern terminal application for users of command-line tools and shells.
 - [Node.js](https://nodejs.org/) - A JavaScript runtime built on Chrome's V8 JavaScript engine.
 - [Chalk](https://github.com/chalk/chalk) - Terminal string styling done right.
 - [Yargs](https://yargs.js.org/) - Yargs be a node.js library fer hearties tryin' ter parse optstrings.
