@@ -30,7 +30,7 @@ export const showPackageInformation = async ({ origin, cmd, config, volta }) => 
     ${chalk.hex('#689e65').bold('Node')}: \t${nodeVersion?.replace(/v/, '')}
     ${chalk.hex(config.color).bold(cmd)}: \t${packageVersion}
   `
-  if (!isInstalled) { // TODO: different message if npm was not found
+  if (!isInstalled) { // FIXME: different message if npm was not found
     message += `
 
     Install ${chalk.hex(config.color).bold(cmd)} with ${chalk.blue.bold(`npm install ${cmd} --global`)} command
