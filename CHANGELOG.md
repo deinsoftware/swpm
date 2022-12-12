@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.13.1] - 2022/12/12
+
+### Fixed
+
+- Published npm version
+
 ## [0.13.0] - 2022/12/12
 
 ### Added
