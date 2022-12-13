@@ -127,6 +127,9 @@ This command installs a package and any packages that it depends on. If the pack
 | `--frozen-lockfile` | `-F`  | install dependencies from lock file (without updating it). Also known as `ci` |
 | `--package-lock`    | `-P`  | install dependencies but don't read or generate a lockfile                    |
 
+> **Note**:  
+> Sadly, the `--package-lock` argument is not available on **bun** Package Manager.
+
 #### Add
 
 This command, no arguments, will add a package to local `package.json` file. Package will appear as **dependencies** by default.
@@ -184,6 +187,8 @@ swpm update [<package>] [args] [FLAGS]
 
 This command will upgrade the packages to the latest version, ignoring ranges specified in `package.json`.
 
+> It will save new version on `package.json` file
+
 ```bash
 swpm upgrade <package> [args] [FLAGS]
 ```
@@ -195,7 +200,8 @@ swpm upgrade <package> [args] [FLAGS]
 | `--save-exact`    | `-E`  | Dependencies will be configured with an exact version rather than using default semver range operator |
 | `--global`        | `-g`  | Remove the current package context as a global package                                                |
 
-> It will save new version on `package.json` file
+> **Note**:  
+> Sadly, this command is not available on **bun** Package Manager.
 
 #### Interactive
 
@@ -213,7 +219,7 @@ swpm interactive [FLAGS]
 | `--global`        | `-g`  | Remove the current package context as a global package                |
 
 > **Note**:  
-> Sadly, this command is not available on **npm** Package Manager.
+> Sadly, this command is not available on **npm** and **bun** Package Manager.
 
 #### Clean
 

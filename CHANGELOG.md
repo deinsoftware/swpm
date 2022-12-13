@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.13.2] - 2022/12/13
+
+### Fixed
+
+- Readme with no available commands and args for bun
+
 ## [0.13.1] - 2022/12/12
 
 ### Fixed
