@@ -366,7 +366,7 @@ Options:
       --help  Show help                                                [boolean]
 ```
 
-**Example:**
+Example:
 
 | swpx    | `swpx vitest`     |
 | ------- | ----------------- |
