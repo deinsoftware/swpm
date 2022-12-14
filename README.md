@@ -20,7 +20,9 @@
 ## Menu
 
 - [Getting Started](#getting-started)
-- [Usage](#usage)
+  - [Prerequisites](#prerequisites)
+  - [Installing](#installing)
+- [swpm](#swpm)
   - [Commands](#commands)
     - [Install](#install)
     - [Add](#add)
@@ -30,8 +32,9 @@
     - [Interactive](#interactive)
     - [Clean](#clean)
   - [Shared Commands](#shared-commands)
-  - [Flags](#flags)
-  - [Default](#default)
+- [swpx](#swpx)
+- [Flags](#flags)
+- [Default](#default)
 - [FAQ](#faq)
 - [About](#about)
 
@@ -39,7 +42,7 @@
 
 ## Getting Started
 
-When switching between JavaScript projects, it's often easy to forget which package manager should be used. JavaScript package managers aren't quite compatible either and each one resolves dependencies differently, so accidentally installing with `npm` could cause a `yarn`, `pnpm` or `bun` project to break.
+When switching between JavaScript projects, it's often easy to forget which package manager should be used. JavaScript package managers aren't quite compatible either and each one resolves dependencies differently, so accidentally installing with [`npm`](https://docs.npmjs.com/cli/) could cause a [`yarn`](https://yarnpkg.com/), [`pnpm`](https://pnpm.io/) or [`bun`](https://bun.sh/) project to break.
 
 `swpm` is a CLI that intends to solve this problem by unifying the most used commands for the most common Node Package Managers into one. It will recognize the Package Manager used on the project and automatically will translate those commands.
 
@@ -49,7 +52,9 @@ This is an example of how #swpm works. The same command, no matter the package m
 
 > **Note**:  
 > We will start with most used command, then other commands will be added gradually.  
-> Track the command progress implementation on [CHEATSHEET](CHEATSHEET.md)
+> Track the command progress implementation on [CHEATSHEET](CHEATSHEET.md).  
+>
+> Progress: **90%** of commands included.
 
 ### Prerequisites
 
@@ -67,6 +72,18 @@ Install as global with any of this package managers
 | yarn            | `yarn global add swpm`               |
 | pnpm            | `pnpm install swpm --global`         |
 | bun             | `bun install -g swpm`                |
+
+⇧ [Back to menu](#menu)
+
+---
+
+## swpm
+
+The `swpm` will run the command switching automatically to the pinned Package Manager.
+
+```bash
+swpm <command> [--] [args] [FLAGS]
+```
 
 ### Help
 
@@ -94,18 +111,6 @@ Options:
                                          [choices: "npm", "yarn", "pnpm", "bun"]
       --info  show information and versions                            [boolean]
       --help  Show help                                                [boolean]
-```
-
-⇧ [Back to menu](#menu)
-
----
-
-## Usage
-
-The `swpm` will run the command switching automatically to the pinned Package Manager.
-
-```bash
-swpm <command> [--] [args] [FLAGS]
 ```
 
 ### Commands
@@ -326,22 +331,70 @@ swpm outdated [<package>] [--global]
 
 ---
 
-### Flags
+## swpx
 
-Flags are important to `swpm` because can modify or set his behavior.
+The `swpx` will execute the command switching automatically to the pinned Package Manager without previous installing the package.
 
-#### Use
+```bash
+swpx <command> [FLAGS]
+```
 
-The `swpm --use` flag allows you to choose your Package Manager for a project.
+### Help
+
+With `swpm --help` it will show a command help resume.
+
+```text
+swpm [<command>] [--] [args] [FLAGS]
+
+Commands:
+  swpm install [FLAGS]                   install packages from package.json
+                                                                    [aliases: i]
+  swpm add <package> [args] [FLAGS]      add package                [aliases: a]
+  swpm remove <package> [args] [FLAGS]   remove package
+                                                 [aliases: r, rm, uninstall, un]
+  swpm update <package> [args] [FLAGS]   update package        [aliases: up, ud]
+  swpm upgrade <package> [args] [FLAGS]  upgrade package to latest [aliases: ug]
+  swpm interactive [args] [FLAGS]        update packages interactive
+                                                                   [aliases: ui]
+  swpm clean [FLAGS]                     clean packages             [aliases: c]
+
+Options:
+  -u, --use   use a package manager      [choices: "npm", "yarn", "pnpm", "bun"]
+  -t, --test  test command (without running)
+                                         [choices: "npm", "yarn", "pnpm", "bun"]
+      --info  show information and versions                            [boolean]
+      --help  Show help                                                [boolean]
+```
+
+**Example:**
+
+| swpx    | `swpx vitest`     |
+| ------- | ----------------- |
+| npm     | `npx vitest`      |
+| yarn    | `yarn dlx vitest` |
+| pnpm    | `pnpm dlx vitest` |
+| bun     | Not Available     |
+
+⇧ [Back to menu](#menu)
+
+---
+
+## Flags
+
+Flags are important to `swpm` and `swpx` because can modify or set his behavior.
+
+### Use
+
+The `<swpm|swpx> --use` flag allows you to choose your Package Manager for a project.
 
 ```bash
 swpm <command> [--] [args] --use <npm|yarn|pnpm|bun>
-swpm <command> [--] [args] --u <npm|yarn|pnpm|bun>
+swpx <command> [--] [args] --u <npm|yarn|pnpm|bun>
 ```
 
 It will run the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
 
-#### Pin
+### Pin
 
 The `swpm --pin` flag allows you to choose your Package Manager for a project.
 
@@ -362,18 +415,19 @@ It will store the pinned Package Manager in the `package.json` file, so you can 
 
 #### Test
 
-The `swpm --test` flag show the equivalent command using the selected Package Manager, but **it will not run the command**
+The `<swpm|swpx> --test` flag show the equivalent command using the selected Package Manager, but **it will not run the command**
 
 ```bash
-swpm <command> [--] [args] --test <npm|yarn|pnpm|bun> 
+swpm <command> [--] [args] --test <npm|yarn|pnpm|bun>
 swpm <command> [--] [args] -t <npm|yarn|pnpm|bun>
+swpx <command> -t <npm|yarn|pnpm|bun>
 ```
 
 It will show the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
 
 #### Info
 
-The `swpm --info` flag show the current Package Manager used and some versions information.
+The `<swpm|swpx> --info` flag show the current Package Manager used and some versions information.
 
 ```bash
 swpm --info
@@ -381,9 +435,15 @@ swpm --info
 
 It will search firs the `swpm` property on the `package.json` file, and if doesn't not found it, will try to infer the Package Manager in use with help of the `lock`'s file.
 
+⇧ [Back to menu](#menu)
+
+---
+
 ### Default
 
-In order to avoid the `--use` flag on paths where no exist a `package.json` or `--pin` flag on each project. You can set a **global** package manager creating an `SWPM` environment variable with one of this values `<npm|yarn|pnpm>`.
+You can set a default or **global** pin Package Manager in order to avoid the `--use` flag on paths where no exist a `package.json` or `--pin` flag on each project.
+
+Create an `SWPM` environment variable with one of this values `<npm|yarn|pnpm|bun>`.
 
 | OS    | Command                                                                     |
 | ----- | --------------------------------------------------------------------------- |
@@ -399,7 +459,7 @@ In order to avoid the `--use` flag on paths where no exist a `package.json` or `
 
 ### How infer the Package Manager?
 
-`swpm` search some characteristics following this order.
+`swpm` and `swpx` search some characteristics following this order.
 
 | Icon | Stage    |
 | :--: | ------------------------------------------------------------ |
@@ -447,6 +507,7 @@ But, if you found one of this cases, please open a [command compatibility](https
 - [Yargs](https://yargs.js.org/) - Yargs be a node.js library fer hearties tryin' ter parse optstrings.
 - [common-tags](https://www.npmjs.com/package/common-tags) - A set of well-tested, commonly used template literal tag functions for use in ES2015+.
 - [update-notifier](https://www.npmjs.com/package/update-notifier) - Update notifications for your CLI app.
+- [command-exists](https://www.npmjs.com/package/command-exists) - node module to check if a command-line command exists.
 - [ESLint](https://eslint.org/) - Find and fix problems in your JavaScript code.
 - [vitest](https://vitest.dev/) - A blazing fast unit-test framework powered by Vite ⚡️.
 

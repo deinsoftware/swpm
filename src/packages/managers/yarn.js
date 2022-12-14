@@ -1,5 +1,6 @@
 const yarn = {
   cmd: 'yarn',
+  exc: 'yarn dlx',
   color: '#3a90b8',
   url: 'https://yarnpkg.com/',
   version: '',

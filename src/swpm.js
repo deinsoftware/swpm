@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { inspect } from 'node:util'
-import yargs from './cli/config.js'
+import yargs from './cli/swpm/config.js'
 
 import { autoUpdate } from './helpers/autoUpdate.js'
 import { pinPackageManager } from './flags/pin.js'
@@ -29,7 +29,7 @@ if (yargs?.pin) {
 }
 
 if (yargs?.test) {
-  testCommand(yargs.pkg)
+  testCommand(yargs.$0, yargs.pkg)
 }
 
 if (yargs?.info) {
@@ -37,6 +37,6 @@ if (yargs?.info) {
 }
 
 if (yargs?.pkg?.cmd) {
-  showCommand(yargs.pkg)
-  runCommand(yargs.pkg)
+  showCommand(yargs.$0, yargs.pkg)
+  runCommand(yargs.$0, yargs.pkg)
 }

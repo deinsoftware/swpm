@@ -1,6 +1,6 @@
 {
   "name": "swpm",
-  "version": "0.13.2",
+  "version": "0.14.0",
   "engines": {
     "node": ">=16"
   },
@@ -53,18 +53,19 @@
   },
   "dependencies": {
     "chalk": "5.2.0",
+    "command-exists": "1.2.9",
     "common-tags": "1.8.2",
     "update-notifier": "6.0.2",
     "yargs": "17.6.2"
   },
   "devDependencies": {
+    "@vitest/coverage-c8": "0.25.7",
     "eslint": "8.29.0",
     "eslint-config-standard": "17.0.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-n": "15.6.0",
     "eslint-plugin-promise": "6.1.1",
-    "vitest": "0.25.7",
-    "@vitest/coverage-c8": "0.25.7"
+    "vitest": "0.25.7"
   },
   "packageManager": "npm@8.8.0",
   "swpm": "npm"

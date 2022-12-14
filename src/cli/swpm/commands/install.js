@@ -1,7 +1,7 @@
 import { exit } from 'node:process'
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
-import { translateArgs } from '../../helpers/args.js'
+import { translateArgs } from '../../../helpers/args.js'
 
 const middleware = (yargs) => {
   if ('package-lock' in yargs) {

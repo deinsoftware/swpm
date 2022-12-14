@@ -1,5 +1,6 @@
 const pnpm = {
   cmd: 'pnpm',
+  exc: 'pnpm dlx',
   color: '#f7ad24',
   url: 'https://pnpm.io/',
   version: '',

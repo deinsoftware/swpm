@@ -6,11 +6,11 @@ import upgrade from './commands/upgrade.js'
 import interactive from './commands/interactive.js'
 import clean from './commands/clean.js'
 
-import debug from './options/debug.js'
-import use from './options/use.js'
-import pin from './options/pin.js'
-import test from './options/test.js'
-import info from './options/info.js'
+import debug from '../options/debug.js'
+import use from '../options/use.js'
+import pin from '../options/pin.js'
+import test from '../options/test.js'
+import info from '../options/info.js'
 
 const commands = [
   install,
