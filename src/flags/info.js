@@ -1,14 +1,25 @@
 import { exit } from 'node:process'
 import { stripIndents } from 'common-tags'
 import chalk from 'chalk'
+import commandExists from "command-exists";
+
 import { getCommandResult } from '../helpers/cmds.js'
 import { getOriginIcon } from '../helpers/icons.js'
 import { getSwpmInfo } from '../helpers/info.js'
 
+const commandVerification = async (cmd) => {
+  try {
+    await commandExists(cmd)
+    return true
+  } catch (error) {
+    return false
+  }
+}
+
 export const showPackageInformation = async ({ origin, cmd, config, volta }) => {
   const nodeVersion = getCommandResult('node --version', volta)
 
-  const isInstalled = !!(await getCommandResult(`command -v ${cmd}`))
+  const isInstalled = await commandVerification(cmd)
   const packageVersion = isInstalled ? await getCommandResult(`${cmd} --version`, volta) : 'not found'
 
   const { version: swpmVersion } = await getSwpmInfo()

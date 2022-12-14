@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 import { exit } from 'node:process'
-import { deleteLockFiles, deleteLogFiles, deletePath } from '../../helpers/delete.js'
+import { deleteLockFiles, deleteLogFiles, deletePath } from '../../../helpers/delete.js'
 
 const middleware = async (yargs) => {
   console.log(`🧽 ${chalk.bold('Cleaning')}: `)

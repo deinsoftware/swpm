@@ -1,4 +1,4 @@
-import { translateArgs } from '../../helpers/args.js'
+import { translateArgs } from '../../../helpers/args.js'
 
 const middleware = (yargs) => {
   if ('latest' in yargs) {

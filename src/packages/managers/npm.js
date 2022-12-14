@@ -1,5 +1,6 @@
 const npm = {
   cmd: 'npm',
+  exc: 'npx',
   color: '#e32e37',
   url: 'https://www.npmjs.com/',
   version: '',

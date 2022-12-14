@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.14.0] - 2022/12/13
+
+### Added
+
+- `swpx` to run packages remotely without installing
+
+### Fixed
+
+- OS compatibility for command exists on `--info` flag
+
 ## [0.13.2] - 2022/12/13
 
 ### Fixed
