@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [0.14.1] - 2022/12/14
+
+### Fixed
+
+- Sponsors url
+
 ## [0.14.0] - 2022/12/13
 
 ### Added

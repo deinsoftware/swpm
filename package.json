@@ -1,6 +1,6 @@
 {
   "name": "swpm",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "engines": {
     "node": ">=16"
   },
@@ -39,7 +39,7 @@
     "equiman"
   ],
   "sponsor": {
-    "url": "https://ko-fi.com/equiman"
+    "url": "https://github.com/sponsors/deinsoftware"
   },
   "license": "MIT",
   "bugs": {
