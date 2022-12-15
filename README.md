@@ -43,6 +43,7 @@
   - [si - install](#si---install)
   - [sa - add](#sa---add)
   - [sc - clean](#sc---clean)
+  - [sx - execute](#sx---execute)
 - [Flags](#flags)
 - [Default](#default)
 - [FAQ](#faq)
@@ -78,10 +79,10 @@ Install as global with any of this package managers
 
 | Package Manager | Install Command                      |
 | --------------- | ------------------------------------ |
-| npm             | `npm install swpm --location=global` |
-| yarn            | `yarn global add swpm`               |
-| pnpm            | `pnpm install swpm --global`         |
-| bun             | `bun install -g swpm`                |
+| **npm**         | `npm install swpm --location=global` |
+| **yarn**        | `yarn global add swpm`               |
+| **pnpm**        | `pnpm install swpm --global`         |
+| **bun**         | `bun install -g swpm`                |
 
 ⇧ [Back to menu](#menu)
 
@@ -407,6 +408,15 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | `scc`  | `swpm clean --coverage`             |
 | `sca`  | `swpm clean --all`                  |
 | `sci`  | `swpm clean --all` + `swpm install` |
+
+### sx - execute
+
+| Package / Command | `sx <package>`       | `sx vitest`       |
+| ----------------- | -------------------- | ----------------- |
+| **npm**           | `npx <package>`      | `npm vitest`      |
+| **yarn**          | `yarn dlx <package>` | `yarn dlx vitest` |
+| **pnpm**          | `pnpm dlx <package>` | `pnpm dlx vitest` |
+| **bun**           | Not Available        |                   |
 
 ⇧ [Back to menu](#menu)
 

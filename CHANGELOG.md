@@ -16,6 +16,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 - `si` alias for `swpm install`
 - `sa` alias for `swpm add`
 - multiple alias for `swpm clean`
+- `sx` alias for `swpx`
 
 ### Changed
 

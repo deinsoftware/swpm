@@ -16,7 +16,8 @@
     "scb": "./src/alias/scb.js",
     "scc": "./src/alias/scc.js",
     "sca": "./src/alias/sca.js",
-    "sci": "./src/alias/sci.js"
+    "sci": "./src/alias/sci.js",
+    "sx": "./src/alias/sx.js"
   },
   "scripts": {
     "lint": "eslint .",
