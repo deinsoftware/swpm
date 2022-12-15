@@ -41,7 +41,7 @@
 - [swpx](#swpx)
 - [Alias](#alias)
   - [si - install](#si---install)
-  - [sa - add](#si---add)
+  - [sa - add](#sa---add)
   - [sc - clean](#sc---clean)
 - [Flags](#flags)
 - [Default](#default)
@@ -364,14 +364,12 @@ Options:
       --help  Show help                                                [boolean]
 ```
 
-Example:
-
-| swpx    | `swpx vitest`     |
-| ------- | ----------------- |
-| npm     | `npx vitest`      |
-| yarn    | `yarn dlx vitest` |
-| pnpm    | `pnpm dlx vitest` |
-| bun     | Not Available     |
+|      | `swpx <package>`     | `swpx vitest`     |
+| ---- | -------------------- | ----------------- |
+| npm  | `npx <package>`      | `npm vitest`      |
+| yarn | `yarn dlx <package>` | `yarn dlx vitest` |
+| pnpm | `pnpm dlx <package>` | `pnpm dlx vitest` |
+| bun  | Not Available        |                   |
 
 ⇧ [Back to menu](#menu)
 
@@ -383,16 +381,16 @@ Quick and short aliases for `swpm` and `swpx` commands.
 
 ### si - install
 
-|         | `si`           |
-| ------- | -------------- |
-| npm     | `npm install`  |
-| yarn    | `yarn install` |
-| pnpm    | `pnpm install` |
-| bun     | `bun install`  |
+| Package/Alias | `si`           |
+| ------------- | -------------- |
+| npm           | `npm install`  |
+| yarn          | `yarn install` |
+| pnpm          | `pnpm install` |
+| bun           | `bun install`  |
 
 ### sa - add
 
-|                | `sa <package>`       | `sa vite`       |
+| Package/Alias  | `sa <package>`       | `sa vite`       |
 | -------------- | -------------------- | --------------- |
 | npm            | `npm add <package>`  | `npm add vite`  |
 | yarn           | `yarn add <package>` | `yarn add vite` |
@@ -401,14 +399,14 @@ Quick and short aliases for `swpm` and `swpx` commands.
 
 ### sc - clean
 
-| Alis  | Command                             |
-| ----- | ----------------------------------- |
-| `scn` | `swpm clean --node-modules`         |
-| `scl` | `swpm clean --lock`                 |
-| `scb` | `swpm clean --build`                |
-| `scc` | `swpm clean --coverage`             |
-| `sca` | `swpm clean --all`                  |
-| `sci` | `swpm clean --all` + `swpm install` |
+| Alias  | Command                             |
+| ------ | ----------------------------------- |
+| `scn`  | `swpm clean --node-modules`         |
+| `scl`  | `swpm clean --lock`                 |
+| `scb`  | `swpm clean --build`                |
+| `scc`  | `swpm clean --coverage`             |
+| `sca`  | `swpm clean --all`                  |
+| `sci`  | `swpm clean --all` + `swpm install` |
 
 ⇧ [Back to menu](#menu)
 
