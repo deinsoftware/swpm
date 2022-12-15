@@ -367,10 +367,10 @@ Options:
 
 | Package / Command | `swpx <package>`     | `swpx vitest`     |
 | ----------------- | -------------------- | ----------------- |
-| **npm**           | `npx <package>`      | `npm vitest`      |
+| **npm**           | `npx <package>`      | `npx vitest`      |
 | **yarn**          | `yarn dlx <package>` | `yarn dlx vitest` |
 | **pnpm**          | `pnpm dlx <package>` | `pnpm dlx vitest` |
-| **bun**           | Not Available        |                   |
+| **bun**           | Not Available        | Not Available     |
 
 ⇧ [Back to menu](#menu)
 
@@ -413,10 +413,10 @@ Quick and short aliases for `swpm` and `swpx` commands.
 
 | Package / Command | `sx <package>`       | `sx vitest`       |
 | ----------------- | -------------------- | ----------------- |
-| **npm**           | `npx <package>`      | `npm vitest`      |
+| **npm**           | `npx <package>`      | `npx vitest`      |
 | **yarn**          | `yarn dlx <package>` | `yarn dlx vitest` |
 | **pnpm**          | `pnpm dlx <package>` | `pnpm dlx vitest` |
-| **bun**           | Not Available        |                   |
+| **bun**           | Not Available        | Not Available     |
 
 ⇧ [Back to menu](#menu)
 
