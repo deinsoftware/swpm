@@ -40,7 +40,7 @@
     - [Versions](#versions)
 - [swpx](#swpx)
 - [Alias](#alias)
-  - [si - Install](#si)
+  - [si - Install](#si---install)
 - [Flags](#flags)
 - [Default](#default)
 - [FAQ](#faq)
