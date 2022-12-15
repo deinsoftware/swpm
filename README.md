@@ -364,12 +364,12 @@ Options:
       --help  Show help                                                [boolean]
 ```
 
-|      | `swpx <package>`     | `swpx vitest`     |
-| ---- | -------------------- | ----------------- |
-| npm  | `npx <package>`      | `npm vitest`      |
-| yarn | `yarn dlx <package>` | `yarn dlx vitest` |
-| pnpm | `pnpm dlx <package>` | `pnpm dlx vitest` |
-| bun  | Not Available        |                   |
+| Package / Command | `swpx <package>`     | `swpx vitest`     |
+| ----------------- | -------------------- | ----------------- |
+| **npm**           | `npx <package>`      | `npm vitest`      |
+| **yarn**          | `yarn dlx <package>` | `yarn dlx vitest` |
+| **pnpm**          | `pnpm dlx <package>` | `pnpm dlx vitest` |
+| **bun**           | Not Available        |                   |
 
 ⇧ [Back to menu](#menu)
 
@@ -383,19 +383,19 @@ Quick and short aliases for `swpm` and `swpx` commands.
 
 | Package/Alias | `si`           |
 | ------------- | -------------- |
-| npm           | `npm install`  |
-| yarn          | `yarn install` |
-| pnpm          | `pnpm install` |
-| bun           | `bun install`  |
+| **npm**       | `npm install`  |
+| **yarn**      | `yarn install` |
+| **pnpm**      | `pnpm install` |
+| **bun**       | `bun install`  |
 
 ### sa - add
 
 | Package/Alias  | `sa <package>`       | `sa vite`       |
 | -------------- | -------------------- | --------------- |
-| npm            | `npm add <package>`  | `npm add vite`  |
-| yarn           | `yarn add <package>` | `yarn add vite` |
-| pnpm           | `pnpm add <package>` | `pnpm add vite` |
-| bun            | `bun add <package>`  | `bun add vite`  |
+| **npm**        | `npm add <package>`  | `npm add vite`  |
+| **yarn**       | `yarn add <package>` | `yarn add vite` |
+| **pnpm**       | `pnpm add <package>` | `pnpm add vite` |
+| **bun**        | `bun add <package>`  | `bun add vite`  |
 
 ### sc - clean
 
