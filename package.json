@@ -1,6 +1,6 @@
 {
   "name": "swpm",
-  "version": "0.15.0",
+  "version": "1.0.0",
   "engines": {
     "node": ">=16"
   },
@@ -9,7 +9,8 @@
   "bin": {
     "swpm": "./src/cli/swpm.js",
     "swpx": "./src/cli/swpx.js",
-    "si": "./src/alias/si.js"
+    "si": "./src/alias/si.js",
+    "sa": "./src/alias/sa.js"
   },
   "scripts": {
     "lint": "eslint .",
@@ -49,8 +50,8 @@
   "homepage": "https://github.com/deinsoftware/swpm#readme",
   "type": "module",
   "volta": {
-    "node": "18.12.0",
-    "npm": "8.19.2"
+    "node": "19.2.0",
+    "npm": "8.19.3"
   },
   "dependencies": {
     "chalk": "5.2.0",
