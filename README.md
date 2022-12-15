@@ -39,6 +39,8 @@
     - [Config](#config)
     - [Versions](#versions)
 - [swpx](#swpx)
+- [Alias](#alias)
+  - [si - Install](#si)
 - [Flags](#flags)
 - [Default](#default)
 - [FAQ](#faq)
@@ -347,22 +349,10 @@ swpx <command> [FLAGS]
 
 ### Help
 
-With `swpm --help` it will show a command help resume.
+With `swpx --help` it will show a command help resume.
 
 ```text
-swpm [<command>] [--] [args] [FLAGS]
-
-Commands:
-  swpm install [FLAGS]                   install packages from package.json
-                                                                    [aliases: i]
-  swpm add <package> [args] [FLAGS]      add package                [aliases: a]
-  swpm remove <package> [args] [FLAGS]   remove package
-                                                 [aliases: r, rm, uninstall, un]
-  swpm update <package> [args] [FLAGS]   update package        [aliases: up, ud]
-  swpm upgrade <package> [args] [FLAGS]  upgrade package to latest [aliases: ug]
-  swpm interactive [args] [FLAGS]        update packages interactive
-                                                                   [aliases: ui]
-  swpm clean [FLAGS]                     clean packages             [aliases: c]
+swpx [<command>] [FLAGS]
 
 Options:
   -u, --use   use a package manager      [choices: "npm", "yarn", "pnpm", "bun"]
@@ -380,6 +370,23 @@ Example:
 | yarn    | `yarn dlx vitest` |
 | pnpm    | `pnpm dlx vitest` |
 | bun     | Not Available     |
+
+⇧ [Back to menu](#menu)
+
+---
+
+## Alias
+
+Quick and short aliases for `swpm` and `swpx` commands.
+
+### si - install
+
+| `si`    | `swpm install` |
+| ------- | -------------- |
+| npm     | `npm install`  |
+| yarn    | `yarn install` |
+| pnpm    | `pnpm install` |
+| bun     | `bun install`  |
 
 ⇧ [Back to menu](#menu)
 

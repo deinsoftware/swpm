@@ -1,14 +1,15 @@
 {
   "name": "swpm",
-  "version": "0.14.1",
+  "version": "0.15.0",
   "engines": {
     "node": ">=16"
   },
   "description": "Switch Package Manager",
-  "main": "./src/swpm.js",
+  "main": "./src/cli/swpm.js",
   "bin": {
-    "swpm": "./src/swpm.js",
-    "swpx": "./src/swpx.js"
+    "swpm": "./src/cli/swpm.js",
+    "swpx": "./src/cli/swpx.js",
+    "si": "./src/alias/si.js"
   },
   "scripts": {
     "lint": "eslint .",

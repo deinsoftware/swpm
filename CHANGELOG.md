@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 0.15.0 - 2022/12/15
+
+### Added
+
+- `si` alias for `swpm install`
+
 ## 0.14.1 - 2022/12/14
 
 ### Fixed

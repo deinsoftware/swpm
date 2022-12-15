@@ -2,13 +2,13 @@
 
 import { exit } from 'node:process'
 import { inspect } from 'node:util'
-import yargs from './cli/swpx/config.js'
+import yargs from './swpx/config.js'
 import chalk from 'chalk'
 
-import { autoUpdate } from './helpers/autoUpdate.js'
-import { showCommand, runCommand } from './helpers/cmds.js'
-import { showPackageInformation } from './flags/info.js'
-import { testCommand } from './flags/test.js'
+import { autoUpdate } from '../helpers/autoUpdate.js'
+import { showCommand, runCommand } from '../helpers/cmds.js'
+import { showPackageInformation } from '../flags/info.js'
+import { testCommand } from '../flags/test.js'
 
 await autoUpdate()
 

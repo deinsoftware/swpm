@@ -8,16 +8,22 @@
       "type": "pwa-node",
       "request": "launch",
       "name": "swpm",
-      "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/src/swpm.js"
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/src/cli/swpm.js"
     },
     {
       "type": "pwa-node",
       "request": "launch",
       "name": "info",
-      "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/src/swpm.js",
-      "args": ["--info"]
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/src/cli/swpm.js",
+      "args": [
+        "--info"
+      ]
     }
   ]
 }
