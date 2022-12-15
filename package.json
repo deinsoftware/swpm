@@ -10,7 +10,13 @@
     "swpm": "./src/cli/swpm.js",
     "swpx": "./src/cli/swpx.js",
     "si": "./src/alias/si.js",
-    "sa": "./src/alias/sa.js"
+    "sa": "./src/alias/sa.js",
+    "scn": "./src/alias/scn.js",
+    "scl": "./src/alias/scl.js",
+    "scb": "./src/alias/scb.js",
+    "scc": "./src/alias/scc.js",
+    "sca": "./src/alias/sca.js",
+    "sci": "./src/alias/sci.js"
   },
   "scripts": {
     "lint": "eslint .",

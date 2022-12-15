@@ -42,6 +42,7 @@
 - [Alias](#alias)
   - [si - install](#si---install)
   - [sa - add](#si---add)
+  - [sc - clean](#sc---clean)
 - [Flags](#flags)
 - [Default](#default)
 - [FAQ](#faq)
@@ -397,6 +398,17 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | yarn           | `yarn add <package>` | `yarn add vite` |
 | pnpm           | `pnpm add <package>` | `pnpm add vite` |
 | bun            | `bun add <package>`  | `bun add vite`  |
+
+### sc - clean
+
+| Alis  | Command                             |
+| ----- | ----------------------------------- |
+| `scn` | `swpm clean --node-modules`         |
+| `scl` | `swpm clean --lock`                 |
+| `scb` | `swpm clean --build`                |
+| `scc` | `swpm clean --coverage`             |
+| `sca` | `swpm clean --all`                  |
+| `sci` | `swpm clean --all` + `swpm install` |
 
 ⇧ [Back to menu](#menu)
 
