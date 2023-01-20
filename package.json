@@ -11,6 +11,9 @@
     "swpx": "./src/cli/swpx.js",
     "si": "./src/alias/si.js",
     "sa": "./src/alias/sa.js",
+    "sae": "./src/alias/sae.js",
+    "sad": "./src/alias/sad.js",
+    "sade": "./src/alias/sade.js",
     "scn": "./src/alias/scn.js",
     "scl": "./src/alias/scl.js",
     "scb": "./src/alias/scb.js",
@@ -68,13 +71,13 @@
     "yargs": "17.6.2"
   },
   "devDependencies": {
-    "@vitest/coverage-c8": "0.25.7",
-    "eslint": "8.29.0",
+    "@vitest/coverage-c8": "0.27.2",
+    "eslint": "8.32.0",
     "eslint-config-standard": "17.0.0",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-n": "15.6.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-n": "15.6.1",
     "eslint-plugin-promise": "6.1.1",
-    "vitest": "0.25.7"
+    "vitest": "0.27.2"
   },
   "packageManager": "npm@8.8.0",
   "swpm": "npm"

@@ -42,6 +42,7 @@
 - [Alias](#alias)
   - [si - install](#si---install)
   - [sa - add](#sa---add)
+  - [sae - add save exact](#sa---add-exact)
   - [sc - clean](#sc---clean)
   - [sx - execute](#sx---execute)
 - [Flags](#flags)
@@ -397,6 +398,33 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn add <package>` | `yarn add vite` |
 | **pnpm**       | `pnpm add <package>` | `pnpm add vite` |
 | **bun**        | `bun add <package>`  | `bun add vite`  |
+
+#### sae - add save exact
+
+| Package/Alias  | `sa <package> --save-exact`       | `sa vite --save-exact`       |
+| -------------- | --------------------------------- | ---------------------------- |
+| **npm**        | `npm add <package> --save-exact`  | `npm add vite --save-exact`  |
+| **yarn**       | `yarn add <package> --exact`      | `yarn add vite --exact`      |
+| **pnpm**       | `pnpm add <package> --save-exact` | `pnpm add vite --save-exact` |
+| **bun**        | `bun add <package> --save-exact`  | `bun add vite --save-exact`  |
+
+#### sae - add save dev
+
+| Package/Alias  | `sa <package> --save-dev`       | `sa vite --save-dev`       |
+| -------------- | ------------------------------- | -------------------------- |
+| **npm**        | `npm add <package> --save-dev`  | `npm add vite --save-dev`  |
+| **yarn**       | `yarn add <package> --dev`      | `yarn add vite --dev`      |
+| **pnpm**       | `pnpm add <package> --save-dev` | `pnpm add vite --save-dev` |
+| **bun**        | `bun add <package> --save-dev`  | `bun add vite --save-dev`  |
+
+#### sae - add save dev exact
+
+| Package/Alias  | `sa <package> --save-dev --save-exact`       | `sa vite --save-dev --save-exact`       |
+| -------------- | -------------------------------------------- | --------------------------------------- |
+| **npm**        | `npm add <package> --save-dev --save-exact`  | `npm add vite --save-dev --save-exact`  |
+| **yarn**       | `yarn add <package> --dev --exact`           | `yarn add vite --dev --exact`           |
+| **pnpm**       | `pnpm add <package> --save-dev --save-exact` | `pnpm add vite --save-dev --save-exact` |
+| **bun**        | `bun add <package> --save-dev --save-exact`  | `bun add vite --save-dev --save-exact`  |
 
 ### sc - clean
 
