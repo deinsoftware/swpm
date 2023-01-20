@@ -11,7 +11,9 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ## 1.0.1 - 2022/01/19
 
-- fix `bunx` command documentation
+### Fixed
+
+- `bunx` command documentation
 
 ## 1.0.0 - 2022/01/19
 
