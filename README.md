@@ -369,12 +369,12 @@ Options:
       --help  Show help                                                [boolean]
 ```
 
-| Package / Command | `swpx <package>`     | `swpx vitest`     |
+| Package / Command | `sx <package>`       | `sx vitest`       |
 | ----------------- | -------------------- | ----------------- |
 | **npm**           | `npx <package>`      | `npx vitest`      |
 | **yarn**          | `yarn dlx <package>` | `yarn dlx vitest` |
 | **pnpm**          | `pnpm dlx <package>` | `pnpm dlx vitest` |
-| **bun**           | Not Available        | Not Available     |
+| **bun**           | `bunx <package>`     | `bunx vitest`     |
 
 ⇧ [Back to menu](#menu)
 
