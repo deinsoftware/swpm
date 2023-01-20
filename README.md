@@ -39,6 +39,15 @@
     - [Config](#config)
     - [Versions](#versions)
 - [swpx](#swpx)
+- [Alias](#alias)
+  - [si - install](#si---install)
+  - [sa - add](#sa---add)
+  - [sae - add save exact](#sae---add-save-exact)
+  - [sad - add save dev](#sad---add-save-dev)
+  - [sade - add save dev exact](#sade---add-save-dev-exact)
+  - [sc - clean](#sc---clean)
+  - [sr - run](#sr---run)
+  - [sx - execute](#sx---execute)
 - [Flags](#flags)
 - [Default](#default)
 - [FAQ](#faq)
@@ -74,10 +83,10 @@ Install as global with any of this package managers
 
 | Package Manager | Install Command                      |
 | --------------- | ------------------------------------ |
-| npm             | `npm install swpm --location=global` |
-| yarn            | `yarn global add swpm`               |
-| pnpm            | `pnpm install swpm --global`         |
-| bun             | `bun install -g swpm`                |
+| **npm**         | `npm install swpm --location=global` |
+| **yarn**        | `yarn global add swpm`               |
+| **pnpm**        | `pnpm install swpm --global`         |
+| **bun**         | `bun install -g swpm`                |
 
 ⇧ [Back to menu](#menu)
 
@@ -347,22 +356,10 @@ swpx <command> [FLAGS]
 
 ### Help
 
-With `swpm --help` it will show a command help resume.
+With `swpx --help` it will show a command help resume.
 
 ```text
-swpm [<command>] [--] [args] [FLAGS]
-
-Commands:
-  swpm install [FLAGS]                   install packages from package.json
-                                                                    [aliases: i]
-  swpm add <package> [args] [FLAGS]      add package                [aliases: a]
-  swpm remove <package> [args] [FLAGS]   remove package
-                                                 [aliases: r, rm, uninstall, un]
-  swpm update <package> [args] [FLAGS]   update package        [aliases: up, ud]
-  swpm upgrade <package> [args] [FLAGS]  upgrade package to latest [aliases: ug]
-  swpm interactive [args] [FLAGS]        update packages interactive
-                                                                   [aliases: ui]
-  swpm clean [FLAGS]                     clean packages             [aliases: c]
+swpx [<command>] [FLAGS]
 
 Options:
   -u, --use   use a package manager      [choices: "npm", "yarn", "pnpm", "bun"]
@@ -372,14 +369,103 @@ Options:
       --help  Show help                                                [boolean]
 ```
 
-Example:
+| Package / Command | `swpx <package>`     | `swpx vitest`     |
+| ----------------- | -------------------- | ----------------- |
+| **npm**           | `npx <package>`      | `npx vitest`      |
+| **yarn**          | `yarn dlx <package>` | `yarn dlx vitest` |
+| **pnpm**          | `pnpm dlx <package>` | `pnpm dlx vitest` |
+| **bun**           | Not Available        | Not Available     |
 
-| swpx    | `swpx vitest`     |
-| ------- | ----------------- |
-| npm     | `npx vitest`      |
-| yarn    | `yarn dlx vitest` |
-| pnpm    | `pnpm dlx vitest` |
-| bun     | Not Available     |
+⇧ [Back to menu](#menu)
+
+---
+
+## Alias
+
+Quick and short aliases for `swpm` and `swpx` commands.
+
+### si - install
+
+| Package/Alias | `si`           |
+| ------------- | -------------- |
+| **npm**       | `npm install`  |
+| **yarn**      | `yarn install` |
+| **pnpm**      | `pnpm install` |
+| **bun**       | `bun install`  |
+
+### sa - add
+
+| Package/Alias  | `sa <package>`       | `sa vite`       |
+| -------------- | -------------------- | --------------- |
+| **npm**        | `npm add <package>`  | `npm add vite`  |
+| **yarn**       | `yarn add <package>` | `yarn add vite` |
+| **pnpm**       | `pnpm add <package>` | `pnpm add vite` |
+| **bun**        | `bun add <package>`  | `bun add vite`  |
+
+### sae - add save exact
+
+| Package/Alias  | `sae <package>`                   | `sae vite`                   |
+| -------------- | --------------------------------- | ---------------------------- |
+| **npm**        | `npm add <package> --save-exact`  | `npm add vite --save-exact`  |
+| **yarn**       | `yarn add <package> --exact`      | `yarn add vite --exact`      |
+| **pnpm**       | `pnpm add <package> --save-exact` | `pnpm add vite --save-exact` |
+| **bun**        | `bun add <package> --save-exact`  | `bun add vite --save-exact`  |
+
+### sad - add save dev
+
+| Package/Alias  | `sad <package>`                 | `sad vite`                 |
+| -------------- | ------------------------------- | -------------------------- |
+| **npm**        | `npm add <package> --save-dev`  | `npm add vite --save-dev`  |
+| **yarn**       | `yarn add <package> --dev`      | `yarn add vite --dev`      |
+| **pnpm**       | `pnpm add <package> --save-dev` | `pnpm add vite --save-dev` |
+| **bun**        | `bun add <package> --save-dev`  | `bun add vite --save-dev`  |
+
+### sade - add save dev exact
+
+| Package/Alias  | `sade <package>`                             | `sade vite`                             |
+| -------------- | -------------------------------------------- | --------------------------------------- |
+| **npm**        | `npm add <package> --save-dev --save-exact`  | `npm add vite --save-dev --save-exact`  |
+| **yarn**       | `yarn add <package> --dev --exact`           | `yarn add vite --dev --exact`           |
+| **pnpm**       | `pnpm add <package> --save-dev --save-exact` | `pnpm add vite --save-dev --save-exact` |
+| **bun**        | `bun add <package> --save-dev --save-exact`  | `bun add vite --save-dev --save-exact`  |
+
+### sag - add global
+
+| Package/Alias  | `sag <package>`                        | `sag eslint`                        |
+| -------------- | -------------------------------------- | ----------------------------------- |
+| **npm**        | `npm add <package> --location=global`  | `npm add eslint --location=global`  |
+| **yarn**       | `yarn add global <package>`            | `yarn add global eslint`            |
+| **pnpm**       | `pnpm add <package> --global`          | `pnpm add eslint --global`          |
+| **bun**        | `bun add <package> --global`           | `bun add eslint --global`           |
+
+### sc - clean
+
+| Alias  | Command                             |
+| ------ | ----------------------------------- |
+| `scn`  | `swpm clean --node-modules`         |
+| `scl`  | `swpm clean --lock`                 |
+| `scb`  | `swpm clean --build`                |
+| `scc`  | `swpm clean --coverage`             |
+| `sca`  | `swpm clean --all`                  |
+| `sci`  | `swpm clean --all` + `swpm install` |
+
+### sr - run
+
+| Package/Alias  | `sr <script>`       | `sr dev`       |
+| -------------- | ------------------- | -------------- |
+| **npm**        | `npm run <script>`  | `npm run dev`  |
+| **yarn**       | `yarn run <script>` | `yarn run dev` |
+| **pnpm**       | `pnpm run <script>` | `pnpm run dev` |
+| **bun**        | `bun run <script>`  | `bun add dev`  |
+
+### sx - execute
+
+| Package / Command | `sx <package>`       | `sx vitest`       |
+| ----------------- | -------------------- | ----------------- |
+| **npm**           | `npx <package>`      | `npx vitest`      |
+| **yarn**          | `yarn dlx <package>` | `yarn dlx vitest` |
+| **pnpm**          | `pnpm dlx <package>` | `pnpm dlx vitest` |
+| **bun**           | `bunx <package>`     | `bunx vitest`     |
 
 ⇧ [Back to menu](#menu)
 

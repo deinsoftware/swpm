@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
 import { inspect } from 'node:util'
-import yargs from './cli/swpm/config.js'
+import yargs from './swpm/config.js'
 
-import { autoUpdate } from './helpers/autoUpdate.js'
-import { pinPackageManager } from './flags/pin.js'
-import { showCommand, runCommand } from './helpers/cmds.js'
-import { showPackageInformation } from './flags/info.js'
-import { testCommand } from './flags/test.js'
+import { autoUpdate } from '../helpers/autoUpdate.js'
+import { pinPackageManager } from '../flags/pin.js'
+import { showCommand, runCommand } from '../helpers/cmds.js'
+import { showPackageInformation } from '../flags/info.js'
+import { testCommand } from '../flags/test.js'
 
 await autoUpdate()
 

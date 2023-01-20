@@ -9,6 +9,17 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.0.0 - 2022/12/15
+
+### Added
+
+- command aliases
+- `bunx` support
+
+### Changed
+
+- Upgrade `node` version to 19
+
 ## 0.14.1 - 2022/12/14
 
 ### Fixed

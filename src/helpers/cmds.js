@@ -59,6 +59,10 @@ export const runCommand = ($0, { cmd, args, config, volta = false }) => {
   spawn(cmd, [...args], { stdio: 'inherit' })
 }
 
+export const runAlias = (cmd, args) => {
+  spawn(cmd, args, { stdio: 'inherit' })
+}
+
 export const getCommandResult = (command, volta = false) => {
   try {
     if (volta) {

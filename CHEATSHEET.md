@@ -38,7 +38,7 @@ Use the same command structure between package managers.
 | ---- | -------------------------------------- | -------------------------------------------- | ---------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | -------------------------------- |
 | [x]  | init or create                         | `swpm init`                                  | `npm init`                                     | `yarn init`                                     | `pnpm init`                                     | `bun init`                       |
 | [x]  | login/logout                           | `swpm <login\|logout>`                       | `npm <login\|logout>`                          | `yarn <login\|logout>`                          | `pnpm <login\|logout>`                          |                                  |
-| [x]  | run scripts                            | `swpm run <script>`                          | `npm run <script>`                             | `yarn run <script>`                             | `pnpm [run] <script>`                           | `yarn [run] <script>`            |
+| [x]  | run scripts                            | `swpm run <script>`                          | `npm run <script>`                             | `yarn run <script>`                             | `pnpm [run] <script>`                           | `bun run <script>`               |
 | [x]  | run test                               | `swpm test`                                  | `npm test`                                     | `yarn test`                                     | `pnpm test`                                     |                                  |
 | [x]  | crate bundle package                   | `swpm build`                                 | `npm build`                                    | `yarn build`                                    | `pnpm build`                                    |                                  |
 | [x]  | publish                                | `swpm publish`                               | `npm publish`                                  | `yarn publish`                                  | `pnpm publish`                                  |                                  |
@@ -55,9 +55,9 @@ Use the same command structure between package managers.
 
 Run a command without installing it.
 
-| TODO | command                                | swpx             | npm                                          | yarn                                            | pnpm                                            | bun |
-| ---- | -------------------------------------- | ---------------- | -------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | --- |
-| [x]  | run package                            | `swpx <package>` | `npx <package>`                              | `yarn dlx <package>`                            | `pnpm dlx <package>`                            | N/A |
+| TODO | command                                | swpx             | npm                                          | yarn                                            | pnpm                                            | bun              |
+| ---- | -------------------------------------- | ---------------- | -------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- | ---------------- |
+| [x]  | run package                            | `swpx <package>` | `npx <package>`                              | `yarn dlx <package>`                            | `pnpm dlx <package>`                            | `bunx <package>` |
 
 ---
 
