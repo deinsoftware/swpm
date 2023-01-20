@@ -42,7 +42,9 @@
 - [Alias](#alias)
   - [si - install](#si---install)
   - [sa - add](#sa---add)
-  - [sae - add save exact](#sa---add-exact)
+  - [sae - add save exact](#sae---add-save-exact)
+  - [sae - add save dev](#sae---add-save-dev)
+  - [sae - add save dev exact](#sae---add-save-dev-exact)
   - [sc - clean](#sc---clean)
   - [sx - execute](#sx---execute)
 - [Flags](#flags)
@@ -399,7 +401,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**       | `pnpm add <package>` | `pnpm add vite` |
 | **bun**        | `bun add <package>`  | `bun add vite`  |
 
-#### sae - add save exact
+### sae - add save exact
 
 | Package/Alias  | `sa <package> --save-exact`       | `sa vite --save-exact`       |
 | -------------- | --------------------------------- | ---------------------------- |
@@ -408,7 +410,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**       | `pnpm add <package> --save-exact` | `pnpm add vite --save-exact` |
 | **bun**        | `bun add <package> --save-exact`  | `bun add vite --save-exact`  |
 
-#### sae - add save dev
+### sae - add save dev
 
 | Package/Alias  | `sa <package> --save-dev`       | `sa vite --save-dev`       |
 | -------------- | ------------------------------- | -------------------------- |
@@ -417,7 +419,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**       | `pnpm add <package> --save-dev` | `pnpm add vite --save-dev` |
 | **bun**        | `bun add <package> --save-dev`  | `bun add vite --save-dev`  |
 
-#### sae - add save dev exact
+### sae - add save dev exact
 
 | Package/Alias  | `sa <package> --save-dev --save-exact`       | `sa vite --save-dev --save-exact`       |
 | -------------- | -------------------------------------------- | --------------------------------------- |
