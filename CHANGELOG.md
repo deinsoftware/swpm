@@ -9,7 +9,11 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
-## 1.0.0 - 2022/12/15
+## 1.0.1 - 2022/01/19
+
+- fix `bunx` command documentation
+
+## 1.0.0 - 2022/01/19
 
 ### Added
 
