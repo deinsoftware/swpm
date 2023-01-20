@@ -14,6 +14,7 @@
     "sae": "./src/alias/sae.js",
     "sad": "./src/alias/sad.js",
     "sade": "./src/alias/sade.js",
+    "sag": "./src/alias/sag.js",
     "scn": "./src/alias/scn.js",
     "scl": "./src/alias/scl.js",
     "scb": "./src/alias/scb.js",

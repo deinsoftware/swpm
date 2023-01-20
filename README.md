@@ -429,6 +429,15 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**       | `pnpm add <package> --save-dev --save-exact` | `pnpm add vite --save-dev --save-exact` |
 | **bun**        | `bun add <package> --save-dev --save-exact`  | `bun add vite --save-dev --save-exact`  |
 
+### sag - add global
+
+| Package/Alias  | `sag <package>`                        | `sag eslint`                        |
+| -------------- | -------------------------------------- | ----------------------------------- |
+| **npm**        | `npm add <package> --location=global`  | `npm add eslint --location=global`  |
+| **yarn**       | `yarn add global <package>`            | `yarn add global eslint`            |
+| **pnpm**       | `pnpm add <package> --global`          | `pnpm add eslint --global`          |
+| **bun**        | `bun add <package> --global`           | `bun add eslint --global`           |
+
 ### sc - clean
 
 | Alias  | Command                             |
