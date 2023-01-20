@@ -20,6 +20,7 @@
     "scc": "./src/alias/scc.js",
     "sca": "./src/alias/sca.js",
     "sci": "./src/alias/sci.js",
+    "sr": "./src/alias/sr.js",
     "sx": "./src/alias/sx.js"
   },
   "scripts": {

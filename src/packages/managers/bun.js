@@ -1,5 +1,6 @@
 const bun = {
   cmd: 'bun',
+  exc: 'bunx',
   color: '#fbf0df',
   url: 'https://bun.sh/',
   version: '',

@@ -46,6 +46,7 @@
   - [sad - add save dev](#sad---add-save-dev)
   - [sade - add save dev exact](#sade---add-save-dev-exact)
   - [sc - clean](#sc---clean)
+  - [sr - run](#sr---run)
   - [sx - execute](#sx---execute)
 - [Flags](#flags)
 - [Default](#default)
@@ -439,6 +440,15 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | `sca`  | `swpm clean --all`                  |
 | `sci`  | `swpm clean --all` + `swpm install` |
 
+### sr - run
+
+| Package/Alias  | `sr <script>`       | `sr dev`       |
+| -------------- | ------------------- | -------------- |
+| **npm**        | `npm run <script>`  | `npm run dev`  |
+| **yarn**       | `yarn run <script>` | `yarn run dev` |
+| **pnpm**       | `pnpm run <script>` | `pnpm run dev` |
+| **bun**        | `bun run <script>`  | `bun add dev`  |
+
 ### sx - execute
 
 | Package / Command | `sx <package>`       | `sx vitest`       |
@@ -446,7 +456,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **npm**           | `npx <package>`      | `npx vitest`      |
 | **yarn**          | `yarn dlx <package>` | `yarn dlx vitest` |
 | **pnpm**          | `pnpm dlx <package>` | `pnpm dlx vitest` |
-| **bun**           | Not Available        | Not Available     |
+| **bun**           | `bunx <package>`     | `bunx vitest`     |
 
 ⇧ [Back to menu](#menu)
 

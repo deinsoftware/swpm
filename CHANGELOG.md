@@ -20,6 +20,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 - `sade` alias for `swpm add <package> --save-dev --save-exact`
 - multiple alias for `swpm clean`
 - `sx` alias for `swpx`
+- `bunx` support
 
 ### Changed
 
