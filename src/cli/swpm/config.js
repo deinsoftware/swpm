@@ -15,7 +15,7 @@ const config = await yargs(hideBin(argv))
   .usage('$0 [<command>] [--] [args] [FLAGS]')
   .help()
   .version(false)
-  .epilog('dein Software © 2022')
+  .epilog(`dein Software © ${new Date().getFullYear()}`)
   .argv
 
 export default config
