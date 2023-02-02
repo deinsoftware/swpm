@@ -9,6 +9,13 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.0.2 - 2022/02/02
+
+### Fixed
+
+- Info command when not found the package
+- Automatic year update on epilog message
+
 ## 1.0.1 - 2022/01/19
 
 ### Fixed

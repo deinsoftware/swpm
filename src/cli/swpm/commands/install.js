@@ -20,7 +20,7 @@ const middleware = (yargs) => {
       ${chalk.blue.bold('swpm add <package> [FLAGS]')}
     `)
 
-    // TODO: ask to auto transform
+    // TODO: ask to auto transform install to add
 
     exit(1)
   }
