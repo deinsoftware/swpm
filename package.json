@@ -62,8 +62,8 @@
   "homepage": "https://github.com/deinsoftware/swpm#readme",
   "type": "module",
   "volta": {
-    "node": "19.2.0",
-    "npm": "8.19.3"
+    "node": "19.5.0",
+    "npm": "9.3.1"
   },
   "dependencies": {
     "chalk": "5.2.0",
