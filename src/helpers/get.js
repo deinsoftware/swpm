@@ -20,7 +20,7 @@ const getPropertyValue = async (packageJson, property) => {
     return prop
   }
 
-  console.log(stripIndents`
+  console.error(stripIndents`
     ${chalk.red.bold('Error')}: the value (${chalk.bold(prop)}) in property on ${chalk.bold(packageName)} file is not valid.
     Use ${chalk.blue.bold('npm --pin <npm|yarn|pnpm|bun>')} to fix it.
   `)
@@ -46,7 +46,7 @@ const searchForEnv = (name) => {
     return value
   }
 
-  console.log(stripIndents`
+  console.error(stripIndents`
     ${chalk.red.bold('Error')}: the value (${chalk.bold(value)}) in SWPM environment variable is not valid.
     Fix it using one of this values ${chalk.blue.bold('<npm|yarn|pnpm|bun>')}.
   `)
@@ -71,7 +71,7 @@ export const getCurrentPackageManager = async () => {
   const lock = await searchForLockFiles()
   if (lock) { return { origin: 'lock', cmd: lock } }
 
-  console.log(stripIndents`
+  console.error(stripIndents`
     ${chalk.red.bold('Error')}: no Package Manager or Environment Variable was found.
 
     Please review if the current path has a ${chalk.bold(packageName)} or a ${chalk.bold('lock')} file.

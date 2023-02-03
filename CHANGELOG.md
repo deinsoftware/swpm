@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.0.3 - 2022/02/03
+
+### Fixed
+
+- `spawn` command failure on Win11
+
 ## 1.0.2 - 2022/02/02
 
 ### Fixed
