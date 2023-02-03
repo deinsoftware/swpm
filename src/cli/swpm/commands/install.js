@@ -13,7 +13,7 @@ const middleware = (yargs) => {
   }
 
   if ('FLAGS' in yargs) {
-    console.log(stripIndents`
+    console.error(stripIndents`
       ${chalk.red.bold('Error')}: to install a specific ${chalk.bold('<package>')}
       please use ${chalk.bold('add')} command.
 

@@ -26,7 +26,7 @@ if (yargs.debug) {
 }
 
 if (!yargs?.pkg?.config?.exc) {
-  console.log(`${chalk.red.bold('Error')}: the execution command is not available on ${chalk.bold(yargs?.pkg?.cmd)} Package Manager.`)
+  console.error(`${chalk.red.bold('Error')}: the execution command is not available on ${chalk.bold(yargs?.pkg?.cmd)} Package Manager.`)
   exit(1)
 }
 
@@ -42,5 +42,3 @@ if (yargs?.pkg?.cmd) {
   showCommand(yargs.$0, yargs.pkg)
   runCommand(yargs.$0, yargs.pkg)
 }
-
-

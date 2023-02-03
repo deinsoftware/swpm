@@ -29,7 +29,7 @@ export const translateCommand = (yargs) => {
       const [cmd, ...rest] = action
 
       if (rest[0] === -1) {
-        console.log(`${chalk.red.bold('Error')}: the ${chalk.bold(key)} command is not available on ${chalk.bold(yargs?.pkg?.cmd)} Package Manager.`)
+        console.error(`${chalk.red.bold('Error')}: the ${chalk.bold(key)} command is not available on ${chalk.bold(yargs?.pkg?.cmd)} Package Manager.`)
         exit(1)
       }
 
@@ -56,11 +56,26 @@ export const runCommand = ($0, { cmd, args, config, volta = false }) => {
     args = ['run', cmd, ...args]
     cmd = 'volta'
   }
-  spawn(cmd, [...args], { stdio: 'inherit' })
+
+  spawn(cmd, [...args], { stdio: 'inherit', shell: true })
+    .on('error', (error) => {
+      console.error(stripIndents`
+        ${chalk.red.bold('Error')}:
+        ${error}
+      `)
+      exit(1)
+    })
 }
 
 export const runAlias = (cmd, args) => {
-  spawn(cmd, args, { stdio: 'inherit' })
+  spawn(cmd, args, { stdio: 'inherit', shell: true })
+    .on('error', (error) => {
+      console.error(stripIndents`
+        ${chalk.red.bold('Error')}:
+        ${error}
+      `)
+      exit(1)
+    })
 }
 
 export const getCommandResult = (command, volta = false) => {

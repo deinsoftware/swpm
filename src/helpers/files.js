@@ -34,7 +34,7 @@ export const lockFileExists = async (fileName) => {
 export const savePackageJson = async (data) => {
   const exists = await fileExists(packageName)
   if (!exists) {
-    console.log(`${chalk.red.bold('Error')}: there is no ${chalk.red.bold(packageName)} file on current path.`)
+    console.error(`${chalk.red.bold('Error')}: there is no ${chalk.red.bold(packageName)} file on current path.`)
     exit(1)
   }
 
@@ -49,6 +49,6 @@ export const savePackageJson = async (data) => {
         flag: 'w+'
       })
   } catch (error) {
-    console.log(`${chalk.red.bold('Error')}: ${chalk.bold(packageName)} file can't be saved.`)
+    console.error(`${chalk.red.bold('Error')}: ${chalk.bold(packageName)} file can't be saved.`)
   }
 }
