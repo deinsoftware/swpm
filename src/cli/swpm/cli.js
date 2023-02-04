@@ -11,6 +11,7 @@ import use from '../options/use.js'
 import pin from '../options/pin.js'
 import test from '../options/test.js'
 import info from '../options/info.js'
+import alias from '../options/alias.js'
 
 const commands = [
   install,
@@ -27,7 +28,8 @@ const options = {
   use,
   pin,
   test,
-  info
+  info,
+  alias
 }
 
 export { commands, options }

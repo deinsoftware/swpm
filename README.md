@@ -45,6 +45,7 @@
   - [sae - add save exact](#sae---add-save-exact)
   - [sad - add save dev](#sad---add-save-dev)
   - [sade - add save dev exact](#sade---add-save-dev-exact)
+  - [sag - add global](#sag---add-global)
   - [sc - clean](#sc---clean)
   - [sr - run](#sr---run)
   - [sx - execute](#sx---execute)
@@ -120,12 +121,13 @@ Commands:
   swpm clean [FLAGS]                     clean packages             [aliases: c]
 
 Options:
-  -u, --use   use a package manager      [choices: "npm", "yarn", "pnpm", "bun"]
-  -p, --pin   pin a package manager      [choices: "npm", "yarn", "pnpm", "bun"]
-  -t, --test  test command (without running)
+  -u, --use    use a package manager     [choices: "npm", "yarn", "pnpm", "bun"]
+  -p, --pin    pin a package manager     [choices: "npm", "yarn", "pnpm", "bun"]
+  -t, --test   test command (without running)
                                          [choices: "npm", "yarn", "pnpm", "bun"]
-      --info  show information and versions                            [boolean]
-      --help  Show help                                                [boolean]
+      --info   show information and versions                           [boolean]
+      --alias  show command alias                                      [boolean]
+      --help   Show help                                               [boolean]
 ```
 
 ### Commands
@@ -147,8 +149,8 @@ This command installs a package and any packages that it depends on. If the pack
 | `--frozen-lockfile` | `-F`  | install dependencies from lock file (without updating it). Also known as `ci` |
 | `--package-lock`    | `-P`  | install dependencies but don't read or generate a lockfile                    |
 
-> **Note**:  
-> Sadly, the `--package-lock` argument is not available on **bun** Package Manager.
+> **Warning**:  
+> The `--package-lock` argument is not available on **bun** Package Manager.
 
 #### Add
 
@@ -220,8 +222,8 @@ swpm upgrade <package> [args] [FLAGS]
 | `--save-exact`    | `-E`  | Dependencies will be configured with an exact version rather than using default semver range operator |
 | `--global`        | `-g`  | Remove the current package context as a global package                                                |
 
-> **Note**:  
-> Sadly, this command is not available on **bun** Package Manager.
+> **Warning**:  
+> This command is not available on **bun** Package Manager.
 
 #### Interactive
 
@@ -238,8 +240,8 @@ swpm interactive [FLAGS]
 | `--latest`        | `-L`  | Updates all dependencies, ignoring ranges specified in `package.json` |
 | `--global`        | `-g`  | Remove the current package context as a global package                |
 
-> **Note**:  
-> Sadly, this command is not available on **npm** and **bun** Package Manager.
+> **Warning**:  
+> This command is not available on **npm** and **bun** Package Manager.
 
 #### Clean
 
@@ -362,11 +364,12 @@ With `swpx --help` it will show a command help resume.
 swpx [<command>] [FLAGS]
 
 Options:
-  -u, --use   use a package manager      [choices: "npm", "yarn", "pnpm", "bun"]
-  -t, --test  test command (without running)
+  -u, --use    use a package manager     [choices: "npm", "yarn", "pnpm", "bun"]
+  -t, --test   test command (without running)
                                          [choices: "npm", "yarn", "pnpm", "bun"]
-      --info  show information and versions                            [boolean]
-      --help  Show help                                                [boolean]
+      --info   show information and versions                           [boolean]
+      --alias  show command alias                                      [boolean]
+      --help   Show help                                               [boolean]
 ```
 
 | Package / Command | `sx <package>`       | `sx vitest`       |
@@ -523,9 +526,19 @@ The `<swpm|swpx> --info` flag show the current Package Manager used and some ver
 
 ```bash
 swpm --info
+swpx --info
 ```
 
 It will search firs the `swpm` property on the `package.json` file, and if doesn't not found it, will try to infer the Package Manager in use with help of the `lock`'s file.
+
+#### Alias
+
+The `<swpm|swpx> --alias` flag show the command aliases available.
+
+```bash
+swpm --alias
+swpx --alias
+```
 
 ⇧ [Back to menu](#menu)
 

@@ -9,26 +9,32 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
-## 1.0.3 - 2022/02/03
+## 1.1.0 - 2023/02/04
+
+### Added
+
+- `--alias` flag to get a help with the available aliases
+
+## 1.0.3 - 2023/02/03
 
 ### Fixed
 
 - `spawn` command failure on Win11
 
-## 1.0.2 - 2022/02/02
+## 1.0.2 - 2023/02/02
 
 ### Fixed
 
 - Info command when not found the package
 - Automatic year update on epilog message
 
-## 1.0.1 - 2022/01/19
+## 1.0.1 - 2023/01/19
 
 ### Fixed
 
 - `bunx` command documentation
 
-## 1.0.0 - 2022/01/19
+## 1.0.0 - 2023/01/19
 
 ### Added
 
