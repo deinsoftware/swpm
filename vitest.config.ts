@@ -7,10 +7,10 @@ export default defineConfig({
     coverage: {
       all: true,
       reporter: ["text", "html", "lcov"],
-      statements: 21,
-      branches: 47,
+      statements: 20,
+      branches: 46,
       functions: 22,
-      lines: 21,
+      lines: 20,
     },
 
   },

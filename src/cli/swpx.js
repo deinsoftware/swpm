@@ -8,6 +8,7 @@ import chalk from 'chalk'
 import { autoUpdate } from '../helpers/autoUpdate.js'
 import { showCommand, runCommand } from '../helpers/cmds.js'
 import { showPackageInformation } from '../flags/info.js'
+import { showCommandAlias } from '../flags/alias.js'
 import { testCommand } from '../flags/test.js'
 
 await autoUpdate()
@@ -36,6 +37,10 @@ if (yargs?.test) {
 
 if (yargs?.info) {
   await showPackageInformation(yargs.pkg)
+}
+
+if (yargs?.alias) {
+  await showCommandAlias()
 }
 
 if (yargs?.pkg?.cmd) {
