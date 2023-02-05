@@ -16,6 +16,15 @@ const replaceCommand = (args, action) => {
   args[0] = action
 }
 
+const addPositional = (args, action) => {
+  const {0: key, 1: value} = Object.entries(action)[0]
+  const start = args?.findIndex((arg) => arg.startsWith(key))
+
+  if (start > 0) {
+    args.splice(start, 0, value)
+  }
+}
+
 export const translateCommand = (yargs) => {
   if (yargs?._?.length > 0) {
     const key = yargs._[0]
@@ -35,6 +44,14 @@ export const translateCommand = (yargs) => {
 
       replaceCommand(yargs.pkg.args, cmd)
       addArgs(yargs, rest)
+    }
+
+    if (typeof action === 'object') {
+      addPositional(yargs.pkg.args, action)
+      //TODO: replace positional args
+      // if has additional args
+      // find index of first parameter with --
+      // add positional separator
     }
   }
 }
