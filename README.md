@@ -98,7 +98,7 @@ Install as global with any of this package managers
 The `swpm` will run the command switching automatically to the pinned Package Manager.
 
 ```bash
-swpm <command> [--] [args] [FLAGS]
+swpm <command> [args] [FLAGS]
 ```
 
 ### Help
@@ -106,7 +106,7 @@ swpm <command> [--] [args] [FLAGS]
 With `swpm --help` it will show a command help resume.
 
 ```text
-swpm [<command>] [--] [args] [FLAGS]
+swpm [<command>] [args] [FLAGS]
 
 Commands:
   swpm install [FLAGS]                   install packages from package.json
@@ -275,8 +275,8 @@ There are commands that don't need the `swpm` translation tool, because share th
 `init` or `create` can be used to set up a new or existing package.
 
 ```bash
-swpm init [<name> --yes]
-swpm create [<name> --yes]
+swpm init [--yes]
+swpm create <name> [<args>]
 ```
 
 > To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm|bun>` at the end or setup an `SWPM` environment variable.
@@ -299,7 +299,7 @@ This runs an arbitrary command from a package's "scripts" object.
 If no "command" is provided, it will list the available scripts.  
 
 ```bash
-swpm run <command> [-- <args>]
+swpm run <command> [<args>]
 swpm test
 swpm build
 ```
@@ -454,12 +454,12 @@ Quick and short aliases for `swpm` and `swpx` commands.
 
 ### sr - run
 
-| Package/Alias  | `sr <script>`       | `sr dev`       |
-| -------------- | ------------------- | -------------- |
-| **npm**        | `npm run <script>`  | `npm run dev`  |
-| **yarn**       | `yarn run <script>` | `yarn run dev` |
-| **pnpm**       | `pnpm run <script>` | `pnpm run dev` |
-| **bun**        | `bun run <script>`  | `bun add dev`  |
+| Package/Alias  | `sr <script>`       | `sr dev --port 3030`          |
+| -------------- | ------------------- | ----------------------------- |
+| **npm**        | `npm run <script>`  | `npm run dev -- --port 3030`  |
+| **yarn**       | `yarn run <script>` | `yarn run dev --port 3030`    |
+| **pnpm**       | `pnpm run <script>` | `pnpm run dev --port 3030`    |
+| **bun**        | `bun run <script>`  | `bun add dev --port 3030`     |
 
 ### sx - execute
 
@@ -483,8 +483,8 @@ Flags are important to `swpm` and `swpx` because can modify or set his behavior.
 The `<swpm|swpx> --use` flag allows you to choose your Package Manager for a project.
 
 ```bash
-swpm <command> [--] [args] --use <npm|yarn|pnpm|bun>
-swpx <command> [--] [args] --u <npm|yarn|pnpm|bun>
+swpm <command> [args] --use <npm|yarn|pnpm|bun>
+swpx <command> [args] --u <npm|yarn|pnpm|bun>
 ```
 
 It will run the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
@@ -513,8 +513,8 @@ It will store the pinned Package Manager in the `package.json` file, so you can 
 The `<swpm|swpx> --test` flag show the equivalent command using the selected Package Manager, but **it will not run the command**
 
 ```bash
-swpm <command> [--] [args] --test <npm|yarn|pnpm|bun>
-swpm <command> [--] [args] -t <npm|yarn|pnpm|bun>
+swpm <command> [args] --test <npm|yarn|pnpm|bun>
+swpm <command> [args] -t <npm|yarn|pnpm|bun>
 swpx <command> -t <npm|yarn|pnpm|bun>
 ```
 

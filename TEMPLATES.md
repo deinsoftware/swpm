@@ -24,9 +24,9 @@ cmds: {
 }
 ```
 
-### Replace and Flag
+### Replace and add a Flag
 
-Replace a command (or alias)  with another and add a flag at the end
+Replace a command (or alias) with another and add a flag at the end
 
 ```JavaScript
 cmds: {
@@ -59,6 +59,24 @@ Example
 ```JavaScript
 cmds: {
   interactive: ['', -1]
+}
+```
+
+### Positional
+
+add positional args separator, key (first) for search and value (second) as separator
+
+```JavaScript
+cmds: {
+  command: {'--': '--'}
+}
+```
+
+Example
+
+```JavaScript
+cmds: {
+  run: {'--': '--'}
 }
 ```
 

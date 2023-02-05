@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.2.0 - 2023/02/05
+
+### Added
+
+- Automatic add positional separator for `create` and `run` commands on `npm`
+
 ## 1.1.0 - 2023/02/04
 
 ### Added

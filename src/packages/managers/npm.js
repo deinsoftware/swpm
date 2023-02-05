@@ -15,7 +15,9 @@ const npm = {
     ud: 'update',
     upgrade: ['install', '--latest'],
     ug: ['install', '--latest'],
-    interactive: ['', -1]
+    interactive: ['', -1],
+    run: {'--': '--'},
+    create: {'--': '--'},
   },
   args: {
     '--frozen-lockfile': {

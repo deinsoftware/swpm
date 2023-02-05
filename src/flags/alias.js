@@ -27,7 +27,7 @@ const aliases = {
   scc: 'swpm clean --coverage',
   sca: 'swpm clean --all',
   sci: 'swpm clean --all + swpm install',
-  sr: 'swpm run <script>',
+  sr: 'swpm run <command>',
   sx: 'swpx <package>',
 }
 
