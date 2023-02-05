@@ -48,10 +48,6 @@ export const translateCommand = (yargs) => {
 
     if (typeof action === 'object') {
       addPositional(yargs.pkg.args, action)
-      //TODO: replace positional args
-      // if has additional args
-      // find index of first parameter with --
-      // add positional separator
     }
   }
 }
