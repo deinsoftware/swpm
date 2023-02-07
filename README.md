@@ -135,10 +135,10 @@ swpm install [args] [FLAGS]
 
 This command installs a package and any packages that it depends on. If the package has a `lock` file, the installation of dependencies will be driven by that.
 
-| Args                | Alias | Description                                                                   |
-| ------------------- | ----- | ----------------------------------------------------------------------------- |
-| `--frozen-lockfile` | `-F`  | install dependencies from lock file (without updating it). Also known as `ci` |
-| `--package-lock`    | `-P`  | install dependencies but don't read or generate a lockfile                    |
+| Args             | Alias | Description                                                                   |
+| ---------------- | ----- | ----------------------------------------------------------------------------- |
+| `--frozen`       | `-F`  | install dependencies from lock file (without updating it). Also known as `ci` |
+| `--package-lock` | `-P`  | install dependencies but don't read or generate a lockfile                    |
 
 > **Warning**:  
 > The `--package-lock` argument is not available on **bun** Package Manager.
@@ -192,7 +192,7 @@ swpm update [<package>] [args] [FLAGS]
 
 | Args              | Alias | Description                                                                                           |
 | ----------------- | ----- | ----------------------------------------------------------------------------------------------------- |
-| `--global`        | `-g`  | Remove the current package context as a global package                                                |
+| `--global`        | `-g`  | Update the current package context as a global package                                                |
 
 > It will not made modifications on `package.json` file
 
@@ -210,8 +210,8 @@ swpm upgrade <package> [args] [FLAGS]
 
 | Args              | Alias | Description                                                                                           |
 | ----------------- | ----- | ----------------------------------------------------------------------------------------------------- |
-| `--save-exact`    | `-E`  | Dependencies will be configured with an exact version rather than using default semver range operator |
-| `--global`        | `-g`  | Remove the current package context as a global package                                                |
+| `--save-exact`    | `-E`  | Dependencies will be upgrade with an exact version rather than using default semver range operator    |
+| `--global`        | `-g`  | Upgrade the current package context as a global package                                               |
 
 > **Warning**:  
 > This command is not available on **bun** Package Manager.
@@ -229,7 +229,7 @@ swpm interactive [FLAGS]
 | Args              | Alias | Description                                                           |
 | ----------------- | ----- | --------------------------------------------------------------------- |
 | `--latest`        | `-L`  | Updates all dependencies, ignoring ranges specified in `package.json` |
-| `--global`        | `-g`  | Remove the current package context as a global package                |
+| `--global`        | `-g`  | Update the current package context as a global package                |
 
 > **Warning**:  
 > This command is not available on **npm** and **bun** Package Manager.
@@ -387,6 +387,15 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**      | `pnpm install` |
 | **bun**       | `bun install`  |
 
+### sif - install frozen
+
+| Package/Alias | `sif`                            |
+| ------------- | -------------------------------- |
+| **npm**       | `npm ci`                         |
+| **yarn**      | `yarn install --immutable`       |
+| **pnpm**      | `pnpm install --frozen-lockfile` |
+| **bun**       | `bun install --no-save`          |
+
 ### sa - add
 
 | Package/Alias  | `sa <package>`       | `sa vite`       |
@@ -440,6 +449,33 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn remove <package>`    | `yarn remove vite`    |
 | **pnpm**       | `pnpm uninstall <package>` | `pnpm uninstall vite` |
 | **bun**        | `bun remove <package>`     | `bun remove vite`     |
+
+### sup - update
+
+| Package/Alias  | `sup [<package>]`          | `sup vite`            |
+| -------------- | -------------------------- | --------------------- |
+| **npm**        | `npm update [<package>]`   | `npm update vite`     |
+| **yarn**       | `yarn upgrade [<package>]` | `yarn upgrade vite`   |
+| **pnpm**       | `pnpm update [<package>]`  | `pnpm update vite`    |
+| **bun**        | `bun update [<package>]`   | `bun update vite`     |
+
+### sug - upgrade
+
+| Package/Alias  | `sug <package>`                   | `sug vite`                   |
+| -------------- | --------------------------------- | ---------------------------- |
+| **npm**        | `npm install <package>@latest`    | `npm install <vite>@latest`  |
+| **yarn**       | `yarn upgrade <package> --latest` | `yarn upgrade vite --latest` |
+| **pnpm**       | `pnpm update <package> --latest`  | `pnpm update vite --latest`  |
+| **bun**        | N/A                               | N/A                          |
+
+### sui - interactive
+
+| Package/Alias  | `sui <package>`             |
+| -------------- | --------------------------- |
+| **npm**        | N/A                         |
+| **yarn**       | `yarn upgrade-interactive`  |
+| **pnpm**       | `pnpm update --interactive` |
+| **bun**        | N/A                         |
 
 ### sc - clean
 

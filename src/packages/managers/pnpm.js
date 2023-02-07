@@ -19,6 +19,7 @@ const pnpm = {
     ui: ['upgrade', '--interactive']
   },
   args: {
+    '--frozen': '--frozen-lockfile',
     '--package-lock': ['', -1],
     '-P': ['', -1]
   }

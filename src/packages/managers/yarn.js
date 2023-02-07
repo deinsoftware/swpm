@@ -21,7 +21,7 @@ const yarn = {
     ug: ['upgrade', '--latest']
   },
   args: {
-    '--frozen-lockfile': '--immutable',
+    '--frozen': '--immutable',
     '-F': '--immutable',
     '--global': ['global', 1],
     '-g': ['global', 1],

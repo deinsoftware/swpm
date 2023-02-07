@@ -16,12 +16,16 @@ const commandVerification = async (cmd) => {
 
 const aliases = {
   si: 'swpm install',
+  sif: 'swpm install --frozen',
   sa: 'swpm add <package>',
   sae: 'swpm add <package> --save-exact',
   sad: 'swpm add <package> --save-dev',
   sade: 'swpm add <package> --save-dev --save-exact',
   sag: 'swpm add <package> --global',
   srm: 'swpm remove <package>',
+  sud: 'swpm update [<package>]',
+  sug: 'swpm upgrade <package>',
+  sin: 'swpm interactive',
   scn: 'swpm clean --node-modules',
   scl: 'swpm clean --lock',
   scb: 'swpm clean --build',

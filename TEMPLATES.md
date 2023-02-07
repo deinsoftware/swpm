@@ -141,7 +141,7 @@ Example
 
 ```JavaScript
 args: {
-  '--frozen-lockfile': {
+  '--frozen': {
     install: 'ci'
     i: 'ci',
   }
