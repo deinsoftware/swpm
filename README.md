@@ -40,15 +40,6 @@
     - [Versions](#versions)
 - [swpx](#swpx)
 - [Alias](#alias)
-  - [si - install](#si---install)
-  - [sa - add](#sa---add)
-  - [sae - add save exact](#sae---add-save-exact)
-  - [sad - add save dev](#sad---add-save-dev)
-  - [sade - add save dev exact](#sade---add-save-dev-exact)
-  - [sag - add global](#sag---add-global)
-  - [sc - clean](#sc---clean)
-  - [sr - run](#sr---run)
-  - [sx - execute](#sx---execute)
 - [Flags](#flags)
 - [Default](#default)
 - [FAQ](#faq)
@@ -441,6 +432,15 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**       | `pnpm add <package> --global`          | `pnpm add eslint --global`          |
 | **bun**        | `bun add <package> --global`           | `bun add eslint --global`           |
 
+### srn - remove
+
+| Package/Alias  | `srm <package>`            | `srm vite`            |
+| -------------- | -------------------------- | --------------------- |
+| **npm**        | `npm uninstall <package>`  | `npm uninstall vite`  |
+| **yarn**       | `yarn remove <package>`    | `yarn remove vite`    |
+| **pnpm**       | `pnpm uninstall <package>` | `pnpm uninstall vite` |
+| **bun**        | `bun remove <package>`     | `bun remove vite`     |
+
 ### sc - clean
 
 | Alias  | Command                             |
@@ -452,14 +452,24 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | `sca`  | `swpm clean --all`                  |
 | `sci`  | `swpm clean --all` + `swpm install` |
 
+### sp - pin
+
+| Alias  | Command                          |
+| ------ | -------------------------------- |
+| `sp`   | `swpm --pin <npm|yarn|pnpm|bun>` |
+| `spn`  | `swpm --pin npm`                 |
+| `spy`  | `swpm --pin yarn`                |
+| `spp`  | `swpm --pin pnp`                 |
+| `spb`  | `swpm --pin bun`                 |
+
 ### sr - run
 
-| Package/Alias  | `sr <script>`       | `sr dev --port 3030`          |
-| -------------- | ------------------- | ----------------------------- |
-| **npm**        | `npm run <script>`  | `npm run dev -- --port 3030`  |
-| **yarn**       | `yarn run <script>` | `yarn run dev --port 3030`    |
-| **pnpm**       | `pnpm run <script>` | `pnpm run dev --port 3030`    |
-| **bun**        | `bun run <script>`  | `bun add dev --port 3030`     |
+| Package/Alias  | `sr <script>`       | `sr dev --port 3030`         |
+| -------------- | ------------------- | ---------------------------- |
+| **npm**        | `npm run <script>`  | `npm run dev -- --port 3030` |
+| **yarn**       | `yarn run <script>` | `yarn run dev --port 3030`   |
+| **pnpm**       | `pnpm run <script>` | `pnpm run dev --port 3030`   |
+| **bun**        | `bun run <script>`  | `bun add dev --port 3030`    |
 
 ### sx - execute
 
