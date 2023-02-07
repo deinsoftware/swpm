@@ -20,7 +20,7 @@ const npm = {
     create: {'--': '--'},
   },
   args: {
-    '--frozen-lockfile': {
+    '--frozen': {
       i: 'ci',
       install: 'ci'
     },

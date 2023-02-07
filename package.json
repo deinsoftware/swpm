@@ -1,6 +1,6 @@
 {
   "name": "swpm",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "engines": {
     "node": ">=16"
   },
@@ -10,11 +10,16 @@
     "swpm": "./src/cli/swpm.js",
     "swpx": "./src/cli/swpx.js",
     "si": "./src/alias/si.js",
+    "sif": "./src/alias/sif.js",
     "sa": "./src/alias/sa.js",
     "sae": "./src/alias/sae.js",
     "sad": "./src/alias/sad.js",
     "sade": "./src/alias/sade.js",
     "sag": "./src/alias/sag.js",
+    "srm": "./src/alias/srm.js",
+    "sup": "./src/alias/sup.js",
+    "sug": "./src/alias/sug.js",
+    "sui": "./src/alias/sui.js",
     "scn": "./src/alias/scn.js",
     "scl": "./src/alias/scl.js",
     "scb": "./src/alias/scb.js",
@@ -22,6 +27,11 @@
     "sca": "./src/alias/sca.js",
     "sci": "./src/alias/sci.js",
     "sr": "./src/alias/sr.js",
+    "sp": "./src/alias/sp.js",
+    "spn": "./src/alias/spn.js",
+    "spy": "./src/alias/spy.js",
+    "spp": "./src/alias/spp.js",
+    "spb": "./src/alias/spb.js",
     "sx": "./src/alias/sx.js"
   },
   "scripts": {

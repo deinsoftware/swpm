@@ -9,7 +9,7 @@ const middleware = (yargs) => {
   }
 
   if ('frozen-lockfile' in yargs) {
-    translateArgs(yargs, '--frozen-lockfile', '-F')
+    translateArgs(yargs, '--frozen', '-F')
   }
 
   if ('FLAGS' in yargs) {
@@ -44,7 +44,7 @@ const install = {
       alias: 'F',
       type: 'boolean',
       description: 'install from lock file (without updating it)',
-      usage: '$0 install --frozen-lockfile',
+      usage: '$0 install --frozen',
       conflicts: ['package-lock']
     })
 

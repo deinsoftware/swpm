@@ -18,7 +18,7 @@ const bun = {
   args: {
     '--save-dev': '-d',
     '-D': '-d',
-    '--frozen-lockfile': '--no-save',
+    '--frozen': '--no-save',
     '-F': '--no-save',
     '--package-lock': ['', -1],
     '-P': ['', -1]

@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.4.0 - 2023/02/06
+
+### Added
+
+- install frozen and update, upgrade and interactive aliases
+
 ## 1.3.0 - 2023/02/06
 
 ### Added
@@ -259,6 +265,10 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 - first version that translate commands `install` [`--frozen-lockfile`] and `add` [`--global`, `--save-dev`, `--save-exact`] commands
 
+### Changed
+
+- `--frozen-lockfile` flag was replaced for `--frozen` on install command
+  
 ### Changed
 
 - yargs refactor
