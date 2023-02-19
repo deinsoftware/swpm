@@ -441,7 +441,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**       | `pnpm add <package> --global`          | `pnpm add eslint --global`          |
 | **bun**        | `bun add <package> --global`           | `bun add eslint --global`           |
 
-### srn - remove
+### srm - remove
 
 | Package/Alias  | `srm <package>`            | `srm vite`            |
 | -------------- | -------------------------- | --------------------- |

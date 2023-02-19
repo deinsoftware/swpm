@@ -9,11 +9,17 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.4.1 - 2023/02/18
+
+### Fixed
+
+- Documentation alias on README
+
 ## 1.4.0 - 2023/02/06
 
 ### Added
 
-- install frozen and update, upgrade and interactive aliases
+- install frozen, update, upgrade and interactive aliases
 
 ## 1.3.0 - 2023/02/06
 
