@@ -53,6 +53,28 @@ describe('translateCommand()', () => {
     expect(yargs.pkg.args.includes(key)).toBeFalsy()
     expect(yargs.pkg.args.includes(replaceCommand)).toBeTruthy()
   })
+
+  test('should add positional args', () => {
+    const cmd = 'command'
+    const flag = '--port'
+    const value = '3000'
+    const yargs = {
+      _: [cmd],
+      pkg: {
+        args: [cmd, flag, value],
+        config: {
+          cmds: {
+            [cmd]: {'--': '--'},
+          }
+        }
+      }
+    }
+
+    translateCommand(yargs)
+    expect(yargs.pkg.args.includes('--')).toBeTruthy()
+    const index = yargs.pkg.args.findIndex(arg => arg === '--')
+    expect(yargs.pkg.args[index + 1].startsWith('--')).toBeTruthy()
+  })
 })
 
 describe('getCommandResult()', () => {
