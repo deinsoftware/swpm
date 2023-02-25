@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.4.2 - 2023/02/24
+
+### Removed
+
+- `sci` alias
+
 ## 1.4.1 - 2023/02/18
 
 ### Fixed

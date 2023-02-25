@@ -486,7 +486,6 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | `scb`  | `swpm clean --build`                |
 | `scc`  | `swpm clean --coverage`             |
 | `sca`  | `swpm clean --all`                  |
-| `sci`  | `swpm clean --all` + `swpm install` |
 
 ### sp - pin
 

@@ -1,6 +1,6 @@
 {
   "name": "swpm",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "engines": {
     "node": ">=16"
   },
@@ -25,7 +25,6 @@
     "scb": "./src/alias/scb.js",
     "scc": "./src/alias/scc.js",
     "sca": "./src/alias/sca.js",
-    "sci": "./src/alias/sci.js",
     "sr": "./src/alias/sr.js",
     "sp": "./src/alias/sp.js",
     "spn": "./src/alias/spn.js",
