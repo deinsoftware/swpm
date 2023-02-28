@@ -7,4 +7,7 @@ build/
 !CHANGELOG.md
 !README.md
 !LICENSE.md
+.eslintignore
+.eslintrc.cjs
+sonar-project.properties
 vitest.config.ts
