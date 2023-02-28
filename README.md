@@ -299,9 +299,11 @@ swpm build
 
 #### Publish
 
-Commands to `publish`, `unpublish` or `deprecate` a package on [https://www.npmjs.com/](https://www.npmjs.com/).
+Commands to `pack`, `publish`, `unpublish` or `deprecate` a package on [https://www.npmjs.com/](https://www.npmjs.com/).
 
 ```bash
+swpm pack
+swpm pack --pack-destination <path>
 swpm publish
 swpm unpublish <package>
 swpm deprecate <package> <message>
