@@ -1,1 +1,10 @@
 node_modules/
+.github/
+.vscode/
+build/
+*.test.*
+*.md
+!CHANGELOG.md
+!README.md
+!LICENSE.md
+vitest.config.ts
