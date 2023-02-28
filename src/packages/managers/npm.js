@@ -7,6 +7,8 @@ const npm = {
   lockFile: 'package-lock.json',
   logFile: 'npm-debug.log',
   cmds: {
+    a: 'install',
+    add: 'install',
     remove: 'uninstall',
     r: 'uninstall',
     rm: 'uninstall',

@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.4.3 - 2023/02/28
+
+### Fixed
+
+- `add` command transformed to `install` on npm package, because with volta add works different than install with global flag
+
 ## 1.4.2 - 2023/02/24
 
 ### Removed
