@@ -1,13 +1,13 @@
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
+import { getCommandResult } from './cmds'
 
 export const findVoltaGlobals = (yargs, flags) => {
   const hasGlobalOperations = (
-    yargs?.pkg?.volta &&
     yargs?.global &&
     flags.some((flag) => yargs?.pkg?.args.includes(flag))
   )
-  return hasGlobalOperations
+  return hasGlobalOperations && getCommandResult('volta --version', yargs?.pkg?.volta)
 }
 
 const findFlagIndex = (args, flag) => {

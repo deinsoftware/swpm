@@ -1,7 +1,7 @@
 import { exit } from 'node:process'
 import { stripIndents } from 'common-tags'
 import chalk from 'chalk'
-import commandExists from "command-exists";
+import commandExists from 'command-exists'
 
 import { getCommandResult } from '../helpers/cmds.js'
 import { getOriginIcon } from '../helpers/icons.js'

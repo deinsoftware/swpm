@@ -23,21 +23,6 @@
   - [Prerequisites](#prerequisites)
   - [Installing](#installing)
 - [swpm](#swpm)
-  - [Commands](#commands)
-    - [Install](#install)
-    - [Add](#add)
-    - [Remove](#remove)
-    - [Update](#update)
-    - [Upgrade](#upgrade)
-    - [Interactive](#interactive)
-    - [Clean](#clean)
-  - [Shared Commands](#shared-commands)
-    - [Init](#init)
-    - [Login/Logout](#loginlogout)
-    - [Scripts](#scripts)
-    - [Publish](#publish)
-    - [Config](#config)
-    - [Versions](#versions)
 - [swpx](#swpx)
 - [Alias](#alias)
 - [Flags](#flags)
@@ -79,6 +64,7 @@ Install as global with any of this package managers
 | **yarn**        | `yarn global add swpm`               |
 | **pnpm**        | `pnpm install swpm --global`         |
 | **bun**         | `bun install -g swpm`                |
+| **volta**       | `volta install swpm`                 |
 
 ⇧ [Back to menu](#menu)
 
@@ -490,7 +476,16 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**       | `pnpm update --interactive` |
 | **bun**        | N/A                         |
 
-### sc - clean
+### sc - create
+
+| Package/Alias  | `sc <package>`          | `sc vite`          |
+| -------------- | ----------------------- | ------------------ |
+| **npm**        | `npm create <package>`  | `npm create vite`  |
+| **yarn**       | `yarn create <package>` | `yarn create vite` |
+| **pnpm**       | `pnpm create <package>` | `pnpm create vite` |
+| **bun**        | `bun create <package>`  | `bun create vite`  |
+
+### sc<?> - clean
 
 | Alias  | Command                             |
 | ------ | ----------------------------------- |
@@ -500,7 +495,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | `scc`  | `swpm clean --coverage`             |
 | `sca`  | `swpm clean --all`                  |
 
-### sp - pin
+### sp[?] - pin
 
 | Alias  | Command                          |
 | ------ | -------------------------------- |
