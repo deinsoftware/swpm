@@ -9,6 +9,14 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.5.1 - 2023/03/07
+
+### Fixed
+
+- added a patch to avoid issue on [volta](https://github.com/volta-cli/volta/issues/1457) when install or uninstall global packages
+- revert `add` command transformed to `install` on npm package
+- volta pin detection including the same package validation
+
 ## 1.5.0 - 2023/02/28
 
 ### Changed

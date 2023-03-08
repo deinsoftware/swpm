@@ -400,48 +400,48 @@ Quick and short aliases for `swpm` and `swpx` commands.
 
 ### sa - add
 
-| Package/Alias  | `sa <package>`           | `sa vite`           |
-| -------------- | ------------------------ | ------------------- |
-| **npm**        | `npm install <package>`  | `npm install vite`  |
-| **yarn**       | `yarn add <package>`     | `yarn add vite`     |
-| **pnpm**       | `pnpm add <package>`     | `pnpm add vite`     |
-| **bun**        | `bun add <package>`      | `bun add vite`      |
+| Package/Alias  | `sa <package>`       | `sa vite`       |
+| -------------- | -------------------- | --------------- |
+| **npm**        | `npm add <package>`  | `npm add vite`  |
+| **yarn**       | `yarn add <package>` | `yarn add vite` |
+| **pnpm**       | `pnpm add <package>` | `pnpm add vite` |
+| **bun**        | `bun add <package>`  | `bun add vite`  |
 
 ### sae - add save exact
 
-| Package/Alias  | `sae <package>`                       | `sae vite`                       |
-| -------------- | ------------------------------------- | -------------------------------- |
-| **npm**        | `npm install <package> --save-exact`  | `npm install vite --save-exact`  |
-| **yarn**       | `yarn add <package> --exact`          | `yarn add vite --exact`          |
-| **pnpm**       | `pnpm add <package> --save-exact`     | `pnpm add vite --save-exact`     |
-| **bun**        | `bun add <package> --save-exact`      | `bun add vite --save-exact`      |
+| Package/Alias  | `sae <package>`                   | `sae vite`                   |
+| -------------- | --------------------------------- | ---------------------------- |
+| **npm**        | `npm add <package> --save-exact`  | `npm add vite --save-exact`  |
+| **yarn**       | `yarn add <package> --exact`      | `yarn add vite --exact`      |
+| **pnpm**       | `pnpm add <package> --save-exact` | `pnpm add vite --save-exact` |
+| **bun**        | `bun add <package> --save-exact`  | `bun add vite --save-exact`  |
 
 ### sad - add save dev
 
-| Package/Alias  | `sad <package>`                     | `sad vite`                     |
-| -------------- | ----------------------------------- | ------------------------------ |
-| **npm**        | `npm install <package> --save-dev`  | `npm install vite --save-dev`  |
-| **yarn**       | `yarn add <package> --dev`          | `yarn add vite --dev`          |
-| **pnpm**       | `pnpm add <package> --save-dev`     | `pnpm add vite --save-dev`     |
-| **bun**        | `bun add <package> --save-dev`      | `bun add vite --save-dev`      |
+| Package/Alias  | `sad <package>`                 | `sad vite`                 |
+| -------------- | ------------------------------- | -------------------------- |
+| **npm**        | `npm add <package> --save-dev`  | `npm add vite --save-dev`  |
+| **yarn**       | `yarn add <package> --dev`      | `yarn add vite --dev`      |
+| **pnpm**       | `pnpm add <package> --save-dev` | `pnpm add vite --save-dev` |
+| **bun**        | `bun add <package> --save-dev`  | `bun add vite --save-dev`  |
 
 ### sade - add save dev exact
 
-| Package/Alias  | `sade <package>`                                 | `sade vite`                                 |
-| -------------- | ------------------------------------------------ | ------------------------------------------- |
-| **npm**        | `npm install <package> --save-dev --save-exact`  | `npm install vite --save-dev --save-exact`  |
-| **yarn**       | `yarn add <package> --dev --exact`               | `yarn add vite --dev --exact`               |
-| **pnpm**       | `pnpm add <package> --save-dev --save-exact`     | `pnpm add vite --save-dev --save-exact`     |
-| **bun**        | `bun add <package> --save-dev --save-exact`      | `bun add vite --save-dev --save-exact`      |
+| Package/Alias  | `sade <package>`                             | `sade vite`                             |
+| -------------- | -------------------------------------------- | --------------------------------------- |
+| **npm**        | `npm add <package> --save-dev --save-exact`  | `npm add vite --save-dev --save-exact`  |
+| **yarn**       | `yarn add <package> --dev --exact`           | `yarn add vite --dev --exact`           |
+| **pnpm**       | `pnpm add <package> --save-dev --save-exact` | `pnpm add vite --save-dev --save-exact` |
+| **bun**        | `bun add <package> --save-dev --save-exact`  | `bun add vite --save-dev --save-exact`  |
 
 ### sag - add global
 
-| Package/Alias  | `sag <package>`                            | `sag eslint`                            |
-| -------------- | ------------------------------------------ | --------------------------------------- |
-| **npm**        | `npm install <package> --location=global`  | `npm install eslint --location=global`  |
-| **yarn**       | `yarn add global <package>`                | `yarn add global eslint`                |
-| **pnpm**       | `pnpm add <package> --global`              | `pnpm add eslint --global`              |
-| **bun**        | `bun add <package> --global`               | `bun add eslint --global`               |
+| Package/Alias  | `sag <package>`                        | `sag eslint`                        |
+| -------------- | -------------------------------------- | ----------------------------------- |
+| **npm**        | `npm add <package> --location=global`  | `npm add eslint --location=global`  |
+| **yarn**       | `yarn add global <package>`            | `yarn add global eslint`            |
+| **pnpm**       | `pnpm add <package> --global`          | `pnpm add eslint --global`          |
+| **bun**        | `bun add <package> --global`           | `bun add eslint --global`           |
 
 ### srm - remove
 

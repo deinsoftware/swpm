@@ -7,8 +7,6 @@ const npm = {
   lockFile: 'package-lock.json',
   logFile: 'npm-debug.log',
   cmds: {
-    a: 'install',
-    add: 'install',
     remove: 'uninstall',
     r: 'uninstall',
     rm: 'uninstall',
@@ -18,8 +16,8 @@ const npm = {
     upgrade: ['install', '--latest'],
     ug: ['install', '--latest'],
     interactive: ['', -1],
-    run: {'--': '--'},
-    create: {'--': '--'},
+    run: { '--': '--' },
+    create: { '--': '--' }
   },
   args: {
     '--frozen': {

@@ -36,11 +36,10 @@ const middleware = async (yargs) => {
     const { origin, cmd } = await getCurrentPackageManager()
     pkg.origin = origin
     pkg.cmd = cmd
-
-    pkg.volta = await detectVoltaPin()
   }
 
   if (pkg?.cmd) {
+    pkg.volta = await detectVoltaPin(pkg)
     pkg.config = await getPackageConfiguration(pkg)
   }
 

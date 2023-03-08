@@ -1,7 +1,7 @@
 import { exit } from 'node:process'
 import { stripIndents } from 'common-tags'
 import chalk from 'chalk'
-import commandExists from "command-exists";
+import commandExists from 'command-exists'
 
 import { getSwpmInfo } from '../helpers/info.js'
 
@@ -37,7 +37,7 @@ const aliases = {
   spp: 'swpm --pin pnpm',
   spb: 'swpm --pin bun',
   sr: 'swpm run <command>',
-  sx: 'swpx <package>',
+  sx: 'swpx <package>'
 }
 
 export const showCommandAlias = async () => {
