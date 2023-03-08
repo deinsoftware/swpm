@@ -23,6 +23,7 @@ const aliases = {
   sade: 'swpm add <package> --save-dev --save-exact',
   sag: 'swpm add <package> --global',
   srm: 'swpm remove <package>',
+  srg: 'swpm remove <package> --global',
   sud: 'swpm update [<package>]',
   sug: 'swpm upgrade <package>',
   sin: 'swpm interactive',

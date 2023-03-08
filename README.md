@@ -442,6 +442,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn add global <package>`            | `yarn add global eslint`            |
 | **pnpm**       | `pnpm add <package> --global`          | `pnpm add eslint --global`          |
 | **bun**        | `bun add <package> --global`           | `bun add eslint --global`           |
+| **volta**      | `volta install <package>`              | `volta install eslint`              |
 
 ### srm - remove
 
@@ -451,6 +452,16 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn remove <package>`    | `yarn remove vite`    |
 | **pnpm**       | `pnpm uninstall <package>` | `pnpm uninstall vite` |
 | **bun**        | `bun remove <package>`     | `bun remove vite`     |
+
+### srg - remove global
+
+| Package/Alias  | `srg <package>`                              | `srg eslint`                              |
+| -------------- | -------------------------------------------- | ----------------------------------------- |
+| **npm**        | `npm uninstall <package> --location=global`  | `npm uninstall eslint --location=global`  |
+| **yarn**       | `yarn remove global <package>`               | `yarn remove global eslint`               |
+| **pnpm**       | `pnpm uninstall <package> --global`          | `pnpm uninstall eslint --global`          |
+| **bun**        | `bun remove <package> --global`              | `bun remove eslint --global`              |
+| **volta**      | `volta uninstall <package>`                  | `volta uninstall eslint`                  |
 
 ### sup - update
 
