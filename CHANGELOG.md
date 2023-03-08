@@ -310,9 +310,6 @@ Security    to invite users to upgrade in case of vulnerabilities.
 ### Changed
 
 - `--frozen-lockfile` flag was replaced for `--frozen` on install command
-  
-### Changed
-
 - yargs refactor
 - structure project reorder
 
@@ -375,7 +372,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ### Added
 
-- yargs middleware to preprocess the Package Manager to use
+- yargs middleware to reprocesses the Package Manager to use
 - yargs `install` and `add` commands
 - `common-tags` library to stylize output messages
 
