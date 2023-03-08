@@ -1,6 +1,6 @@
 {
   "name": "swpm",
-  "version": "1.5.1",
+  "version": "1.6.0",
   "engines": {
     "node": ">=16"
   },
@@ -17,6 +17,7 @@
     "sade": "./src/alias/sade.js",
     "sag": "./src/alias/sag.js",
     "srm": "./src/alias/srm.js",
+    "srg": "./src/alias/srg.js",
     "sup": "./src/alias/sup.js",
     "sug": "./src/alias/sug.js",
     "sui": "./src/alias/sui.js",

@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.6.0 - 2023/03/08
+
+### Added
+
+- `srg` alias for remove global
+
 ## 1.5.1 - 2023/03/07
 
 ### Fixed
