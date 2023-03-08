@@ -1,6 +1,7 @@
 import { exit } from 'node:process'
 import { spawn, execSync } from 'node:child_process'
 import chalk from 'chalk'
+import { stripIndents } from 'common-tags'
 import { getOriginIcon } from './icons.js'
 
 const addArgs = (yargs, flags) => {
@@ -17,7 +18,7 @@ const replaceCommand = (args, action) => {
 }
 
 const addPositional = (args, action) => {
-  const {0: key, 1: value} = Object.entries(action)[0]
+  const { 0: key, 1: value } = Object.entries(action)[0]
   const start = args?.findIndex((arg) => arg.startsWith(key))
 
   if (start > 0) {
@@ -53,7 +54,7 @@ export const translateCommand = (yargs) => {
 }
 
 export const showCommand = ($0, { origin, cmd, args, config }) => {
-  if ($0 === 'swpx'){
+  if ($0 === 'swpx') {
     cmd = config.exc
   }
 
@@ -61,11 +62,11 @@ export const showCommand = ($0, { origin, cmd, args, config }) => {
 }
 
 export const runCommand = ($0, { cmd, args, config, volta = false }) => {
-  if ($0 === 'swpx'){
+  if ($0 === 'swpx') {
     cmd = config.exc
   }
 
-  if (volta) {
+  if (volta && cmd !== 'volta') {
     args = ['run', cmd, ...args]
     cmd = 'volta'
   }

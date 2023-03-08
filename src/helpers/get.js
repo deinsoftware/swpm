@@ -81,10 +81,13 @@ export const getCurrentPackageManager = async () => {
 }
 
 // https://volta.sh/
-export const detectVoltaPin = async () => {
+export const detectVoltaPin = async (pkg) => {
   const packageJson = await getPackageJson()
 
   if (packageJson) {
-    return propertyExists(packageJson, 'volta')
+    return (
+      propertyExists(packageJson, 'volta') &&
+      (pkg?.cmd in packageJson?.volta)
+    )
   }
 }

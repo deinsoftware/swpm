@@ -1,6 +1,15 @@
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
 
+export const findVoltaGlobals = (yargs, flags) => {
+  const hasGlobalOperations = (
+    yargs?.pkg?.volta &&
+    yargs?.global &&
+    flags.some((flag) => yargs?.pkg?.args.includes(flag))
+  )
+  return hasGlobalOperations
+}
+
 const findFlagIndex = (args, flag) => {
   return args?.findIndex((arg) => arg === flag)
 }

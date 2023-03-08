@@ -1,6 +1,12 @@
-import { translateArgs } from '../../../helpers/args.js'
+import { findVoltaGlobals, translateArgs } from '../../../helpers/args.js'
 
 const middleware = (yargs) => {
+  if (findVoltaGlobals(yargs, ['uninstall', 'remove'])
+  ) {
+    yargs.pkg.cmd = 'volta'
+    yargs.pkg.args = ['uninstall', yargs.package]
+  }
+
   if ('save-dev' in yargs) {
     translateArgs(yargs, '--save-dev', '-D')
   }
