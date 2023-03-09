@@ -7,7 +7,7 @@ export const findVoltaGlobals = (yargs, flags) => {
     yargs?.global &&
     flags.some((flag) => yargs?.pkg?.args.includes(flag))
   )
-  return hasGlobalOperations && getCommandResult('volta --version', yargs?.pkg?.volta)
+  return hasGlobalOperations && getCommandResult('volta --version')
 }
 
 const findFlagIndex = (args, flag) => {
