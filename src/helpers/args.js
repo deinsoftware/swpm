@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
-import { getCommandResult } from './cmds'
+import { getCommandResult } from './cmds.js'
 
 export const findVoltaGlobals = (yargs, flags) => {
   const hasGlobalOperations = (
