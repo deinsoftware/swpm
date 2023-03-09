@@ -21,6 +21,7 @@
     "sup": "./src/alias/sup.js",
     "sug": "./src/alias/sug.js",
     "sui": "./src/alias/sui.js",
+    "sc": "./src/alias/sc.js",
     "scn": "./src/alias/scn.js",
     "scl": "./src/alias/scl.js",
     "scb": "./src/alias/scb.js",

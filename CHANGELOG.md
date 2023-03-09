@@ -9,6 +9,22 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.7.0 - 2023/03/08
+
+### Added
+
+- `sc` alias for create
+- install command on each package manager
+
+### Changed
+
+- example image adding bun
+- auto update interval verification and global flag
+
+### Fixed
+
+- install global packages with volta, check is if is installed and not if is pinned
+
 ## 1.6.0 - 2023/03/08
 
 ### Added
@@ -310,9 +326,6 @@ Security    to invite users to upgrade in case of vulnerabilities.
 ### Changed
 
 - `--frozen-lockfile` flag was replaced for `--frozen` on install command
-  
-### Changed
-
 - yargs refactor
 - structure project reorder
 
@@ -375,7 +388,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ### Added
 
-- yargs middleware to preprocess the Package Manager to use
+- yargs middleware to reprocesses the Package Manager to use
 - yargs `install` and `add` commands
 - `common-tags` library to stylize output messages
 

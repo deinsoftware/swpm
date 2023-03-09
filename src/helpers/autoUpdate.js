@@ -10,8 +10,8 @@ export const autoUpdate = async () => {
       version
     },
     shouldNotifyInNpmScript: true,
-    updateCheckInterval: 0
+    updateCheckInterval: 1000 * 60 * 60 * 24 /* 1 day */
   }
   const notifier = updateNotifier(option)
-  await notifier.notify()
+  await notifier.notify({ isGlobal: true })
 }

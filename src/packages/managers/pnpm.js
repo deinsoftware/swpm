@@ -6,6 +6,7 @@ const pnpm = {
   version: '',
   lockFile: 'pnpm-lock.yaml',
   logFile: 'pnpm-debug.log',
+  install: 'pnpm install swpm --global',
   cmds: {
     remove: 'uninstall',
     r: 'uninstall',

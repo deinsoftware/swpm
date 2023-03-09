@@ -6,6 +6,7 @@ const npm = {
   version: '',
   lockFile: 'package-lock.json',
   logFile: 'npm-debug.log',
+  install: 'npm install swpm --location=global',
   cmds: {
     remove: 'uninstall',
     r: 'uninstall',

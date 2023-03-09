@@ -6,6 +6,7 @@ const bun = {
   version: '',
   lockFile: 'bun.lockb',
   logFile: '',
+  install: 'bun install -g swpm',
   cmds: {
     i: 'install',
     a: 'add',

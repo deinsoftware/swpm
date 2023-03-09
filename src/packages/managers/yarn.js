@@ -6,6 +6,7 @@ const yarn = {
   version: '',
   lockFile: 'yarn.lock',
   logFile: 'yarn-error.log',
+  install: 'yarn global add swpm',
   cmds: {
     i: 'install',
     a: 'add',
