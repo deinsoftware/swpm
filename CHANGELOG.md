@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.7.1 - 2023/03/08
+
+### Fixed
+
+- Auto update message
+
 ## 1.7.0 - 2023/03/08
 
 ### Added
@@ -23,7 +29,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ### Fixed
 
-- install global packages with volta, check is if is installed and not if is pinned
+- install global packages with volta, check if is installed and not if is pinned
 
 ## 1.6.0 - 2023/03/08
 

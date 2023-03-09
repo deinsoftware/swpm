@@ -10,8 +10,6 @@ import { showPackageInformation } from '../flags/info.js'
 import { showCommandAlias } from '../flags/alias.js'
 import { testCommand } from '../flags/test.js'
 
-await autoUpdate()
-
 if (yargs.debug) {
   console.log(
     inspect(
@@ -40,6 +38,8 @@ if (yargs?.info) {
 if (yargs?.alias) {
   await showCommandAlias()
 }
+
+await autoUpdate(yargs)
 
 if (yargs?.pkg?.cmd) {
   showCommand(yargs.$0, yargs.pkg)
