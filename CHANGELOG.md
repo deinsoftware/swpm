@@ -23,7 +23,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ### Fixed
 
-- install global packages with volta, check is if is installed and not if is pinned
+- install global packages with volta, check if is installed and not if is pinned
 
 ## 1.6.0 - 2023/03/08
 
