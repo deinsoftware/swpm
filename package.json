@@ -84,8 +84,8 @@
     "yargs": "17.7.1"
   },
   "devDependencies": {
-    "@vitest/coverage-c8": "0.29.1",
-    "eslint": "8.35.0",
+    "@vitest/coverage-c8": "0.29.2",
+    "eslint": "8.36.0",
     "eslint-config-standard": "17.0.0",
     "eslint-plugin-import": "2.27.5",
     "eslint-plugin-n": "15.6.1",
