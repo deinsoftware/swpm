@@ -476,9 +476,9 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**       | `pnpm update --interactive` |
 | **bun**        | N/A                         |
 
-### sc - create
+### scr - create
 
-| Package/Alias  | `sc <package>`          | `sc vite`          |
+| Package/Alias  | `scr <package>`          | `scr vite`          |
 | -------------- | ----------------------- | ------------------ |
 | **npm**        | `npm create <package>`  | `npm create vite`  |
 | **yarn**       | `yarn create <package>` | `yarn create vite` |

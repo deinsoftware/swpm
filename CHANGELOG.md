@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.7.2 - 2023/03/12
+
+### Changed
+
+- `sc` command alias to `scr` to avoid conflicts with the `sc` command for the Service Control Manger
+
 ## 1.7.1 - 2023/03/08
 
 ### Fixed
