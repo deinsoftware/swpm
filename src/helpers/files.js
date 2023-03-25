@@ -1,6 +1,5 @@
-import { cwd, exit } from 'node:process'
+import { exit } from 'node:process'
 import fs from 'node:fs/promises'
-import { resolve as resolvePath } from 'node:path'
 import chalk from 'chalk'
 import { findUp } from 'find-up'
 
@@ -38,17 +37,17 @@ export const lockFileExists = async (fileName) => {
 }
 
 export const savePackageJson = async (data, fileName = packageName) => {
-  const exists = await fileExists(fileName)
+	const closestPackageJsonPath = await findUp(fileName)
+  const exists = await fileExists(closestPackageJsonPath)
   if (!exists) {
     console.error(`${chalk.red.bold('Error')}: there is no ${chalk.red.bold(fileName)} file on current path.`)
     exit(1)
   }
 
-  const path = resolvePath(cwd(), fileName)
   try {
     const content = JSON.stringify(data, null, 2)
     await fs.writeFile(
-      path,
+      closestPackageJsonPath,
       content,
       {
         encoding: 'utf8',
