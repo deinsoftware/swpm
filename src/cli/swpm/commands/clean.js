@@ -21,6 +21,10 @@ const middleware = async (yargs) => {
     await deletePath('build')
   }
 
+  if ('all' in yargs || 'dist' in yargs) {
+    await deletePath('dist')
+  }
+
   if ('all' in yargs || 'coverage' in yargs) {
     await deletePath('coverage')
   }
@@ -66,6 +70,13 @@ const clean = {
       type: 'boolean',
       desc: 'delete build folder',
       usage: '$0 clean --build',
+      conflicts: ['all']
+    })
+
+    yargs.option('dist', {
+      type: 'boolean',
+      desc: 'delete dist folder',
+      usage: '$0 clean --dist',
       conflicts: ['all']
     })
 
