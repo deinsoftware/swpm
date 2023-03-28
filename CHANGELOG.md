@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.8.0 - 2023/03/28
+
+### Added
+
+- `--dist` flag to `clean` command
+
 ## 1.7.2 - 2023/03/12
 
 ### Changed

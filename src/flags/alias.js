@@ -30,6 +30,7 @@ const aliases = {
   scn: 'swpm clean --node-modules',
   scl: 'swpm clean --lock',
   scb: 'swpm clean --build',
+  scd: 'swpm clean --dist',
   scc: 'swpm clean --coverage',
   sca: 'swpm clean --all',
   sp: 'swpm --pin <npm|yarn|pnpm|bun>',

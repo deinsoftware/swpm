@@ -492,6 +492,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | `scn`  | `swpm clean --node-modules`         |
 | `scl`  | `swpm clean --lock`                 |
 | `scb`  | `swpm clean --build`                |
+| `scd`  | `swpm clean --dist`                 |
 | `scc`  | `swpm clean --coverage`             |
 | `sca`  | `swpm clean --all`                  |
 
