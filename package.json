@@ -38,10 +38,10 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
-    "test": "vitest --run --reporter verbose",
-    "test:w": "vitest",
-    "test:c": "vitest run --coverage",
-    "test:cw": "vitest watch --coverage"
+    "test": "vitest --run --reporter verbose --no-threads",
+    "test:w": "vitest --no-threads",
+    "test:c": "vitest run --coverage --no-threads",
+    "test:cw": "vitest watch --coverage --no-threads"
   },
   "repository": {
     "type": "git",
