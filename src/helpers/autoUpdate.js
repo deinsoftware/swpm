@@ -23,7 +23,7 @@ export const autoUpdate = async (yargs) => {
     const updateMessage = {
       versions: [
         'Update available',
-        last,
+        last ?? '',
         ' →',
         current
       ],
