@@ -8,14 +8,13 @@ const middleware = (yargs) => {
     translateArgs(yargs, '--package-lock', '-P')
   }
 
-  if ('frozen-lockfile' in yargs) {
+  if ('frozen' in yargs) {
     translateArgs(yargs, '--frozen', '-F')
   }
 
-  if ('FLAGS' in yargs) {
+  if ('FLAGS' in yargs || 'global' in yargs) {
     console.error(stripIndents`
-      ${chalk.red.bold('Error')}: to install a specific ${chalk.bold('<package>')}
-      please use ${chalk.bold('add')} command.
+      ${chalk.red.bold('Error')}: to install a specific ${chalk.bold('<package>')} please use ${chalk.bold('add')} command.
 
       ${chalk.blue.bold('swpm add <package> [FLAGS]')}
     `)
@@ -37,10 +36,10 @@ const install = {
       type: 'boolean',
       description: 'ignore lock file when installing and prevents writing',
       usage: '$0 install --package-lock',
-      conflicts: ['frozen-lockfile']
+      conflicts: ['frozen']
     })
 
-    yargs.option('frozen-lockfile', {
+    yargs.option('frozen', {
       alias: 'F',
       type: 'boolean',
       description: 'install from lock file (without updating it)',

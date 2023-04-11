@@ -19,6 +19,11 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 - Update some package versions
 
+### Fixed
+
+- `--frozen` flag translation on `install` Command
+- add new filter for `--global` flag on `install` Command
+
 ## 1.8.0 - 2023/03/28
 
 ### Added
