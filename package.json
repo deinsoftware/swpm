@@ -39,10 +39,10 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
-    "test": "vitest --run --reporter verbose",
-    "test:w": "vitest",
-    "test:c": "vitest run --coverage",
-    "test:cw": "vitest watch --coverage"
+    "test": "vitest --run --reporter verbose --no-threads",
+    "test:w": "vitest --no-threads",
+    "test:c": "vitest run --coverage --no-threads",
+    "test:cw": "vitest watch --coverage --no-threads"
   },
   "repository": {
     "type": "git",
@@ -81,6 +81,7 @@
     "chalk": "5.2.0",
     "command-exists": "1.2.9",
     "common-tags": "1.8.2",
+    "find-up": "^6.3.0",
     "update-notifier": "6.0.2",
     "yargs": "17.7.1"
   },
