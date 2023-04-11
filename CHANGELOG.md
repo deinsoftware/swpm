@@ -21,8 +21,9 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ### Fixed
 
-- `--frozen` flag translation on `install` Command
-- add new filter for `--global` flag on `install` Command
+- `--frozen` flag translation on `install` command
+- add new filter for `--global` flag on `install` command
+- undefined value on update current version message
 
 ## 1.8.0 - 2023/03/28
 
