@@ -16,7 +16,7 @@ export const fileExists = async (path) => {
 
 export const getPackageJson = async (fileName = packageName) => {
   try {
-		const closestPackageJsonPath = await findUp(fileName)
+    const closestPackageJsonPath = await findUp(fileName)
     const pkg = await fs.readFile(closestPackageJsonPath)
     if (pkg) {
       return JSON.parse(pkg)
@@ -27,17 +27,17 @@ export const getPackageJson = async (fileName = packageName) => {
 }
 
 export const lockFileExists = async (fileName) => {
-	const closestLockfilePath = await findUp(fileName)
+  const closestLockfilePath = await findUp(fileName)
 
-	if (!closestLockfilePath) {
-		return false
-	}
+  if (!closestLockfilePath) {
+    return false
+  }
 
   return fileExists(closestLockfilePath)
 }
 
 export const savePackageJson = async (data, fileName = packageName) => {
-	const closestPackageJsonPath = await findUp(fileName)
+  const closestPackageJsonPath = await findUp(fileName)
   const exists = await fileExists(closestPackageJsonPath)
   if (!exists) {
     console.error(`${chalk.red.bold('Error')}: there is no ${chalk.red.bold(fileName)} file on current path.`)

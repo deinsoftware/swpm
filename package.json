@@ -1,6 +1,6 @@
 {
   "name": "swpm",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "engines": {
     "node": ">=16"
   },
@@ -49,6 +49,7 @@
     "url": "https://github.com/deinsoftware/swpm.git"
   },
   "keywords": [
+    "swpm",
     "npm",
     "yarn",
     "pnpm",
@@ -81,18 +82,18 @@
     "chalk": "5.2.0",
     "command-exists": "1.2.9",
     "common-tags": "1.8.2",
-    "find-up": "^6.3.0",
+    "find-up": "6.3.0",
     "update-notifier": "6.0.2",
     "yargs": "17.7.1"
   },
   "devDependencies": {
-    "@vitest/coverage-c8": "0.29.2",
-    "eslint": "8.36.0",
+    "@vitest/coverage-c8": "0.30.1",
+    "eslint": "8.38.0",
     "eslint-config-standard": "17.0.0",
     "eslint-plugin-import": "2.27.5",
-    "eslint-plugin-n": "15.6.1",
+    "eslint-plugin-n": "15.7.0",
     "eslint-plugin-promise": "6.1.1",
-    "vitest": "0.29.2"
+    "vitest": "0.30.1"
   },
   "packageManager": "npm@9.3.1",
   "swpm": "npm"

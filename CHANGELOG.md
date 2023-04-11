@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.9.0 - 2023/04/11
+
+### Added
+
+- Run `swpm` commands from subdirectories and workspace packages by [@TylerBarnes](https://github.com/TylerBarnes)
+
+### Changed
+
+- Update some package versions
+
 ## 1.8.0 - 2023/03/28
 
 ### Added
