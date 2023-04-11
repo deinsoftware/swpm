@@ -644,6 +644,10 @@ The `<package>` parameter should follow one of these structures:
 <folder>
 ```
 
+### Monorepos
+
+`swpm` is compatible with monorepos. You can run it from any subdirectory and it will search upwards until it finds the closest `package.json` and `lockfile`.
+
 ### Non documented commands
 
 `swpm` is not restrictive, if a command translations was not included yet, you can write the command as the package manager expect, then `swpm` will try to infer the package manager and preserve the rest of the command and arguments without changes and run them.
