@@ -54,8 +54,6 @@ export const updateTerminalTitle = (status) => {
     throw new Error(`Terminal title must be initialized before updating it.`)
   }
 
-  console.log(`status: ${status}`)
-
   setTitle(`${titleState.status} ${titleState.cliName}: ${titleState.packageManagerName} ${titleState.action}`)
 }
 
