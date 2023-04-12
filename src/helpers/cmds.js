@@ -2,6 +2,9 @@ import { exit } from 'node:process'
 import { spawn, execSync } from 'node:child_process'
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
+import setTitle from "node-bash-title"
+import exitHook from "exit-hook"
+
 import { getOriginIcon } from './icons.js'
 
 const addArgs = (yargs, flags) => {
@@ -24,6 +27,49 @@ const addPositional = (args, action) => {
   if (start > 0) {
     args.splice(start, 0, value)
   }
+}
+
+const statuses = {
+  running: `🟢`,
+  success: `✅`,
+  error: `❌`,
+  cancelled: `❎`
+}
+
+const titleState = {
+  cliName: null,
+  packageManagerName: null,
+  action: null,
+  status: null
+}
+
+export const updateTerminalTitle = (status) => {
+  if (!status) {
+    throw new Error(`Terminal title status must be provided.`)
+  }
+
+  titleState.status = status
+
+  if (!titleState.cliName || !titleState.packageManagerName || !titleState.action) {
+    throw new Error(`Terminal title must be initialized before updating it.`)
+  }
+
+  console.log(`status: ${status}`)
+
+  setTitle(`${titleState.status} ${titleState.cliName}: ${titleState.packageManagerName} ${titleState.action}`)
+}
+
+const initTerminalTitle = ({
+  args,
+  packageManagerName,
+  cliName,
+  status
+}) => {
+  titleState.action = Array.isArray(args) ? args.join(` `) : args
+  titleState.packageManagerName = packageManagerName
+  titleState.cliName = cliName
+
+  updateTerminalTitle(status)
 }
 
 export const translateCommand = (yargs) => {
@@ -71,13 +117,37 @@ export const runCommand = ($0, { cmd, args, config, volta = false }) => {
     cmd = 'volta'
   }
 
+  initTerminalTitle({
+    args,
+    cliName: $0,
+    status: statuses.running,
+    packageManagerName: cmd,
+  })
+
+  let didCancel = true
+
+  exitHook(() => {
+    if (didCancel) {
+      updateTerminalTitle(statuses.cancelled)
+    }
+  })
+
   spawn(cmd, [...args], { stdio: 'inherit', shell: true })
     .on('error', (error) => {
       console.error(stripIndents`
         ${chalk.red.bold('Error')}:
         ${error}
       `)
+      updateTerminalTitle(statuses.error)
+      didCancel = false
       exit(1)
+    }).on('exit', (code) => {
+      didCancel = false
+      if (code === 0) {
+        updateTerminalTitle(statuses.success)
+      } else {
+        updateTerminalTitle(statuses.error)
+      }
     })
 }
 
