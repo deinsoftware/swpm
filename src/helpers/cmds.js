@@ -43,6 +43,15 @@ const titleState = {
   status: null
 }
 
+
+function truncateString(str, num) {
+  if (str.length <= num) {
+    return str
+  }
+
+  return str.slice(0, num) + '...'
+}
+
 export const updateTerminalTitle = (status) => {
   if (!status) {
     throw new Error(`Terminal title status must be provided.`)
@@ -54,7 +63,12 @@ export const updateTerminalTitle = (status) => {
     throw new Error(`Terminal title must be initialized before updating it.`)
   }
 
-  setTitle(`${titleState.status} ${titleState.cliName}: ${titleState.packageManagerName} ${titleState.action}`)
+  setTitle(
+    truncateString(
+      `${titleState.status} ${titleState.cliName}: ${titleState.packageManagerName} ${titleState.action}`,
+      30
+    )
+  )
 }
 
 const initTerminalTitle = ({
