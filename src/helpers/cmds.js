@@ -30,7 +30,7 @@ const addPositional = (args, action) => {
 }
 
 const statuses = {
-  running: `🟢`,
+  running: [`🕛`, `🕐`, `🕑`, `🕒`, `🕓`, `🕔`, `🕕`, `🕖`, `🕗`, `🕘`, `🕙`, `🕚`],
   success: `✅`,
   error: `❌`,
   cancelled: `❎`
@@ -63,12 +63,30 @@ export const updateTerminalTitle = (status) => {
     throw new Error(`Terminal title must be initialized before updating it.`)
   }
 
-  setTitle(
-    truncateString(
-      `${titleState.status} ${titleState.cliName}: ${titleState.packageManagerName} ${titleState.action}`,
-      30
+  const title = `${titleState.packageManagerName} ${truncateString(titleState.action, 25)} (${titleState.cliName})`
+
+  if (Array.isArray(status)) {
+    let i = 0
+
+    const interval = setInterval(() => {
+      if (titleState.status !== status) {
+        clearInterval(interval)
+        return
+      }
+
+      setTitle(
+        `${status[i++ % status.length]} ${title}`,
+      )
+    }, 1000)
+  } else {
+    setTitle(
+      truncateString(
+        `${titleState.status} ${title}`,
+        30
+      )
     )
-  )
+  }
+
 }
 
 const initTerminalTitle = ({
