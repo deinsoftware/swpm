@@ -498,13 +498,13 @@ Quick and short aliases for `swpm` and `swpx` commands.
 
 ### sp[?] - pin
 
-| Alias  | Command                          |
-| ------ | -------------------------------- |
-| `sp`   | `swpm --pin <npm|yarn|pnpm|bun>` |
-| `spn`  | `swpm --pin npm`                 |
-| `spy`  | `swpm --pin yarn`                |
-| `spp`  | `swpm --pin pnp`                 |
-| `spb`  | `swpm --pin bun`                 |
+| Alias  | Command                             |
+| ------ | ----------------------------------- |
+| `sp`   | `swpm --pin <npm\|yarn\|pnpm\|bun>` |
+| `spn`  | `swpm --pin npm`                    |
+| `spy`  | `swpm --pin yarn`                   |
+| `spp`  | `swpm --pin pnp`                    |
+| `spb`  | `swpm --pin bun`                    |
 
 ### sr - run
 
@@ -604,11 +604,11 @@ You can set a default or **global** pin Package Manager in order to avoid the `-
 
 Create an `SWPM` environment variable with one of this values `<npm|yarn|pnpm|bun>`.
 
-| OS    | Command                                                                     |
-| ----- | --------------------------------------------------------------------------- |
-| win   | `setx SWPM "<npm\|yarn\|pnpm|bun>"`                                         |
-| macOS | `echo 'export SWPM="<npm\|yarn\|pnpm|bun>"' >> <~/.bash_profile\|~/.zshrc>` |
-| linux | `echo 'export SWPM="<npm\|yarn\|pnpm|bun>"' >> <~/.bash_profile\|~/.zshrc>` |
+| OS    | Command                                                                      |
+| ----- | ---------------------------------------------------------------------------- |
+| win   | `setx SWPM "<npm\|yarn\|pnpm\|bun>"`                                         |
+| macOS | `echo 'export SWPM="<npm\|yarn\|pnpm\|bun>"' >> <~/.bash_profile\|~/.zshrc>` |
+| linux | `echo 'export SWPM="<npm\|yarn\|pnpm\|bun>"' >> <~/.bash_profile\|~/.zshrc>` |
 
 ⇧ [Back to menu](#menu)
 
