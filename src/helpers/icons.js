@@ -17,3 +17,13 @@ const result = {
 export const getResultIcon = (name) => {
   return result[name] ?? ''
 }
+
+const status = {
+  running: '🕙',
+  success: '✅',
+  error: '❌',
+  cancelled: '❎'
+}
+export const getStatusIcon = (name) => {
+  return status[name] ?? ''
+}

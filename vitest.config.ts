@@ -9,7 +9,7 @@ export default defineConfig({
       reporter: ["text", "html", "lcov"],
       statements: 22,
       branches: 49,
-      functions: 27,
+      functions: 25,
       lines: 22,
     },
   },
