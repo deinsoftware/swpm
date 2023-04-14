@@ -53,19 +53,11 @@ export const translateCommand = (yargs) => {
   }
 }
 
-export const showCommand = ($0, { origin, cmd, args, config }) => {
-  if ($0 === 'swpx') {
-    cmd = config.exc
-  }
-
+export const showCommand = ({ origin, cmd, args, config }) => {
   console.log(`${(origin ? getOriginIcon(origin) + ' ' : '')}${chalk.hex(config?.color ?? '').bold(cmd)} ${args?.join(' ')}`)
 }
 
-export const runCommand = ($0, { cmd, args, config, volta = false }) => {
-  if ($0 === 'swpx') {
-    cmd = config.exc
-  }
-
+export const runCommand = ({ cmd, args, volta = false }) => {
   if (volta && cmd !== 'volta') {
     args = ['run', cmd, ...args]
     cmd = 'volta'
