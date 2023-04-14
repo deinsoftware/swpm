@@ -28,7 +28,7 @@ if (yargs?.pin) {
 }
 
 if (yargs?.test) {
-  testCommand(yargs.$0, yargs.pkg)
+  testCommand(yargs.pkg)
 }
 
 if (yargs?.info) {
@@ -42,6 +42,6 @@ if (yargs?.alias) {
 await autoUpdate(yargs)
 
 if (yargs?.pkg?.cmd) {
-  showCommand(yargs.$0, yargs.pkg)
-  runCommand(yargs.$0, yargs.pkg)
+  showCommand(yargs.pkg)
+  runCommand(yargs.pkg)
 }

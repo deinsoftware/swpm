@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.9.1 - 2023/04/10
+
+### Fixed
+
+- Readme command for global and alias pin
+
+### Changed
+
+- Performance improvement. Changing the command execution for each Package Manager directly on `swpx` process before the `showCommand` and `runCommand` methods
+
 ## 1.9.0 - 2023/04/11
 
 ### Added
