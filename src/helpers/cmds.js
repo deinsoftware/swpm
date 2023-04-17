@@ -60,7 +60,10 @@ export const showCommand = ({ origin, cmd, args, config }) => {
   console.log(`${(origin ? getOriginIcon(origin) + ' ' : '')}${chalk.hex(config?.color ?? '').bold(cmd)} ${args?.join(' ')}`)
 }
 
-export const runCommand = ({ cmd, args, volta = false }) => {
+export const runCommand = (yargs) => {
+  const $0 = yargs?.$0 || ''
+  let { cmd, args, volta = false } = yargs?.pkg || {}
+
   if (volta && cmd !== 'volta') {
     args = ['run', cmd, ...args]
     cmd = 'volta'

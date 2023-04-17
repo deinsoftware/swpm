@@ -84,7 +84,6 @@
     "common-tags": "1.8.2",
     "exit-hook": "3.2.0",
     "find-up": "6.3.0",
-    "node-bash-title": "0.0.2",
     "update-notifier": "6.0.2",
     "yargs": "17.7.1"
   },

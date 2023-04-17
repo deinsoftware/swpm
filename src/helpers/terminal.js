@@ -1,4 +1,10 @@
-import setTitle from 'node-bash-title'
+const setTitle = (title) => {
+  if (process.platform === 'win32') {
+    process.title = title
+  } else {
+    process.stdout.write('\x1b]2;' + title + '\x1b\x5c')
+  }
+}
 
 const ACTION_TITLE_MAX_LEN = 25
 const TITLE_MAX_LEN = 30
