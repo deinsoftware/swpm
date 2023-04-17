@@ -22,7 +22,7 @@ const status = {
   running: '🕙',
   success: '✅',
   error: '❌',
-  cancelled: '❎'
+  canceled: '❎'
 }
 export const getStatusIcon = (name) => {
   return status[name] ?? ''
