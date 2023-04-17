@@ -2,7 +2,9 @@ const setTitle = (title) => {
   if (process.platform === 'win32') {
     process.title = title
   } else {
-    process.stdout.write('\x1b]2;' + title + '\x1b\x5c')
+    process.stdout.write(
+      String.fromCharCode(27) + ']0;' + title + String.fromCharCode(7)
+    )
   }
 }
 
