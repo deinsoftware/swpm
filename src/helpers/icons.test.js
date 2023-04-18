@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 import { describe, test, expect } from 'vitest'
-import { getOriginIcon, getResultIcon } from './icons.js'
+import { getOriginIcon, getResultIcon, getStatusIcon } from './icons.js'
 
 describe('getOriginIcon()', () => {
   test('should return empty when not has name parameter', () => {
@@ -24,6 +24,32 @@ describe('getOriginIcon()', () => {
     const name = 'pinned'
     const expectedResult = '📌'
     const result = getOriginIcon(name)
+    expect(result).toBe(expectedResult)
+  })
+})
+
+describe('getStatusIcon()', () => {
+  test('should return empty when not has name parameter', () => {
+    const result = getStatusIcon()
+    expect(result).toBe('')
+  })
+
+  test('should return empty when name parameter is empty', () => {
+    const name = ''
+    const result = getStatusIcon(name)
+    expect(result).toBe('')
+  })
+
+  test('should return empty when name parameter not exist', () => {
+    const name = 'not'
+    const result = getStatusIcon(name)
+    expect(result).toBe('')
+  })
+
+  test('should return expected icon when name parameter exist', () => {
+    const name = 'running'
+    const expectedResult = '🕙'
+    const result = getStatusIcon(name)
     expect(result).toBe(expectedResult)
   })
 })
