@@ -1,13 +1,3 @@
-const setTitle = (title) => {
-  if (process.platform === 'win32') {
-    process.title = title
-  } else {
-    process.stdout.write(
-      String.fromCharCode(27) + ']0;' + title + String.fromCharCode(7)
-    )
-  }
-}
-
 const ACTION_TITLE_MAX_LEN = 25
 const TITLE_MAX_LEN = 30
 
@@ -26,34 +16,35 @@ const truncateTitle = (title, maxLength) => {
   return `${title.slice(0, maxLength)}...`
 }
 
-const updateTitle = (status) => {
-  if (!status) {
-    throw new Error('Terminal title status must be provided.')
+const setTitle = (title) => {
+  const titleText = truncateTitle(title, TITLE_MAX_LEN)
+
+  if (process.platform === 'win32') {
+    process.title = titleText
+  } else {
+    process.stdout.write(
+      String.fromCharCode(27) + ']0;' + titleText + String.fromCharCode(7)
+    )
+  }
+}
+
+const updateTitle = (statusResult = '') => {
+  titleState.status = statusResult
+
+  const { scriptName, pkg, action, status } = titleState || {}
+  if (!scriptName || !pkg || !action) {
+    return
   }
 
-  titleState.status = status
-
-  if (!titleState.scriptName || !titleState.pkg || !titleState.action) {
-    throw new Error('Terminal title must be initialized before updating it.')
-  }
-
-  const actionText = truncateTitle(titleState.action, ACTION_TITLE_MAX_LEN)
-  const titleText = `${titleState.status} ${titleState.pkg} ${actionText} (${titleState.scriptName})`
-  const title = truncateTitle(titleText, TITLE_MAX_LEN)
+  const actionText = truncateTitle(action, ACTION_TITLE_MAX_LEN)
+  const title = `${status} ${pkg} ${actionText} (${scriptName})`
   setTitle(title)
 }
 
-const initTitle = (
-  {
-    scriptName,
-    pkg,
-    args,
-    status
-  }
-) => {
+const initTitle = ({ scriptName, pkg, args, status }) => {
   titleState.scriptName = scriptName
   titleState.pkg = pkg
-  titleState.action = Array.isArray(args) ? args.join(' ') : args
+  titleState.action = Array.isArray(args) ? args.join(' ') : (args || '')
 
   updateTitle(status)
 }
