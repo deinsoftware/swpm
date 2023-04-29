@@ -69,7 +69,7 @@ export const runCommand = ({ cmd, args, volta = false }) => {
     cmd = 'volta'
   }
 
-  const run = spawn(cmd, [...args], { stdio: 'inherit', shell: true })
+  const run = spawn(cmd, [...args], { stdio: 'inherit', shell: false })
 
   return new Promise((resolve) => {
     run.on('error', (error) => {
