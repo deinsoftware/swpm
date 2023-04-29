@@ -27,10 +27,32 @@ export const deleteFile = async (fileName) => {
   deleteResult(result, fileName)
 }
 
+export const deleteModulesPath = async () => {
+  for (const pkg of packagesList) {
+    for (const moduleFile of pkg.modulesFile) {
+      if (await fileExists(moduleFile)) {
+        await deleteFile(moduleFile)
+      }
+    }
+  }
+}
+
+export const deleteModulesFiles = async () => {
+  for (const pkg of packagesList) {
+    for (const moduleFile of pkg.modulesFile) {
+      if (await fileExists(moduleFile)) {
+        await deleteFile(moduleFile)
+      }
+    }
+  }
+}
+
 export const deleteLockFiles = async () => {
   for (const pkg of packagesList) {
-    if (await fileExists(pkg.lockFile)) {
-      await deleteFile(pkg.lockFile)
+    for (const lockFile of pkg.lockFiles) {
+      if (await fileExists(lockFile)) {
+        await deleteFile(lockFile)
+      }
     }
   }
 }

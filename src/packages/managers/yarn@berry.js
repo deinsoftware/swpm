@@ -1,13 +1,13 @@
-const yarn = {
-  cmd: 'yarn',
+const yarnBerry = {
+  cmd: 'yarn@berry',
   exc: 'yarn dlx',
   color: '#3a90b8',
   url: 'https://yarnpkg.com/',
-  semver: '1',
-  version: 'classic',
-  lockFiles: ['yarn.lock', '.yarnrc'],
-  modulesPath: [],
-  modulesFile: [],
+  semver: '>=2',
+  version: 'berry',
+  lockFiles: ['yarn.lock', '.yarnrc.yml'],
+  modulesPath: ['.yarn/cache', '.yarn/unplugged'],
+  modulesFile: ['.pnp.cjs', '.pnp.loader.mjs'],
   logFile: 'yarn-error.log',
   install: 'yarn global add swpm',
   cmds: {
@@ -18,15 +18,17 @@ const yarn = {
     un: 'remove',
     interactive: 'upgrade-interactive',
     ui: 'upgrade-interactive',
-    update: 'upgrade',
-    up: 'upgrade',
-    ud: 'upgrade',
-    upgrade: ['upgrade', '--latest'],
-    ug: ['upgrade', '--latest']
+    update: 'semver up',
+    up: 'semver up',
+    ud: 'semver up',
+    upgrade: 'up',
+    ug: 'up',
+    publish: 'npm publish',
+    outdated: 'upgrade-interactive'
   },
   args: {
-    '--frozen': '--frozen-lockfile',
-    '-F': '--frozen-lockfile',
+    '--frozen': '--immutable',
+    '-F': '--immutable',
     '--global': ['global', 1],
     '-g': ['global', 1],
     '--interactive': {
@@ -41,4 +43,4 @@ const yarn = {
   }
 }
 
-export default yarn
+export default yarnBerry

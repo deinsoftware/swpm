@@ -3,8 +3,10 @@ const npm = {
   exc: 'npx',
   color: '#e32e37',
   url: 'https://www.npmjs.com/',
-  version: '',
-  lockFile: 'package-lock.json',
+  semver: '',
+  lockFiles: ['package-lock.json'],
+  modulesPath: [],
+  modulesFile: [],
   logFile: 'npm-debug.log',
   install: 'npm install swpm --location=global',
   cmds: {

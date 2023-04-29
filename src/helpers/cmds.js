@@ -53,24 +53,37 @@ export const translateCommand = (yargs) => {
   }
 }
 
+const cleanSpecificVersion = (cmd) => {
+  return cmd?.split('@')?.[0]
+}
+
 export const showCommand = ({ origin, cmd, args, config }) => {
   console.log(`${(origin ? getOriginIcon(origin) + ' ' : '')}${chalk.hex(config?.color ?? '').bold(cmd)} ${args?.join(' ')}`)
 }
 
 export const runCommand = ({ cmd, args, volta = false }) => {
+  cmd = cleanSpecificVersion(cmd)
+
   if (volta && cmd !== 'volta') {
     args = ['run', cmd, ...args]
     cmd = 'volta'
   }
 
-  spawn(cmd, [...args], { stdio: 'inherit', shell: true })
-    .on('error', (error) => {
+  const run = spawn(cmd, [...args], { stdio: 'inherit', shell: false })
+
+  return new Promise((resolve) => {
+    run.on('error', (error) => {
       console.error(stripIndents`
-        ${chalk.red.bold('Error')}:
-        ${error}
-      `)
+          ${chalk.red.bold('Error')}:
+          ${error}
+        `)
       exit(1)
     })
+
+    run.on('exit', (code) => {
+      resolve(code)
+    })
+  })
 }
 
 export const runAlias = (cmd, args) => {

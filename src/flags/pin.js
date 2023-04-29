@@ -8,7 +8,7 @@ export const pinPackageManager = async ({ cmd, config }) => {
   if (packageJson) {
     packageJson.swpm = cmd
     await savePackageJson(packageJson)
-    console.log(`${chalk.green.bold('Success')}: ${chalk.hex(config.color).bold(cmd)} was pinned on ${chalk.bold('package.json')} file.`)
+    console.log(`${chalk.green.bold('success')}: ${chalk.hex(config.color).bold(cmd)} was pinned on ${chalk.bold('package.json')} file.`)
     exit(0)
   }
 }

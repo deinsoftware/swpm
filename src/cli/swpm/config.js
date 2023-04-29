@@ -1,4 +1,4 @@
-import path from 'node:path';
+import path from 'node:path'
 
 import { argv } from 'node:process'
 import yargs from 'yargs'

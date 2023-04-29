@@ -64,7 +64,7 @@ describe('translateCommand()', () => {
         args: [cmd, flag, value],
         config: {
           cmds: {
-            [cmd]: {'--': '--'},
+            [cmd]: { '--': '--' }
           }
         }
       }

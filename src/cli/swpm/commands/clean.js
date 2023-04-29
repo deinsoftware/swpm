@@ -1,12 +1,19 @@
 import chalk from 'chalk'
 import { exit } from 'node:process'
-import { deleteLockFiles, deleteLogFiles, deletePath } from '../../../helpers/delete.js'
+import { deleteModulesPath, deleteModulesFiles, deleteLockFiles, deleteLogFiles, deletePath } from '../../../helpers/delete.js'
 
 const middleware = async (yargs) => {
   console.log(`🧽 ${chalk.bold('Cleaning')}: `)
 
-  if ('all' in yargs || 'node-modules' in yargs) {
+  if ('all' in yargs || 'modules' in yargs) {
     await deletePath('node_modules')
+    await deleteModulesFiles()
+  }
+  if ('modules' in yargs) {
+    await deleteModulesPath()
+  }
+  if ('all' in yargs) {
+    await deletePath('.yarn')
   }
 
   if ('all' in yargs || 'lock' in yargs) {
@@ -42,13 +49,13 @@ const clean = {
       type: 'boolean',
       desc: 'clean project',
       usage: '$0 clean --all',
-      conflicts: ['node-modules', 'build', 'coverage']
+      conflicts: ['modules', 'lock', 'log', 'build', 'dist', 'coverage']
     })
 
-    yargs.option('node-modules', {
+    yargs.option('modules', {
       type: 'boolean',
       desc: 'delete node_modules folder',
-      usage: '$0 clean --node-modules',
+      usage: '$0 clean --modules',
       conflicts: ['all']
     })
 
