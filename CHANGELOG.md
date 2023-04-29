@@ -16,7 +16,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 - yarn classic and berry support
 - automatic set yarn version for pin and use flags
 - added pin yarn@berry and clean+install alias
-- alternatives on README
+- alternatives on readme
 
 ### Changed
 
