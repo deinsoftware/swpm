@@ -9,6 +9,20 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.10.0 - 2023/04/28
+
+### Added
+
+- yarn classic and berry support
+- automatic set yarn version for pin and use flags
+- added pin yarn@berry and clean+install alias
+- alternatives on README
+
+### Changed
+
+- chaining commands using promises
+- clean command including the yarn@berry files and folders
+
 ## 1.9.1 - 2023/04/10
 
 ### Fixed

@@ -3,8 +3,10 @@ const pnpm = {
   exc: 'pnpm dlx',
   color: '#f7ad24',
   url: 'https://pnpm.io/',
-  version: '',
-  lockFile: 'pnpm-lock.yaml',
+  semver: '',
+  lockFiles: ['pnpm-lock.yaml'],
+  modulesPath: [],
+  modulesFile: [],
   logFile: 'pnpm-debug.log',
   install: 'pnpm install swpm --global',
   cmds: {

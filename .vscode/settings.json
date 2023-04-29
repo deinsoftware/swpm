@@ -21,10 +21,12 @@
     "setx",
     "sonarcloud",
     "sonarsource",
+    "spyb",
     "swpm",
     "swpx",
     "tryin",
     "unpublish",
+    "versioner",
     "volta"
   ],
   "files.exclude": {

@@ -3,7 +3,7 @@ import { availablePackages, packageExists, getPackageConfiguration } from './lis
 
 describe('availablePackages()', () => {
   test('should return a list of available packages', () => {
-    const expectedResult = ['npm', 'yarn', 'pnpm', 'bun']
+    const expectedResult = ['npm', 'yarn', 'yarn@berry', 'pnpm', 'bun']
     const result = availablePackages()
     expect(result).toEqual(
       expect.arrayContaining(expectedResult)
@@ -49,7 +49,7 @@ describe('getPackageConfiguration()', () => {
   test('should return the package configuration', async () => {
     const expectedResult = {
       cmd: 'npm',
-      lockFile: 'package-lock.json'
+      lockFiles: ['package-lock.json']
     }
     const pkg = {
       cmd: 'npm'

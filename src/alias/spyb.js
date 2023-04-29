@@ -2,4 +2,5 @@
 
 import { runAlias } from '../helpers/cmds.js'
 
-runAlias('swpm', ['clean', '--modules'])
+const args = ['--pin', 'yarn@berry']
+runAlias('swpm', args)
