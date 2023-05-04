@@ -57,7 +57,6 @@ const searchForLockFiles = async () => {
       await Promise.all(pkg.lockFiles.map(lockFileExists))
     ).every(Boolean)
 
-    console.log(pkg.cmd, { exists }, pkg.lockFiles)
     if (exists) {
       return pkg.cmd
     }
