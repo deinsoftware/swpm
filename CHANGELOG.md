@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.10.1 - 2023/05/08
+
+### Fixed
+
+- search for lock file false positives detection
+
 ## 1.10.0 - 2023/04/28
 
 ### Added
