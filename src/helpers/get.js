@@ -53,7 +53,10 @@ const getPropertyValue = async (packageJson, property) => {
 
 const searchForLockFiles = async () => {
   for (const pkg of packagesList) {
-    const exists = pkg.lockFiles.every(async (lockFile) => await lockFileExists(lockFile))
+    const exists = (
+      await Promise.all(pkg.lockFiles.map(lockFileExists))
+    ).every(Boolean)
+
     if (exists) {
       return pkg.cmd
     }
