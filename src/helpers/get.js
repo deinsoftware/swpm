@@ -1,6 +1,7 @@
 import { exit, env } from 'node:process'
 import { stripIndents } from 'common-tags'
 import chalk from 'chalk'
+import semver from 'semver'
 import { getPackageJson, lockFileExists } from './files.js'
 import packagesList, { packageExists } from '../packages/list.js'
 
@@ -10,26 +11,52 @@ const propertyExists = (packageJson, property) => {
   return (property in packageJson)
 }
 
+const getPackageManager = (packageJson, property) => {
+  let [cmd, version] = packageJson?.[property]?.split('@') ?? ['', '']
+
+  if (version) {
+    const compatiblePackage = packagesList.filter((pkg) => {
+      return (
+        pkg.semver &&
+        pkg.cmd.startsWith(cmd) &&
+        semver.satisfies(version, pkg.semver)
+      )
+    }) ?? []
+    if (compatiblePackage.length) {
+      const [pkg] = compatiblePackage
+      cmd = pkg.cmd
+    }
+  }
+
+  return `${cmd}`
+}
+
 const getPropertyValue = async (packageJson, property) => {
   if (!packageJson || !propertyExists(packageJson, property)) {
     return
   }
 
-  const prop = (property === 'packageManager') ? packageJson?.[property]?.split('@')?.[0] : packageJson?.[property]
+  let prop = packageJson?.[property]
+  if (property === 'packageManager') {
+    prop = getPackageManager(packageJson, property)
+  }
   if (prop && packageExists(prop)) {
     return prop
   }
 
   console.error(stripIndents`
     ${chalk.red.bold('Error')}: the value (${chalk.bold(prop)}) in property on ${chalk.bold(packageName)} file is not valid.
-    Use ${chalk.blue.bold('npm --pin <npm|yarn|pnpm|bun>')} to fix it.
+    Use ${chalk.blue.bold('npm --pin <npm|yarn[@berry]|pnpm|bun>')} to fix it.
   `)
   exit(1)
 }
 
 const searchForLockFiles = async () => {
   for (const pkg of packagesList) {
-    const exists = await lockFileExists(pkg.lockFile)
+    const exists = (
+      await Promise.all(pkg.lockFiles.map(lockFileExists))
+    ).every(Boolean)
+
     if (exists) {
       return pkg.cmd
     }
@@ -48,7 +75,7 @@ const searchForEnv = (name) => {
 
   console.error(stripIndents`
     ${chalk.red.bold('Error')}: the value (${chalk.bold(value)}) in SWPM environment variable is not valid.
-    Fix it using one of this values ${chalk.blue.bold('<npm|yarn|pnpm|bun>')}.
+    Fix it using one of this values ${chalk.blue.bold('<npm|yarn[@berry]|pnpm|bun>')}.
   `)
   exit(1)
 }
@@ -75,7 +102,7 @@ export const getCurrentPackageManager = async () => {
     ${chalk.red.bold('Error')}: no Package Manager or Environment Variable was found.
 
     Please review if the current path has a ${chalk.bold(packageName)} or a ${chalk.bold('lock')} file.
-    Highly recommend pin a Package Manager with ${chalk.blue.bold('swpm --pin <npm|yarn|pnpm|bun>')} command.
+    Highly recommend pin a Package Manager with ${chalk.blue.bold('swpm --pin <npm|yarn[@berry]|pnpm|bun>')} command.
   `)
   exit(1)
 }

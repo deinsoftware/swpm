@@ -9,6 +9,7 @@ import { showCommand, runCommand } from '../helpers/cmds.js'
 import { showPackageInformation } from '../flags/info.js'
 import { showCommandAlias } from '../flags/alias.js'
 import { testCommand } from '../flags/test.js'
+import { setPackageVersion } from '../helpers/set.js'
 
 if (yargs.debug) {
   console.log(
@@ -24,6 +25,7 @@ if (yargs.debug) {
 }
 
 if (yargs?.pin) {
+  await setPackageVersion(yargs.$0, yargs.pkg.cmd)
   await pinPackageManager(yargs.pkg)
 }
 
@@ -43,5 +45,5 @@ await autoUpdate(yargs)
 
 if (yargs?.pkg?.cmd) {
   showCommand(yargs.pkg)
-  runCommand(yargs)
+  await runCommand(yargs.$0, yargs.pkg)
 }

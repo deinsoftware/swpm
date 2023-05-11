@@ -47,5 +47,5 @@ await autoUpdate(yargs)
 
 if (yargs?.pkg?.cmd) {
   showCommand(yargs.pkg)
-  runCommand(yargs)
+  await runCommand(yargs.$0, yargs.pkg)
 }

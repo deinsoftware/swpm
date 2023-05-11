@@ -1,11 +1,13 @@
 import npm from './managers/npm.js'
 import yarn from './managers/yarn.js'
+import yarnBerry from './managers/yarn@berry.js'
 import pnpm from './managers/pnpm.js'
 import bun from './managers/bun.js'
 
 const list = [
   npm,
   yarn,
+  yarnBerry,
   pnpm,
   bun
 ]

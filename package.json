@@ -1,6 +1,6 @@
 {
   "name": "swpm",
-  "version": "1.9.1",
+  "version": "1.10.1",
   "engines": {
     "node": ">=16"
   },
@@ -28,10 +28,12 @@
     "scd": "./src/alias/scd.js",
     "scc": "./src/alias/scc.js",
     "sca": "./src/alias/sca.js",
+    "sci": "./src/alias/sci.js",
     "sr": "./src/alias/sr.js",
     "sp": "./src/alias/sp.js",
     "spn": "./src/alias/spn.js",
     "spy": "./src/alias/spy.js",
+    "spyb": "./src/alias/spyb.js",
     "spp": "./src/alias/spp.js",
     "spb": "./src/alias/spb.js",
     "sx": "./src/alias/sx.js"
@@ -75,8 +77,8 @@
   "homepage": "https://github.com/deinsoftware/swpm#readme",
   "type": "module",
   "volta": {
-    "node": "18.14.2",
-    "npm": "9.5.0"
+    "node": "18.16.0",
+    "npm": "9.5.1"
   },
   "dependencies": {
     "chalk": "5.2.0",
@@ -84,18 +86,19 @@
     "common-tags": "1.8.2",
     "exit-hook": "3.2.0",
     "find-up": "6.3.0",
+    "semver": "7.5.0",
     "update-notifier": "6.0.2",
-    "yargs": "17.7.1"
+    "yargs": "17.7.2"
   },
   "devDependencies": {
-    "@vitest/coverage-c8": "0.30.1",
-    "eslint": "8.38.0",
+    "@vitest/coverage-c8": "0.31.0",
+    "eslint": "8.40.0",
     "eslint-config-standard": "17.0.0",
     "eslint-plugin-import": "2.27.5",
     "eslint-plugin-n": "15.7.0",
     "eslint-plugin-promise": "6.1.1",
-    "vitest": "0.30.1"
+    "vitest": "0.31.0"
   },
-  "packageManager": "npm@9.3.1",
+  "packageManager": "npm@9.5.1",
   "swpm": "npm"
 }

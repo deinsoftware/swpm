@@ -34,7 +34,7 @@
 
 ## Getting Started
 
-When switching between JavaScript projects, it's often easy to forget which package manager should be used. JavaScript package managers aren't quite compatible either and each one resolves dependencies differently, so accidentally installing with [`npm`](https://docs.npmjs.com/cli/) could cause a [`yarn`](https://yarnpkg.com/), [`pnpm`](https://pnpm.io/) or [`bun`](https://bun.sh/) project to break.
+When switching between JavaScript projects, it's often easy to forget which package manager should be used. JavaScript package managers aren't quite compatible either and each one resolves dependencies differently, so accidentally installing with [`npm`](https://docs.npmjs.com/cli/) could cause a [`yarn`](https://yarnpkg.com/) (classic or berry), [`pnpm`](https://pnpm.io/) or [`bun`](https://bun.sh/) project to break.
 
 `swpm` is a CLI that intends to solve this problem by unifying the most used commands for the most common Node Package Managers into one. It will recognize the Package Manager used on the project and automatically will translate those commands.
 
@@ -72,7 +72,7 @@ Install as global with any of this package managers
 
 ## swpm
 
-The `swpm` will run the command switching automatically to the pinned Package Manager.
+The `swpm` will run the command switching automatically searching for the `lock` file or the pinned Package Manager.
 
 ```bash
 swpm <command> [args] [FLAGS]
@@ -98,10 +98,12 @@ Commands:
   swpm clean [FLAGS]                     clean packages             [aliases: c]
 
 Options:
-  -u, --use    use a package manager     [choices: "npm", "yarn", "pnpm", "bun"]
-  -p, --pin    pin a package manager     [choices: "npm", "yarn", "pnpm", "bun"]
+  -u, --use    use a package manager
+                           [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
+  -p, --pin    pin a package manager
+                           [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -t, --test   test command (without running)
-                                         [choices: "npm", "yarn", "pnpm", "bun"]
+                           [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
       --info   show information and versions                           [boolean]
       --alias  show command alias                                      [boolean]
       --help   Show help                                               [boolean]
@@ -222,7 +224,7 @@ swpm interactive [FLAGS]
 
 #### Clean
 
-This command does not exist in the package managers, but is one of the most repetitive tasks, deleting files.
+This command does not exist in the package managers, but is one of the most repetitive tasks, deleting files and folders. Very useful, for example, in scenarios where you want to change completely the Package Manager.
 
 ```bash
 swpm clean [args]
@@ -230,14 +232,14 @@ swpm clean [args]
 
 > Alias: `c`
 
-| Args              | Alias | Description                     |
-| ----------------- | ----- | ------------------------------- |
-| `--node-modules`  |       | Delete **node_modules** folder  |
-| `--lock`          |       | Delete **lock** files           |
-| `--log`           |       | Delete **log** files            |
-| `--build`         |       | Delete **build** folder         |
-| `--coverage`      |       | Delete **coverage** folder      |
-| `--all`           |       | Run all args                    |
+| Args              | Alias | Description                                                                          |
+| ----------------- | ----- | ------------------------------------------------------------------------------------ |
+| `--modules`       |       |  **node_modules**, **.yarn/cache**, **.yarn/unplugged** folders and **.pnp\*** files |
+| `--lock`          |       |  **lock** files                                                                      |
+| `--log`           |       |  **log** files                                                                       |
+| `--build`         |       |  **build** folder                                                                    |
+| `--coverage`      |       |  **coverage** folder                                                                 |
+| `--all`           |       | Run all args and also  **.yarn** folder                                              |
 
 ⇧ [Back to menu](#menu)
 
@@ -256,7 +258,7 @@ swpm init [--yes]
 swpm create <name> [<args>]
 ```
 
-> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm|bun>` at the end or setup an `SWPM` environment variable.
+> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn[@berry]|pnpm|bun>` at the end or setup an `SWPM` environment variable.
 
 #### Login/Logout
 
@@ -268,7 +270,7 @@ swpm login
 swpm logout
 ```
 
-> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm|bun>` at the end or setup an `SWPM` environment variable.
+> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn[@berry]|pnpm|bun>` at the end or setup an `SWPM` environment variable.
 
 #### Scripts
 
@@ -311,7 +313,7 @@ swpm config set save-exact true
 swpm config set save-prefix '~'
 ```
 
-> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn|pnpm|bun>` at the end.
+> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn[@berry]|pnpm|bun>` at the end.
 
 #### Versions
 
@@ -321,7 +323,7 @@ swpm config set save-prefix '~'
 swpm outdated [<package>] [--global]
 ```
 
-> To run this commands in a path where a `package.json` didn't exist with flag `--global` add the flag `--use <npm|yarn|pnpm|bun>` at the end or setup an `SWPM` environment variable.
+> To run this commands in a path where a `package.json` didn't exist with flag `--global` add the flag `--use <npm|yarn[@berry]|pnpm|bun>` at the end or setup an `SWPM` environment variable.
 
 ⇧ [Back to menu](#menu)
 
@@ -343,9 +345,10 @@ With `swpx --help` it will show a command help resume.
 swpx [<command>] [FLAGS]
 
 Options:
-  -u, --use    use a package manager     [choices: "npm", "yarn", "pnpm", "bun"]
+  -u, --use    use a package manager
+                           [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -t, --test   test command (without running)
-                                         [choices: "npm", "yarn", "pnpm", "bun"]
+                           [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
       --info   show information and versions                           [boolean]
       --alias  show command alias                                      [boolean]
       --help   Show help                                               [boolean]
@@ -366,7 +369,7 @@ Options:
 
 Quick and short aliases for `swpm` and `swpx` commands.
 
-### si - install
+### si (install)
 
 | Package/Alias | `si`           |
 | ------------- | -------------- |
@@ -375,16 +378,17 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**      | `pnpm install` |
 | **bun**       | `bun install`  |
 
-### sif - install frozen
+### sif (install frozen)
 
-| Package/Alias | `sif`                            |
-| ------------- | -------------------------------- |
-| **npm**       | `npm ci`                         |
-| **yarn**      | `yarn install --immutable`       |
-| **pnpm**      | `pnpm install --frozen-lockfile` |
-| **bun**       | `bun install --no-save`          |
+| Package/Alias  | `sif`                            |
+| -------------- | -------------------------------- |
+| **npm**        | `npm ci`                         |
+| **yarn**       | `yarn install --frozen-lockfile` |
+| **yarn@berry** | `yarn install --immutable`       |
+| **pnpm**       | `pnpm install --frozen-lockfile` |
+| **bun**        | `bun install --no-save`          |
 
-### sa - add
+### sa (add)
 
 | Package/Alias  | `sa <package>`       | `sa vite`       |
 | -------------- | -------------------- | --------------- |
@@ -393,7 +397,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**       | `pnpm add <package>` | `pnpm add vite` |
 | **bun**        | `bun add <package>`  | `bun add vite`  |
 
-### sae - add save exact
+### sae (add save exact)
 
 | Package/Alias  | `sae <package>`                   | `sae vite`                   |
 | -------------- | --------------------------------- | ---------------------------- |
@@ -402,7 +406,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**       | `pnpm add <package> --save-exact` | `pnpm add vite --save-exact` |
 | **bun**        | `bun add <package> --save-exact`  | `bun add vite --save-exact`  |
 
-### sad - add save dev
+### sad (add save dev)
 
 | Package/Alias  | `sad <package>`                 | `sad vite`                 |
 | -------------- | ------------------------------- | -------------------------- |
@@ -411,7 +415,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**       | `pnpm add <package> --save-dev` | `pnpm add vite --save-dev` |
 | **bun**        | `bun add <package> --save-dev`  | `bun add vite --save-dev`  |
 
-### sade - add save dev exact
+### sade (add save dev exact)
 
 | Package/Alias  | `sade <package>`                             | `sade vite`                             |
 | -------------- | -------------------------------------------- | --------------------------------------- |
@@ -420,7 +424,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**       | `pnpm add <package> --save-dev --save-exact` | `pnpm add vite --save-dev --save-exact` |
 | **bun**        | `bun add <package> --save-dev --save-exact`  | `bun add vite --save-dev --save-exact`  |
 
-### sag - add global
+### sag (add global)
 
 | Package/Alias  | `sag <package>`                        | `sag eslint`                        |
 | -------------- | -------------------------------------- | ----------------------------------- |
@@ -430,7 +434,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **bun**        | `bun add <package> --global`           | `bun add eslint --global`           |
 | **volta**      | `volta install <package>`              | `volta install eslint`              |
 
-### srm - remove
+### srm (remove)
 
 | Package/Alias  | `srm <package>`            | `srm vite`            |
 | -------------- | -------------------------- | --------------------- |
@@ -439,7 +443,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**       | `pnpm uninstall <package>` | `pnpm uninstall vite` |
 | **bun**        | `bun remove <package>`     | `bun remove vite`     |
 
-### srg - remove global
+### srg (remove global)
 
 | Package/Alias  | `srg <package>`                              | `srg eslint`                              |
 | -------------- | -------------------------------------------- | ----------------------------------------- |
@@ -449,25 +453,27 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **bun**        | `bun remove <package> --global`              | `bun remove eslint --global`              |
 | **volta**      | `volta uninstall <package>`                  | `volta uninstall eslint`                  |
 
-### sup - update
+### sup (update)
 
-| Package/Alias  | `sup [<package>]`          | `sup vite`            |
-| -------------- | -------------------------- | --------------------- |
-| **npm**        | `npm update [<package>]`   | `npm update vite`     |
-| **yarn**       | `yarn upgrade [<package>]` | `yarn upgrade vite`   |
-| **pnpm**       | `pnpm update [<package>]`  | `pnpm update vite`    |
-| **bun**        | `bun update [<package>]`   | `bun update vite`     |
+| Package/Alias  | `sup [<package>]`            | `sup vite`            |
+| -------------- | ---------------------------- | --------------------- |
+| **npm**        | `npm update [<package>]`     | `npm update vite`     |
+| **yarn**       | `yarn upgrade [<package>]`   | `yarn upgrade vite`   |
+| **yarn@berry** | `yarn semver up [<package>]` | `yarn semver up vite` |
+| **pnpm**       | `pnpm update [<package>]`    | `pnpm update vite`    |
+| **bun**        | `bun update [<package>]`     | `bun update vite`     |
 
-### sug - upgrade
+### sug (upgrade)
 
 | Package/Alias  | `sug <package>`                   | `sug vite`                   |
 | -------------- | --------------------------------- | ---------------------------- |
 | **npm**        | `npm install <package>@latest`    | `npm install <vite>@latest`  |
 | **yarn**       | `yarn upgrade <package> --latest` | `yarn upgrade vite --latest` |
+| **yarn@berry** | `yarn up <package>`               | `yarn up vite`               |
 | **pnpm**       | `pnpm update <package> --latest`  | `pnpm update vite --latest`  |
 | **bun**        | N/A                               | N/A                          |
 
-### sui - interactive
+### sui (interactive)
 
 | Package/Alias  | `sui <package>`             |
 | -------------- | --------------------------- |
@@ -476,37 +482,39 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**       | `pnpm update --interactive` |
 | **bun**        | N/A                         |
 
-### scr - create
+### scr (create)
 
-| Package/Alias  | `scr <package>`          | `scr vite`          |
+| Package/Alias  | `scr <package>`         | `scr vite`         |
 | -------------- | ----------------------- | ------------------ |
 | **npm**        | `npm create <package>`  | `npm create vite`  |
 | **yarn**       | `yarn create <package>` | `yarn create vite` |
 | **pnpm**       | `pnpm create <package>` | `pnpm create vite` |
 | **bun**        | `bun create <package>`  | `bun create vite`  |
 
-### sc<?> - clean
+### sc<?> (clean)
 
 | Alias  | Command                             |
 | ------ | ----------------------------------- |
-| `scn`  | `swpm clean --node-modules`         |
+| `scn`  | `swpm clean --modules`              |
 | `scl`  | `swpm clean --lock`                 |
 | `scb`  | `swpm clean --build`                |
 | `scd`  | `swpm clean --dist`                 |
 | `scc`  | `swpm clean --coverage`             |
 | `sca`  | `swpm clean --all`                  |
+| `sci`  | `swpm clean --all && swpm install`  |
 
-### sp[?] - pin
+### sp[?] (pin)
 
-| Alias  | Command                             |
-| ------ | ----------------------------------- |
-| `sp`   | `swpm --pin <npm\|yarn\|pnpm\|bun>` |
-| `spn`  | `swpm --pin npm`                    |
-| `spy`  | `swpm --pin yarn`                   |
-| `spp`  | `swpm --pin pnp`                    |
-| `spb`  | `swpm --pin bun`                    |
+| Alias  | Command                                     |
+| ------ | ------------------------------------------- |
+| `sp`   | `swpm --pin <npm\|yarn[@berry]\|pnpm\|bun>` |
+| `spn`  | `swpm --pin npm`                            |
+| `spy`  | `swpm --pin yarn`                           |
+| `spyb` | `swpm --pin yarn@berry`                     |
+| `spp`  | `swpm --pin pnp`                            |
+| `spb`  | `swpm --pin bun`                            |
 
-### sr - run
+### sr (run)
 
 | Package/Alias  | `sr <script>`       | `sr dev --port 3030`         |
 | -------------- | ------------------- | ---------------------------- |
@@ -515,7 +523,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**       | `pnpm run <script>` | `pnpm run dev --port 3030`   |
 | **bun**        | `bun run <script>`  | `bun add dev --port 3030`    |
 
-### sx - execute
+### sx (execute)
 
 | Package / Command | `sx <package>`       | `sx vitest`       |
 | ----------------- | -------------------- | ----------------- |
@@ -537,19 +545,24 @@ Flags are important to `swpm` and `swpx` because can modify or set his behavior.
 The `<swpm|swpx> --use` flag allows you to choose your Package Manager for a project.
 
 ```bash
-swpm <command> [args] --use <npm|yarn|pnpm|bun>
-swpx <command> [args] --u <npm|yarn|pnpm|bun>
+swpm <command> [args] --use <npm|yarn[@berry]|pnpm|bun>
+swpx <command> [args] -u <npm|yarn[@berry]|pnpm|bun>
 ```
 
 It will run the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
+
+> **Info**:  
+> Previously it will run the set command when use `yarn`:  
+> `yarn set version classic` for `yarn`
+> `yarn set version berry` for `yarn@berry`
 
 ### Pin
 
 The `swpm --pin` flag allows you to choose your Package Manager for a project.
 
 ```bash
-swpm --pin <npm|yarn|pnpm|bun>
-swpm -p <npm|yarn|pnpm|bun>
+swpm --pin <npm|yarn[@berry]|pnpm|bun>
+swpm -p <npm|yarn[@berry]|pnpm|bun>
 ```
 
 It will store the pinned Package Manager in the `package.json` file, so you can commit your choice of tools to version control:
@@ -560,16 +573,21 @@ It will store the pinned Package Manager in the `package.json` file, so you can 
 }
 ```
 
-> You also can set it manually. Just take care writing a valid Package Manager: `npm`, `yarn`, `pnpm` or `bun`.
+> **Info**:  
+> Additionally it will run the set command when pin `yarn`:  
+> `yarn set version classic` for `yarn`
+> `yarn set version berry` for `yarn@berry`
+
+You also can set it manually. Just take care writing a valid Package Manager: `npm`, `yarn[@berry]`, `pnpm` or `bun`. And also remember to run the set command for `yarn` projects.
 
 #### Test
 
 The `<swpm|swpx> --test` flag show the equivalent command using the selected Package Manager, but **it will not run the command**
 
 ```bash
-swpm <command> [args] --test <npm|yarn|pnpm|bun>
-swpm <command> [args] -t <npm|yarn|pnpm|bun>
-swpx <command> -t <npm|yarn|pnpm|bun>
+swpm <command> [args] --test <npm|yarn[@berry]|pnpm|bun>
+swpm <command> [args] -t <npm|yarn[@berry]|pnpm|bun>
+swpx <command> -t <npm|yarn[@berry]|pnpm|bun>
 ```
 
 It will show the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
@@ -602,13 +620,13 @@ swpx --alias
 
 You can set a default or **global** pin Package Manager in order to avoid the `--use` flag on paths where no exist a `package.json` or `--pin` flag on each project.
 
-Create an `SWPM` environment variable with one of this values `<npm|yarn|pnpm|bun>`.
+Create an `SWPM` environment variable with one of this values `<npm|yarn[@berry]|pnpm|bun>`.
 
-| OS    | Command                                                                      |
-| ----- | ---------------------------------------------------------------------------- |
-| win   | `setx SWPM "<npm\|yarn\|pnpm\|bun>"`                                         |
-| macOS | `echo 'export SWPM="<npm\|yarn\|pnpm\|bun>"' >> <~/.bash_profile\|~/.zshrc>` |
-| linux | `echo 'export SWPM="<npm\|yarn\|pnpm\|bun>"' >> <~/.bash_profile\|~/.zshrc>` |
+| OS    | Command                                                                              |
+| ----- | ------------------------------------------------------------------------------------ |
+| win   | `setx SWPM "<npm\|yarn[@berry]\|pnpm\|bun>"`                                         |
+| macOS | `echo 'export SWPM="<npm\|yarn[@berry]\|pnpm\|bun>"' >> <~/.bash_profile\|~/.zshrc>` |
+| linux | `echo 'export SWPM="<npm\|yarn[@berry]\|pnpm\|bun>"' >> <~/.bash_profile\|~/.zshrc>` |
 
 ⇧ [Back to menu](#menu)
 
@@ -654,6 +672,12 @@ The `<package>` parameter should follow one of these structures:
 
 But, if you found one of this cases, please open a [command compatibility](https://github.com/deinsoftware/swpm/issues/new?assignees=&labels=command-request&template=command-compatibility.md&title=) issue.
 
+### Alternatives
+
+A minimalistic solution focus only in the most common used commands:
+
+- [antfu/ni](https://github.com/antfu/ni) use the right package manager
+
 ⇧ [Back to menu](#menu)
 
 ---
@@ -666,13 +690,18 @@ But, if you found one of this cases, please open a [command compatibility](https
 - [WSL](https://docs.microsoft.com/en-us/windows/wsl/) - Windows Subsystem for Linux.
 - [Windows Terminal](https://github.com/Microsoft/Terminal/) - A modern terminal application for users of command-line tools and shells.
 - [Node.js](https://nodejs.org/) - A JavaScript runtime built on Chrome's V8 JavaScript engine.
-- [Chalk](https://github.com/chalk/chalk) - Terminal string styling done right.
-- [Yargs](https://yargs.js.org/) - Yargs be a node.js library fer hearties tryin' ter parse optstrings.
-- [common-tags](https://www.npmjs.com/package/common-tags) - A set of well-tested, commonly used template literal tag functions for use in ES2015+.
-- [update-notifier](https://www.npmjs.com/package/update-notifier) - Update notifications for your CLI app.
-- [command-exists](https://www.npmjs.com/package/command-exists) - node module to check if a command-line command exists.
 - [ESLint](https://eslint.org/) - Find and fix problems in your JavaScript code.
 - [vitest](https://vitest.dev/) - A blazing fast unit-test framework powered by Vite ⚡️.
+
+### NPM Packages
+
+- [Chalk](https://github.com/chalk/chalk) - Terminal string styling done right.
+- [command-exists](https://www.npmjs.com/package/command-exists) - node module to check if a command-line command exists.
+- [common-tags](https://www.npmjs.com/package/common-tags) - A set of well-tested, commonly used template literal tag functions for use in ES2015+.
+- [find-up](https://www.npmjs.com/package/find-up) - Find a file or directory by walking up parent directories.
+- [semver](https://www.npmjs.com/package/semver) - The semantic versioner for npm.
+- [update-notifier](https://www.npmjs.com/package/update-notifier) - Update notifications for your CLI app.
+- [Yargs](https://yargs.js.org/) - Yargs be a node.js library fer hearties tryin' ter parse optstrings.
 
 ### Contributing
 

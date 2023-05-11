@@ -3,8 +3,10 @@ const bun = {
   exc: 'bunx',
   color: '#fbf0df',
   url: 'https://bun.sh/',
-  version: '',
-  lockFile: 'bun.lockb',
+  semver: '',
+  lockFiles: ['bun.lockb'],
+  modulesPath: [],
+  modulesFile: [],
   logFile: '',
   install: 'bun install -g swpm',
   cmds: {

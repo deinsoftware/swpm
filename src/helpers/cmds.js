@@ -56,13 +56,16 @@ export const translateCommand = (yargs) => {
   }
 }
 
+const cleanSpecificVersion = (cmd) => {
+  return cmd?.split('@')?.[0]
+}
+
 export const showCommand = ({ origin, cmd, args, config }) => {
   console.log(`${(origin ? getOriginIcon(origin) + ' ' : '')}${chalk.hex(config?.color ?? '').bold(cmd)} ${args?.join(' ')}`)
 }
 
-export const runCommand = (yargs) => {
-  const $0 = yargs?.$0 || ''
-  let { cmd, args, volta = false } = yargs?.pkg || {}
+export const runCommand = ($0, { cmd, args, volta = false }) => {
+  cmd = cleanSpecificVersion(cmd)
 
   if (volta && cmd !== 'volta') {
     args = ['run', cmd, ...args]
@@ -84,8 +87,10 @@ export const runCommand = (yargs) => {
     }
   })
 
-  spawn(cmd, [...args], { stdio: 'inherit', shell: true })
-    .on('error', (error) => {
+  const run = spawn(cmd, [...args], { stdio: 'inherit', shell: false })
+
+  return new Promise((resolve) => {
+    run.on('error', (error) => {
       console.error(stripIndents`
         ${chalk.red.bold('Error')}:
         ${error}
@@ -93,11 +98,16 @@ export const runCommand = (yargs) => {
       terminal.updateTitle(getStatusIcon('error'))
       title.canceled = false
       exit(1)
-    }).on('exit', (code) => {
+    })
+
+    run.on('exit', (code) => {
       title.canceled = false
       const statusIcon = code === 0 ? 'success' : 'error'
       terminal.updateTitle(getStatusIcon(statusIcon))
+
+      resolve(code)
     })
+  })
 }
 
 export const runAlias = (cmd, args) => {
