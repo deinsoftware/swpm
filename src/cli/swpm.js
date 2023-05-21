@@ -24,6 +24,8 @@ if (yargs.debug) {
   )
 }
 
+await autoUpdate(yargs)
+
 if (yargs?.pin) {
   await setPackageVersion(yargs.$0, yargs.pkg.cmd)
   await pinPackageManager(yargs.pkg)
@@ -40,8 +42,6 @@ if (yargs?.info) {
 if (yargs?.alias) {
   await showCommandAlias()
 }
-
-await autoUpdate(yargs)
 
 if (yargs?.pkg?.cmd) {
   showCommand(yargs.pkg)

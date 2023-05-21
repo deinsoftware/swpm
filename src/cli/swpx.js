@@ -24,11 +24,12 @@ if (yargs.debug) {
   )
 }
 
+await autoUpdate(yargs)
+
 if (!yargs?.pkg?.config?.exc) {
   console.error(`${chalk.red.bold('Error')}: the execution command is not available on ${chalk.bold(yargs?.pkg?.cmd)} Package Manager.`)
   exit(1)
 }
-
 yargs.pkg.cmd = yargs.pkg.config.exc
 
 if (yargs?.test) {
@@ -42,8 +43,6 @@ if (yargs?.info) {
 if (yargs?.alias) {
   await showCommandAlias()
 }
-
-await autoUpdate(yargs)
 
 if (yargs?.pkg?.cmd) {
   showCommand(yargs.pkg)
