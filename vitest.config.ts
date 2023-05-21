@@ -21,10 +21,10 @@ export default defineConfig({
       include: [...include],
       exclude: [...exclude],
       reporter: ['text', 'html', 'lcov'],
-      statements: 26,
-      branches: 62,
-      functions: 38,
-      lines: 26,
+      statements: 29,
+      branches: 66,
+      functions: 40,
+      lines: 29,
     }
   }
 })

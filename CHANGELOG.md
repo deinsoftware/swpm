@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.10.2 - 2023/05/21
+
+### Fixed
+
+- auto update message
+
+### Added
+
+- unit tests for auto update message
+
 ## 1.10.2 - 2023/05/19
 
 ### Fixed
