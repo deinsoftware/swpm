@@ -17,53 +17,44 @@ export const autoUpdate = async (yargs) => {
   }
   const notifier = await updateNotifier(option)
 
-  if (notifier.update) {
-    const { last, current } = notifier.update
+  if (notifier?.update) {
+    const { latest, current, type } = notifier.update
 
-    const updateMessage = {
-      versions: [
-        'Update available',
-        last ?? '',
-        ' →',
-        current
-      ],
-      command: [
-        'Run',
-        'volta install swpm',
-        'to update'
-      ]
-    }
-
-    const voltaVersion = getCommandResult('volta --version')
-    if (!voltaVersion) {
+    let command = 'npm install swpm --location=global'
+    const voltaVersion = await getCommandResult('volta --version')
+    if (voltaVersion) {
+      command = 'volta install swpm'
+    } else {
       const { install } = yargs?.pkg?.config || {}
-      if (!install) {
-        updateMessage.command[1] = 'npm install swpm -global'
-      } else {
-        updateMessage.command[1] = install
+      if (install) {
+        command = install
       }
     }
 
-    const { versions, command } = updateMessage
-    const maxLen = Math.max(versions.join(' ').length, command.join(' ').length)
-    const verLen = maxLen - versions.join(' ').length
-    const cmdLen = maxLen - command.join(' ').length
+    const color = {
+      major: 'red',
+      minor: 'yellow',
+      patch: 'green'
+    }
 
-    let message = ''
-    message += `      ╭───${'─'.repeat(maxLen)}───╮      \n`
-    message += `      │   ${' '.repeat(maxLen)}   │      \n`
-    message += `      │   ${versions[0]} `
-    message += `${chalk.hex('#4e4e4e').bold(versions[1])} `
-    message += `${versions[2]} `
-    message += `${chalk.hex('#689e65').bold(versions[3])}`
-    message += `${' '.repeat(verLen)}   │      \n`
-    message += `      │   ${command[0]} `
-    message += `${chalk.hex('#368fb9').bold(command[1])} `
-    message += `${command[2]}`
-    message += `${' '.repeat(cmdLen)}   │      \n`
-    message += `      │   ${' '.repeat(maxLen)}   │      \n`
-    message += `      ╰───${'─'.repeat(maxLen)}───╯      \n`
+    const message = stripIndent`
+    New ${type} version available: ${chalk.dim(`${current}`)}${chalk.reset(' → ')}${chalk[color[type] || 'green'](`${latest}`)}
+    Run ${chalk.cyan(command)} to update`
 
-    console.log(stripIndent`${message}`)
+    const boxenOptions = {
+      padding: 1,
+      margin: 1,
+      textAlignment: 'center',
+      borderColor: 'yellow',
+      borderStyle: 'round',
+      backgroundColor: 'black'
+    }
+
+    const notification = {
+      message,
+      boxenOptions
+    }
+
+    notifier.notify(notification)
   }
 }
