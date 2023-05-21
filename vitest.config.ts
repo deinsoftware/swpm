@@ -18,11 +18,13 @@ export default defineConfig({
     reporters: ['verbose'],
     coverage: {
       all: true,
-      reporter: ["text", "html", "lcov"],
-      statements: 22,
-      branches: 48,
-      functions: 27,
-      lines: 22,
-    },
-  },
-});
+      include: [...include],
+      exclude: [...exclude],
+      reporter: ['text', 'html', 'lcov'],
+      statements: 29,
+      branches: 66,
+      functions: 40,
+      lines: 29,
+    }
+  }
+})
