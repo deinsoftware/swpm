@@ -1,6 +1,6 @@
 {
   "name": "swpm",
-  "version": "1.10.2",
+  "version": "1.10.1",
   "engines": {
     "node": ">=16"
   },
