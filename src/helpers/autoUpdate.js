@@ -21,7 +21,7 @@ export const autoUpdate = async (yargs) => {
     const { latest, current, type } = notifier.update
 
     let command = 'npm install swpm --location=global'
-    const voltaVersion = await getCommandResult('volta --version')
+    const voltaVersion = getCommandResult('volta --version')
     if (voltaVersion) {
       command = 'volta install swpm'
     } else {
@@ -33,8 +33,7 @@ export const autoUpdate = async (yargs) => {
 
     const color = {
       major: 'red',
-      minor: 'yellow',
-      patch: 'green'
+      minor: 'yellow'
     }
 
     const message = stripIndent`

@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.10.3 - 2023/05/22
+
+### Fixed
+
+- sync spread commands
+
 ## 1.10.2 - 2023/05/21
 
 ### Fixed
