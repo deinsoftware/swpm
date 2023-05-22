@@ -2,5 +2,7 @@
 
 import { spreadCommand } from '../helpers/cmds.js'
 
-spreadCommand('swpm', ['clean', '--all'])
-spreadCommand('swpm', ['install', ...process.argv.slice(2)])
+(async () => {
+  await spreadCommand('swpm', ['clean', '--all'])
+  await spreadCommand('swpm', ['install'])
+})()

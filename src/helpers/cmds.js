@@ -87,7 +87,7 @@ export const runCommand = ({ cmd, args, volta = false }) => {
 }
 
 export const spreadCommand = (cmd, args) => {
-  const run = spawn(cmd, args, { stdio: 'inherit', shell: true })
+  const run = spawn(cmd, args, { stdio: 'inherit', shell: false })
 
   return new Promise((resolve) => {
     run.on('error', (error) => {
