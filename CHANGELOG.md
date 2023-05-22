@@ -9,7 +9,7 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
-## 1.10.3 - 2023/05/21
+## 1.10.3 - 2023/05/22
 
 ### Fixed
 
