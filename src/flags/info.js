@@ -20,7 +20,7 @@ export const showPackageInformation = async ({ origin, cmd, config, volta }) => 
   const nodeVersion = getCommandResult('node --version', volta)
 
   const isInstalled = await commandVerification(cmd)
-  const packageVersion = isInstalled ? await getCommandResult(`${cmd} --version`, volta) : 'not found'
+  const packageVersion = isInstalled ? getCommandResult(`${cmd} --version`, volta) : 'not found'
 
   const { version: swpmVersion } = await getSwpmInfo()
 

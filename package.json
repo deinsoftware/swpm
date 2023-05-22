@@ -1,6 +1,6 @@
 {
   "name": "swpm",
-  "version": "1.10.3",
+  "version": "1.10.4",
   "engines": {
     "node": ">=16"
   },
@@ -76,10 +76,6 @@
   },
   "homepage": "https://github.com/deinsoftware/swpm#readme",
   "type": "module",
-  "volta": {
-    "node": "18.16.0",
-    "npm": "9.5.1"
-  },
   "dependencies": {
     "chalk": "5.2.0",
     "command-exists": "1.2.9",
@@ -91,13 +87,17 @@
     "yargs": "17.7.2"
   },
   "devDependencies": {
-    "@vitest/coverage-c8": "0.31.0",
-    "eslint": "8.40.0",
+    "@vitest/coverage-c8": "0.31.1",
+    "eslint": "8.41.0",
     "eslint-config-standard": "17.0.0",
     "eslint-plugin-import": "2.27.5",
     "eslint-plugin-n": "15.7.0",
     "eslint-plugin-promise": "6.1.1",
-    "vitest": "0.31.0"
+    "vitest": "0.31.1"
+  },
+  "volta": {
+    "node": "18.16.0",
+    "npm": "9.5.1"
   },
   "packageManager": "npm@9.5.1",
   "swpm": "npm"

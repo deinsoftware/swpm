@@ -110,15 +110,22 @@ export const runCommand = ($0, { cmd, args, volta = false }) => {
   })
 }
 
-export const runAlias = (cmd, args) => {
-  spawn(cmd, args, { stdio: 'inherit', shell: true })
-    .on('error', (error) => {
+export const spreadCommand = (cmd, args) => {
+  const run = spawn(cmd, args, { stdio: 'inherit', shell: false })
+
+  return new Promise((resolve) => {
+    run.on('error', (error) => {
       console.error(stripIndents`
-        ${chalk.red.bold('Error')}:
-        ${error}
-      `)
+          ${chalk.red.bold('Error')}:
+          ${error}
+        `)
       exit(1)
     })
+
+    run.on('exit', (code) => {
+      resolve(code)
+    })
+  })
 }
 
 export const getCommandResult = (command, volta = false) => {
@@ -130,6 +137,6 @@ export const getCommandResult = (command, volta = false) => {
     const result = execSync(command)
     return result.toString().trim()
   } catch (error) {
-    return false
+    return ''
   }
 }
