@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { runAlias } from '../helpers/cmds.js'
+import { spreadCommand } from '../helpers/cmds.js'
 
-runAlias('swpm', ['clean', '--all'])
-runAlias('swpm', ['install', ...process.argv.slice(2)])
+spreadCommand('swpm', ['clean', '--all'])
+spreadCommand('swpm', ['install', ...process.argv.slice(2)])
