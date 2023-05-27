@@ -14,6 +14,15 @@ export const fileExists = async (path) => {
   }
 }
 
+export const pathExists = async (path) => {
+  try {
+    await fs.access(path)
+    return true
+  } catch (error) {
+    return false
+  }
+}
+
 export const getPackageJson = async (fileName = packageName) => {
   try {
     const closestPackageJsonPath = await findUp(fileName)
