@@ -56,12 +56,11 @@ export const showCommandAlias = async () => {
     ${chalk.bold('Alias:')}
     `
 
-  Object.entries(aliases).forEach(([alias, cmd]) => {
-    if (commandVerification(alias)) {
+  for (const [alias, cmd] of Object.entries(aliases)) {
+    if (await commandVerification(alias)) {
       message += `${chalk.hex('#368fb9').bold(alias)}: \t${cmd}\n`
     }
-  })
-
+  }
   console.log(stripIndents`${message}`)
 
   exit(0)
