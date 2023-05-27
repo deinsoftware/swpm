@@ -29,10 +29,6 @@ const middleware = async (yargs) => {
   }
 
   if ('test' in yargs) {
-    // if (yargs.test === 'all') {
-    //   console.log('test all')
-    // }
-
     cleanFlag(yargs, '--test')
     cleanFlag(yargs, '-t')
     pkg.cmd = yargs.test
