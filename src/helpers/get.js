@@ -114,7 +114,7 @@ export const detectVoltaPin = async (pkg) => {
   if (packageJson) {
     return (
       propertyExists(packageJson, 'volta') &&
-      (pkg?.cmd in packageJson?.volta)
+      (pkg?.cmd in packageJson.volta)
     )
   }
 }
