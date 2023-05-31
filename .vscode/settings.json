@@ -66,5 +66,9 @@
   "explorer.fileNesting.patterns": {
     "README*": "BRAND*, CHANGELOG*, CODE_OF_CONDUCT.md, CONTRIBUTING.md, LICENSE*, README*, CHEATSHEET*, TEMPLATES*",
     "package*": "sonar-project*, .gitignore"
+  },
+  "sonarlint.connectedMode.project": {
+    "connectionId": "dein-vscode",
+    "projectKey": "dein:swpm"
   }
 }

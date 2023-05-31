@@ -9,6 +9,13 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.10.5 - 2023/05/27
+
+### Fixed
+
+- delete modules path
+- code smell reported by sonar
+
 ## 1.10.4 - 2023/05/22
 
 ### Fixed
