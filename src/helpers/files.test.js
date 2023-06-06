@@ -1,7 +1,21 @@
 import { describe, test, expect } from 'vitest'
 import { cwd } from 'node:process'
 import { resolve as resolvePath } from 'node:path'
-import { fileExists, getPackageJson, lockFileExists } from './files.js'
+import { fileExists, pathExists, getPackageJson, lockFileExists } from './files.js'
+
+describe('pathExists', () => {
+  test('should return true if path exists', async () => {
+    const path = resolvePath(cwd(), '.vscode')
+    const result = await pathExists(path)
+    expect(result).toBe(true)
+  })
+
+  test('should return false if file does not exist', async () => {
+    const path = resolvePath(cwd(), 'non-existent-folder')
+    const result = await pathExists(path)
+    expect(result).toBe(false)
+  })
+})
 
 describe('fileExists', () => {
   test('should return true if file exists', async () => {
