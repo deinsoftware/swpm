@@ -1,6 +1,6 @@
 {
   "name": "swpm",
-  "version": "1.10.5",
+  "version": "1.10.6",
   "engines": {
     "node": ">=16"
   },
@@ -81,18 +81,18 @@
     "command-exists": "1.2.9",
     "common-tags": "1.8.2",
     "find-up": "6.3.0",
-    "semver": "7.5.0",
+    "semver": "7.5.1",
     "update-notifier": "6.0.2",
     "yargs": "17.7.2"
   },
   "devDependencies": {
-    "@vitest/coverage-c8": "0.31.1",
-    "eslint": "8.41.0",
-    "eslint-config-standard": "17.0.0",
+    "@vitest/coverage-c8": "0.32.0",
+    "eslint": "8.42.0",
+    "eslint-config-standard": "17.1.0",
     "eslint-plugin-import": "2.27.5",
     "eslint-plugin-n": "15.7.0",
     "eslint-plugin-promise": "6.1.1",
-    "vitest": "0.31.1"
+    "vitest": "0.32.0"
   },
   "volta": {
     "node": "18.16.0",
