@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.10.7 - 2023/06/13
+
+### Fixed
+
+- Problem execution on `sx` command
+
 ## 1.10.6 - 2023/06/06
 
 ### Security
