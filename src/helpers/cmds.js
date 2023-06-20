@@ -69,7 +69,7 @@ export const runCommand = ({ cmd, args, volta = false }) => {
     cmd = 'volta'
   }
 
-  const run = spawn(
+  const child = spawn(
     cmd,
     [...args],
     {
@@ -79,7 +79,7 @@ export const runCommand = ({ cmd, args, volta = false }) => {
   )
 
   return new Promise((resolve) => {
-    run.on('error', (error) => {
+    child.on('error', (error) => {
       console.error(stripIndents`
           ${chalk.red.bold('Error')}:
           ${error}
@@ -87,14 +87,14 @@ export const runCommand = ({ cmd, args, volta = false }) => {
       exit(1)
     })
 
-    run.on('exit', (code) => {
+    child.on('exit', (code) => {
       resolve(code)
     })
   })
 }
 
 export const spreadCommand = (cmd, args) => {
-  const run = spawn(
+  const child = spawn(
     cmd,
     args,
     {
@@ -104,7 +104,7 @@ export const spreadCommand = (cmd, args) => {
   )
 
   return new Promise((resolve) => {
-    run.on('error', (error) => {
+    child.on('error', (error) => {
       console.error(stripIndents`
           ${chalk.red.bold('Error')}:
           ${error}
@@ -112,7 +112,7 @@ export const spreadCommand = (cmd, args) => {
       exit(1)
     })
 
-    run.on('exit', (code) => {
+    child.on('exit', (code) => {
       resolve(code)
     })
   })
@@ -124,8 +124,13 @@ export const getCommandResult = (command, volta = false) => {
       command = `volta run ${command}`
     }
 
-    const result = execSync(command)
-    return result.toString().trim()
+    const child = execSync(
+      command,
+      {
+        shell: false
+      }
+    )
+    return child.toString().trim()
   } catch (error) {
     return ''
   }
