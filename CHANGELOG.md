@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.10.8 - 2023/06/20
+
+### Security
+
+- update semver to prevent a secure vulnerability
+
 ## 1.10.7 - 2023/06/13
 
 ### Fixed
