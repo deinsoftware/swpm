@@ -243,7 +243,7 @@ swpm clean [args]
 | `--all`           |       | Run all args and also delete the **.yarn** folder                                    |
 
 > `--fresh` is a good choice when you want to clean the project and reinstall all packages again with `swpm install --frozen` and preserving the lock files intact.  
-> `--all` is a good choice when you want to clean the project and migrate to a different Package Manager.  
+> `--all` is a good choice when you want to clean the project and migrate to a different Package Manager or reinstalling all packages and create/update the lock files.  
 
 ⇧ [Back to menu](#menu)
 

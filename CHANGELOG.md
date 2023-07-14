@@ -16,6 +16,10 @@ Security    to invite users to upgrade in case of vulnerabilities.
 - `--fresh` flag on clean command
 - `scf` alias to run `clean --fresh` command follow by `swpm install --frozen`
 
+## Changed
+
+- update packages versions
+
 ## 1.10.8 - 2023/06/20
 
 ### Security
