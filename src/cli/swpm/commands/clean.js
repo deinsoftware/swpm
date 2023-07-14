@@ -5,7 +5,7 @@ import { deleteModulesPath, deleteModulesFiles, deleteLockFiles, deleteLogFiles,
 const middleware = async (yargs) => {
   console.log(`🧽 ${chalk.bold('Cleaning')}: `)
 
-  if ('all' in yargs || 'modules' in yargs) {
+  if ('all' in yargs || 'fresh' in yargs || 'modules' in yargs) {
     await deletePath('node_modules')
     await deleteModulesFiles()
   }
@@ -20,19 +20,19 @@ const middleware = async (yargs) => {
     await deleteLockFiles()
   }
 
-  if ('all' in yargs || 'log' in yargs) {
+  if ('all' in yargs || 'fresh' in yargs || 'log' in yargs) {
     await deleteLogFiles()
   }
 
-  if ('all' in yargs || 'build' in yargs) {
+  if ('all' in yargs || 'fresh' in yargs || 'build' in yargs) {
     await deletePath('build')
   }
 
-  if ('all' in yargs || 'dist' in yargs) {
+  if ('all' in yargs || 'fresh' in yargs || 'dist' in yargs) {
     await deletePath('dist')
   }
 
-  if ('all' in yargs || 'coverage' in yargs) {
+  if ('all' in yargs || 'fresh' in yargs || 'coverage' in yargs) {
     await deletePath('coverage')
   }
 
@@ -49,49 +49,56 @@ const clean = {
       type: 'boolean',
       desc: 'clean project',
       usage: '$0 clean --all',
-      conflicts: ['modules', 'lock', 'log', 'build', 'dist', 'coverage']
+      conflicts: ['fresh', 'modules', 'lock', 'log', 'build', 'dist', 'coverage']
+    })
+
+    yargs.option('fresh', {
+      type: 'boolean',
+      desc: 'clean project',
+      usage: '$0 clean --fresh',
+      conflicts: ['all', 'modules', 'lock', 'log', 'build', 'dist', 'coverage']
     })
 
     yargs.option('modules', {
       type: 'boolean',
       desc: 'delete node_modules folder',
       usage: '$0 clean --modules',
-      conflicts: ['all']
+      conflicts: ['all', 'fresh']
     })
 
     yargs.option('lock', {
       type: 'boolean',
       desc: 'delete lock files',
       usage: '$0 clean --lock',
-      conflicts: ['all']
+      conflicts: ['all', 'fresh']
     })
 
     yargs.option('log', {
       type: 'boolean',
       desc: 'delete log files',
       usage: '$0 clean --log',
-      conflicts: ['all']
+      conflicts: ['all', 'fresh']
     })
 
     yargs.option('build', {
       type: 'boolean',
       desc: 'delete build folder',
       usage: '$0 clean --build',
-      conflicts: ['all']
+      conflicts: ['all', 'fresh']
     })
 
     yargs.option('dist', {
       type: 'boolean',
       desc: 'delete dist folder',
       usage: '$0 clean --dist',
-      conflicts: ['all']
+      conflicts: ['all', 'fresh']
     })
 
     yargs.option('coverage', {
       type: 'boolean',
       desc: 'delete coverage folder',
       usage: '$0 clean --coverage',
-      conflicts: ['all']
+      conflicts: ['all', 'fresh']
     })
 
     yargs.middleware(middleware)

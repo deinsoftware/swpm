@@ -234,12 +234,16 @@ swpm clean [args]
 
 | Args              | Alias | Description                                                                          |
 | ----------------- | ----- | ------------------------------------------------------------------------------------ |
-| `--modules`       |       |  **node_modules**, **.yarn/cache**, **.yarn/unplugged** folders and **.pnp\*** files |
-| `--lock`          |       |  **lock** files                                                                      |
-| `--log`           |       |  **log** files                                                                       |
-| `--build`         |       |  **build** folder                                                                    |
-| `--coverage`      |       |  **coverage** folder                                                                 |
-| `--all`           |       | Run all args and also  **.yarn** folder                                              |
+| `--modules`       |       | **node_modules**, **.yarn/cache**, **.yarn/unplugged** folders and **.pnp\*** files  |
+| `--lock`          |       | **lock** files                                                                       |
+| `--log`           |       | **log** files                                                                        |
+| `--build`         |       | **build** folder                                                                     |
+| `--coverage`      |       | **coverage** folder                                                                  |
+| `--fresh`         |       | Run all args except `--lock`                                                         |
+| `--all`           |       | Run all args and also delete the **.yarn** folder                                    |
+
+> `--fresh` is a good choice when you want to clean the project and reinstall all packages again with `swpm install --frozen` and preserving the lock files intact.  
+> `--all` is a good choice when you want to clean the project and migrate to a different Package Manager or reinstalling all packages and create/update the lock files.  
 
 ⇧ [Back to menu](#menu)
 
@@ -493,15 +497,16 @@ Quick and short aliases for `swpm` and `swpx` commands.
 
 ### sc<?> (clean)
 
-| Alias  | Command                             |
-| ------ | ----------------------------------- |
-| `scn`  | `swpm clean --modules`              |
-| `scl`  | `swpm clean --lock`                 |
-| `scb`  | `swpm clean --build`                |
-| `scd`  | `swpm clean --dist`                 |
-| `scc`  | `swpm clean --coverage`             |
-| `sca`  | `swpm clean --all`                  |
-| `sci`  | `swpm clean --all && swpm install`  |
+| Alias  | Command                                        |
+| ------ | ---------------------------------------------- |
+| `scn`  | `swpm clean --modules`                         |
+| `scl`  | `swpm clean --lock`                            |
+| `scb`  | `swpm clean --build`                           |
+| `scd`  | `swpm clean --dist`                            |
+| `scc`  | `swpm clean --coverage`                        |
+| `sca`  | `swpm clean --all`                             |
+| `scf`  | `swpm clean --fresh && swpm install --frozen`  |
+| `sci`  | `swpm clean --all && swpm install`             |
 
 ### sp[?] (pin)
 

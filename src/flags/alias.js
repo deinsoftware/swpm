@@ -34,6 +34,7 @@ const aliases = {
   scd: 'swpm clean --dist',
   scc: 'swpm clean --coverage',
   sca: 'swpm clean --all',
+  scf: 'swpm clean --fresh && swpm install --frozen',
   sci: 'swpm clean --all && swpm install',
   sp: 'swpm --pin <npm|yarn[@berry]|pnpm|bun>',
   spn: 'swpm --pin npm',
