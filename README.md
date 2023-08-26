@@ -600,6 +600,24 @@ swpx <command> -t <npm|yarn[@berry]|pnpm|bun>
 
 It will show the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
 
+#### Mute
+
+The `<swpm|swpx> --mute` flag hide the package manager command translation.
+
+```bash
+swpm --mute
+swpx --mute
+```
+
+#### Alias
+
+The `<swpm|swpx> --alias` flag show the command aliases available.
+
+```bash
+swpm --alias
+swpx --alias
+```
+
 #### Info
 
 The `<swpm|swpx> --info` flag show the current Package Manager used and some versions information.
@@ -610,15 +628,6 @@ swpx --info
 ```
 
 It will search firs the `swpm` property on the `package.json` file, and if doesn't not found it, will try to infer the Package Manager in use with help of the `lock`'s file.
-
-#### Alias
-
-The `<swpm|swpx> --alias` flag show the command aliases available.
-
-```bash
-swpm --alias
-swpx --alias
-```
 
 ⇧ [Back to menu](#menu)
 
