@@ -10,8 +10,9 @@ import debug from '../options/debug.js'
 import use from '../options/use.js'
 import pin from '../options/pin.js'
 import test from '../options/test.js'
-import info from '../options/info.js'
+import mute from '../options/mute.js'
 import alias from '../options/alias.js'
+import info from '../options/info.js'
 
 const commands = [
   install,
@@ -28,8 +29,9 @@ const options = {
   use,
   pin,
   test,
-  info,
-  alias
+  mute,
+  alias,
+  info
 }
 
 export { commands, options }

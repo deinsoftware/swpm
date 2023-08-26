@@ -45,6 +45,8 @@ if (yargs?.alias) {
 }
 
 if (yargs?.pkg?.cmd) {
-  showCommand(yargs.pkg)
+  if (!yargs?.mute) {
+    showCommand(yargs.pkg)
+  }
   await runCommand(yargs.pkg)
 }

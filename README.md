@@ -86,7 +86,7 @@ With `swpm --help` it will show a command help resume.
 swpm [<command>] [args] [FLAGS]
 
 Commands:
-  swpm install [FLAGS]                   install packages from package.json
+  swpm install [FLAGS]                   install packages from package.json     
                                                                     [aliases: i]
   swpm add <package> [args] [FLAGS]      add package                [aliases: a]
   swpm remove <package> [args] [FLAGS]   remove package
@@ -104,6 +104,7 @@ Options:
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -t, --test   test command (without running)
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
+  -m, --mute   mute command translation
       --info   show information and versions                           [boolean]
       --alias  show command alias                                      [boolean]
       --help   Show help                                               [boolean]
@@ -352,7 +353,9 @@ Options:
   -u, --use    use a package manager
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -t, --test   test command (without running)
+  -t, --test   test command (without running)
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
+  -m, --mute   mute command translation
       --info   show information and versions                           [boolean]
       --alias  show command alias                                      [boolean]
       --help   Show help                                               [boolean]

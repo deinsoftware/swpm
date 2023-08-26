@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 1.12.0 - 2023/08/26
+
+## Added
+
+- `--mute` options to hide the command translation
+
+## Changed
+
+- update packages versions
+
 ## 1.11.0 - 2023/07/14
 
 ## Added
