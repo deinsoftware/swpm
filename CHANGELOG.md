@@ -13,7 +13,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ## Added
 
-- `--mute` options to hide the command translation
+- `--mute` flag to hide the command translation
 
 ## Changed
 
