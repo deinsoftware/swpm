@@ -34,6 +34,11 @@ const middleware = async (yargs) => {
     pkg.cmd = yargs.test
   }
 
+  if ('mute' in yargs) {
+    cleanFlag(yargs, '--mute')
+    cleanFlag(yargs, '-m')
+  }
+
   if (!pkg?.cmd || yargs?.info) {
     const { origin, cmd } = await getCurrentPackageManager()
     pkg.origin = origin

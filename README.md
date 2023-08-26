@@ -86,7 +86,7 @@ With `swpm --help` it will show a command help resume.
 swpm [<command>] [args] [FLAGS]
 
 Commands:
-  swpm install [FLAGS]                   install packages from package.json
+  swpm install [FLAGS]                   install packages from package.json     
                                                                     [aliases: i]
   swpm add <package> [args] [FLAGS]      add package                [aliases: a]
   swpm remove <package> [args] [FLAGS]   remove package
@@ -104,6 +104,7 @@ Options:
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -t, --test   test command (without running)
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
+  -m, --mute   mute command translation
       --info   show information and versions                           [boolean]
       --alias  show command alias                                      [boolean]
       --help   Show help                                               [boolean]
@@ -352,7 +353,9 @@ Options:
   -u, --use    use a package manager
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -t, --test   test command (without running)
+  -t, --test   test command (without running)
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
+  -m, --mute   mute command translation
       --info   show information and versions                           [boolean]
       --alias  show command alias                                      [boolean]
       --help   Show help                                               [boolean]
@@ -597,6 +600,24 @@ swpx <command> -t <npm|yarn[@berry]|pnpm|bun>
 
 It will show the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
 
+#### Mute
+
+The `<swpm|swpx> --mute` flag hide the package manager command translation.
+
+```bash
+swpm --mute
+swpx --mute
+```
+
+#### Alias
+
+The `<swpm|swpx> --alias` flag show the command aliases available.
+
+```bash
+swpm --alias
+swpx --alias
+```
+
 #### Info
 
 The `<swpm|swpx> --info` flag show the current Package Manager used and some versions information.
@@ -607,15 +628,6 @@ swpx --info
 ```
 
 It will search firs the `swpm` property on the `package.json` file, and if doesn't not found it, will try to infer the Package Manager in use with help of the `lock`'s file.
-
-#### Alias
-
-The `<swpm|swpx> --alias` flag show the command aliases available.
-
-```bash
-swpm --alias
-swpx --alias
-```
 
 ⇧ [Back to menu](#menu)
 
