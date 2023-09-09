@@ -1,4 +1,4 @@
-import { describe, test, expect } from 'vitest'
+import { describe, test, expect } from 'bun:test'
 import { getSwpmInfo } from './info.js'
 
 describe('getSwpmInfo()', () => {
@@ -10,9 +10,9 @@ describe('getSwpmInfo()', () => {
     const versionProperty = 'version'
 
     const result = await getSwpmInfo()
-    expect(result).toEqual(
-      expect.objectContaining(projectInfo)
-    )
+    const { name, description } = result
+
+    expect({ name, description }).toMatchObject(projectInfo)
     expect(result).toHaveProperty(versionProperty)
   })
 })

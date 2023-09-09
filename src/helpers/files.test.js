@@ -1,4 +1,4 @@
-import { describe, test, expect } from 'vitest'
+import { describe, test, expect } from 'bun:test'
 import { cwd } from 'node:process'
 import { resolve as resolvePath } from 'node:path'
 import { fileExists, pathExists, getPackageJson, lockFileExists } from './files.js'
@@ -57,7 +57,7 @@ describe('getPackageJson', () => {
 
 describe('lockFileExists', () => {
   test('should return true if lock file exists', async () => {
-    const fileName = 'package-lock.json'
+    const fileName = 'bun.lockb'
     const result = await lockFileExists(fileName)
     expect(result).toBe(true)
   })
@@ -65,7 +65,7 @@ describe('lockFileExists', () => {
   test('should return true if lock file exists in a parent directory', async () => {
     const currentCwd = cwd()
     process.chdir(__dirname)
-    const fileName = 'package-lock.json'
+    const fileName = 'bun.lockb'
     const result = await lockFileExists(fileName)
     expect(result).toBe(true)
     process.chdir(currentCwd)

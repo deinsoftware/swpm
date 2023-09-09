@@ -1,13 +1,11 @@
-import { describe, test, expect } from 'vitest'
+import { describe, test, expect } from 'bun:test'
 import { availablePackages, packageExists, getPackageConfiguration } from './list.js'
 
 describe('availablePackages()', () => {
   test('should return a list of available packages', () => {
     const expectedResult = ['npm', 'yarn', 'yarn@berry', 'pnpm', 'bun']
     const result = availablePackages()
-    expect(result).toEqual(
-      expect.arrayContaining(expectedResult)
-    )
+    expect(result).toMatchObject(expectedResult)
   })
 })
 
@@ -55,8 +53,7 @@ describe('getPackageConfiguration()', () => {
       cmd: 'npm'
     }
     const result = await getPackageConfiguration(pkg)
-    expect(result).toEqual(
-      expect.objectContaining(expectedResult)
-    )
+    const { cmd, lockFiles } = result
+    expect({ cmd, lockFiles }).toMatchObject(expectedResult)
   })
 })
