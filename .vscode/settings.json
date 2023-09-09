@@ -5,8 +5,10 @@
     "buymeacoffee",
     "CHEATSHEET",
     "cmds",
+    "deinsoftware",
     "Dsonar",
     "Eomm",
+    "equiman",
     "github",
     "lcov",
     "linux",
@@ -65,7 +67,8 @@
   },
   "explorer.fileNesting.patterns": {
     "README*": "BRAND*, CHANGELOG*, CODE_OF_CONDUCT.md, CONTRIBUTING.md, LICENSE*, README*, CHEATSHEET*, TEMPLATES*",
-    "package*": "sonar-project*, .gitignore"
+    "package*": "sonar-project*, .gitignore, bunfig.toml, .npmignore, .eslintignore, .eslintrc.cjs, bun.lockb",
+    "*.js": "$(capture).*.js, $(capture).d.js.map, $(capture)_*.js, $(capture)_*.js, $(capture)*.snap",
   },
   "sonarlint.connectedMode.project": {
     "connectionId": "dein-vscode",
