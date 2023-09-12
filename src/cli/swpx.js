@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 import { exit } from 'node:process'
 import { inspect } from 'node:util'

@@ -1,6 +1,6 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
-import { spreadCommand } from '../helpers/cmds.js'
+import { spreadCommand } from 'helpers'
 
 const args = ['remove', ...process.argv.slice(2)]
 spreadCommand('swpm', args)

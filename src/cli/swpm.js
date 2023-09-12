@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 import { inspect } from 'node:util'
 import yargs from './swpm/config.js'
