@@ -1,4 +1,4 @@
-import { availablePackages } from '../../packages/list.js'
+import { availablePackages } from 'packages/list'
 
 const use = {
   alias: 'u',

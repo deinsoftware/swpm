@@ -3,7 +3,7 @@ import { stripIndents } from 'common-tags'
 import chalk from 'chalk'
 import semver from 'semver'
 import { getPackageJson, lockFileExists } from './files.js'
-import packagesList, { packageExists } from '../packages/list.js'
+import packagesList, { packageExists } from 'packages/list'
 
 const packageName = 'package.json'
 

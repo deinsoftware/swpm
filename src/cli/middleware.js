@@ -2,7 +2,7 @@ import { argv } from 'node:process'
 import { cleanFlag, translateArgs } from '../helpers/args.js'
 import { translateCommand } from '../helpers/cmds.js'
 import { detectVoltaPin, getCurrentPackageManager } from '../helpers/get.js'
-import { getPackageConfiguration } from '../packages/list.js'
+import { getPackageConfiguration } from 'packages/list'
 import { setPackageVersion } from '../helpers/set.js'
 
 const middleware = async (yargs) => {

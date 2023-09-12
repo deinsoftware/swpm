@@ -4,7 +4,7 @@ import chalk from 'chalk'
 import commandExists from 'command-exists'
 
 import { getCommandResult } from '../helpers/cmds.js'
-import { getOriginIcon } from '../helpers/icons.js'
+import { getOriginIcon } from 'helpers/icons'
 import { getSwpmInfo } from '../helpers/info.js'
 
 const commandVerification = async (cmd) => {

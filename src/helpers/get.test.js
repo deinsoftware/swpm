@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'bun:test'
-import { getOriginIcon } from './icons.js'
+import { getOriginIcon } from 'helpers/icons'
 
 describe('getOriginIcon()', () => {
   test('should return an empty string if name was not send', () => {
