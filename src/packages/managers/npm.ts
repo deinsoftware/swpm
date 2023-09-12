@@ -1,4 +1,4 @@
-import { PackageConfiguration } from "../packages.types"
+import { PackageConfiguration } from "packages/packages.types"
 
 const npm: PackageConfiguration = {
   cmd: 'npm',

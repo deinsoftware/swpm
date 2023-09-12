@@ -3,7 +3,7 @@ import yarn from './managers/yarn'
 import yarnBerry from './managers/yarn@berry'
 import pnpm from './managers/pnpm'
 import bun from './managers/bun'
-import { PackageConfiguration, PackageManager } from './packages.types'
+import { PackageConfiguration, PackageManager } from 'packages/packages.types'
 
 const packageManagerList = [
   npm,
