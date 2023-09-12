@@ -1,4 +1,6 @@
-const npm = {
+import { PackageConfiguration } from "../packages.types"
+
+const npm: PackageConfiguration = {
   cmd: 'npm',
   exc: 'npx',
   color: '#e32e37',

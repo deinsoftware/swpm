@@ -1,4 +1,6 @@
-const pnpm = {
+import { PackageConfiguration } from "../packages.types"
+
+const pnpm: PackageConfiguration = {
   cmd: 'pnpm',
   exc: 'pnpm dlx',
   color: '#f7ad24',

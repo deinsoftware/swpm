@@ -1,4 +1,6 @@
-const bun = {
+import { PackageConfiguration } from "../packages.types"
+
+const bun: PackageConfiguration = {
   cmd: 'bun',
   exc: 'bunx',
   color: '#fbf0df',

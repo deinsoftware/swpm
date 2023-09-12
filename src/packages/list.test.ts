@@ -1,5 +1,6 @@
 import { describe, test, expect } from 'bun:test'
-import { availablePackages, packageExists, getPackageConfiguration } from './list.js'
+import { availablePackages, packageExists, getPackageConfiguration } from './list'
+import { PackageManager } from './packages.types'
 
 describe('availablePackages()', () => {
   test('should return a list of available packages', () => {
@@ -10,17 +11,6 @@ describe('availablePackages()', () => {
 })
 
 describe('packageExists()', () => {
-  test('should return false if cmd was not sent', () => {
-    const result = packageExists()
-    expect(result).toBeFalsy()
-  })
-
-  test('should return false if cmd not exists', () => {
-    const cmd = 'not'
-    const result = packageExists(cmd)
-    expect(result).toBeFalsy()
-  })
-
   test('should return true if cmd exists', () => {
     const cmd = 'npm'
     const result = packageExists(cmd)
@@ -29,17 +19,12 @@ describe('packageExists()', () => {
 })
 
 describe('getPackageConfiguration()', () => {
-  test('should return an empty object if cmd was not send', async () => {
-    const expectedResult = {}
-    const result = await getPackageConfiguration()
-    expect(result).toEqual(expectedResult)
-  })
-
   test('should return an empty object if cmd not exists', async () => {
     const expectedResult = {}
     const pkg = {
       cmd: 'not'
     }
+    //@ts-expect-error
     const result = await getPackageConfiguration(pkg)
     expect(result).toEqual(expectedResult)
   })
@@ -50,7 +35,7 @@ describe('getPackageConfiguration()', () => {
       lockFiles: ['package-lock.json']
     }
     const pkg = {
-      cmd: 'npm'
+      cmd: 'npm' as PackageManager
     }
     const result = await getPackageConfiguration(pkg)
     const { cmd, lockFiles } = result

@@ -1,4 +1,6 @@
-const yarn = {
+import { PackageConfiguration } from "../packages.types"
+
+const yarn: PackageConfiguration = {
   cmd: 'yarn',
   exc: 'yarn dlx',
   color: '#3a90b8',
