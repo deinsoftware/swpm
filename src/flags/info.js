@@ -5,7 +5,7 @@ import commandExists from 'command-exists'
 
 import { getCommandResult } from '../helpers/cmds.js'
 import { getOriginIcon } from 'helpers/icons'
-import { getSwpmInfo } from '../helpers/info.js'
+import { getSwpmInfo } from 'helpers/info'
 
 const commandVerification = async (cmd) => {
   try {

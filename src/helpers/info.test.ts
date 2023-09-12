@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'bun:test'
-import { getSwpmInfo } from './info.js'
+import { getSwpmInfo } from './info'
 
 describe('getSwpmInfo()', () => {
   test('should return an object literal with project information', async () => {

@@ -2,7 +2,7 @@ import chalk from 'chalk'
 import { stripIndent } from 'common-tags'
 import updateNotifier from 'update-notifier'
 import { getCommandResult } from './cmds.js'
-import { getSwpmInfo } from './info.js'
+import { getSwpmInfo } from 'helpers/info'
 
 export const autoUpdate = async (yargs) => {
   const { name, version } = await getSwpmInfo()
