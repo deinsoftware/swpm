@@ -1,5 +1,5 @@
 #!/usr/bin/env bun
 
-import { spreadCommand } from 'helpers'
+import { spreadCommand } from 'helpers/cmds'
 
 spreadCommand('swpm', ['clean', '--dist'])
