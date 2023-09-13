@@ -4,12 +4,12 @@ import { inspect } from 'node:util'
 import yargs from './swpm/config.js'
 
 import { autoUpdate } from '../helpers/autoUpdate.js'
-import { pinPackageManager } from '../flags/pin.js'
+import { pinPackageManager } from 'flags/pin'
 import { showCommand, runCommand } from '../helpers/cmds.js'
-import { showPackageInformation } from '../flags/info.js'
-import { showCommandAlias } from '../flags/alias.js'
-import { testCommand } from '../flags/test.js'
-import { setPackageVersion } from '../helpers/set.js'
+import { showPackageInformation } from 'flags/info.js'
+import { showCommandAlias } from 'flags/alias'
+import { testCommand } from 'flags/test.js'
+import { setPackageVersion } from 'helpers/set'
 
 if (yargs.debug) {
   console.log(

@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import { stripIndent } from 'common-tags'
 import updateNotifier from 'update-notifier'
-import { getCommandResult } from './cmds.js'
+import { getCommandResult } from 'helpers/cmds'
 import { getSwpmInfo } from 'helpers/info'
 
 export const autoUpdate = async (yargs) => {
@@ -20,7 +20,7 @@ export const autoUpdate = async (yargs) => {
   if (notifier?.update) {
     const { latest, current, type } = notifier.update
 
-    let command = 'npm install swpm --location=global'
+    let command = 'bun add --global swpm'
     const voltaVersion = getCommandResult('volta --version')
     if (voltaVersion) {
       command = 'volta install swpm'

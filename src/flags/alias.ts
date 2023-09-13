@@ -5,7 +5,7 @@ import commandExists from 'command-exists'
 
 import { getSwpmInfo } from 'helpers/info'
 
-const commandVerification = async (cmd) => {
+const commandVerification = async (cmd: string) => {
   try {
     await commandExists(cmd)
     return true

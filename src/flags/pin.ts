@@ -1,8 +1,14 @@
 import { exit } from 'node:process'
 import chalk from 'chalk'
-import { getPackageJson, savePackageJson } from '../helpers/files.js'
+import { getPackageJson, savePackageJson } from 'helpers/files'
+import { PackageConfiguration } from 'packages/packages.types'
 
-export const pinPackageManager = async ({ cmd, config }) => {
+type Props = {
+  cmd: PackageConfiguration['cmd']
+  config: Pick<PackageConfiguration, 'color'>
+}
+
+export const pinPackageManager = async ({ cmd, config }: Props) => {
   const packageJson = await getPackageJson()
 
   if (packageJson) {

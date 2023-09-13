@@ -1,7 +1,8 @@
-import { runCommand, showCommand } from '../helpers/cmds.js'
-import packagesList from '../packages/list.js'
+import { runCommand, showCommand } from './cmds.js'
+import packagesList from 'packages/list'
+import { PackageManager } from 'packages/packages.types.js'
 
-export const setPackageVersion = async (cmd) => {
+export const setPackageVersion = async (cmd: PackageManager) => {
   const getPackageVersion = packagesList.filter((pkg) => pkg.cmd === cmd) ?? []
 
   if (getPackageVersion.length) {

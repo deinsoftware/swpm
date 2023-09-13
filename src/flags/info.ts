@@ -3,11 +3,13 @@ import { stripIndents } from 'common-tags'
 import chalk from 'chalk'
 import commandExists from 'command-exists'
 
-import { getCommandResult } from '../helpers/cmds.js'
+import { getCommandResult } from 'helpers/cmds'
 import { getOriginIcon } from 'helpers/icons'
+import { OriginIcons } from 'helpers/icons.types'
 import { getSwpmInfo } from 'helpers/info'
+import { PackageConfiguration, PackageManager } from 'packages/packages.types.js'
 
-const commandVerification = async (cmd) => {
+const commandVerification = async (cmd: string) => {
   try {
     await commandExists(cmd)
     return true
@@ -16,8 +18,15 @@ const commandVerification = async (cmd) => {
   }
 }
 
-export const showPackageInformation = async ({ origin, cmd, config, volta }) => {
-  const nodeVersion = getCommandResult('node --version', volta)
+type Props = {
+  origin?: OriginIcons,
+  cmd: PackageManager,
+  config: Pick<PackageConfiguration, 'color' | 'url'>
+  volta?: boolean
+}
+
+export const showPackageInformation = async ({ origin, cmd, config, volta }: Props) => {
+  const bunVersion = getCommandResult('bun --version', volta)
 
   const isInstalled = await commandVerification(cmd)
   const packageVersion = isInstalled ? getCommandResult(`${cmd} --version`, volta) : 'not found'
@@ -38,7 +47,7 @@ export const showPackageInformation = async ({ origin, cmd, config, volta }) => 
   message += `
     ${chalk.bold('Versions:')}
     ${chalk.hex('#368fb9').bold('s')}${chalk.hex('#4e4e4e').bold('w')}${chalk.hex('#f8ae01').bold('p')}${chalk.hex('#e32e37').bold('m')}: \t${swpmVersion}
-    ${chalk.hex('#689e65').bold('Node')}: \t${nodeVersion?.replace(/v/, '')}
+    ${chalk.hex('#689e65').bold('Bun')}: \t${bunVersion?.replace(/v/, '')}
     ${chalk.hex(config.color).bold(cmd)}: \t${packageVersion}
   `
   if (!isInstalled) {

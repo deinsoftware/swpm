@@ -21,10 +21,17 @@
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "skipLibCheck": true,
+        "baseUrl": "./",
         "paths": {
+            "flags/*": [
+                "./src/flags/*"
+            ],
             "helpers/*": [
                 "./src/helpers/*"
             ],
-        }
+            "packages/*": [
+                "./src/packages/*"
+            ],
+        },
     }
 }

@@ -3,7 +3,7 @@ import fs from 'node:fs/promises'
 import { resolve as resolvePath } from 'node:path'
 
 import packagesList from 'packages/list'
-import { fileExists, pathExists } from './files.js'
+import { fileExists, pathExists } from 'helpers/files'
 import { getResultIcon } from 'helpers/icons'
 
 const deleteResult = (result, name) => {
