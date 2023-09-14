@@ -5,11 +5,12 @@ import { inspect } from 'node:util'
 import yargs from './swpx/config.js'
 import chalk from 'chalk'
 
+import { showPackageInformation } from 'flags/info'
+import { showCommandAlias } from 'flags/alias'
+import { testCommand } from 'flags/test'
+
 import { autoUpdate } from '../helpers/autoUpdate.js'
 import { showCommand, runCommand } from '../helpers/cmds.js'
-import { showPackageInformation } from 'flags/info.js'
-import { showCommandAlias } from 'flags/alias.js'
-import { testCommand } from 'flags/test.js'
 
 if (yargs.debug) {
   console.log(

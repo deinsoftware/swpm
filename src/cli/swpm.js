@@ -4,9 +4,9 @@ import { inspect } from 'node:util'
 import yargs from './swpm/config.js'
 
 import { pinPackageManager } from 'flags/pin'
-import { showPackageInformation } from 'flags/info.js'
+import { showPackageInformation } from 'flags/info'
 import { showCommandAlias } from 'flags/alias'
-import { testCommand } from 'flags/test.js'
+import { testCommand } from 'flags/test'
 
 import { autoUpdate } from '../helpers/autoUpdate.js'
 import { showCommand, runCommand } from '../helpers/cmds.js'
