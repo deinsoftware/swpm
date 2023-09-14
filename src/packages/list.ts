@@ -4,6 +4,7 @@ import yarnBerry from './managers/yarn@berry'
 import pnpm from './managers/pnpm'
 import bun from './managers/bun'
 import { PackageConfiguration, PackageManager } from 'packages/packages.types'
+import { PackageCommand } from 'types/swpm.types'
 
 const packageManagerList = [
   npm,
@@ -21,7 +22,7 @@ export const packageExists = (pkg: PackageManager) => {
   return availablePackages().includes(pkg)
 }
 
-export const getPackageConfiguration = async (pkg: Pick<PackageConfiguration, 'cmd'>)=> {
+export const getPackageConfiguration = async (pkg: PackageCommand)=> {
   try {
     const config = await import(`./managers/${pkg.cmd}.ts`)
     return config?.default

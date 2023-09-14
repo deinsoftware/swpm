@@ -7,7 +7,7 @@ import { getCommandResult } from 'helpers/cmds'
 import { getOriginIcon } from 'helpers/icons'
 import { OriginIcons } from 'helpers/icons.types'
 import { getSwpmInfo } from 'helpers/info'
-import { PackageConfiguration, PackageManager } from 'packages/packages.types.js'
+import { PackageConfiguration, PackageManager } from 'packages/packages.types'
 
 const commandVerification = async (cmd: string) => {
   try {

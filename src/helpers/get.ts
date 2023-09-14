@@ -4,14 +4,16 @@ import chalk from 'chalk'
 import semver from 'semver'
 import { getPackageJson, lockFileExists } from 'helpers/files'
 import packagesList, { packageExists } from 'packages/list'
+import { PackageConfiguration, PackageManager } from 'packages/packages.types'
+import { PackageCommand, PackageJson } from 'types/swpm.types'
 
 const packageName = 'package.json'
 
-const propertyExists = (packageJson, property) => {
+const propertyExists = (packageJson: PackageJson, property: string) => {
   return (property in packageJson)
 }
 
-const getPackageManager = (packageJson, property) => {
+const getPackageManager = (packageJson: PackageJson, property: 'packageManager') => {
   let [cmd, version] = packageJson?.[property]?.split('@') ?? ['', '']
 
   if (version) {
@@ -28,10 +30,10 @@ const getPackageManager = (packageJson, property) => {
     }
   }
 
-  return `${cmd}`
+  return cmd
 }
 
-const getPropertyValue = async (packageJson, property) => {
+const getPropertyValue = async (packageJson: PackageJson, property: 'swpm' | 'packageManager') => {
   if (!packageJson || !propertyExists(packageJson, property)) {
     return
   }
@@ -40,7 +42,7 @@ const getPropertyValue = async (packageJson, property) => {
   if (property === 'packageManager') {
     prop = getPackageManager(packageJson, property)
   }
-  if (prop && packageExists(prop)) {
+  if (prop && packageExists(prop as PackageManager)) {
     return prop
   }
 
@@ -63,13 +65,13 @@ const searchForLockFiles = async () => {
   }
 }
 
-const searchForEnv = (name) => {
+const searchForEnv = (name: 'SWPM') => {
   if (!(name in env)) {
     return
   }
 
   const value = env[name]
-  if (value && packageExists(value)) {
+  if (value && packageExists(value as PackageManager)) {
     return value
   }
 
@@ -80,23 +82,23 @@ const searchForEnv = (name) => {
   exit(1)
 }
 
-export const getCurrentPackageManager = async () => {
+export const getCurrentPackageManager = async (): Promise<{origin: PackageCommand['origin'], cmd: PackageManager}> => {
   const packageJson = await getPackageJson()
 
   if (packageJson) {
-    const pinned = await getPropertyValue(packageJson, 'swpm')
-    if (pinned) { return { origin: 'pinned', cmd: pinned } }
+    const pinned = await getPropertyValue(packageJson, 'swpm') as PackageManager
+    if (pinned && packageExists(pinned)) { return { origin: 'pinned', cmd: pinned } }
 
     // https://nodejs.org/api/corepack.html
-    const packageManager = await getPropertyValue(packageJson, 'packageManager')
-    if (packageManager) { return { origin: 'packageManager', cmd: packageManager } }
+    const packageManager = await getPropertyValue(packageJson, 'packageManager') as PackageManager
+    if (packageManager && packageExists(packageManager)) { return { origin: 'packageManager', cmd: packageManager } }
   }
 
-  const envSwpm = searchForEnv('SWPM')
-  if (envSwpm) { return { origin: 'environment', cmd: envSwpm } }
+  const envSwpm = searchForEnv('SWPM') as PackageManager
+  if (envSwpm && packageExists(envSwpm)) { return { origin: 'environment', cmd: envSwpm } }
 
-  const lock = await searchForLockFiles()
-  if (lock) { return { origin: 'lock', cmd: lock } }
+  const lock = await searchForLockFiles() as PackageManager
+  if (lock && packageExists(lock)) { return { origin: 'lock', cmd: lock } }
 
   console.error(stripIndents`
     ${chalk.red.bold('Error')}: no Package Manager or Environment Variable was found.
@@ -108,13 +110,12 @@ export const getCurrentPackageManager = async () => {
 }
 
 // https://volta.sh/
-export const detectVoltaPin = async (pkg) => {
+export const detectVoltaPin = async (pkg: PackageCommand) => {
   const packageJson = await getPackageJson()
+  const prop = 'volta'
 
-  if (packageJson) {
-    return (
-      propertyExists(packageJson, 'volta') &&
-      (pkg?.cmd in packageJson.volta)
-    )
-  }
+  if (!packageJson) return
+  if (!propertyExists(packageJson, prop)) return
+
+  return(pkg.cmd in packageJson[prop])
 }

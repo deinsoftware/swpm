@@ -2,8 +2,7 @@ import { exit } from 'node:process'
 import fs from 'node:fs/promises'
 import chalk from 'chalk'
 import { findUp } from 'find-up'
-
-import { PackageJson } from 'type-fest';
+import { PackageJson } from 'types/swpm.types'
 
 const packageName = 'package.json'
 
@@ -26,7 +25,7 @@ export const pathExists = async (path: string) => {
   }
 }
 
-export const getPackageJson = async (fileName: `${string}.json` = packageName) => {
+export const getPackageJson = async (fileName: `${string}.json` = packageName): Promise<PackageJson | undefined> => {
   try {
     const closestPackageJsonPath = await findUp(fileName)
     if (!closestPackageJsonPath) {
