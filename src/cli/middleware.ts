@@ -1,6 +1,6 @@
 import { argv } from 'node:process'
-import { cleanFlag, translateArgs } from '../helpers/args.js'
-import { translateCommand } from '../helpers/cmds.js'
+import { cleanFlag, translateArgs } from 'helpers/args'
+import { translateCommand } from 'helpers/cmds'
 import { detectVoltaPin, getCurrentPackageManager } from 'helpers/get'
 import { getPackageConfiguration } from 'packages/list'
 import { setPackageVersion } from 'helpers/set'
@@ -17,24 +17,24 @@ const middleware: MiddlewareFunction = async (yargs: Yargs) => {
     cleanFlag(yargs, '-d')
   }
 
-  if (yargs.hasOwnProperty('use')) {
+  if (yargs?.use) {
     cleanFlag(yargs, '--use')
     cleanFlag(yargs, '-u')
     pkg.cmd = yargs?.use!
     await setPackageVersion(yargs.use!)
   }
 
-  if (yargs.hasOwnProperty('pin')) {
+  if (yargs?.pin) {
     pkg.cmd = yargs.pin!
   }
 
-  if (yargs.hasOwnProperty('test')) {
+  if (yargs?.test) {
     cleanFlag(yargs, '--test')
     cleanFlag(yargs, '-t')
     pkg.cmd = yargs.test!
   }
 
-  if (yargs.hasOwnProperty('mute')) {
+  if (yargs?.mute) {
     cleanFlag(yargs, '--mute')
     cleanFlag(yargs, '-m')
   }

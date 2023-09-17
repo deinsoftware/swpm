@@ -7,7 +7,7 @@ import { getCommandResult } from 'helpers/cmds'
 import { getOriginIcon } from 'helpers/icons'
 import { OriginIcons } from 'helpers/icons.types'
 import { getSwpmInfo } from 'helpers/info'
-import { PackageConfiguration, PackageManager } from 'packages/packages.types'
+import { PackageConfiguration, PackageManagerList } from 'packages/packages.types'
 
 const commandVerification = async (cmd: string) => {
   try {
@@ -20,7 +20,7 @@ const commandVerification = async (cmd: string) => {
 
 type Props = {
   origin?: OriginIcons,
-  cmd: PackageManager,
+  cmd: PackageManagerList,
   config: Pick<PackageConfiguration, 'color' | 'url'>
   volta?: boolean
 }

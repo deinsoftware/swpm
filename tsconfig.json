@@ -23,6 +23,9 @@
         "skipLibCheck": true,
         "baseUrl": "./",
         "paths": {
+            "cli/*": [
+                "./src/cli/*"
+            ],
             "flags/*": [
                 "./src/flags/*"
             ],

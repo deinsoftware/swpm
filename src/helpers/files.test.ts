@@ -44,7 +44,7 @@ describe('getPackageJson', () => {
     const fileName = 'package.json'
     const pkg = await getPackageJson(fileName)
     expect(pkg).toBeDefined()
-    expect(pkg.name).toBe('swpm')
+    expect(pkg?.name).toBe('swpm')
     process.chdir(currentCwd)
   })
 

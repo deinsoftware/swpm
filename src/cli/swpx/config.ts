@@ -4,8 +4,8 @@ import { argv } from 'node:process'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 
-import { options } from './cli.js'
-import middleware from '../middleware.js'
+import { options } from 'cli/swpx/cli'
+import middleware from 'cli/middleware'
 
 const config = await yargs(hideBin(argv))
   .scriptName(path.basename(argv[1], path.extname(argv[1])))

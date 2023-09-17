@@ -1,13 +1,17 @@
-const update = {
+import { Argv, CommandModule } from 'yargs'
+
+const update: CommandModule = {
   command: 'update <package> [args] [FLAGS]',
   aliases: ['up', 'ud'],
-  desc: 'update package',
-  conflicts: ['add', 'clean', 'install', 'remove', 'upgrade'],
-  builder: (yargs) => {
+  describe: 'update package',
+
+  builder: (yargs: Argv<{}>)  => {
     yargs.positional('package', {
       type: 'string',
       desc: '<package>'
     })
+
+    yargs.conflicts('update',['add', 'clean', 'install', 'remove', 'upgrade'])
 
     yargs.option('global', {
       alias: 'g',
@@ -18,7 +22,9 @@ const update = {
     })
 
     return yargs
-  }
+  },
+
+  handler: (): void => {}
 }
 
 export default update

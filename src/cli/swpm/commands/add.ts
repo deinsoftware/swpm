@@ -1,7 +1,11 @@
-import { findVoltaGlobals, translateArgs } from '../../../helpers/args.js'
+import { Yargs } from 'types/swpm.types'
+import { Argv, CommandModule, MiddlewareFunction } from 'yargs'
+import { findVoltaGlobals, translateArgs } from 'helpers/args'
 
-const middleware = (yargs) => {
-  if (findVoltaGlobals(yargs, ['add', 'install'])
+const middleware: MiddlewareFunction = (yargs: Yargs) => {
+  if (!yargs?.pkg) return
+
+  if (yargs?.package && findVoltaGlobals(yargs, ['add', 'install'])
   ) {
     yargs.pkg.cmd = 'volta'
     yargs.pkg.args = ['install', yargs.package]
@@ -24,16 +28,18 @@ const middleware = (yargs) => {
   }
 }
 
-const add = {
+const add: CommandModule = {
   command: 'add <package> [args] [FLAGS]',
   aliases: ['a'],
-  desc: 'add package',
-  conflicts: ['clean', 'install', 'remove', 'update', 'upgrade'],
-  builder: (yargs) => {
+  describe: 'add package',
+
+  builder: (yargs: Argv<{}>) => {
     yargs.positional('package', {
       type: 'string',
       desc: '<package>'
     })
+
+    yargs.conflicts('add',['clean', 'install', 'remove', 'update', 'upgrade'])
 
     yargs.option('save-dev', {
       alias: 'D',
@@ -80,7 +86,9 @@ const add = {
     yargs.middleware(middleware)
 
     return yargs
-  }
+  },
+
+  handler: (): void => {}
 }
 
 export default add

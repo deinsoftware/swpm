@@ -1,6 +1,8 @@
-import { translateArgs } from '../../../helpers/args.js'
+import { translateArgs } from 'helpers/args'
+import { Yargs } from 'types/swpm.types'
+import { Argv, CommandModule, MiddlewareFunction } from 'yargs'
 
-const middleware = (yargs) => {
+export const middleware: MiddlewareFunction = (yargs: Yargs) => {
   if ('save-exact' in yargs) {
     translateArgs(yargs, '--save-exact', '-E')
   }
@@ -10,16 +12,18 @@ const middleware = (yargs) => {
   }
 }
 
-const upgrade = {
+const upgrade: CommandModule = {
   command: 'upgrade <package> [args] [FLAGS]',
   aliases: ['ug'],
-  desc: 'upgrade package to latest',
-  conflicts: ['add', 'clean', 'install', 'remove', 'upgrade'],
-  builder: (yargs) => {
+  describe: 'upgrade package to latest',
+
+  builder: (yargs: Argv<{}>) => {
     yargs.positional('package', {
       type: 'string',
       desc: '<package>'
     })
+
+    yargs.conflicts('upgrade',['add', 'clean', 'install', 'remove', 'upgrade'])
 
     yargs.option('latest', {
       alias: 'L',
@@ -48,7 +52,9 @@ const upgrade = {
     yargs.middleware(middleware)
 
     return yargs
-  }
+  },
+
+  handler: (): void => {}
 }
 
 export default upgrade

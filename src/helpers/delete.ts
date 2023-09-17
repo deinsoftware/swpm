@@ -6,8 +6,8 @@ import packagesList from 'packages/list'
 import { fileExists, pathExists } from 'helpers/files'
 import { getResultIcon } from 'helpers/icons'
 
-const deleteResult = (result, name) => {
-  const icon = getResultIcon(result === undefined ? 'success' : 'failure')
+const deleteResult = (result: boolean, name: string) => {
+  const icon = getResultIcon(result ? 'success' : 'failure')
   console.log(`${icon} ${name}`)
 
   if (result !== undefined) {
@@ -15,19 +15,31 @@ const deleteResult = (result, name) => {
   }
 }
 
-export const deletePath = async (folderName) => {
+export const deletePath = async (folderName: string) => {
   if (await pathExists(folderName)) {
     const path = resolvePath(cwd(), folderName)
-    const result = await fs.rm(path, { force: true, recursive: true })
-    deleteResult(result, folderName)
+    let result = true
+    try {
+      await fs.rm(path, { force: true, recursive: true })
+    } catch {
+      result = false
+    } finally {
+      deleteResult(result, folderName)
+    }
   }
 }
 
-export const deleteFile = async (fileName) => {
+export const deleteFile = async (fileName: string) => {
   if (await fileExists(fileName)) {
     const path = resolvePath(cwd(), fileName)
-    const result = await fs.rm(path, { force: true })
-    deleteResult(result, fileName)
+    let result = true
+    try {
+      await fs.rm(path, { force: true })
+    } catch {
+      result = false
+    } finally {
+      deleteResult(result, fileName)
+    }
   }
 }
 

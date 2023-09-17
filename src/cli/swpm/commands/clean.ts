@@ -1,8 +1,10 @@
 import chalk from 'chalk'
 import { exit } from 'node:process'
-import { deleteModulesPath, deleteModulesFiles, deleteLockFiles, deleteLogFiles, deletePath } from '../../../helpers/delete.js'
+import { Argv, CommandModule, MiddlewareFunction } from 'yargs'
+import { Yargs } from 'types/swpm.types'
+import { deleteModulesPath, deleteModulesFiles, deleteLockFiles, deleteLogFiles, deletePath } from 'helpers/delete'
 
-const middleware = async (yargs) => {
+const middleware: MiddlewareFunction = async (yargs: Yargs) => {
   console.log(`🧽 ${chalk.bold('Cleaning')}: `)
 
   if ('all' in yargs || 'fresh' in yargs || 'modules' in yargs) {
@@ -39,12 +41,14 @@ const middleware = async (yargs) => {
   exit(0)
 }
 
-const clean = {
+const clean: CommandModule = {
   command: 'clean [FLAGS]',
   aliases: ['c'],
-  desc: 'clean packages',
-  conflicts: ['add', 'install', 'remove', 'update', 'upgrade'],
-  builder: (yargs) => {
+  describe: 'clean packages',
+
+  builder: (yargs: Argv<{}>) => {
+    yargs.conflicts('clean',['add', 'install', 'remove', 'update', 'upgrade'])
+
     yargs.option('all', {
       type: 'boolean',
       desc: 'clean project',
@@ -104,7 +108,9 @@ const clean = {
     yargs.middleware(middleware)
 
     return yargs
-  }
+  },
+
+  handler: (): void => {}
 }
 
 export default clean

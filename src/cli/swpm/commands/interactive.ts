@@ -1,21 +1,25 @@
-import { translateArgs } from '../../../helpers/args.js'
+import { Argv, CommandModule, MiddlewareFunction } from 'yargs'
+import { Yargs } from 'types/swpm.types'
+import { translateArgs } from 'helpers/args'
 
-const middleware = (yargs) => {
+const middleware: MiddlewareFunction = (yargs: Yargs) => {
   if ('latest' in yargs) {
     translateArgs(yargs, '--latest', '-L')
   }
 }
 
-const interactive = {
+const interactive: CommandModule = {
   command: 'interactive [args] [FLAGS]',
   aliases: ['ui'],
-  desc: 'update packages interactive',
-  conflicts: ['add', 'clean', 'install', 'remove', 'upgrade'],
-  builder: (yargs) => {
+  describe: 'update packages interactive',
+
+  builder: (yargs: Argv<{}>) => {
     yargs.positional('package', {
       type: 'string',
       desc: '<package>'
     })
+
+    yargs.conflicts('interactive',['add', 'clean', 'install', 'remove', 'upgrade'])
 
     yargs.option('latest', {
       alias: 'L',
@@ -34,7 +38,9 @@ const interactive = {
     yargs.middleware(middleware)
 
     return yargs
-  }
+  },
+
+  handler: (): void => {}
 }
 
 export default interactive

@@ -1,6 +1,5 @@
 import { describe, test, expect } from 'bun:test'
 import { availablePackages, packageExists, getPackageConfiguration } from './list'
-import { PackageManager } from 'packages/packages.types'
 
 describe('availablePackages()', () => {
   test('should return a list of available packages', () => {
@@ -35,8 +34,8 @@ describe('getPackageConfiguration()', () => {
       lockFiles: ['package-lock.json']
     }
     const pkg = {
-      cmd: 'npm' as PackageManager
-    }
+      cmd: 'npm'
+    } as const
     const result = await getPackageConfiguration(pkg)
     const { cmd, lockFiles } = result
     expect({ cmd, lockFiles }).toMatchObject(expectedResult)

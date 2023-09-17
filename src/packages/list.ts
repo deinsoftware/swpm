@@ -3,7 +3,7 @@ import yarn from './managers/yarn'
 import yarnBerry from './managers/yarn@berry'
 import pnpm from './managers/pnpm'
 import bun from './managers/bun'
-import { PackageConfiguration, PackageManager } from 'packages/packages.types'
+import { PackageConfiguration, PackageManagerList } from 'packages/packages.types'
 import { PackageCommand } from 'types/swpm.types'
 
 const packageManagerList = [
@@ -18,11 +18,11 @@ export const availablePackages = () => {
   return packageManagerList.map((pkg) => pkg.cmd)
 }
 
-export const packageExists = (pkg: PackageManager) => {
+export const packageExists = (pkg: PackageManagerList) => {
   return availablePackages().includes(pkg)
 }
 
-export const getPackageConfiguration = async (pkg: PackageCommand)=> {
+export const getPackageConfiguration = async (pkg: Pick<PackageCommand, 'cmd'>)=> {
   try {
     const config = await import(`./managers/${pkg.cmd}.ts`)
     return config?.default

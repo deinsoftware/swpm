@@ -3,6 +3,6 @@ const debug = {
   describe: 'debug yargs parameters',
   type: 'boolean',
   hidden: true
-}
+} as const
 
 export default debug

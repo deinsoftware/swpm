@@ -1,9 +1,11 @@
 import { exit } from 'node:process'
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
-import { translateArgs } from '../../../helpers/args.js'
+import { Yargs } from 'types/swpm.types'
+import { Argv, CommandModule, MiddlewareFunction } from 'yargs'
+import { translateArgs } from 'helpers/args'
 
-const middleware = (yargs) => {
+const middleware: MiddlewareFunction = (yargs: Yargs) => {
   if ('package-lock' in yargs) {
     translateArgs(yargs, '--package-lock', '-P')
   }
@@ -25,19 +27,21 @@ const middleware = (yargs) => {
   }
 }
 
-const install = {
+const install: CommandModule = {
   command: 'install [FLAGS]',
   aliases: ['i'],
-  desc: 'install packages from package.json',
-  conflicts: ['add', 'clean', 'remove', 'update', 'upgrade'],
-  builder: (yargs) => {
+  describe: 'install packages from package.json',
+
+  builder: (yargs: Argv<{}>) => {
+    yargs.conflicts('install',['add', 'clean', 'remove', 'update', 'upgrade'])
+
     yargs.option('package-lock', {
       alias: 'P',
       type: 'boolean',
       description: 'ignore lock file when installing and prevents writing',
       usage: '$0 install --package-lock',
       conflicts: ['frozen']
-    })
+    } as const)
 
     yargs.option('frozen', {
       alias: 'F',
@@ -45,12 +49,14 @@ const install = {
       description: 'install from lock file (without updating it)',
       usage: '$0 install --frozen',
       conflicts: ['package-lock']
-    })
+    } as const)
 
     yargs.middleware(middleware)
 
     return yargs
-  }
+  },
+
+  handler: (): void => {}
 }
 
 export default install

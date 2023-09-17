@@ -1,10 +1,10 @@
 
-export type PackageManager = 'pnpm' | 'npm' | 'yarn' | 'yarn@berry' | 'bun'
+export type PackageManagerList = 'pnpm' | 'npm' | 'yarn' | 'yarn@berry' | 'bun' | 'volta'
 
 type ColorValueHex = `#${string}`
 
 export type PackageConfiguration = {
-  cmd: PackageManager;
+  cmd: PackageManagerList;
   exc: string;
   color: ColorValueHex;
   url: string;

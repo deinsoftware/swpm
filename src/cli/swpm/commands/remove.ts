@@ -1,6 +1,8 @@
-import { findVoltaGlobals, translateArgs } from '../../../helpers/args.js'
+import { Argv, CommandModule, MiddlewareFunction } from 'yargs'
+import { Yargs } from 'types/swpm.types'
+import { findVoltaGlobals, translateArgs } from 'helpers/args'
 
-const middleware = (yargs) => {
+const middleware: MiddlewareFunction = (yargs: Yargs) => {
   if (findVoltaGlobals(yargs, ['uninstall', 'remove'])
   ) {
     yargs.pkg.cmd = 'volta'
@@ -20,16 +22,18 @@ const middleware = (yargs) => {
   }
 }
 
-const remove = {
+const remove: CommandModule = {
   command: 'remove <package> [args] [FLAGS]',
   aliases: ['r', 'rm', 'uninstall', 'un'],
-  desc: 'remove package',
-  conflicts: ['add', 'clean', 'install', 'update', 'upgrade'],
-  builder: (yargs) => {
+  describe: 'remove package',
+
+  builder: (yargs: Argv<{}>) => {
     yargs.positional('package', {
       type: 'string',
       desc: '<package>'
     })
+
+    yargs.conflicts('remove',['add', 'clean', 'install', 'update', 'upgrade'])
 
     yargs.option('save-dev', {
       alias: 'D',
@@ -68,7 +72,9 @@ const remove = {
     yargs.middleware(middleware)
 
     return yargs
-  }
+  },
+
+  handler: (): void => {}
 }
 
 export default remove
