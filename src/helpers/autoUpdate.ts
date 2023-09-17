@@ -1,10 +1,13 @@
-import chalk from 'chalk'
+import chalk, { ForegroundColorName } from 'chalk'
 import { stripIndent } from 'common-tags'
-import updateNotifier from 'update-notifier'
+import updateNotifier, { NotifyOptions } from 'update-notifier'
 import { getCommandResult } from 'helpers/cmds'
 import { getSwpmInfo } from 'helpers/info'
+import { Yargs } from 'types/swpm.types'
 
-export const autoUpdate = async (yargs) => {
+const ONE_DAY_MS = 1000 * 60 * 60 * 24
+
+export const autoUpdate = async (yargs: Yargs) => {
   const { name, version } = await getSwpmInfo()
 
   const option = {
@@ -13,7 +16,7 @@ export const autoUpdate = async (yargs) => {
       version
     },
     shouldNotifyInNpmScript: true,
-    updateCheckInterval: 1000 * 60 * 60 * 24 /* 1 day */
+    updateCheckInterval: ONE_DAY_MS
   }
   const notifier = await updateNotifier(option)
 
@@ -31,13 +34,23 @@ export const autoUpdate = async (yargs) => {
       }
     }
 
-    const color = {
-      major: 'red',
-      minor: 'yellow'
+    let color: ForegroundColorName
+    switch (type) {
+      case 'major':
+        color = 'red'
+        break;
+
+      case 'minor':
+        color = 'yellow'
+        break;
+
+      default:
+        color = 'green'
+        break;
     }
 
     const message = stripIndent`
-    New ${type} version available: ${chalk.dim(`${current}`)}${chalk.reset(' → ')}${chalk[color[type] || 'green'](`${latest}`)}
+    New ${type} version available: ${chalk.dim(`${current}`)}${chalk.reset(' → ')}${chalk[color](`${latest}`)}
     Run ${chalk.cyan(command)} to update`
 
     const boxenOptions = {
@@ -45,11 +58,11 @@ export const autoUpdate = async (yargs) => {
       margin: 1,
       textAlignment: 'center',
       borderColor: 'yellow',
-      borderStyle: 'round',
+      borderStyle: 'single',
       backgroundColor: 'black'
-    }
+    } as const
 
-    const notification = {
+    const notification: NotifyOptions = {
       message,
       boxenOptions
     }
