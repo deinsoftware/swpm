@@ -2,5 +2,5 @@
 
 import { spreadCommand } from 'helpers/cmds'
 
-const args = ['remove', ...process.argv.slice(2), '--global']
+const args = ['remove', ...Bun.argv.slice(2), '--global']
 spreadCommand('swpm', args)

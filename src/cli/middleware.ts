@@ -1,61 +1,59 @@
-import { argv } from 'node:process'
 import { cleanFlag, translateArgs } from 'helpers/args'
 import { translateCommand } from 'helpers/cmds'
 import { detectVoltaPin, getCurrentPackageManager } from 'helpers/get'
 import { getPackageConfiguration } from 'packages/list'
 import { setPackageVersion } from 'helpers/set'
-import { MiddlewareFunction } from 'yargs'
-import { PackageCommand, Yargs } from 'types/swpm.types'
+import { InferredOptionTypes, MiddlewareFunction } from 'yargs'
+import { CommanderPackage } from 'translator/commander.types'
+import cmdr, { setCommander } from 'translator/commander'
+import { options } from 'cli/swpx/cli'
 
-const middleware: MiddlewareFunction = async (yargs: Yargs) => {
-  const pkg: Partial<PackageCommand> = {
-    args: argv.slice(2)
-  }
+const middleware: MiddlewareFunction<InferredOptionTypes<typeof options>> = async (yargs) => {
+
+  const {argv} = Bun
+
+  setCommander({args: argv.slice(2)})
 
   if ('debug' in yargs) {
-    cleanFlag(yargs, '--debug')
-    cleanFlag(yargs, '-d')
+    cleanFlag(cmdr, '--debug')
+    cleanFlag(cmdr, '-d')
   }
 
-  if (yargs?.use) {
-    cleanFlag(yargs, '--use')
-    cleanFlag(yargs, '-u')
-    pkg.cmd = yargs?.use!
+  if ('use' in yargs) {
+    cleanFlag(cmdr, '--use')
+    cleanFlag(cmdr, '-u')
+    cmdr.cmd = yargs.use
     await setPackageVersion(yargs.use!)
   }
 
-  if (yargs?.pin) {
-    pkg.cmd = yargs.pin!
+  if ('test' in yargs) {
+    cleanFlag(cmdr, '--test')
+    cleanFlag(cmdr, '-t')
+    cmdr.cmd = yargs.test
   }
 
-  if (yargs?.test) {
-    cleanFlag(yargs, '--test')
-    cleanFlag(yargs, '-t')
-    pkg.cmd = yargs.test!
+  if ('mute' in yargs) {
+    cleanFlag(cmdr, '--mute')
+    cleanFlag(cmdr, '-m')
   }
 
-  if (yargs?.mute) {
-    cleanFlag(yargs, '--mute')
-    cleanFlag(yargs, '-m')
-  }
-
-  if (!pkg?.cmd || yargs?.info) {
+  if (!('cmd' in cmdr) || 'info' in yargs) {
     const { origin, cmd } = await getCurrentPackageManager()
-    pkg.origin = origin
-    pkg.cmd = cmd
+    cmdr.origin = origin
+    cmdr.cmd = cmd
   }
 
-  if (pkg?.cmd) {
-    pkg.volta = await detectVoltaPin(pkg as PackageCommand)
-    pkg.config = await getPackageConfiguration(pkg as PackageCommand)
+  if ('cmd' in cmdr) {
+    cmdr.volta = await detectVoltaPin(cmdr as CommanderPackage) ?? false
+    cmdr.config = await getPackageConfiguration(cmdr as CommanderPackage)
   }
 
   if ('global' in yargs) {
-    translateArgs(yargs, '--global', '-g')
+    translateArgs(yargs, cmdr, '--global', '-g')
   }
 
   if (yargs._.length) {
-    translateCommand(yargs)
+    translateCommand(yargs, cmdr)
   }
 }
 

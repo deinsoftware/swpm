@@ -1,30 +1,31 @@
-import { Argv, CommandModule } from 'yargs'
+import { CommandModule } from 'yargs'
 
-const update: CommandModule = {
+type Options = {
+  'package'?: string
+  'global'?: boolean
+}
+
+const update: CommandModule<Record<string, unknown>, Options> = {
   command: 'update <package> [args] [FLAGS]',
   aliases: ['up', 'ud'],
   describe: 'update package',
 
-  builder: (yargs: Argv<{}>)  => {
-    yargs.positional('package', {
-      type: 'string',
-      desc: '<package>'
-    })
+  builder: (yargs)  =>
+    yargs
+      .positional('package', {
+        type: 'string',
+        desc: '<package>'
+      })
+      .conflicts('update',['add', 'clean', 'install', 'remove', 'upgrade'])
+      .option('global', {
+        alias: 'g',
+        type: 'boolean',
+        desc: 'update package as global',
+        usage: '$0 update <package> --global',
+        implies: ['package']
+      }),
 
-    yargs.conflicts('update',['add', 'clean', 'install', 'remove', 'upgrade'])
-
-    yargs.option('global', {
-      alias: 'g',
-      type: 'boolean',
-      desc: 'update package as global',
-      usage: '$0 update <package> --global',
-      implies: ['package']
-    })
-
-    return yargs
-  },
-
-  handler: (): void => {}
+  handler: () => {}
 }
 
 export default update

@@ -1,8 +1,8 @@
 import { exit } from 'node:process'
 import { showCommand } from 'helpers/cmds'
-import { PackageCommand } from 'types/swpm.types'
+import { CommanderPackage } from 'translator/commander.types'
 
-export const testCommand = (pkg: PackageCommand) => {
-  showCommand(pkg)
+export const testCommand = (cmdr: CommanderPackage) => {
+  showCommand(cmdr)
   exit(0)
 }

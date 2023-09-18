@@ -2,5 +2,5 @@
 
 import { spreadCommand } from 'helpers/cmds'
 
-const args = ['install', ...process.argv.slice(2), '--frozen']
+const args = ['install', ...Bun.argv.slice(2), '--frozen']
 spreadCommand('swpm', args)

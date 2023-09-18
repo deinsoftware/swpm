@@ -1,7 +1,7 @@
 import { runCommand, showCommand } from './cmds.js'
 import packagesList from 'packages/list'
 import { PackageManagerList } from 'packages/packages.types'
-import { PackageCommand } from 'types/swpm.types'
+import { CommanderPackage } from 'translator/commander.types.js'
 
 export const setPackageVersion = async (packageName: PackageManagerList) => {
   const getPackageVersion = packagesList.filter((pkg) => pkg.cmd === packageName) ?? []
@@ -10,15 +10,15 @@ export const setPackageVersion = async (packageName: PackageManagerList) => {
     const [config] = getPackageVersion
 
     if (config.version) {
-      const pkg: PackageCommand = {
+      const cmdr: CommanderPackage = {
         cmd: packageName,
         args: ['set', 'version', config.version],
-        origin: null,
+        origin: undefined,
         config
       }
 
-      showCommand(pkg)
-      await runCommand(pkg)
+      showCommand(cmdr)
+      await runCommand(cmdr)
     }
   }
 }

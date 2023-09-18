@@ -11,6 +11,7 @@ import { testCommand } from 'flags/test'
 
 import { autoUpdate } from '../helpers/autoUpdate.js'
 import { showCommand, runCommand } from '../helpers/cmds.js'
+import cmdr from 'translator/commander.js'
 
 if (yargs.debug) {
   console.log(
@@ -25,29 +26,29 @@ if (yargs.debug) {
   )
 }
 
-await autoUpdate(yargs)
+await autoUpdate(cmdr)
 
-if (!yargs?.pkg?.config?.exc) {
-  console.error(`${chalk.red.bold('Error')}: the execution command is not available on ${chalk.bold(yargs?.pkg?.cmd)} Package Manager.`)
+if (!cmdr?.config?.exc) {
+  console.error(`${chalk.red.bold('Error')}: the execution command is not available on ${chalk.bold(cmdr?.cmd)} Package Manager.`)
   exit(1)
 }
-yargs.pkg.cmd = yargs.pkg.config.exc
+cmdr.cmd = cmdr.config.exc
 
 if (yargs?.test) {
-  testCommand(yargs.pkg)
+  testCommand(cmdr)
 }
 
 if (yargs?.info) {
-  await showPackageInformation(yargs.pkg)
+  await showPackageInformation(cmdr)
 }
 
 if (yargs?.alias) {
   await showCommandAlias()
 }
 
-if (yargs?.pkg?.cmd) {
+if (cmdr?.cmd) {
   if (!yargs?.mute) {
-    showCommand(yargs.pkg)
+    showCommand(cmdr)
   }
-  await runCommand(yargs.pkg)
+  await runCommand(cmdr)
 }

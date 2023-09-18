@@ -11,6 +11,7 @@ import { testCommand } from 'flags/test'
 import { autoUpdate } from '../helpers/autoUpdate.js'
 import { showCommand, runCommand } from '../helpers/cmds.js'
 import { setPackageVersion } from 'helpers/set'
+import cmdr from 'translator/commander.js'
 
 if (yargs.debug) {
   console.log(
@@ -25,28 +26,36 @@ if (yargs.debug) {
   )
 }
 
-await autoUpdate(yargs)
+await autoUpdate(cmdr)
+
+if ('pin' in yargs) {
+  cmdr.cmd = yargs.pin!
+  await setPackageVersion(cmdr.cmd)
+  const {cmd, config} = cmdr
+  if (cmd && config) { //MARK: not sure about this
+    await pinPackageManager({cmd, config})
+  }
+}
 
 if (yargs?.pin) {
-  await setPackageVersion(yargs.pkg.cmd)
-  await pinPackageManager(yargs.pkg)
+
 }
 
 if (yargs?.test) {
-  testCommand(yargs.pkg)
+  testCommand(cmdr)
 }
 
 if (yargs?.info) {
-  await showPackageInformation(yargs.pkg)
+  await showPackageInformation(cmdr)
 }
 
 if (yargs?.alias) {
   await showCommandAlias()
 }
 
-if (yargs?.pkg?.cmd) {
+if (cmdr?.cmd) {
   if (!yargs?.mute) {
-    showCommand(yargs.pkg)
+    showCommand(cmdr)
   }
-  await runCommand(yargs.pkg)
+  await runCommand(cmdr)
 }

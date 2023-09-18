@@ -35,6 +35,9 @@
             "packages/*": [
                 "./src/packages/*"
             ],
+            "translator/*": [
+                "./src/translator/*"
+            ],
             "types/*": [
                 "./src/types/*"
             ],

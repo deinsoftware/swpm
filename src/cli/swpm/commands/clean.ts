@@ -1,116 +1,113 @@
 import chalk from 'chalk'
 import { exit } from 'node:process'
-import { Argv, CommandModule, MiddlewareFunction } from 'yargs'
-import { Yargs } from 'types/swpm.types'
+import { ArgumentsCamelCase, Argv, CommandModule } from 'yargs'
 import { deleteModulesPath, deleteModulesFiles, deleteLockFiles, deleteLogFiles, deletePath } from 'helpers/delete'
 
-const middleware: MiddlewareFunction = async (yargs: Yargs) => {
-  console.log(`🧽 ${chalk.bold('Cleaning')}: `)
-
-  if ('all' in yargs || 'fresh' in yargs || 'modules' in yargs) {
-    await deletePath('node_modules')
-    await deleteModulesFiles()
-  }
-  if ('modules' in yargs) {
-    await deleteModulesPath()
-  }
-  if ('all' in yargs) {
-    await deletePath('.yarn')
-  }
-
-  if ('all' in yargs || 'lock' in yargs) {
-    await deleteLockFiles()
-  }
-
-  if ('all' in yargs || 'fresh' in yargs || 'log' in yargs) {
-    await deleteLogFiles()
-  }
-
-  if ('all' in yargs || 'fresh' in yargs || 'build' in yargs) {
-    await deletePath('build')
-  }
-
-  if ('all' in yargs || 'fresh' in yargs || 'dist' in yargs) {
-    await deletePath('dist')
-  }
-
-  if ('all' in yargs || 'fresh' in yargs || 'coverage' in yargs) {
-    await deletePath('coverage')
-  }
-
-  exit(0)
+type Options = {
+  'all'?: boolean,
+  'fresh'?: boolean,
+  'modules'?: boolean,
+  'lock'?: boolean,
+  'log'?: boolean,
+  'build'?: boolean,
+  'dist'?: boolean,
+  'coverage'?: boolean
 }
 
-const clean: CommandModule = {
+const clean: CommandModule<Record<string, unknown>, Options> = {
   command: 'clean [FLAGS]',
   aliases: ['c'],
   describe: 'clean packages',
 
-  builder: (yargs: Argv<{}>) => {
-    yargs.conflicts('clean',['add', 'install', 'remove', 'update', 'upgrade'])
+  builder: (yargs) =>
+    yargs
+      .conflicts('clean',['add', 'install', 'remove', 'update', 'upgrade'])
+      .option('all', {
+        type: 'boolean',
+        desc: 'clean project',
+        usage: '$0 clean --all',
+        conflicts: ['fresh', 'modules', 'lock', 'log', 'build', 'dist', 'coverage']
+      })
+      .option('fresh', {
+        type: 'boolean',
+        desc: 'clean project',
+        usage: '$0 clean --fresh',
+        conflicts: ['all', 'modules', 'lock', 'log', 'build', 'dist', 'coverage']
+      })
+      .option('modules', {
+        type: 'boolean',
+        desc: 'delete node_modules folder',
+        usage: '$0 clean --modules',
+        conflicts: ['all', 'fresh']
+      })
+      .option('lock', {
+        type: 'boolean',
+        desc: 'delete lock files',
+        usage: '$0 clean --lock',
+        conflicts: ['all', 'fresh']
+      })
+      .option('log', {
+        type: 'boolean',
+        desc: 'delete log files',
+        usage: '$0 clean --log',
+        conflicts: ['all', 'fresh']
+      })
+      .option('build', {
+        type: 'boolean',
+        desc: 'delete build folder',
+        usage: '$0 clean --build',
+        conflicts: ['all', 'fresh']
+      })
+      .option('dist', {
+        type: 'boolean',
+        desc: 'delete dist folder',
+        usage: '$0 clean --dist',
+        conflicts: ['all', 'fresh']
+      })
+      .option('coverage', {
+        type: 'boolean',
+        desc: 'delete coverage folder',
+        usage: '$0 clean --coverage',
+        conflicts: ['all', 'fresh']
+      }),
 
-    yargs.option('all', {
-      type: 'boolean',
-      desc: 'clean project',
-      usage: '$0 clean --all',
-      conflicts: ['fresh', 'modules', 'lock', 'log', 'build', 'dist', 'coverage']
-    })
+  handler: async(yargs) => {
 
-    yargs.option('fresh', {
-      type: 'boolean',
-      desc: 'clean project',
-      usage: '$0 clean --fresh',
-      conflicts: ['all', 'modules', 'lock', 'log', 'build', 'dist', 'coverage']
-    })
+    console.log(`🧽 ${chalk.bold('Cleaning')}: `)
 
-    yargs.option('modules', {
-      type: 'boolean',
-      desc: 'delete node_modules folder',
-      usage: '$0 clean --modules',
-      conflicts: ['all', 'fresh']
-    })
+    if ('all' in yargs || 'fresh' in yargs || 'modules' in yargs) {
+      await deletePath('node_modules')
+      await deleteModulesFiles()
+    }
+    if ('modules' in yargs) {
+      await deleteModulesPath()
+    }
+    if ('all' in yargs) {
+      await deletePath('.yarn')
+    }
 
-    yargs.option('lock', {
-      type: 'boolean',
-      desc: 'delete lock files',
-      usage: '$0 clean --lock',
-      conflicts: ['all', 'fresh']
-    })
+    if ('all' in yargs || 'lock' in yargs) {
+      await deleteLockFiles()
+    }
 
-    yargs.option('log', {
-      type: 'boolean',
-      desc: 'delete log files',
-      usage: '$0 clean --log',
-      conflicts: ['all', 'fresh']
-    })
+    if ('all' in yargs || 'fresh' in yargs || 'log' in yargs) {
+      await deleteLogFiles()
+    }
 
-    yargs.option('build', {
-      type: 'boolean',
-      desc: 'delete build folder',
-      usage: '$0 clean --build',
-      conflicts: ['all', 'fresh']
-    })
+    if ('all' in yargs || 'fresh' in yargs || 'build' in yargs) {
+      await deletePath('build')
+    }
 
-    yargs.option('dist', {
-      type: 'boolean',
-      desc: 'delete dist folder',
-      usage: '$0 clean --dist',
-      conflicts: ['all', 'fresh']
-    })
+    if ('all' in yargs || 'fresh' in yargs || 'dist' in yargs) {
+      await deletePath('dist')
+    }
 
-    yargs.option('coverage', {
-      type: 'boolean',
-      desc: 'delete coverage folder',
-      usage: '$0 clean --coverage',
-      conflicts: ['all', 'fresh']
-    })
+    if ('all' in yargs || 'fresh' in yargs || 'coverage' in yargs) {
+      await deletePath('coverage')
+    }
 
-    yargs.middleware(middleware)
-
-    return yargs
-  },
-
-  handler: (): void => {}
+    exit(0)
+  }
 }
 
 export default clean

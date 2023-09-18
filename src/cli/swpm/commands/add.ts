@@ -1,94 +1,92 @@
-import { Yargs } from 'types/swpm.types'
-import { Argv, CommandModule, MiddlewareFunction } from 'yargs'
+import { CommandModule } from 'yargs'
 import { findVoltaGlobals, translateArgs } from 'helpers/args'
+import cmdr, { setCommander } from "translator/commander";
 
-const middleware: MiddlewareFunction = (yargs: Yargs) => {
-  if (!yargs?.pkg) return
-
-  if (yargs?.package && findVoltaGlobals(yargs, ['add', 'install'])
-  ) {
-    yargs.pkg.cmd = 'volta'
-    yargs.pkg.args = ['install', yargs.package]
-  }
-
-  if ('save-dev' in yargs) {
-    translateArgs(yargs, '--save-dev', '-D')
-  }
-
-  if ('save-optional' in yargs) {
-    translateArgs(yargs, '--save-optional', '-O')
-  }
-
-  if ('save-peer' in yargs) {
-    translateArgs(yargs, '--save-peer')
-  }
-
-  if ('save-exact' in yargs) {
-    translateArgs(yargs, '--save-exact', '-E')
-  }
+type Options = {
+  package?: string
+  'save-dev'?: boolean
+  'save-optional'?: boolean
+  'save-peer'?: boolean
+  'global'?: boolean
 }
 
-const add: CommandModule = {
+const add: CommandModule<Record<string, unknown>, Options> = {
   command: 'add <package> [args] [FLAGS]',
   aliases: ['a'],
   describe: 'add package',
 
-  builder: (yargs: Argv<{}>) => {
-    yargs.positional('package', {
-      type: 'string',
-      desc: '<package>'
-    })
+  builder: (yargs) =>
+    yargs
+      .positional('package', {
+        type: 'string',
+        desc: '<package>'
+      })
+      .conflicts('add',['clean', 'install', 'remove', 'update', 'upgrade'])
+      .option('save-dev', {
+        alias: 'D',
+        type: 'boolean',
+        desc: 'add package as devDependencies',
+        usage: '$0 add <package> --save-dev',
+        implies: ['package'],
+        conflicts: ['save-optional', 'save-peer']
+      })
+      .option('save-optional', {
+        alias: 'O',
+        type: 'boolean',
+        desc: 'add package as optionalDependencies',
+        usage: '$0 add <package> --save-optional',
+        implies: ['package'],
+        conflicts: ['save-dev', 'save-peer']
+      })
+      .option('save-peer', {
+        type: 'boolean',
+        desc: 'add package as peerDependencies',
+        usage: '$0 add <package> --save-peer',
+        implies: ['package'],
+        conflicts: ['save-dev', 'save-optional']
+      })
+      .option('save-exact', {
+        alias: 'E',
+        type: 'boolean',
+        desc: 'add package as exact version',
+        usage: '$0 add <package> --save-exact',
+        implies: ['package']
+      })
+      .option('global', {
+        alias: 'g',
+        type: 'boolean',
+        desc: 'add package as global',
+        usage: '$0 add <package> --global',
+        implies: ['package']
+      }),
 
-    yargs.conflicts('add',['clean', 'install', 'remove', 'update', 'upgrade'])
+  handler: (yargs) => {
+    if (!yargs?.pkg) return
 
-    yargs.option('save-dev', {
-      alias: 'D',
-      type: 'boolean',
-      desc: 'add package as devDependencies',
-      usage: '$0 add <package> --save-dev',
-      implies: ['package'],
-      conflicts: ['save-optional', 'save-peer']
-    })
+    if (yargs?.package && findVoltaGlobals(yargs, cmdr, ['add', 'install'])
+    ) {
+      setCommander({
+        cmd: 'volta',
+        args: ['install', yargs.package],
+      })
+    }
 
-    yargs.option('save-optional', {
-      alias: 'O',
-      type: 'boolean',
-      desc: 'add package as optionalDependencies',
-      usage: '$0 add <package> --save-optional',
-      implies: ['package'],
-      conflicts: ['save-dev', 'save-peer']
-    })
+    if ('save-dev' in yargs) {
+      translateArgs(yargs, cmdr, '--save-dev', '-D')
+    }
 
-    yargs.option('save-peer', {
-      type: 'boolean',
-      desc: 'add package as peerDependencies',
-      usage: '$0 add <package> --save-peer',
-      implies: ['package'],
-      conflicts: ['save-dev', 'save-optional']
-    })
+    if ('save-optional' in yargs) {
+      translateArgs(yargs, cmdr, '--save-optional', '-O')
+    }
 
-    yargs.option('save-exact', {
-      alias: 'E',
-      type: 'boolean',
-      desc: 'add package as exact version',
-      usage: '$0 add <package> --save-exact',
-      implies: ['package']
-    })
+    if ('save-peer' in yargs) {
+      translateArgs(yargs, cmdr, '--save-peer')
+    }
 
-    yargs.option('global', {
-      alias: 'g',
-      type: 'boolean',
-      desc: 'add package as global',
-      usage: '$0 add <package> --global',
-      implies: ['package']
-    })
-
-    yargs.middleware(middleware)
-
-    return yargs
-  },
-
-  handler: (): void => {}
+    if ('save-exact' in yargs) {
+      translateArgs(yargs, cmdr, '--save-exact', '-E')
+    }
+  }
 }
 
 export default add

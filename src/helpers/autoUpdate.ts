@@ -3,11 +3,11 @@ import { stripIndent } from 'common-tags'
 import updateNotifier, { NotifyOptions } from 'update-notifier'
 import { getCommandResult } from 'helpers/cmds'
 import { getSwpmInfo } from 'helpers/info'
-import { Yargs } from 'types/swpm.types'
+import { CommanderPackage } from 'translator/commander.types'
 
 const ONE_DAY_MS = 1000 * 60 * 60 * 24
 
-export const autoUpdate = async (yargs: Yargs) => {
+export const autoUpdate = async (cmdr: CommanderPackage) => {
   const { name, version } = await getSwpmInfo()
 
   const option = {
@@ -28,7 +28,7 @@ export const autoUpdate = async (yargs: Yargs) => {
     if (voltaVersion) {
       command = 'volta install swpm'
     } else {
-      const { install } = yargs?.pkg?.config || {}
+      const { install } = cmdr?.config || {}
       if (install) {
         command = install
       }
@@ -50,8 +50,8 @@ export const autoUpdate = async (yargs: Yargs) => {
     }
 
     const message = stripIndent`
-    New ${type} version available: ${chalk.dim(`${current}`)}${chalk.reset(' → ')}${chalk[color](`${latest}`)}
-    Run ${chalk.cyan(command)} to update`
+      New ${type} version available: ${chalk.dim(`${current}`)}${chalk.reset(' → ')}${chalk[color](`${latest}`)}
+      Run ${chalk.cyan(command)} to update`
 
     const boxenOptions = {
       padding: 1,

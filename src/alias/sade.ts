@@ -2,5 +2,5 @@
 
 import { spreadCommand } from 'helpers/cmds'
 
-const args = ['add', ...process.argv.slice(2), '--save-dev', '--save-exact']
+const args = ['add', ...Bun.argv.slice(2), '--save-dev', '--save-exact']
 spreadCommand('swpm', args)

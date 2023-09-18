@@ -3,8 +3,8 @@ import yarn from './managers/yarn'
 import yarnBerry from './managers/yarn@berry'
 import pnpm from './managers/pnpm'
 import bun from './managers/bun'
-import { PackageConfiguration, PackageManagerList } from 'packages/packages.types'
-import { PackageCommand } from 'types/swpm.types'
+import { PackageManagerList } from 'packages/packages.types'
+import { CommanderPackage } from 'translator/commander.types'
 
 const packageManagerList = [
   npm,
@@ -22,9 +22,9 @@ export const packageExists = (pkg: PackageManagerList) => {
   return availablePackages().includes(pkg)
 }
 
-export const getPackageConfiguration = async (pkg: Pick<PackageCommand, 'cmd'>)=> {
+export const getPackageConfiguration = async (cmdr: Pick<CommanderPackage, 'cmd'>)=> {
   try {
-    const config = await import(`./managers/${pkg.cmd}.ts`)
+    const config = await import(`./managers/${cmdr.cmd}.ts`)
     return config?.default
   } catch {
     return {}

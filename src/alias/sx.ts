@@ -2,5 +2,5 @@
 
 import { spreadCommand } from 'helpers/cmds'
 
-const args = [...process.argv.slice(2)]
+const args = [...Bun.argv.slice(2)]
 spreadCommand('swpx', args)

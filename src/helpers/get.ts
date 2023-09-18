@@ -4,8 +4,8 @@ import chalk from 'chalk'
 import semver from 'semver'
 import { getPackageJson, lockFileExists } from 'helpers/files'
 import packagesList, { packageExists } from 'packages/list'
-import { PackageConfiguration, PackageManager } from 'packages/packages.types'
-import { PackageCommand, PackageJson } from 'types/swpm.types'
+import { PackageManagerList } from 'packages/packages.types'
+import { CommanderPackage, PackageJson } from 'translator/commander.types'
 
 const packageName = 'package.json'
 
@@ -42,7 +42,7 @@ const getPropertyValue = async (packageJson: PackageJson, property: 'swpm' | 'pa
   if (property === 'packageManager') {
     prop = getPackageManager(packageJson, property)
   }
-  if (prop && packageExists(prop as PackageManager)) {
+  if (prop && packageExists(prop as PackageManagerList)) {
     return prop
   }
 
@@ -71,7 +71,7 @@ const searchForEnv = (name: 'SWPM') => {
   }
 
   const value = env[name]
-  if (value && packageExists(value as PackageManager)) {
+  if (value && packageExists(value as PackageManagerList)) {
     return value
   }
 
@@ -82,22 +82,22 @@ const searchForEnv = (name: 'SWPM') => {
   exit(1)
 }
 
-export const getCurrentPackageManager = async (): Promise<{origin: PackageCommand['origin'], cmd: PackageManager}> => {
+export const getCurrentPackageManager = async (): Promise<{origin: CommanderPackage['origin'], cmd: PackageManagerList}> => {
   const packageJson = await getPackageJson()
 
   if (packageJson) {
-    const pinned = await getPropertyValue(packageJson, 'swpm') as PackageManager
+    const pinned = await getPropertyValue(packageJson, 'swpm') as PackageManagerList
     if (pinned && packageExists(pinned)) { return { origin: 'pinned', cmd: pinned } }
 
     // https://nodejs.org/api/corepack.html
-    const packageManager = await getPropertyValue(packageJson, 'packageManager') as PackageManager
+    const packageManager = await getPropertyValue(packageJson, 'packageManager') as PackageManagerList
     if (packageManager && packageExists(packageManager)) { return { origin: 'packageManager', cmd: packageManager } }
   }
 
-  const envSwpm = searchForEnv('SWPM') as PackageManager
+  const envSwpm = searchForEnv('SWPM') as PackageManagerList
   if (envSwpm && packageExists(envSwpm)) { return { origin: 'environment', cmd: envSwpm } }
 
-  const lock = await searchForLockFiles() as PackageManager
+  const lock = await searchForLockFiles() as PackageManagerList
   if (lock && packageExists(lock)) { return { origin: 'lock', cmd: lock } }
 
   console.error(stripIndents`
@@ -110,12 +110,14 @@ export const getCurrentPackageManager = async (): Promise<{origin: PackageComman
 }
 
 // https://volta.sh/
-export const detectVoltaPin = async (pkg: PackageCommand) => {
+export const detectVoltaPin = async (cmdr: CommanderPackage) => {
   const packageJson = await getPackageJson()
   const prop = 'volta'
 
+  if (!cmdr?.cmd) return
   if (!packageJson) return
   if (!propertyExists(packageJson, prop)) return
+  if (packageJson[prop] === undefined) return
 
-  return(pkg.cmd in packageJson[prop])
+  return(cmdr.cmd in packageJson[prop])
 }
