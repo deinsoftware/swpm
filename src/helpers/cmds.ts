@@ -5,10 +5,9 @@ import { stripIndents } from 'common-tags'
 import { getOriginIcon } from 'helpers/icons'
 import { PackageManagerList } from 'packages/packages.types'
 import { CommanderPackage } from 'translator/commander.types'
-import { ArgumentsCamelCase } from 'yargs'
+import { AddArgs, AddPositionalProps, GetCommandResultProps, ReplaceCommandProps, SpreadCommand, TranslateCommandProp } from './cmds.types'
 
-//MARK: nos sure about the yargs params here, maybe is cmdr
-const addArgs = (yargs: ArgumentsCamelCase, cmdr: CommanderPackage, flags: (string|number)[]) => {
+const addArgs = ({yargs, cmdr, flags}: AddArgs) => {
   for (const flag of flags) {
     const key = flag?.toString().replace(/^-+/, '') as keyof CommanderPackage
     yargs[key] = true
@@ -18,11 +17,11 @@ const addArgs = (yargs: ArgumentsCamelCase, cmdr: CommanderPackage, flags: (stri
   cmdr.args = [...cmdr.args, ...textFlags]
 }
 
-const replaceCommand = (args: CommanderPackage['args'], action: string) => {
+const replaceCommand = ({args, action}: ReplaceCommandProps) => {
   args[0] = action
 }
 
-const addPositional = (args: CommanderPackage['args'], action: string[] | [string, number] | { [key: string]: string | string[]; }) => {
+const addPositional = ({args, action}: AddPositionalProps) => {
   const { 0: key, 1: value } = Object.entries(action)[0]
   const start = args?.findIndex((arg) => arg.startsWith(key))
 
@@ -31,13 +30,13 @@ const addPositional = (args: CommanderPackage['args'], action: string[] | [strin
   }
 }
 
-export const translateCommand = (yargs: ArgumentsCamelCase, cmdr: CommanderPackage, ) => {
+export const translateCommand = ({yargs, cmdr}: TranslateCommandProp) => {
   if (yargs?._?.length > 0) {
     const key = yargs._[0]
     const action = cmdr?.config?.cmds?.[key]
 
     if (typeof action === 'string') {
-      replaceCommand(cmdr.args, action)
+      replaceCommand({args: cmdr.args, action})
     }
 
     if (Array.isArray(action)) {
@@ -48,16 +47,15 @@ export const translateCommand = (yargs: ArgumentsCamelCase, cmdr: CommanderPacka
         exit(1)
       }
 
-      replaceCommand(cmdr.args, cmd)
-      addArgs(yargs, cmdr, rest)
+      replaceCommand({args: cmdr.args, action: cmd})
+      addArgs({yargs, cmdr, flags: rest})
     }
 
     if (typeof action === 'object') {
-      addPositional(cmdr.args, action)
+      addPositional({args: cmdr.args, action})
     }
   }
 }
-
 
 export const showCommand = async ({ origin, cmd, args, config }: CommanderPackage)  => {
   console.log(`${(origin ? getOriginIcon(origin) + ' ' : '')}${chalk.hex(config?.color ?? '').bold(cmd)} ${args?.join(' ')}`)
@@ -97,7 +95,7 @@ export const runCommand = ({ cmd, args, volta = false }: CommanderPackage) => {
   })
 }
 
-export const spreadCommand = async (cmd: 'swpm' | 'swpx', args: string[]) => {
+export const spreadCommand = async ({cmd, args}: SpreadCommand) => {
   const child = spawn(
     cmd,
     args,
@@ -120,7 +118,7 @@ export const spreadCommand = async (cmd: 'swpm' | 'swpx', args: string[]) => {
   })
 }
 
-export const getCommandResult = (command: string, volta: boolean = false ): string => {
+export const getCommandResult = ({command, volta = false}: GetCommandResultProps): string => {
   try {
     if (volta) {
       command = `volta run ${command}`

@@ -2,7 +2,6 @@ import { describe, test, expect } from 'bun:test'
 import { cleanFlag, translateArgs } from './args.js'
 import { CommanderPackage } from 'translator/commander.types.js'
 import { ArgumentsCamelCase } from 'yargs'
-import { ArgsConfiguration } from 'packages/packages.types.js'
 import npm from 'packages/managers/npm.js'
 
 
@@ -40,14 +39,14 @@ describe('cleanFlag()', () => {
   })
 
   test('should remove key for bolean flags', () => {
-    const command: string = 'install'
-    const flag: string = '--debug'
+    const command: string = 'command'
+    const flag: string = '--bool'
     const args: string[] = [command, flag]
 
     const yargs: ArgumentsCamelCase = {
       $0: 'swpm',
       _: args,
-      debug: true
+      [flag.replaceAll('-', '')]: true
     }
     const cmdr: CommanderPackage = {
       args: args,
@@ -58,7 +57,7 @@ describe('cleanFlag()', () => {
   })
 
   test('should remove key and value for non boolean flags', () => {
-    const command: string = 'install'
+    const command: string = 'command'
     const flag: string = '--test'
     const value: string = 'npm'
     const args: string[] = [command, flag, value]
@@ -66,7 +65,7 @@ describe('cleanFlag()', () => {
     const yargs: ArgumentsCamelCase = {
       $0: 'swpm',
       _: args,
-      test: value
+      [flag.replaceAll('-', '')]: value
     }
     const cmdr: CommanderPackage = {
       args: args,
@@ -120,7 +119,7 @@ describe('translateArgs()', () => {
     const yargs: ArgumentsCamelCase = {
       $0: 'swpm',
       _: args,
-      flag: true,
+      [flag.replaceAll('-', '')]: true,
     }
     const cmdr: CommanderPackage = {
       args: args,
@@ -146,7 +145,7 @@ describe('translateArgs()', () => {
     const yargs: ArgumentsCamelCase = {
       $0: 'swpm',
       _: args,
-      flag: true,
+      [flag.replaceAll('-', '')]: true,
     }
     const cmdr: CommanderPackage = {
       args: args,
@@ -176,7 +175,7 @@ describe('translateArgs()', () => {
     const yargs: ArgumentsCamelCase = {
       $0: 'swpm',
       _: args,
-      flag: true,
+      [flag.replaceAll('-', '')]: true,
     }
     const cmdr: CommanderPackage = {
       args: args,
