@@ -14,20 +14,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - run: npm ci
-      - run: npm run test:c
+      - uses: oven-sh/setup-bun@v1
 
-      - name: Display coverage files
-        run: ls -R
-        working-directory: coverage
+      - run: bun install --frozen-lockfile
+      - run: bun run test:c
 
-      - uses: actions/upload-artifact@master
-        with:
-          name: coverage-artifact
-          path: coverage/lcov.info
+      # - name: Display coverage files
+      #   run: ls -R
+      #   working-directory: coverage
+
+      # - uses: actions/upload-artifact@master
+      #   with:
+      #     name: coverage-artifact
+      #     path: coverage/lcov.info
 
   sonar:
     needs: build
@@ -38,14 +37,14 @@ jobs:
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
   
-      - uses: actions/download-artifact@master
-        with:
-          name: coverage-artifact
-          path: coverage
+      # - uses: actions/download-artifact@master
+      #   with:
+      #     name: coverage-artifact
+      #     path: coverage
 
-      - name: Display coverage files
-        run: ls -R
-        working-directory: coverage
+      # - name: Display coverage files
+      #   run: ls -R
+      #   working-directory: coverage
 
       - name: Get package info
         id: package
@@ -57,10 +56,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
+          # args: >
+          #   -Dsonar.projectKey=dein:swpm
+          #   -Dsonar.organization=dein
+          #   -Dsonar.projectName=swpm
+          #   -Dsonar.projectVersion=${{ steps.package.outputs.version }}
+          #   -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+          #   -Dsonar.coverage.exclusions=**/*.test.js
           args: >
             -Dsonar.projectKey=dein:swpm
             -Dsonar.organization=dein
             -Dsonar.projectName=swpm
             -Dsonar.projectVersion=${{ steps.package.outputs.version }}
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-            -Dsonar.coverage.exclusions=**/*.test.js

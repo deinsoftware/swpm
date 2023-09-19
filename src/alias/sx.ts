@@ -1,6 +1,6 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 
 import { spreadCommand } from 'helpers/cmds'
 
-const args = [...Bun.argv.slice(2)]
+const args = [...process.argv.slice(2)]
 spreadCommand({cmd: 'swpx', args})

@@ -82,6 +82,7 @@
     "command-exists": "1.2.9",
     "common-tags": "1.8.2",
     "find-up": "6.3.0",
+    "prompts": "2.4.2",
     "semver": "7.5.4",
     "update-notifier": "6.0.2",
     "yargs": "17.7.2"
@@ -89,6 +90,7 @@
   "devDependencies": {
     "@types/command-exists": "1.2.1",
     "@types/common-tags": "1.8.2",
+    "@types/prompts": "2.4.4",
     "@types/semver": "7.5.2",
     "@types/update-notifier": "6.0.5",
     "@types/yargs": "17.0.24",
@@ -101,5 +103,8 @@
     "type-fest": "4.3.1"
   },
   "packageManager": "bun@1.0.1",
-  "swpm": "bun"
+  "swpm": "bun",
+  "volta": {
+    "node": "18.17.1"
+  }
 }

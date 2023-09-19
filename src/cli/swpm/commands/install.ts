@@ -4,6 +4,8 @@ import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
 import { translateArgs } from 'helpers/args'
 import cmdr from 'translator/commander'
+import prompts from 'prompts'
+import { spreadCommand } from 'helpers/cmds'
 
 type Options = {
   'package-lock'?: boolean,
@@ -33,26 +35,38 @@ const install: CommandModule<Record<string, unknown>, Options> = {
         conflicts: ['package-lock']
       } as const),
 
-  handler: (yargs) => {
+  handler: async(yargs) => {
     if ('package-lock' in yargs) {
-      translateArgs({yargs, cmdr,flag: '--package-lock', alias: '-P'})
+      translateArgs({yargs, cmdr, flag: '--package-lock', alias: '-P'})
     }
 
     if ('frozen' in yargs) {
-      translateArgs({yargs, cmdr,flag: '--frozen', alias: '-F'})
+      translateArgs({yargs, cmdr, flag: '--frozen', alias: '-F'})
     }
 
     if ('FLAGS' in yargs || 'global' in yargs) {
+      const args  = ['add', ...cmdr.args.slice(1)]
+      const command  = chalk.blue.bold(`swpm ${args.join(' ')}`)
+
       console.error(stripIndents`
         ${chalk.red.bold('Error')}: to install a specific ${chalk.bold('<package>')} please use ${chalk.bold('add')} command.
-
-        ${chalk.blue.bold('swpm add <package> [FLAGS]')}
       `)
 
-      // TODO: ask to auto transform install to add
-      // https://github.com/terkelg/prompts
+      const response = await prompts({
+        type: 'confirm',
+        name: 'value',
+        message: `Do you want to re-run as ${command}`,
+        initial: true
+      });
 
-      exit(1)
+      if (!response.value) {
+        console.error(
+          stripIndents`Re-run as ${command}`
+        )
+        exit(1)
+      }
+
+      spreadCommand({cmd: 'swpm', args})
     }
   }
 }

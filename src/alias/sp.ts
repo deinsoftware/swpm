@@ -1,6 +1,6 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 
 import { spreadCommand } from 'helpers/cmds'
 
-const args = ['--pin', ...Bun.argv.slice(2)]
+const args = ['--pin', ...process.argv.slice(2)]
 spreadCommand({cmd: 'swpm', args})

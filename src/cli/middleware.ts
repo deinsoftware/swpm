@@ -1,3 +1,4 @@
+import { argv } from 'node:process'
 import { cleanFlag, translateArgs } from 'helpers/args'
 import { translateCommand } from 'helpers/cmds'
 import { detectVoltaPin, getCurrentPackageManager } from 'helpers/get'
@@ -9,9 +10,6 @@ import cmdr, { setCommander } from 'translator/commander'
 import { options } from 'cli/swpx/cli'
 
 const middleware: MiddlewareFunction<InferredOptionTypes<typeof options>> = async (yargs) => {
-
-  const {argv} = Bun
-
   setCommander({args: argv.slice(2)})
 
   if ('debug' in yargs) {

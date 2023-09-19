@@ -23,8 +23,8 @@ const bun: PackageConfiguration = {
   args: {
     '--save-dev': '-d',
     '-D': '-d',
-    '--frozen': '--no-save',
-    '-F': '--no-save',
+    '--frozen': '--frozen-lockfile',
+    '-F': '--frozen-lockfile',
     '--package-lock': ['', -1],
     '-P': ['', -1]
   }

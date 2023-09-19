@@ -23,7 +23,7 @@ export const autoUpdate = async (cmdr: CommanderPackage) => {
   if (notifier?.update) {
     const { latest, current, type } = notifier.update
 
-    let command = 'bun add --global swpm'
+    let command = 'npm install swpm --location=global'
     const voltaVersion = getCommandResult({command: 'volta --version'})
     if (voltaVersion) {
       command = 'volta install swpm'

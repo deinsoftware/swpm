@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 
 import { inspect } from 'node:util'
 import yargs from './swpm/config.js'
@@ -31,8 +31,9 @@ await autoUpdate(cmdr)
 if ('pin' in yargs) {
   cmdr.cmd = yargs.pin!
   await setPackageVersion(cmdr.cmd)
+
   const {cmd, config} = cmdr
-  if (cmd && config) { //MARK: not sure about this
+  if (cmd && config) {
     await pinPackageManager({cmd, config})
   }
 }

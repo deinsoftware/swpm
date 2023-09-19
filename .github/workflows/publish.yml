@@ -8,21 +8,19 @@ on:
     types: [published]
 
 jobs:
-  publish-npm:
+  publish-package:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
+      - uses: oven-sh/setup-bun@v1
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm publish
+      - run: bun install --frozen-lockfile
+      - run: bun publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
   tweet:
-    needs: publish-npm
+    needs: publish-package
     if: ${{ success() }}
     runs-on: ubuntu-latest
     steps:

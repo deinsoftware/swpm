@@ -32,7 +32,7 @@ Bun.build({
     './src/alias/sx.ts'
   ],
   outdir: './bin',
-  target: 'bun',
+  target: 'node',
   splitting: true,
   minify: {
     identifiers: true,
