@@ -87,18 +87,26 @@ export const getCurrentPackageManager = async (): Promise<{origin: CommanderPack
 
   if (packageJson) {
     const pinned = await getPropertyValue(packageJson, 'swpm') as PackageManagerList
-    if (pinned && packageExists(pinned)) { return { origin: 'pinned', cmd: pinned } }
+    if (pinned && packageExists(pinned)) {
+      return { origin: 'pinned', cmd: pinned }
+    }
 
     // https://nodejs.org/api/corepack.html
     const packageManager = await getPropertyValue(packageJson, 'packageManager') as PackageManagerList
-    if (packageManager && packageExists(packageManager)) { return { origin: 'packageManager', cmd: packageManager } }
+    if (packageManager && packageExists(packageManager)) {
+      return { origin: 'packageManager', cmd: packageManager }
+    }
   }
 
   const envSwpm = searchForEnv('SWPM') as PackageManagerList
-  if (envSwpm && packageExists(envSwpm)) { return { origin: 'environment', cmd: envSwpm } }
+  if (envSwpm && packageExists(envSwpm)) {
+    return { origin: 'environment', cmd: envSwpm }
+  }
 
   const lock = await searchForLockFiles() as PackageManagerList
-  if (lock && packageExists(lock)) { return { origin: 'lock', cmd: lock } }
+  if (lock && packageExists(lock)) {
+    return { origin: 'lock', cmd: lock }
+  }
 
   console.error(stripIndents`
     ${chalk.red.bold('Error')}: no Package Manager or Environment Variable was found.
@@ -111,11 +119,12 @@ export const getCurrentPackageManager = async (): Promise<{origin: CommanderPack
 
 // https://volta.sh/
 export const detectVoltaPin = async (cmdr: CommanderPackage) => {
-  const packageJson = await getPackageJson()
-  const prop = 'volta'
-
   if (!cmdr?.cmd) return
+
+  const packageJson = await getPackageJson()
   if (!packageJson) return
+
+  const prop = 'volta'
   if (!propertyExists(packageJson, prop)) return
   if (packageJson[prop] === undefined) return
 

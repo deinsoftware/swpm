@@ -31,7 +31,7 @@ Bun.build({
     './src/alias/spb.ts',
     './src/alias/sx.ts'
   ],
-  outdir: './build',
+  outdir: './bin',
   target: 'bun',
   splitting: true,
   minify: {
