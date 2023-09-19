@@ -1,171 +1,194 @@
 import { describe, test, expect } from 'bun:test'
 import { cleanFlag, translateArgs } from './args.js'
+import { CommanderPackage } from 'translator/commander.types.js'
+import { ArgumentsCamelCase } from 'yargs'
+import { ArgsConfiguration } from 'packages/packages.types.js'
+import npm from 'packages/managers/npm.js'
+
 
 describe('cleanFlag()', () => {
   test('should not fail if flag or args are empty or not exists', () => {
-    const flag = ''
-    const yargs = {
-      pkg: {
-        args: []
-      }
+    const flag: string = ''
+    const args: string[] = [flag]
+
+    const yargs: ArgumentsCamelCase = {
+      $0: 'swpm',
+      _: args
     }
-    const result = cleanFlag(yargs, flag)
+    const cmdr: CommanderPackage = {
+      args: args
+    }
+
+    const result = cleanFlag({yargs, cmdr, flag})
     expect(result).toBeUndefined()
   })
 
   test('should not fail when flag is not present on yargs', () => {
-    const flag = '--not-exists'
-    const yargs = {}
-    const result = cleanFlag(yargs, flag)
+    const flag: string = '--not-exists'
+    const args: string[] = [flag]
+
+    const yargs: ArgumentsCamelCase = {
+      $0: 'swpm',
+      _: args
+    }
+    const cmdr: CommanderPackage = {
+      args: args
+    }
+
+    const result = cleanFlag({yargs, cmdr, flag})
     expect(result).toBeUndefined()
   })
 
   test('should remove key for bolean flags', () => {
-    const flag = '--test'
-    const yargs = {
-      _: [ 'install' ],
-      test: 'pnpm',
-      debug: true,
-      d: true,
-      t: 'pnpm',
-      '$0': 'swpm',
-      alias: true,
-      pkg: {
-        cmd: 'pnpm' as const,
-        args: ['command', flag],
-        config: {
-          cmd: 'pnpm',
-          exc: 'pnpm dlx',
-          color: '#f7ad24',
-          url: 'https://pnpm.io/',
-          semver: '',
-          lockFiles: [ 'pnpm-lock.yaml' ],
-          modulesPath: [],
-          modulesFile: [],
-          logFile: 'pnpm-debug.log',
-          install: 'pnpm install swpm --global',
-          cmds: {
-            remove: 'uninstall',
-            r: 'uninstall',
-            rm: 'uninstall',
-            un: 'uninstall',
-            up: 'update',
-            ud: 'update',
-            upgrade: [ 'update', '--latest' ],
-            ug: [ 'update', '--latest' ],
-            interactive: [ 'upgrade', '--interactive' ],
-            ui: [ 'upgrade', '--interactive' ]
-          },
-          args: {
-            '--frozen': '--frozen-lockfile',
-            '--package-lock': [ '', -1 ],
-            '-P': [ '', -1 ]
-          }
-        }
-      }
+    const command: string = 'install'
+    const flag: string = '--debug'
+    const args: string[] = [command, flag]
+
+    const yargs: ArgumentsCamelCase = {
+      $0: 'swpm',
+      _: args,
+      debug: true
     }
-    cleanFlag(yargs, flag)
-    expect(yargs.pkg.args.includes(flag)).toBeFalsy()
+    const cmdr: CommanderPackage = {
+      args: args,
+    }
+
+    cleanFlag({yargs, cmdr, flag})
+    expect(cmdr.args.includes(flag)).toBeFalsy()
   })
 
   test('should remove key and value for non boolean flags', () => {
-    const flag = '--flag'
-    const value = 'value'
-    const yargs = {
-      flag: 'value',
-      pkg: {
-        args: ['command', flag, value]
-      }
+    const command: string = 'install'
+    const flag: string = '--test'
+    const value: string = 'npm'
+    const args: string[] = [command, flag, value]
+
+    const yargs: ArgumentsCamelCase = {
+      $0: 'swpm',
+      _: args,
+      test: value
     }
-    cleanFlag(yargs, flag)
-    expect(yargs.pkg.args.includes(flag)).toBeFalsy()
-    expect(yargs.pkg.args.includes(value)).toBeFalsy()
+    const cmdr: CommanderPackage = {
+      args: args,
+    }
+
+    cleanFlag({yargs, cmdr, flag})
+    expect(cmdr.args.includes(flag)).toBeFalsy()
+    expect(cmdr.args.includes(value)).toBeFalsy()
   })
 })
 
-describe('translateFlag()', () => {
+describe('translateArgs()', () => {
   test('should not fail if flag, alias or args is empty or not exists', () => {
-    const flag = ''
-    const alias = ''
-    const yargs = {
-      pkg: {
-        args: []
-      }
+    const flag: string = ''
+    const alias: string = ''
+    const args: string[] = [flag]
+
+    const yargs: ArgumentsCamelCase = {
+      $0: 'swpm',
+      _: args,
     }
-    const result = translateArgs(yargs, flag, alias)
+    const cmdr: CommanderPackage = {
+      args: args,
+    }
+    const result = translateArgs({yargs, cmdr, flag, alias})
     expect(result).toBeUndefined()
   })
 
   test('should not fail when flag is not present on yargs', () => {
-    const flag = '--not-exists'
-    const yargs = {}
-    const result = translateArgs(yargs, flag)
+    const flag: string = '--not-exists'
+    const args: string[] = [flag]
+
+    const yargs: ArgumentsCamelCase = {
+      $0: 'swpm',
+      _: args
+    }
+    const cmdr: CommanderPackage = {
+      args: args
+    }
+
+    const result = translateArgs({yargs, cmdr, flag})
     expect(result).toBeUndefined()
   })
 
   test('should replace a flag with his config translation', () => {
-    const cmd = 'command'
-    const flag = '--flag'
-    const replace = '--new-flag'
-    const yargs = {
-      _: [cmd],
+    const command: string = 'command'
+    const flag: string = '--flag'
+    const replace: string = '--new-flag'
+    const args: string[] = [command, flag]
+
+    const yargs: ArgumentsCamelCase = {
+      $0: 'swpm',
+      _: args,
       flag: true,
-      pkg: {
-        args: [cmd, flag],
-        config: {
-          args: {
-            [flag]: replace
-          }
+    }
+    const cmdr: CommanderPackage = {
+      args: args,
+      config: {
+        ...npm,
+        args: {
+          [flag]: replace
         }
       }
     }
-    translateArgs(yargs, flag)
-    expect(yargs.pkg.args.includes(flag)).toBeFalsy()
-    expect(yargs.pkg.args[1]).toBe(replace)
+
+    translateArgs({yargs, cmdr, flag})
+    expect(cmdr.args.includes(flag)).toBeFalsy()
+    expect(cmdr.args[1]).toBe(replace)
   })
 
   test('should move a flag with his config translation', () => {
-    const cmd = 'command'
-    const flag = '--flag'
-    const replace = ['flag', 1]
-    const yargs = {
+    const command: string = 'command'
+    const flag: string = '--flag'
+    const replace: [string, number] = ['flag', 1]
+    const args: string[] = [command, flag]
+
+    const yargs: ArgumentsCamelCase = {
+      $0: 'swpm',
+      _: args,
       flag: true,
-      pkg: {
-        _: [cmd],
-        args: [cmd, 'package', flag],
-        config: {
-          args: {
-            [flag]: replace
-          }
+    }
+    const cmdr: CommanderPackage = {
+      args: args,
+      config: {
+        ...npm,
+        args: {
+          [flag]: replace
         }
       }
     }
-    translateArgs(yargs, flag)
-    expect(yargs.pkg.args.includes(flag)).toBeFalsy()
-    expect(yargs.pkg.args[1]).toBe(replace[0])
+
+    translateArgs({yargs, cmdr, flag})
+    expect(cmdr.args.includes(flag)).toBeFalsy()
+    expect(cmdr.args[1]).toBe(replace[0])
   })
 
   test('should replace the command when detect some flag', () => {
-    const cmd = 'command'
-    const flag = '--flag'
+    const command: string = 'command'
+    const flag: string = '--flag'
     const replace = {
       [flag]: {
-        [cmd]: 'new-command'
+        [command]: 'new-command'
       }
     }
-    const yargs = {
+    const args: string[] = [command, flag]
+
+    const yargs: ArgumentsCamelCase = {
+      $0: 'swpm',
+      _: args,
       flag: true,
-      _: [cmd],
-      pkg: {
-        args: [cmd, 'package', flag],
-        config: {
-          args: replace
-        }
+    }
+    const cmdr: CommanderPackage = {
+      args: args,
+      config: {
+        ...npm,
+        args: replace
       }
     }
-    translateArgs(yargs, flag)
-    expect(yargs.pkg.args.includes(cmd)).toBeFalsy()
-    expect(yargs.pkg.args.includes(flag)).toBeFalsy()
-    expect(yargs.pkg.args[0]).toBe(replace[flag][cmd])
+
+    translateArgs({yargs, cmdr, flag})
+    expect(cmdr.args.includes(command)).toBeFalsy()
+    expect(cmdr.args.includes(flag)).toBeFalsy()
+    expect(cmdr.args[0]).toBe(replace[flag][command])
   })
 })

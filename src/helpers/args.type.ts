@@ -19,6 +19,7 @@ export type GetKeyProps = {
 }
 
 export type ClanFlagProp = {
+  yargs: ArgumentsCamelCase
   cmdr: CommanderPackage
   flag: string
 }
