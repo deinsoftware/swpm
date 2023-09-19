@@ -15,26 +15,26 @@ const middleware: MiddlewareFunction<InferredOptionTypes<typeof options>> = asyn
   setCommander({args: argv.slice(2)})
 
   if ('debug' in yargs) {
-    cleanFlag({cmdr, flag: '--debug'})
-    cleanFlag({cmdr, flag: '-d'})
+    cleanFlag({yargs, cmdr, flag: '--debug'})
+    cleanFlag({yargs, cmdr, flag: '-d'})
   }
 
   if ('use' in yargs) {
-    cleanFlag({cmdr, flag: '--use'})
-    cleanFlag({cmdr, flag: '-u'})
+    cleanFlag({yargs, cmdr, flag: '--use'})
+    cleanFlag({yargs, cmdr, flag: '-u'})
     cmdr.cmd = yargs.use
     await setPackageVersion(yargs.use!)
   }
 
   if ('test' in yargs) {
-    cleanFlag({cmdr, flag: '--test'})
-    cleanFlag({cmdr, flag: '-t'})
+    cleanFlag({yargs, cmdr, flag: '--test'})
+    cleanFlag({yargs, cmdr, flag: '-t'})
     cmdr.cmd = yargs.test
   }
 
   if ('mute' in yargs) {
-    cleanFlag({cmdr, flag: '--mute'})
-    cleanFlag({cmdr, flag: '-m'})
+    cleanFlag({yargs, cmdr, flag: '--mute'})
+    cleanFlag({yargs, cmdr, flag: '-m'})
   }
 
   if (!('cmd' in cmdr) || 'info' in yargs) {
