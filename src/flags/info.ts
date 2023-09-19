@@ -18,10 +18,10 @@ const commandVerification = async (cmd: string) => {
 }
 
 export const showPackageInformation = async ({ origin, cmd, config, volta }: CommanderPackage ) => {
-  const bunVersion = getCommandResult('bun --version', volta)
+  const bunVersion = getCommandResult({command: 'bun --version', volta})
 
   const isInstalled = await commandVerification(cmd!)
-  const packageVersion = isInstalled ? getCommandResult(`${cmd} --version`, volta) : 'not found'
+  const packageVersion = isInstalled ? getCommandResult({command: `${cmd} --version`, volta}) : 'not found'
 
   const { version: swpmVersion } = await getSwpmInfo()
 

@@ -15,26 +15,26 @@ const middleware: MiddlewareFunction<InferredOptionTypes<typeof options>> = asyn
   setCommander({args: argv.slice(2)})
 
   if ('debug' in yargs) {
-    cleanFlag(cmdr, '--debug')
-    cleanFlag(cmdr, '-d')
+    cleanFlag({cmdr, flag: '--debug'})
+    cleanFlag({cmdr, flag: '-d'})
   }
 
   if ('use' in yargs) {
-    cleanFlag(cmdr, '--use')
-    cleanFlag(cmdr, '-u')
+    cleanFlag({cmdr, flag: '--use'})
+    cleanFlag({cmdr, flag: '-u'})
     cmdr.cmd = yargs.use
     await setPackageVersion(yargs.use!)
   }
 
   if ('test' in yargs) {
-    cleanFlag(cmdr, '--test')
-    cleanFlag(cmdr, '-t')
+    cleanFlag({cmdr, flag: '--test'})
+    cleanFlag({cmdr, flag: '-t'})
     cmdr.cmd = yargs.test
   }
 
   if ('mute' in yargs) {
-    cleanFlag(cmdr, '--mute')
-    cleanFlag(cmdr, '-m')
+    cleanFlag({cmdr, flag: '--mute'})
+    cleanFlag({cmdr, flag: '-m'})
   }
 
   if (!('cmd' in cmdr) || 'info' in yargs) {
@@ -49,11 +49,11 @@ const middleware: MiddlewareFunction<InferredOptionTypes<typeof options>> = asyn
   }
 
   if ('global' in yargs) {
-    translateArgs(yargs, cmdr, '--global', '-g')
+    translateArgs({yargs, cmdr, flag: '--global', alias: '-g'})
   }
 
   if (yargs._.length) {
-    translateCommand(yargs, cmdr)
+    translateCommand({yargs, cmdr})
   }
 }
 

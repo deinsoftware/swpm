@@ -35,11 +35,11 @@ const install: CommandModule<Record<string, unknown>, Options> = {
 
   handler: (yargs) => {
     if ('package-lock' in yargs) {
-      translateArgs(yargs, cmdr,'--package-lock', '-P')
+      translateArgs({yargs, cmdr,flag: '--package-lock', alias: '-P'})
     }
 
     if ('frozen' in yargs) {
-      translateArgs(yargs, cmdr, '--frozen', '-F')
+      translateArgs({yargs, cmdr,flag: '--frozen', alias: '-F'})
     }
 
     if ('FLAGS' in yargs || 'global' in yargs) {

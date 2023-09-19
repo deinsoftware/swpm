@@ -3,6 +3,6 @@
 import { spreadCommand } from 'helpers/cmds'
 
 (async () => {
-  await spreadCommand('swpm', ['clean', '--all'])
-  await spreadCommand('swpm', ['install'])
+  await spreadCommand({cmd: 'swpm', args: ['clean', '--all']})
+  await spreadCommand({cmd: 'swpm', args: ['install']})
 })()

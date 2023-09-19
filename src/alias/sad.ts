@@ -3,4 +3,4 @@
 import { spreadCommand } from 'helpers/cmds'
 
 const args = ['add', ...Bun.argv.slice(2), '--save-dev']
-spreadCommand('swpm', args)
+spreadCommand({cmd: 'swpm', args})

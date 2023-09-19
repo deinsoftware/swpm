@@ -54,7 +54,7 @@ const remove: CommandModule<Record<string, unknown>, Options> = {
       }),
 
   handler: (yargs) => {
-    if (findVoltaGlobals(yargs, cmdr, ['uninstall', 'remove'])
+    if (findVoltaGlobals({yargs, cmdr, flags: ['uninstall', 'remove']})
     ) {
       if (yargs?.pkg && yargs?.package){
         setCommander({
@@ -65,15 +65,15 @@ const remove: CommandModule<Record<string, unknown>, Options> = {
     }
 
     if ('save-dev' in yargs) {
-      translateArgs(yargs, cmdr, '--save-dev', '-D')
+      translateArgs({yargs, cmdr, flag: '--save-dev', alias: '-D'})
     }
 
     if ('save-optional' in yargs) {
-      translateArgs(yargs, cmdr,'--save-optional', '-O')
+      translateArgs({yargs, cmdr, flag: '--save-optional', alias: '-O'})
     }
 
     if ('save-peer' in yargs) {
-      translateArgs(yargs, cmdr, '--save-peer')
+      translateArgs({yargs, cmdr, flag: '--save-peer'})
     }
   }
 }

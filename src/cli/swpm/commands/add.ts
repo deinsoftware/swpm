@@ -63,7 +63,7 @@ const add: CommandModule<Record<string, unknown>, Options> = {
   handler: (yargs) => {
     if (!yargs?.pkg) return
 
-    if (yargs?.package && findVoltaGlobals(yargs, cmdr, ['add', 'install'])
+    if (yargs?.package && findVoltaGlobals({yargs, cmdr, flags: ['add', 'install']})
     ) {
       setCommander({
         cmd: 'volta',
@@ -72,19 +72,19 @@ const add: CommandModule<Record<string, unknown>, Options> = {
     }
 
     if ('save-dev' in yargs) {
-      translateArgs(yargs, cmdr, '--save-dev', '-D')
+      translateArgs({yargs, cmdr, flag: '--save-dev', alias: '-D'})
     }
 
     if ('save-optional' in yargs) {
-      translateArgs(yargs, cmdr, '--save-optional', '-O')
+      translateArgs({yargs, cmdr, flag: '--save-optional', alias: '-O'})
     }
 
     if ('save-peer' in yargs) {
-      translateArgs(yargs, cmdr, '--save-peer')
+      translateArgs({yargs, cmdr, flag: '--save-peer'})
     }
 
     if ('save-exact' in yargs) {
-      translateArgs(yargs, cmdr, '--save-exact', '-E')
+      translateArgs({yargs, cmdr, flag: '--save-exact', alias: '-E'})
     }
   }
 }

@@ -45,11 +45,11 @@ const upgrade: CommandModule<Record<string, unknown>, Options> = {
 
   handler: (yargs) => {
     if ('save-exact' in yargs) {
-      translateArgs(yargs, cmdr, '--save-exact', '-E')
+      translateArgs({yargs, cmdr, flag: '--save-exact', alias: '-E'})
     }
 
     if ('latest' in yargs) {
-      translateArgs(yargs, cmdr, '--latest', '-L')
+      translateArgs({yargs, cmdr, flag: '--latest', alias: '-L'})
     }
   }
 }

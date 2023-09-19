@@ -2,4 +2,4 @@
 
 import { spreadCommand } from 'helpers/cmds'
 
-spreadCommand('swpm', ['clean', '--dist'])
+spreadCommand({cmd: 'swpm', args: ['clean', '--dist']})

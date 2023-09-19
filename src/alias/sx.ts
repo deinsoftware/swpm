@@ -3,4 +3,4 @@
 import { spreadCommand } from 'helpers/cmds'
 
 const args = [...Bun.argv.slice(2)]
-spreadCommand('swpx', args)
+spreadCommand({cmd: 'swpx', args})

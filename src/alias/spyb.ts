@@ -3,4 +3,4 @@
 import { spreadCommand } from 'helpers/cmds'
 
 const args = ['--pin', 'yarn@berry']
-spreadCommand('swpm', args)
+spreadCommand({cmd: 'swpm', args})

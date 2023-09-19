@@ -3,4 +3,4 @@
 import { spreadCommand } from 'helpers/cmds'
 
 const args = ['upgrade', ...Bun.argv.slice(2)]
-spreadCommand('swpm', args)
+spreadCommand({cmd: 'swpm', args})

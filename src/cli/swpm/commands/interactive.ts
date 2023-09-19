@@ -35,7 +35,7 @@ const interactive: CommandModule<Record<string, unknown>, Options> = {
 
   handler: (yargs) => {
     if ('latest' in yargs) {
-      translateArgs(yargs, cmdr, '--latest', '-L')
+      translateArgs({yargs, cmdr, flag: '--latest', alias: '-L'})
     }
   }
 }
