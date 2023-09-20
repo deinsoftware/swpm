@@ -18,7 +18,8 @@
         "strictNullChecks": true,
         "resolveJsonModule": true,
         "declaration": true,
-        "outDir": "bin",
+        "declarationDir": "bin/types",
+        "outDir": "bin/src",
     },
     "include": [
         "src/**/*"

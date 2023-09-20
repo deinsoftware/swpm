@@ -1,7 +1,9 @@
 node_modules/
 .github/
 .vscode/
-build/
+bin/types
+src/
+coverage
 *.test.*
 *.md
 !CHANGELOG.md
@@ -11,3 +13,5 @@ build/
 .eslintrc.cjs
 sonar-project.properties
 vitest.config.ts
+tsconfig.json
+tsconfig.build.json
