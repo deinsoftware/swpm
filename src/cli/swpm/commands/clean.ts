@@ -78,9 +78,11 @@ const clean: CommandModule<Record<string, unknown>, OptionsProps> = {
       await deletePath('node_modules')
       await deleteModulesFiles()
     }
+
     if (yargs?.modules) {
       await deleteModulesPath()
     }
+
     if (yargs?.all) {
       await deletePath('.yarn')
     }

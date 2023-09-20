@@ -6,7 +6,7 @@ import packagesList from '../packages/list.js'
 import { fileExists, pathExists } from '../helpers/files.js'
 import { getResultIcon } from '../helpers/icons.js'
 
-const deleteResult = (result: boolean, name: string) => {
+const deleteResult = async (result: boolean, name: string) => {
   const icon = getResultIcon(result ? 'success' : 'failure')
   console.log(`${icon} ${name}`)
 
@@ -24,7 +24,7 @@ export const deletePath = async (folderName: string) => {
     } catch {
       result = false
     } finally {
-      deleteResult(result, folderName)
+      await deleteResult(result, folderName)
     }
   }
 }

@@ -1,5 +1,5 @@
 import { exit } from 'node:process'
-import { spawn, execSync } from 'node:child_process'
+import { spawn, spawnSync, execSync } from 'node:child_process'
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
 import { getOriginIcon } from './icons.js'
@@ -96,7 +96,7 @@ export const runCommand = ({ cmd, args, volta = false }: CommanderPackage) => {
 }
 
 export const spreadCommand = async ({ cmd, args }: SpreadCommand) => {
-  const child = spawn(
+  const child = spawnSync(
     cmd,
     args,
     {
@@ -105,17 +105,15 @@ export const spreadCommand = async ({ cmd, args }: SpreadCommand) => {
     }
   )
 
-  child.on('error', (error) => {
+  if (child?.stderr) {
     console.error(stripIndents`
         ${chalk.red.bold('Error')}:
-        ${error}
+        ${child?.stderr}
       `)
     exit(1)
-  })
+  }
 
-  child.on('exit', (code) => {
-    return code
-  })
+  return child.status
 }
 
 export const getCommandResult = ({ command, volta = false }: GetCommandResultProps): string => {
