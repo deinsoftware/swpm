@@ -6,16 +6,15 @@ import { PackageJson } from 'translator/commander.types'
 
 const packageName = 'package.json'
 
-export const fileExists = async(path: string) => {
+export const fileExists = async (path: string) => {
   try {
-    const result = await Bun.file(path).exists()
-    return result
+    await fs.stat(path)
+    return true
   } catch (error) {
     return false
   }
 }
 
-//TASK: pending to move
 export const pathExists = async (path: string) => {
   try {
     await fs.access(path)
@@ -32,14 +31,10 @@ export const getPackageJson = async (fileName: `${string}.json` = packageName): 
       return undefined
     }
 
-    const file = await Bun.file(closestPackageJsonPath, { type: "application/json" })
-    if (!file.exists()) {
-      return undefined
+    const pkg = await fs.readFile(closestPackageJsonPath, 'utf-8')
+    if (pkg) {
+      return JSON.parse(pkg)
     }
-
-    const contents = await file.json()
-    return contents
-
   } catch {
     return undefined
   }
@@ -47,9 +42,7 @@ export const getPackageJson = async (fileName: `${string}.json` = packageName): 
 
 export const lockFileExists = async (fileName: string) => {
   const closestLockfilePath = await findUp(fileName)
-  if (!closestLockfilePath) {
-    return false
-  }
+  if (!closestLockfilePath) return false
 
   return fileExists(closestLockfilePath)
 }
@@ -61,6 +54,7 @@ export const savePackageJson = async (data: PackageJson, fileName: string = pack
     exit(1)
   }
 
+
   const exists = await fileExists(closestPackageJsonPath)
   if (!exists) {
     console.error(`${chalk.red.bold('Error')}: there is no ${chalk.red.bold(fileName)} file on current path.`)
@@ -69,7 +63,13 @@ export const savePackageJson = async (data: PackageJson, fileName: string = pack
 
   try {
     const content = JSON.stringify(data, null, 2)
-    await Bun.write(closestPackageJsonPath, content)
+    await fs.writeFile(
+      closestPackageJsonPath,
+      content,
+      {
+        encoding: 'utf8',
+        flag: 'w+'
+      })
   } catch (error) {
     console.error(`${chalk.red.bold('Error')}: ${chalk.bold(packageName)} file can't be saved.`)
     exit(1)

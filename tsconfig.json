@@ -1,9 +1,9 @@
 {
+    "include": [
+        "src",
+        "types"
+    ],
     "compilerOptions": {
-        // add Bun type definitions
-        "types": [
-            "bun-types"
-        ],
         // enable latest features
         "lib": [
             "esnext"
@@ -42,5 +42,5 @@
                 "./src/types/*"
             ],
         },
-    }
+    },
 }

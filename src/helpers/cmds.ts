@@ -1,8 +1,8 @@
 import { exit } from 'node:process'
-import { spawn } from 'node:child_process'
+import { spawn, execSync } from 'node:child_process'
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
-import { getOriginIcon } from 'helpers/icons'
+import { getOriginIcon } from './icons'
 import { PackageManagerList } from 'packages/packages.types'
 import { CommanderPackage } from 'translator/commander.types'
 import { AddArgs, AddPositionalProps, GetCommandResultProps, ReplaceCommandProps, SpreadCommand, TranslateCommandProp } from './cmds.types'
@@ -124,11 +124,8 @@ export const getCommandResult = ({command, volta = false}: GetCommandResultProps
       command = `volta run ${command}`
     }
 
-    const {stdout} = Bun.spawnSync(
-      command.split(' ')
-    )
-
-    return stdout?.toString().trim()
+    const child = execSync(command)
+    return child.toString().trim()
   } catch (error) {
     return ''
   }

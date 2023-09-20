@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
 
-import { getCommandResult } from 'helpers/cmds'
+import { getCommandResult } from './cmds'
 import { CommanderPackage } from 'translator/commander.types'
 import { ClanFlagProp, FindFlagIndexProps, FindVoltaGlobalsProps, GetActionProp, GetKeyProps, MoveFlagProps, ReplaceCommandProps, ReplaceFlagProps, TranslateArgsProp, TranslateFlagProp } from './args.type'
 

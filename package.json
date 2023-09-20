@@ -1,8 +1,8 @@
 {
   "name": "swpm",
-  "version": "2.0.0-bun-beta-1.0.0",
+  "version": "2.0.0-beta-1.0.0",
   "engines": {
-    "bun": ">=1.0.0"
+    "node": ">=16"
   },
   "description": "Switch Package Manager",
   "main": "./bin/cli/swpm.js",
@@ -42,11 +42,10 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
-    "build": "bun run build.ts",
-    "test": "bun test",
-    "test:w": "bun test --watch",
-    "test:c": "bun test --coverage",
-    "test:wc": "bun test --watch --coverage",
+    "test": "vitest --run --reporter verbose --no-threads",
+    "test:w": "vitest --no-threads",
+    "test:c": "vitest run --coverage --no-threads",
+    "test:cw": "vitest watch --coverage --no-threads",
     "ts:check": "tsc --noEmit"
   },
   "repository": {
@@ -62,7 +61,9 @@
     "cli",
     "command-line",
     "package-manager",
-    "javascript"
+    "javascript",
+    "node",
+    "nodejs"
   ],
   "author": "deinsoftware",
   "contributors": [
@@ -94,17 +95,20 @@
     "@types/semver": "7.5.2",
     "@types/update-notifier": "6.0.5",
     "@types/yargs": "17.0.24",
-    "bun-types": "1.0.2",
+    "@vitest/coverage-v8": "0.34.4",
     "eslint": "8.49.0",
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-import": "2.28.1",
     "eslint-plugin-n": "16.1.0",
     "eslint-plugin-promise": "6.1.1",
-    "type-fest": "4.3.1"
+    "type-fest": "4.3.1",
+    "typescript": "5.2.2",
+    "vitest": "0.34.4"
   },
-  "packageManager": "bun@1.0.1",
-  "swpm": "bun",
   "volta": {
-    "node": "18.17.1"
-  }
+    "node": "18.18.0",
+    "npm": "9.8.1"
+  },
+  "packageManager": "npm@9.8.1",
+  "swpm": "npm"
 }

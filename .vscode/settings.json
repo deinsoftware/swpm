@@ -71,7 +71,7 @@
   },
   "explorer.fileNesting.patterns": {
     "README*": "BRAND*, CHANGELOG*, CODE_OF_CONDUCT.md, CONTRIBUTING.md, LICENSE*, README*, CHEATSHEET*, TEMPLATES*",
-    "package*": "sonar-project*, .gitignore, bunfig.toml, .npmignore, .eslintignore, .eslintrc.cjs, bun.lockb, tsconfig.json",
+    "package*": "sonar-project*, .gitignore, bunfig.toml, .npmignore, .eslintignore, .eslintrc.cjs, bun.lockb, tsconfig.json, vitest.config.ts",
     "*.js": "$(capture).*.js, $(capture).d.js.map, $(capture)_*.js, $(capture)*.snap",
     "*.ts": "$(capture).*.ts, $(capture).d.ts.map, $(capture)_*.ts, $(capture)*.snap",
   },
@@ -79,10 +79,4 @@
     "connectionId": "dein-vscode",
     "projectKey": "dein:swpm"
   },
-  "bun.debugTerminal": {},
-  "bun.runtime": "~/.bun/bin/bun",
-  // If support for Bun should be added to the default "JavaScript Debug Terminal".
-  "enabled": true,
-  // If the debugger should stop on the first line of the program.
-  "stopOnEntry": false,
 }

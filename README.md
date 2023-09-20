@@ -706,8 +706,9 @@ A minimalistic solution focus only in the most common used commands:
 - [VS Code](https://code.visualstudio.com/) - Code editing redefined.
 - [WSL](https://docs.microsoft.com/en-us/windows/wsl/) - Windows Subsystem for Linux.
 - [Windows Terminal](https://github.com/Microsoft/Terminal/) - A modern terminal application for users of command-line tools and shells.
-- [Bun.js](https://bun.sh/) - Bun is a fast JavaScript all-in-one toolkit.
+- [Node.js](https://nodejs.org/) - A JavaScript runtime built on Chrome's V8 JavaScript engine.
 - [ESLint](https://eslint.org/) - Find and fix problems in your JavaScript code.
+- [vitest](https://vitest.dev/) - A blazing fast unit-test framework powered by Vite ⚡️.
 
 ### NPM Packages
 

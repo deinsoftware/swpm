@@ -1,12 +1,12 @@
-import { describe, test, expect } from 'bun:test'
-import { cleanFlag, translateArgs } from './args.js'
-import { CommanderPackage } from 'translator/commander.types.js'
+import { it, expect, describe } from 'vitest'
+import { cleanFlag, translateArgs } from './args'
+import { CommanderPackage } from 'translator/commander.types'
 import { ArgumentsCamelCase } from 'yargs'
-import npm from 'packages/managers/npm.js'
+import npm from '../packages/managers/npm'
 
 
 describe('cleanFlag()', () => {
-  test('should not fail if flag or args are empty or not exists', () => {
+  it('should not fail if flag or args are empty or not exists', () => {
     const flag: string = ''
     const args: string[] = [flag]
 
@@ -22,7 +22,7 @@ describe('cleanFlag()', () => {
     expect(result).toBeUndefined()
   })
 
-  test('should not fail when flag is not present on yargs', () => {
+  it('should not fail when flag is not present on yargs', () => {
     const flag: string = '--not-exists'
     const args: string[] = [flag]
 
@@ -38,7 +38,7 @@ describe('cleanFlag()', () => {
     expect(result).toBeUndefined()
   })
 
-  test('should remove key for bolean flags', () => {
+  it('should remove key for bolean flags', () => {
     const command: string = 'command'
     const flag: string = '--bool'
     const args: string[] = [command, flag]
@@ -56,7 +56,7 @@ describe('cleanFlag()', () => {
     expect(cmdr.args.includes(flag)).toBeFalsy()
   })
 
-  test('should remove key and value for non boolean flags', () => {
+  it('should remove key and value for non boolean flags', () => {
     const command: string = 'command'
     const flag: string = '--test'
     const value: string = 'npm'
@@ -78,7 +78,7 @@ describe('cleanFlag()', () => {
 })
 
 describe('translateArgs()', () => {
-  test('should not fail if flag, alias or args is empty or not exists', () => {
+  it('should not fail if flag, alias or args is empty or not exists', () => {
     const flag: string = ''
     const alias: string = ''
     const args: string[] = [flag]
@@ -94,7 +94,7 @@ describe('translateArgs()', () => {
     expect(result).toBeUndefined()
   })
 
-  test('should not fail when flag is not present on yargs', () => {
+  it('should not fail when flag is not present on yargs', () => {
     const flag: string = '--not-exists'
     const args: string[] = [flag]
 
@@ -110,7 +110,7 @@ describe('translateArgs()', () => {
     expect(result).toBeUndefined()
   })
 
-  test('should replace a flag with his config translation', () => {
+  it('should replace a flag with his config translation', () => {
     const command: string = 'command'
     const flag: string = '--flag'
     const replace: string = '--new-flag'
@@ -136,7 +136,7 @@ describe('translateArgs()', () => {
     expect(cmdr.args[1]).toBe(replace)
   })
 
-  test('should move a flag with his config translation', () => {
+  it('should move a flag with his config translation', () => {
     const command: string = 'command'
     const flag: string = '--flag'
     const replace: [string, number] = ['flag', 1]
@@ -162,7 +162,7 @@ describe('translateArgs()', () => {
     expect(cmdr.args[1]).toBe(replace[0])
   })
 
-  test('should replace the command when detect some flag', () => {
+  it('should replace the command when detect some flag', () => {
     const command: string = 'command'
     const flag: string = '--flag'
     const replace = {

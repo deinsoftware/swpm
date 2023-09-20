@@ -1,8 +1,8 @@
-import { describe, test, expect } from 'bun:test'
+import { it, expect, describe } from 'vitest'
 import { getSwpmInfo } from './info'
 
 describe('getSwpmInfo()', () => {
-  test('should return an object literal with project information', async () => {
+  it('should return an object literal with project information', async () => {
     const projectInfo = {
       name: 'swpm',
       description: 'Switch Package Manager'

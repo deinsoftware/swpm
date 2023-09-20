@@ -2,16 +2,16 @@
 
 import { exit } from 'node:process'
 import { inspect } from 'node:util'
-import yargs from './swpx/config.js'
+import yargs from './swpx/config'
 import chalk from 'chalk'
 
 import { showPackageInformation } from 'flags/info'
 import { showCommandAlias } from 'flags/alias'
 import { testCommand } from 'flags/test'
 
-import { autoUpdate } from '../helpers/autoUpdate.js'
-import { showCommand, runCommand } from '../helpers/cmds.js'
-import cmdr from 'translator/commander.js'
+import { autoUpdate } from '../helpers/autoUpdate'
+import { showCommand, runCommand } from '../helpers/cmds'
+import cmdr from 'translator/commander'
 
 if (yargs.debug) {
   console.log(
