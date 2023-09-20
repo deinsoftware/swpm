@@ -36,7 +36,7 @@ describe('getPackageConfiguration()', () => {
     const pkg = {
       cmd: 'npm'
     } as const
-    const result = await getPackageConfiguration(pkg)
+    const result = await getPackageConfiguration(pkg, 'ts')
     const { cmd, lockFiles } = result
     expect({ cmd, lockFiles }).toMatchObject(expectedResult)
   })
