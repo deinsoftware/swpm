@@ -40,10 +40,10 @@
     "sx": "./src/alias/sx.js"
   },
   "scripts": {
-    "prepublish": "tsc --project tsconfig.build.json",
-    "prebuild": "rm -rf bin",
+    "prebuild": "rm -rf bin/",
     "build": "tsc --project tsconfig.build.json",
-    "postbuild": "cp package*.json bin && (cd bin && npm ci --omit=dev --ignore-scripts)",
+    "postbuild": "cp package*.json .npmignore README.md LICENSE.md CHANGELOG.md bin && (cd bin && npm ci --omit=dev --ignore-scripts)",
+    "pack": "npm pack bin/ --pack-destination=\"bin/\"",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "eslint . --fix --ext .js,.ts",
     "test": "vitest --run --reporter verbose --no-threads",

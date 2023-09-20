@@ -7,16 +7,30 @@ on:
   release:
     types: [published]
 
+env:
+  NODE_VERSION: 18
+
 jobs:
+  build:
+    runs-on: ubuntu-latest
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: $NODE_VERSION
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+
   publish-package:
+    needs: build
+    if: ${{ success() }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: $NODE_VERSION
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
+      - working-directory: ./bin
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
