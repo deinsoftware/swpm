@@ -5,7 +5,6 @@ import { stripIndents } from 'common-tags'
 import { translateArgs } from '../../../helpers/args.js'
 import cmdr from '../../../translator/commander.js'
 import prompts from 'prompts'
-import { spreadCommand } from '../../../helpers/cmds.js'
 
 type OptionsProps = {
   'package-lock'?: boolean,
@@ -66,7 +65,7 @@ const install: CommandModule<Record<string, unknown>, OptionsProps> = {
         exit(1)
       }
 
-      spreadCommand({ cmd: 'swpm', args })
+      cmdr.args = cmdr.args.map(arg => arg === 'install' ? 'add' : arg)
     }
   }
 }
