@@ -9,6 +9,21 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 2.0.0 - 2023/09/20
+
+## Changed
+
+- full migration from JavaScript to TypeScript
+
+## Fixed
+
+- sequential delete folder and files previous install packages when are called from alias with multiple commands
+
+## Added
+
+- ask to transform `install` to `add` command when `install` is used to add packages
+- spinner progress when deleting folders or files using the `clean` command
+
 ## 1.12.0 - 2023/08/26
 
 ## Added
