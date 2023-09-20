@@ -2,7 +2,7 @@ import { CommandModule } from 'yargs'
 import { findVoltaGlobals, translateArgs } from '../../../helpers/args.js'
 import cmdr, { setCommander } from '../../../translator/commander.js'
 
-interface Options {
+type OptionsProps = {
   package?: string
   'save-dev'?: boolean
   'save-optional'?: boolean
@@ -10,7 +10,7 @@ interface Options {
   'global'?: boolean
 }
 
-const add: CommandModule<Record<string, unknown>, Options> = {
+const add: CommandModule<Record<string, unknown>, OptionsProps> = {
   command: 'add <package> [args] [FLAGS]',
   aliases: ['a'],
   describe: 'add package',

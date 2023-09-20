@@ -7,12 +7,12 @@ import cmdr from '../../../translator/commander.js'
 import prompts from 'prompts'
 import { spreadCommand } from '../../../helpers/cmds.js'
 
-interface Options {
+type OptionsProps = {
   'package-lock'?: boolean,
   'frozen'?: boolean
 }
 
-const install: CommandModule<Record<string, unknown>, Options> = {
+const install: CommandModule<Record<string, unknown>, OptionsProps> = {
   command: 'install [FLAGS]',
   aliases: ['i'],
   describe: 'install packages from package.json',

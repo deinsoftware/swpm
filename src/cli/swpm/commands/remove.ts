@@ -2,7 +2,7 @@ import { CommandModule } from 'yargs'
 import { findVoltaGlobals, translateArgs } from '../../../helpers/args.js'
 import cmdr, { setCommander } from '../../../translator/commander.js'
 
-interface Options {
+type OptionsProps = {
   'package'?: string,
   'save-dev'?: boolean,
   'save-optional'?: boolean,
@@ -10,7 +10,7 @@ interface Options {
   'global'?: boolean
 }
 
-const remove: CommandModule<Record<string, unknown>, Options> = {
+const remove: CommandModule<Record<string, unknown>, OptionsProps> = {
   command: 'remove <package> [args] [FLAGS]',
   aliases: ['r', 'rm', 'uninstall', 'un'],
   describe: 'remove package',

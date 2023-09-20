@@ -1,11 +1,11 @@
 import { CommandModule } from 'yargs'
 
-interface Options {
+type OptionsProps = {
   'package'?: string
   'global'?: boolean
 }
 
-const update: CommandModule<Record<string, unknown>, Options> = {
+const update: CommandModule<Record<string, unknown>, OptionsProps> = {
   command: 'update <package> [args] [FLAGS]',
   aliases: ['up', 'ud'],
   describe: 'update package',

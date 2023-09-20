@@ -5,15 +5,15 @@ export type PackageManagerList = PackageManagers| ExecuteManagers | VersionManag
 
 type ColorValueHex = `#${string}`
 
-export interface CommandsConfiguration {
+export type CommandsConfiguration = {
   [key: string]: string | [string, number] | string[] | { [key: string]: string | string[] }
 }
 
-export interface ArgsConfiguration {
+export type ArgsConfiguration = {
   [key: string]: string | number | [string, number] | { [key: string]: string }
 }
 
-export interface PackageConfiguration {
+export type PackageConfiguration = {
   cmd: PackageManagerList
   exc: ExecuteManagers
   color: ColorValueHex

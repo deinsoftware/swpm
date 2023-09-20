@@ -13,6 +13,6 @@ module.exports = {
   },
   rules: {
     "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
   }
 }

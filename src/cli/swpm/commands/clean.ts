@@ -3,7 +3,7 @@ import { exit } from 'node:process'
 import { CommandModule } from 'yargs'
 import { deleteModulesPath, deleteModulesFiles, deleteLockFiles, deleteLogFiles, deletePath } from '../../../helpers/delete.js'
 
-interface Options {
+type OptionsProps = {
   'all'?: boolean,
   'fresh'?: boolean,
   'modules'?: boolean,
@@ -14,7 +14,7 @@ interface Options {
   'coverage'?: boolean
 }
 
-const clean: CommandModule<Record<string, unknown>, Options> = {
+const clean: CommandModule<Record<string, unknown>, OptionsProps> = {
   command: 'clean [FLAGS]',
   aliases: ['c'],
   describe: 'clean packages',

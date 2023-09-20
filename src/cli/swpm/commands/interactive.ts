@@ -2,13 +2,13 @@ import { CommandModule } from 'yargs'
 import { translateArgs } from '../../../helpers/args.js'
 import cmdr from '../../../translator/commander.js'
 
-interface Options {
+type OptionsProps = {
   'package'?: string
   'latest'?: boolean
   'global'?: boolean
 }
 
-const interactive: CommandModule<Record<string, unknown>, Options> = {
+const interactive: CommandModule<Record<string, unknown>, OptionsProps> = {
   command: 'interactive [args] [FLAGS]',
   aliases: ['ui'],
   describe: 'update packages interactive',

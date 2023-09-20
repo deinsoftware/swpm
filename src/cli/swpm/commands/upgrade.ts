@@ -2,14 +2,14 @@ import { CommandModule } from 'yargs'
 import { translateArgs } from '../../../helpers/args.js'
 import cmdr from '../../../translator/commander.js'
 
-interface Options {
+type OptionsProps = {
   'package'?: string
   'latest'?: boolean
   'save-exact'?: boolean
   'global'?: boolean
 }
 
-const upgrade: CommandModule<Record<string, unknown>, Options> = {
+const upgrade: CommandModule<Record<string, unknown>, OptionsProps> = {
   command: 'upgrade <package> [args] [FLAGS]',
   aliases: ['ug'],
   describe: 'upgrade package to latest',
