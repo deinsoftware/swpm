@@ -1,7 +1,4 @@
 {
-    "include": [
-        "src"
-    ],
     "compilerOptions": {
         // enable latest features
         "lib": [
@@ -23,9 +20,12 @@
         "declaration": true,
         "outDir": "bin",
     },
+    "include": [
+        "src/**/*"
+    ],
     "exclude": [
         "node_modules",
         "coverage",
-        "bin"
+        "bin",
     ]
 }
