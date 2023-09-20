@@ -1,7 +1,7 @@
 import { exit } from 'node:process'
 import chalk from 'chalk'
-import { getPackageJson, savePackageJson } from 'helpers/files'
-import { PackageConfiguration } from 'packages/packages.types'
+import { getPackageJson, savePackageJson } from '../helpers/files'
+import { PackageConfiguration } from '../packages/packages.types'
 
 type Props = {
   cmd: PackageConfiguration['cmd']

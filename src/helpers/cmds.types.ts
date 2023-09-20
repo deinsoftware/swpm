@@ -1,4 +1,4 @@
-import { CommanderPackage } from "translator/commander.types"
+import { CommanderPackage } from "../translator/commander.types"
 import { ArgumentsCamelCase } from "yargs"
 
 export type AddArgs = {

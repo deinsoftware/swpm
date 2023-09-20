@@ -40,6 +40,8 @@
     "sx": "./bin/alias/sx.js"
   },
   "scripts": {
+    "prepublish": "tsc",
+    "build": "tsc",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
     "test": "vitest --run --reporter verbose --no-threads",

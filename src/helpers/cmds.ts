@@ -3,8 +3,8 @@ import { spawn, execSync } from 'node:child_process'
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
 import { getOriginIcon } from './icons'
-import { PackageManagerList } from 'packages/packages.types'
-import { CommanderPackage } from 'translator/commander.types'
+import { PackageManagerList } from '../packages/packages.types'
+import { CommanderPackage } from '../translator/commander.types'
 import { AddArgs, AddPositionalProps, GetCommandResultProps, ReplaceCommandProps, SpreadCommand, TranslateCommandProp } from './cmds.types'
 
 const addArgs = ({yargs, cmdr, flags}: AddArgs) => {

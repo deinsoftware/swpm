@@ -1,13 +1,13 @@
 import { argv } from 'node:process'
-import { cleanFlag, translateArgs } from 'helpers/args'
-import { translateCommand } from 'helpers/cmds'
-import { detectVoltaPin, getCurrentPackageManager } from 'helpers/get'
-import { getPackageConfiguration } from 'packages/list'
-import { setPackageVersion } from 'helpers/set'
+import { cleanFlag, translateArgs } from '../helpers/args'
+import { translateCommand } from '../helpers/cmds'
+import { detectVoltaPin, getCurrentPackageManager } from '../helpers/get'
+import { getPackageConfiguration } from '../packages/list'
+import { setPackageVersion } from '../helpers/set'
 import { InferredOptionTypes, MiddlewareFunction } from 'yargs'
-import { CommanderPackage } from 'translator/commander.types'
-import cmdr, { setCommander } from 'translator/commander'
-import { options } from 'cli/swpx/cli'
+import { CommanderPackage } from '../translator/commander.types'
+import cmdr, { setCommander } from '../translator/commander'
+import { options } from './swpx/cli'
 
 const middleware: MiddlewareFunction<InferredOptionTypes<typeof options>> = async (yargs) => {
   setCommander({args: argv.slice(2)})

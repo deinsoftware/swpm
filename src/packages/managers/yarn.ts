@@ -1,4 +1,4 @@
-import { PackageConfiguration } from "packages/packages.types"
+import { PackageConfiguration } from "../packages.types"
 
 const yarn: PackageConfiguration = {
   cmd: 'yarn',

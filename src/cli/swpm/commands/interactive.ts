@@ -1,6 +1,6 @@
 import { CommandModule } from 'yargs'
-import { translateArgs } from 'helpers/args'
-import cmdr from 'translator/commander'
+import { translateArgs } from '../../../helpers/args'
+import cmdr from '../../../translator/commander'
 
 type Options = {
   'package'?: string

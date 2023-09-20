@@ -3,10 +3,10 @@ import { stripIndents } from 'common-tags'
 import chalk from 'chalk'
 import commandExists from 'command-exists'
 
-import { getCommandResult } from 'helpers/cmds'
-import { getOriginIcon } from 'helpers/icons'
-import { getSwpmInfo } from 'helpers/info'
-import { CommanderPackage } from 'translator/commander.types'
+import { getCommandResult } from '../helpers/cmds'
+import { getOriginIcon } from '../helpers/icons'
+import { getSwpmInfo } from '../helpers/info'
+import { CommanderPackage } from '../translator/commander.types'
 
 const commandVerification = async (cmd: string) => {
   try {

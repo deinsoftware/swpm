@@ -1,6 +1,6 @@
 import { it, expect, describe } from 'vitest'
 import { cleanFlag, translateArgs } from './args'
-import { CommanderPackage } from 'translator/commander.types'
+import { CommanderPackage } from '../translator/commander.types'
 import { ArgumentsCamelCase } from 'yargs'
 import npm from '../packages/managers/npm'
 

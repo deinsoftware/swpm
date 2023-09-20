@@ -1,6 +1,6 @@
 import { CommandModule } from 'yargs'
-import { findVoltaGlobals, translateArgs } from 'helpers/args'
-import cmdr, { setCommander } from "translator/commander";
+import { findVoltaGlobals, translateArgs } from '../../../helpers/args'
+import cmdr, { setCommander } from "../../../translator/commander";
 
 type Options = {
   package?: string

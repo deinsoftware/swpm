@@ -3,8 +3,8 @@ import yarn from './managers/yarn'
 import yarnBerry from './managers/yarn@berry'
 import pnpm from './managers/pnpm'
 import bun from './managers/bun'
-import { PackageManagerList } from 'packages/packages.types'
-import { CommanderPackage } from 'translator/commander.types'
+import { PackageManagerList } from './packages.types'
+import { CommanderPackage } from '../translator/commander.types'
 
 const packageManagerList = [
   npm,

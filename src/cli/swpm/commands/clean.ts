@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import { exit } from 'node:process'
-import { ArgumentsCamelCase, Argv, CommandModule } from 'yargs'
-import { deleteModulesPath, deleteModulesFiles, deleteLockFiles, deleteLogFiles, deletePath } from 'helpers/delete'
+import { CommandModule } from 'yargs'
+import { deleteModulesPath, deleteModulesFiles, deleteLockFiles, deleteLogFiles, deletePath } from '../../../helpers/delete'
 
 type Options = {
   'all'?: boolean,

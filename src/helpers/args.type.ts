@@ -1,5 +1,5 @@
-import { PackageConfiguration } from "packages/packages.types"
-import { CommanderPackage } from "translator/commander.types"
+import { PackageConfiguration } from "../packages/packages.types"
+import { CommanderPackage } from "../translator/commander.types"
 import { ArgumentsCamelCase } from "yargs"
 
 export type FindVoltaGlobalsProps = {

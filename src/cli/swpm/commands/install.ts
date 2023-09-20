@@ -2,10 +2,10 @@ import { CommandModule } from 'yargs'
 import { exit } from 'node:process'
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
-import { translateArgs } from 'helpers/args'
-import cmdr from 'translator/commander'
+import { translateArgs } from '../../../helpers/args'
+import cmdr from '../../../translator/commander'
 import prompts from 'prompts'
-import { spreadCommand } from 'helpers/cmds'
+import { spreadCommand } from '../../../helpers/cmds'
 
 type Options = {
   'package-lock'?: boolean,

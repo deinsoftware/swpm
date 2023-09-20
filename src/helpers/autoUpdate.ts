@@ -3,7 +3,7 @@ import { stripIndent } from 'common-tags'
 import updateNotifier, { NotifyOptions } from 'update-notifier'
 import { getCommandResult } from './cmds'
 import { getSwpmInfo } from './info'
-import { CommanderPackage } from 'translator/commander.types'
+import { CommanderPackage } from '../translator/commander.types'
 
 const ONE_DAY_MS = 1000 * 60 * 60 * 24
 

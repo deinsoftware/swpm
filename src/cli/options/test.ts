@@ -1,4 +1,4 @@
-import { availablePackages } from 'packages/list'
+import { availablePackages } from '../../packages/list'
 
 const test = {
   alias: 't',

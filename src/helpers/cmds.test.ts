@@ -1,7 +1,7 @@
 import { it, expect, describe } from 'vitest'
 import { translateCommand, getCommandResult } from './cmds'
 import { ArgumentsCamelCase } from 'yargs'
-import { CommanderPackage } from 'translator/commander.types'
+import { CommanderPackage } from '../translator/commander.types'
 import npm from '../packages/managers/npm'
 
 describe('translateCommand()', () => {

@@ -21,26 +21,13 @@
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "skipLibCheck": true,
-        "baseUrl": "./",
-        "paths": {
-            "cli/*": [
-                "./src/cli/*"
-            ],
-            "flags/*": [
-                "./src/flags/*"
-            ],
-            "helpers/*": [
-                "./src/helpers/*"
-            ],
-            "packages/*": [
-                "./src/packages/*"
-            ],
-            "translator/*": [
-                "./src/translator/*"
-            ],
-            "types/*": [
-                "./src/types/*"
-            ],
-        },
+        "strictNullChecks": true,
+        "resolveJsonModule": true,
+        "declaration": true,
+        "outDir": "bin",
     },
+    "exclude": [
+        "node_modules",
+        "bin"
+    ]
 }

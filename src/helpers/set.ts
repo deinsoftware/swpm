@@ -1,7 +1,7 @@
 import { runCommand, showCommand } from './cmds'
-import packagesList from 'packages/list'
-import { PackageManagerList } from 'packages/packages.types'
-import { CommanderPackage } from 'translator/commander.types'
+import packagesList from '../packages/list'
+import { PackageManagerList } from '../packages/packages.types'
+import { CommanderPackage } from '../translator/commander.types'
 
 export const setPackageVersion = async (packageName: PackageManagerList) => {
   const getPackageVersion = packagesList.filter((pkg) => pkg.cmd === packageName) ?? []

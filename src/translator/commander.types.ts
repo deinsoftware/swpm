@@ -1,4 +1,4 @@
-import { PackageConfiguration, PackageManagerList } from "packages/packages.types"
+import { PackageConfiguration, PackageManagerList } from "../packages/packages.types"
 import type {PackageJson as BasePackageJson} from 'type-fest';
 
 export type CommanderPackage = {
