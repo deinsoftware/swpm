@@ -13,19 +13,12 @@ declare global {
   var commander: CommanderPackage
 }
 
-export const getCommander = (): CommanderPackage => {
+const getCommander = (): CommanderPackage => {
   if (!globalThis?.commander) {
     globalThis.commander = commanderInitValues
   }
 
   return globalThis.commander
-}
-
-export const setCommander = (cmdr: Partial<CommanderPackage>) => {
-  globalThis.commander = {
-    ...globalThis.commander,
-    ...cmdr
-  }
 }
 
 export default getCommander()

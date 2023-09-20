@@ -6,11 +6,11 @@ import { getPackageConfiguration } from '../packages/list.js'
 import { setPackageVersion } from '../helpers/set.js'
 import { InferredOptionTypes, MiddlewareFunction } from 'yargs'
 import { CommanderPackage } from '../translator/commander.types.js'
-import cmdr, { setCommander } from '../translator/commander.js'
+import cmdr from '../translator/commander.js'
 import { options } from './swpx/cli.js'
 
 const middleware: MiddlewareFunction<InferredOptionTypes<typeof options>> = async (yargs) => {
-  setCommander({ args: argv.slice(2) })
+  cmdr.args = argv.slice(2)
 
   if (yargs?.debug) {
     cleanFlag({ yargs, cmdr, flag: '--debug' })

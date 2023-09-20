@@ -23,6 +23,7 @@
     "patreon",
     "paypal",
     "pnpm",
+    "postbuild",
     "sade",
     "setx",
     "sonarcloud",
@@ -39,7 +40,7 @@
     "**/*.js.map": {
       "when": "$(basename)"
     },
-    "**/node_modules": true
+    "**/node_modules": false
   },
   "javascript.autoClosingTags": true,
   "javascript.suggest.autoImports": true,

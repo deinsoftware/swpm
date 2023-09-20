@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import { inspect } from 'node:util'
 import yargs from './swpm/config.js'
 
 import { pinPackageManager } from '../flags/pin.js'
@@ -13,18 +12,11 @@ import { showCommand, runCommand } from '../helpers/cmds.js'
 import { setPackageVersion } from '../helpers/set.js'
 import cmdr from '../translator/commander.js'
 import { CommanderPackage } from '../translator/commander.types.js'
+import { debug } from '../helpers/debug.js'
 
 if (yargs.debug) {
-  console.log(
-    inspect(
-      yargs,
-      {
-        showHidden: false,
-        depth: null,
-        colors: true
-      }
-    )
-  )
+  debug(yargs)
+  debug(cmdr)
 }
 
 await autoUpdate(cmdr)

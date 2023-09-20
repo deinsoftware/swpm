@@ -1,6 +1,6 @@
 import { CommandModule } from 'yargs'
 import { findVoltaGlobals, translateArgs } from '../../../helpers/args.js'
-import cmdr, { setCommander } from '../../../translator/commander.js'
+import cmdr from '../../../translator/commander.js'
 
 type OptionsProps = {
   package?: string
@@ -65,10 +65,8 @@ const add: CommandModule<Record<string, unknown>, OptionsProps> = {
 
     if (yargs?.package && findVoltaGlobals({ yargs, cmdr, flags: ['add', 'install'] })
     ) {
-      setCommander({
-        cmd: 'volta',
-        args: ['install', yargs.package]
-      })
+      cmdr.cmd = 'volta'
+      cmdr.args = ['install', yargs.package]
     }
 
     if (yargs?.['save-dev']) {
