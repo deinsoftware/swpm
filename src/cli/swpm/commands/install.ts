@@ -2,10 +2,10 @@ import { CommandModule } from 'yargs'
 import { exit } from 'node:process'
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
-import { translateArgs } from '../../../helpers/args'
-import cmdr from '../../../translator/commander'
+import { translateArgs } from '../../../helpers/args.js'
+import cmdr from '../../../translator/commander.js'
 import prompts from 'prompts'
-import { spreadCommand } from '../../../helpers/cmds'
+import { spreadCommand } from '../../../helpers/cmds.js'
 
 type Options = {
   'package-lock'?: boolean,
@@ -36,15 +36,15 @@ const install: CommandModule<Record<string, unknown>, Options> = {
       } as const),
 
   handler: async(yargs) => {
-    if ('package-lock' in yargs) {
+    if (yargs?.['package-lock']) {
       translateArgs({yargs, cmdr, flag: '--package-lock', alias: '-P'})
     }
 
-    if ('frozen' in yargs) {
+    if (yargs?.frozen) {
       translateArgs({yargs, cmdr, flag: '--frozen', alias: '-F'})
     }
 
-    if ('FLAGS' in yargs || 'global' in yargs) {
+    if (yargs.FLAGS || yargs?.global ) {
       const args  = ['add', ...cmdr.args.slice(1)]
       const command  = chalk.blue.bold(`swpm ${args.join(' ')}`)
 
@@ -57,7 +57,7 @@ const install: CommandModule<Record<string, unknown>, Options> = {
         name: 'value',
         message: `Do you want to re-run as ${command}`,
         initial: true
-      });
+      })
 
       if (!response.value) {
         console.error(

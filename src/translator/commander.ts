@@ -1,4 +1,4 @@
-import { CommanderPackage } from "./commander.types";
+import { CommanderPackage } from './commander.types.js'
 
 const commanderInitValues: CommanderPackage = {
   cmd: undefined,
@@ -8,14 +8,12 @@ const commanderInitValues: CommanderPackage = {
   volta: false,
 }
 
-const value = commanderInitValues['args']
-
 declare global {
   var commander: CommanderPackage
 }
 
 export const getCommander = (): CommanderPackage => {
-  if (!('commander' in globalThis)){
+  if (!globalThis?.commander){
     globalThis.commander = commanderInitValues
   }
 

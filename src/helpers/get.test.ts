@@ -1,10 +1,10 @@
 import { it, expect, describe } from 'vitest'
-import { getOriginIcon } from './icons'
+import { getOriginIcon } from './icons.js'
 
 describe('getOriginIcon()', () => {
   it('should return an empty string if name was not send', () => {
     const expectedResult = ''
-    //@ts-expect-error
+    // @ts-expect-error
     const result = getOriginIcon()
     expect(result).toBe(expectedResult)
   })
@@ -12,7 +12,7 @@ describe('getOriginIcon()', () => {
   it('should return an empty string if name was not found', () => {
     const expectedResult = ''
     const name = 'not'
-    //@ts-expect-error
+    // @ts-expect-error
     const result = getOriginIcon(name)
     expect(result).toBe(expectedResult)
   })

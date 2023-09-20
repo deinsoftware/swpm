@@ -1,9 +1,9 @@
 import chalk, { ForegroundColorName } from 'chalk'
 import { stripIndent } from 'common-tags'
 import updateNotifier, { NotifyOptions } from 'update-notifier'
-import { getCommandResult } from './cmds'
-import { getSwpmInfo } from './info'
-import { CommanderPackage } from '../translator/commander.types'
+import { getCommandResult } from './cmds.js'
+import { getSwpmInfo } from './info.js'
+import { CommanderPackage } from '../translator/commander.types.js'
 
 const ONE_DAY_MS = 1000 * 60 * 60 * 24
 
@@ -38,15 +38,15 @@ export const autoUpdate = async (cmdr: CommanderPackage) => {
     switch (type) {
       case 'major':
         color = 'red'
-        break;
+        break
 
       case 'minor':
         color = 'yellow'
-        break;
+        break
 
       default:
         color = 'green'
-        break;
+        break
     }
 
     const message = stripIndent`

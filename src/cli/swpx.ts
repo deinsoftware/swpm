@@ -2,16 +2,17 @@
 
 import { exit } from 'node:process'
 import { inspect } from 'node:util'
-import yargs from './swpx/config'
+import yargs from './swpx/config.js'
 import chalk from 'chalk'
 
-import { showPackageInformation } from '../flags/info'
-import { showCommandAlias } from '../flags/alias'
-import { testCommand } from '../flags/test'
+import { showPackageInformation } from '../flags/info.js'
+import { showCommandAlias } from '../flags/alias.js'
+import { testCommand } from '../flags/test.js'
 
-import { autoUpdate } from '../helpers/autoUpdate'
-import { showCommand, runCommand } from '../helpers/cmds'
-import cmdr from '../translator/commander'
+import { autoUpdate } from '../helpers/autoUpdate.js'
+import { showCommand, runCommand } from '../helpers/cmds.js'
+import cmdr from '../translator/commander.js'
+import { CommanderPackage } from '../translator/commander.types.js'
 
 if (yargs.debug) {
   console.log(
@@ -38,8 +39,15 @@ if (yargs?.test) {
   testCommand(cmdr)
 }
 
-if (yargs?.info) {
-  await showPackageInformation(cmdr)
+if (yargs?.info && cmdr?.cmd && cmdr?.config && cmdr?.origin && cmdr?.volta) {
+  const cmdrInfo: Required<CommanderPackage> = {
+    cmd: cmdr.cmd,
+    args: cmdr.args,
+    origin: cmdr.origin,
+    config: cmdr.config,
+    volta: cmdr.volta
+  }
+  await showPackageInformation(cmdrInfo)
 }
 
 if (yargs?.alias) {

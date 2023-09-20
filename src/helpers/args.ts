@@ -1,9 +1,9 @@
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
 
-import { getCommandResult } from './cmds'
-import { CommanderPackage } from '../translator/commander.types'
-import { ClanFlagProp, FindFlagIndexProps, FindVoltaGlobalsProps, GetActionProp, GetKeyProps, MoveFlagProps, ReplaceCommandProps, ReplaceFlagProps, TranslateArgsProp, TranslateFlagProp } from './args.type'
+import { getCommandResult } from './cmds.js'
+import { CommanderPackage } from '../translator/commander.types.js'
+import { ClanFlagProp, FindFlagIndexProps, FindVoltaGlobalsProps, GetActionProp, GetKeyProps, MoveFlagProps, ReplaceCommandProps, ReplaceFlagProps, TranslateArgsProp, TranslateFlagProp } from './args.type.js'
 
 
 export const findVoltaGlobals = ({yargs, cmdr, flags}: FindVoltaGlobalsProps) => {
@@ -75,7 +75,7 @@ const replaceCommand = ({yargs, cmdr, cmdConfig}: ReplaceCommandProps) => {
 }
 
 const getAction = ({args, key}: GetActionProp) => {
-  return args[key];
+  return args[key]
 }
 
 const translateFlag = ({yargs, cmdr, flag}: TranslateFlagProp) => {

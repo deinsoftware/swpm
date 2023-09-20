@@ -1,5 +1,5 @@
 import { it, expect, describe } from 'vitest'
-import { getSwpmInfo } from './info'
+import { getSwpmInfo } from './info.js'
 
 describe('getSwpmInfo()', () => {
   it('should return an object literal with project information', async () => {

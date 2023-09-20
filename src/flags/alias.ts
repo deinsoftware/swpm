@@ -3,7 +3,7 @@ import { stripIndents } from 'common-tags'
 import chalk from 'chalk'
 import commandExists from 'command-exists'
 
-import { getSwpmInfo } from '../helpers/info'
+import { getSwpmInfo } from '../helpers/info.js'
 
 const commandVerification = async (cmd: string) => {
   try {

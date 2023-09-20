@@ -1,6 +1,6 @@
-import { PackageConfiguration } from "../packages/packages.types"
-import { CommanderPackage } from "../translator/commander.types"
-import { ArgumentsCamelCase } from "yargs"
+import { PackageConfiguration } from '../packages/packages.types.js'
+import { CommanderPackage } from '../translator/commander.types.js'
+import { ArgumentsCamelCase } from 'yargs'
 
 export type FindVoltaGlobalsProps = {
   yargs: ArgumentsCamelCase<{global?: boolean}>
@@ -41,7 +41,7 @@ export type ReplaceCommandProps = {
   yargs: ArgumentsCamelCase
   cmdr: CommanderPackage
   cmdConfig: {
-    [key: string]: string;
+    [key: string]: string
   }
 }
 

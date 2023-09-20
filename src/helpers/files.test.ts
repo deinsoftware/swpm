@@ -1,7 +1,7 @@
 import { it, expect, describe } from 'vitest'
 import { cwd } from 'node:process'
 import { resolve as resolvePath } from 'node:path'
-import { fileExists, pathExists, getPackageJson, lockFileExists } from './files'
+import { fileExists, pathExists, getPackageJson, lockFileExists } from './files.js'
 
 describe('fileExists', () => {
   it('should return true if file exists', async () => {

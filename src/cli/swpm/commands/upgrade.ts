@@ -1,6 +1,6 @@
 import { CommandModule } from 'yargs'
-import { translateArgs } from '../../../helpers/args'
-import cmdr from '../../../translator/commander'
+import { translateArgs } from '../../../helpers/args.js'
+import cmdr from '../../../translator/commander.js'
 
 type Options = {
   'package'?: string
@@ -44,11 +44,11 @@ const upgrade: CommandModule<Record<string, unknown>, Options> = {
       }),
 
   handler: (yargs) => {
-    if ('save-exact' in yargs) {
+    if (yargs?.['save-exact']) {
       translateArgs({yargs, cmdr, flag: '--save-exact', alias: '-E'})
     }
 
-    if ('latest' in yargs) {
+    if (yargs?.latest) {
       translateArgs({yargs, cmdr, flag: '--latest', alias: '-L'})
     }
   }

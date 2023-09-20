@@ -1,8 +1,8 @@
 import { it, expect, describe } from 'vitest'
-import { cleanFlag, translateArgs } from './args'
-import { CommanderPackage } from '../translator/commander.types'
+import { cleanFlag, translateArgs } from './args.js'
+import { CommanderPackage } from '../translator/commander.types.js'
 import { ArgumentsCamelCase } from 'yargs'
-import npm from '../packages/managers/npm'
+import npm from '../packages/managers/npm.js'
 
 
 describe('cleanFlag()', () => {

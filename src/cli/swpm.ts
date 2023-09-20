@@ -1,17 +1,18 @@
 #!/usr/bin/env node
 
 import { inspect } from 'node:util'
-import yargs from './swpm/config'
+import yargs from './swpm/config.js'
 
-import { pinPackageManager } from '../flags/pin'
-import { showPackageInformation } from '../flags/info'
-import { showCommandAlias } from '../flags/alias'
-import { testCommand } from '../flags/test'
+import { pinPackageManager } from '../flags/pin.js'
+import { showPackageInformation } from '../flags/info.js'
+import { showCommandAlias } from '../flags/alias.js'
+import { testCommand } from '../flags/test.js'
 
-import { autoUpdate } from '../helpers/autoUpdate'
-import { showCommand, runCommand } from '../helpers/cmds'
-import { setPackageVersion } from '../helpers/set'
-import cmdr from '../translator/commander'
+import { autoUpdate } from '../helpers/autoUpdate.js'
+import { showCommand, runCommand } from '../helpers/cmds.js'
+import { setPackageVersion } from '../helpers/set.js'
+import cmdr from '../translator/commander.js'
+import { CommanderPackage } from '../translator/commander.types.js'
 
 if (yargs.debug) {
   console.log(
@@ -28,7 +29,7 @@ if (yargs.debug) {
 
 await autoUpdate(cmdr)
 
-if ('pin' in yargs) {
+if (yargs?.pin) {
   cmdr.cmd = yargs.pin!
   await setPackageVersion(cmdr.cmd!)
 
@@ -38,16 +39,19 @@ if ('pin' in yargs) {
   }
 }
 
-if (yargs?.pin) {
-
-}
-
 if (yargs?.test) {
   testCommand(cmdr)
 }
 
-if (yargs?.info) {
-  await showPackageInformation(cmdr)
+if (yargs?.info && cmdr?.cmd && cmdr?.config && cmdr?.origin && cmdr?.volta) {
+  const cmdrInfo: Required<CommanderPackage> = {
+    cmd: cmdr.cmd,
+    args: cmdr.args,
+    origin: cmdr.origin,
+    config: cmdr.config,
+    volta: cmdr.volta
+  }
+  await showPackageInformation(cmdrInfo)
 }
 
 if (yargs?.alias) {

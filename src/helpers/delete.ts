@@ -2,9 +2,9 @@ import { cwd, exit } from 'node:process'
 import fs from 'node:fs/promises'
 import { resolve as resolvePath } from 'node:path'
 
-import packagesList from '../packages/list'
-import { fileExists, pathExists } from '../helpers/files'
-import { getResultIcon } from '../helpers/icons'
+import packagesList from '../packages/list.js'
+import { fileExists, pathExists } from '../helpers/files.js'
+import { getResultIcon } from '../helpers/icons.js'
 
 const deleteResult = (result: boolean, name: string) => {
   const icon = getResultIcon(result ? 'success' : 'failure')

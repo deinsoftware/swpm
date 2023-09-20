@@ -2,10 +2,10 @@ import { exit } from 'node:process'
 import { spawn, execSync } from 'node:child_process'
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
-import { getOriginIcon } from './icons'
-import { PackageManagerList } from '../packages/packages.types'
-import { CommanderPackage } from '../translator/commander.types'
-import { AddArgs, AddPositionalProps, GetCommandResultProps, ReplaceCommandProps, SpreadCommand, TranslateCommandProp } from './cmds.types'
+import { getOriginIcon } from './icons.js'
+import { PackageManagerList } from '../packages/packages.types.js'
+import { CommanderPackage } from '../translator/commander.types.js'
+import { AddArgs, AddPositionalProps, GetCommandResultProps, ReplaceCommandProps, SpreadCommand, TranslateCommandProp } from './cmds.types.js'
 
 const addArgs = ({yargs, cmdr, flags}: AddArgs) => {
   for (const flag of flags) {

@@ -1,6 +1,6 @@
 import { CommandModule } from 'yargs'
-import { findVoltaGlobals, translateArgs } from '../../../helpers/args'
-import cmdr, { setCommander } from "../../../translator/commander";
+import { findVoltaGlobals, translateArgs } from '../../../helpers/args.js'
+import cmdr, { setCommander } from '../../../translator/commander.js'
 
 type Options = {
   package?: string
@@ -71,19 +71,19 @@ const add: CommandModule<Record<string, unknown>, Options> = {
       })
     }
 
-    if ('save-dev' in yargs) {
+    if (yargs?.['save-dev']) {
       translateArgs({yargs, cmdr, flag: '--save-dev', alias: '-D'})
     }
 
-    if ('save-optional' in yargs) {
+    if (yargs?.['save-optional']) {
       translateArgs({yargs, cmdr, flag: '--save-optional', alias: '-O'})
     }
 
-    if ('save-peer' in yargs) {
+    if (yargs?.['save-peer']) {
       translateArgs({yargs, cmdr, flag: '--save-peer'})
     }
 
-    if ('save-exact' in yargs) {
+    if (yargs?.['save-exact']) {
       translateArgs({yargs, cmdr, flag: '--save-exact', alias: '-E'})
     }
   }

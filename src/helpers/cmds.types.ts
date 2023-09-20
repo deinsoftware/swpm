@@ -1,5 +1,5 @@
-import { CommanderPackage } from "../translator/commander.types"
-import { ArgumentsCamelCase } from "yargs"
+import { CommanderPackage } from '../translator/commander.types.js'
+import { ArgumentsCamelCase } from 'yargs'
 
 export type AddArgs = {
   yargs: ArgumentsCamelCase

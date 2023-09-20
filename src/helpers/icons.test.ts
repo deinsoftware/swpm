@@ -1,6 +1,6 @@
 import { it, expect, describe } from 'vitest'
 import chalk from 'chalk'
-import { getOriginIcon, getResultIcon } from './icons'
+import { getOriginIcon, getResultIcon } from './icons.js'
 
 describe('getOriginIcon()', () => {
   it('should return expected icon when name parameter exist', () => {

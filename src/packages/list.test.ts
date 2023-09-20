@@ -1,5 +1,5 @@
 import { it, expect, describe } from 'vitest'
-import { availablePackages, packageExists, getPackageConfiguration } from './list'
+import { availablePackages, packageExists, getPackageConfiguration } from './list.js'
 
 describe('availablePackages()', () => {
   it('should return a list of available packages', () => {

@@ -63,7 +63,7 @@
   ],
   "[javascript][typescript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": true,
     "editor.codeActionsOnSave": [
       "source.formatDocument",
       "source.fixAll.eslint"

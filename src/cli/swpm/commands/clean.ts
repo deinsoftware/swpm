@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import { exit } from 'node:process'
 import { CommandModule } from 'yargs'
-import { deleteModulesPath, deleteModulesFiles, deleteLockFiles, deleteLogFiles, deletePath } from '../../../helpers/delete'
+import { deleteModulesPath, deleteModulesFiles, deleteLockFiles, deleteLogFiles, deletePath } from '../../../helpers/delete.js'
 
 type Options = {
   'all'?: boolean,
@@ -75,34 +75,34 @@ const clean: CommandModule<Record<string, unknown>, Options> = {
 
     console.log(`🧽 ${chalk.bold('Cleaning')}: `)
 
-    if ('all' in yargs || 'fresh' in yargs || 'modules' in yargs) {
+    if (yargs?.all || yargs?.fresh || yargs?.modules) {
       await deletePath('node_modules')
       await deleteModulesFiles()
     }
-    if ('modules' in yargs) {
+    if (yargs?.modules) {
       await deleteModulesPath()
     }
-    if ('all' in yargs) {
+    if (yargs?.all) {
       await deletePath('.yarn')
     }
 
-    if ('all' in yargs || 'lock' in yargs) {
+    if (yargs?.all || yargs?.lock) {
       await deleteLockFiles()
     }
 
-    if ('all' in yargs || 'fresh' in yargs || 'log' in yargs) {
+    if (yargs?.all || yargs?.fresh || yargs?.log) {
       await deleteLogFiles()
     }
 
-    if ('all' in yargs || 'fresh' in yargs || 'build' in yargs) {
+    if (yargs?.all || yargs?.fresh || yargs?.build) {
       await deletePath('build')
     }
 
-    if ('all' in yargs || 'fresh' in yargs || 'dist' in yargs) {
+    if (yargs?.all || yargs?.fresh || yargs?.dist) {
       await deletePath('dist')
     }
 
-    if ('all' in yargs || 'fresh' in yargs || 'coverage' in yargs) {
+    if (yargs?.all || yargs?.fresh || yargs?.coverage) {
       await deletePath('coverage')
     }
 

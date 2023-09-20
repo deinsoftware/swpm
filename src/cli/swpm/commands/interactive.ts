@@ -1,6 +1,6 @@
 import { CommandModule } from 'yargs'
-import { translateArgs } from '../../../helpers/args'
-import cmdr from '../../../translator/commander'
+import { translateArgs } from '../../../helpers/args.js'
+import cmdr from '../../../translator/commander.js'
 
 type Options = {
   'package'?: string
@@ -34,7 +34,7 @@ const interactive: CommandModule<Record<string, unknown>, Options> = {
       }),
 
   handler: (yargs) => {
-    if ('latest' in yargs) {
+    if (yargs?.latest) {
       translateArgs({yargs, cmdr, flag: '--latest', alias: '-L'})
     }
   }

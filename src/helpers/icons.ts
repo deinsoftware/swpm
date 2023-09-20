@@ -1,5 +1,5 @@
 import chalk from 'chalk'
-import { OriginIcons, ResultIcons } from './icons.types'
+import { OriginIcons, ResultIcons } from './icons.types.js'
 
 export const originIcons = {
   pinned: '📌',

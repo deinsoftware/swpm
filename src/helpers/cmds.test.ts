@@ -1,8 +1,8 @@
 import { it, expect, describe } from 'vitest'
-import { translateCommand, getCommandResult } from './cmds'
+import { translateCommand, getCommandResult } from './cmds.js'
 import { ArgumentsCamelCase } from 'yargs'
-import { CommanderPackage } from '../translator/commander.types'
-import npm from '../packages/managers/npm'
+import { CommanderPackage } from '../translator/commander.types.js'
+import npm from '../packages/managers/npm.js'
 
 describe('translateCommand()', () => {
   it('should not fail if pkg or key are empty', () => {
