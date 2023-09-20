@@ -54,7 +54,6 @@ export const savePackageJson = async (data: PackageJson, fileName: string = pack
     exit(1)
   }
 
-
   const exists = await fileExists(closestPackageJsonPath)
   if (!exists) {
     console.error(`${chalk.red.bold('Error')}: there is no ${chalk.red.bold(fileName)} file on current path.`)

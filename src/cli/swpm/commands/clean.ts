@@ -3,7 +3,7 @@ import { exit } from 'node:process'
 import { CommandModule } from 'yargs'
 import { deleteModulesPath, deleteModulesFiles, deleteLockFiles, deleteLogFiles, deletePath } from '../../../helpers/delete.js'
 
-type Options = {
+interface Options {
   'all'?: boolean,
   'fresh'?: boolean,
   'modules'?: boolean,
@@ -21,7 +21,7 @@ const clean: CommandModule<Record<string, unknown>, Options> = {
 
   builder: (yargs) =>
     yargs
-      .conflicts('clean',['add', 'install', 'remove', 'update', 'upgrade'])
+      .conflicts('clean', ['add', 'install', 'remove', 'update', 'upgrade'])
       .option('all', {
         type: 'boolean',
         desc: 'clean project',
@@ -71,8 +71,7 @@ const clean: CommandModule<Record<string, unknown>, Options> = {
         conflicts: ['all', 'fresh']
       }),
 
-  handler: async(yargs) => {
-
+  handler: async (yargs) => {
     console.log(`🧽 ${chalk.bold('Cleaning')}: `)
 
     if (yargs?.all || yargs?.fresh || yargs?.modules) {

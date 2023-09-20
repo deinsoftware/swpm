@@ -10,29 +10,29 @@ import cmdr, { setCommander } from '../translator/commander.js'
 import { options } from './swpx/cli.js'
 
 const middleware: MiddlewareFunction<InferredOptionTypes<typeof options>> = async (yargs) => {
-  setCommander({args: argv.slice(2)})
+  setCommander({ args: argv.slice(2) })
 
   if (yargs?.debug) {
-    cleanFlag({yargs, cmdr, flag: '--debug'})
-    cleanFlag({yargs, cmdr, flag: '-d'})
+    cleanFlag({ yargs, cmdr, flag: '--debug' })
+    cleanFlag({ yargs, cmdr, flag: '-d' })
   }
 
   if (yargs?.use) {
-    cleanFlag({yargs, cmdr, flag: '--use'})
-    cleanFlag({yargs, cmdr, flag: '-u'})
+    cleanFlag({ yargs, cmdr, flag: '--use' })
+    cleanFlag({ yargs, cmdr, flag: '-u' })
     cmdr.cmd = yargs.use
     await setPackageVersion(yargs.use!)
   }
 
   if (yargs?.test) {
-    cleanFlag({yargs, cmdr, flag: '--test'})
-    cleanFlag({yargs, cmdr, flag: '-t'})
+    cleanFlag({ yargs, cmdr, flag: '--test' })
+    cleanFlag({ yargs, cmdr, flag: '-t' })
     cmdr.cmd = yargs.test
   }
 
   if (yargs?.mute) {
-    cleanFlag({yargs, cmdr, flag: '--mute'})
-    cleanFlag({yargs, cmdr, flag: '-m'})
+    cleanFlag({ yargs, cmdr, flag: '--mute' })
+    cleanFlag({ yargs, cmdr, flag: '-m' })
   }
 
   if (!(cmdr?.cmd) || yargs?.info) {
@@ -47,11 +47,11 @@ const middleware: MiddlewareFunction<InferredOptionTypes<typeof options>> = asyn
   }
 
   if (yargs?.global) {
-    translateArgs({yargs, cmdr, flag: '--global', alias: '-g'})
+    translateArgs({ yargs, cmdr, flag: '--global', alias: '-g' })
   }
 
   if (yargs._.length) {
-    translateCommand({yargs, cmdr})
+    translateCommand({ yargs, cmdr })
   }
 }
 

@@ -4,7 +4,6 @@ import { CommanderPackage } from '../translator/commander.types.js'
 import { ArgumentsCamelCase } from 'yargs'
 import npm from '../packages/managers/npm.js'
 
-
 describe('cleanFlag()', () => {
   it('should not fail if flag or args are empty or not exists', () => {
     const flag: string = ''
@@ -15,10 +14,10 @@ describe('cleanFlag()', () => {
       _: args
     }
     const cmdr: CommanderPackage = {
-      args: args
+      args
     }
 
-    const result = cleanFlag({yargs, cmdr, flag})
+    const result = cleanFlag({ yargs, cmdr, flag })
     expect(result).toBeUndefined()
   })
 
@@ -31,10 +30,10 @@ describe('cleanFlag()', () => {
       _: args
     }
     const cmdr: CommanderPackage = {
-      args: args
+      args
     }
 
-    const result = cleanFlag({yargs, cmdr, flag})
+    const result = cleanFlag({ yargs, cmdr, flag })
     expect(result).toBeUndefined()
   })
 
@@ -49,10 +48,10 @@ describe('cleanFlag()', () => {
       [flag.replaceAll('-', '')]: true
     }
     const cmdr: CommanderPackage = {
-      args: args,
+      args
     }
 
-    cleanFlag({yargs, cmdr, flag})
+    cleanFlag({ yargs, cmdr, flag })
     expect(cmdr.args.includes(flag)).toBeFalsy()
   })
 
@@ -68,10 +67,10 @@ describe('cleanFlag()', () => {
       [flag.replaceAll('-', '')]: value
     }
     const cmdr: CommanderPackage = {
-      args: args,
+      args
     }
 
-    cleanFlag({yargs, cmdr, flag})
+    cleanFlag({ yargs, cmdr, flag })
     expect(cmdr.args.includes(flag)).toBeFalsy()
     expect(cmdr.args.includes(value)).toBeFalsy()
   })
@@ -85,12 +84,12 @@ describe('translateArgs()', () => {
 
     const yargs: ArgumentsCamelCase = {
       $0: 'swpm',
-      _: args,
+      _: args
     }
     const cmdr: CommanderPackage = {
-      args: args,
+      args
     }
-    const result = translateArgs({yargs, cmdr, flag, alias})
+    const result = translateArgs({ yargs, cmdr, flag, alias })
     expect(result).toBeUndefined()
   })
 
@@ -103,10 +102,10 @@ describe('translateArgs()', () => {
       _: args
     }
     const cmdr: CommanderPackage = {
-      args: args
+      args
     }
 
-    const result = translateArgs({yargs, cmdr, flag})
+    const result = translateArgs({ yargs, cmdr, flag })
     expect(result).toBeUndefined()
   })
 
@@ -119,10 +118,10 @@ describe('translateArgs()', () => {
     const yargs: ArgumentsCamelCase = {
       $0: 'swpm',
       _: args,
-      [flag.replaceAll('-', '')]: true,
+      [flag.replaceAll('-', '')]: true
     }
     const cmdr: CommanderPackage = {
-      args: args,
+      args,
       config: {
         ...npm,
         args: {
@@ -131,7 +130,7 @@ describe('translateArgs()', () => {
       }
     }
 
-    translateArgs({yargs, cmdr, flag})
+    translateArgs({ yargs, cmdr, flag })
     expect(cmdr.args.includes(flag)).toBeFalsy()
     expect(cmdr.args[1]).toBe(replace)
   })
@@ -145,10 +144,10 @@ describe('translateArgs()', () => {
     const yargs: ArgumentsCamelCase = {
       $0: 'swpm',
       _: args,
-      [flag.replaceAll('-', '')]: true,
+      [flag.replaceAll('-', '')]: true
     }
     const cmdr: CommanderPackage = {
-      args: args,
+      args,
       config: {
         ...npm,
         args: {
@@ -157,7 +156,7 @@ describe('translateArgs()', () => {
       }
     }
 
-    translateArgs({yargs, cmdr, flag})
+    translateArgs({ yargs, cmdr, flag })
     expect(cmdr.args.includes(flag)).toBeFalsy()
     expect(cmdr.args[1]).toBe(replace[0])
   })
@@ -175,17 +174,17 @@ describe('translateArgs()', () => {
     const yargs: ArgumentsCamelCase = {
       $0: 'swpm',
       _: args,
-      [flag.replaceAll('-', '')]: true,
+      [flag.replaceAll('-', '')]: true
     }
     const cmdr: CommanderPackage = {
-      args: args,
+      args,
       config: {
         ...npm,
         args: replace
       }
     }
 
-    translateArgs({yargs, cmdr, flag})
+    translateArgs({ yargs, cmdr, flag })
     expect(cmdr.args.includes(command)).toBeFalsy()
     expect(cmdr.args.includes(flag)).toBeFalsy()
     expect(cmdr.args[0]).toBe(replace[flag][command])

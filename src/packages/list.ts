@@ -22,7 +22,7 @@ export const packageExists = (pkg: PackageManagerList) => {
   return availablePackages().includes(pkg)
 }
 
-export const getPackageConfiguration = async (cmdr: Pick<CommanderPackage, 'cmd'>)=> {
+export const getPackageConfiguration = async (cmdr: Pick<CommanderPackage, 'cmd'>) => {
   try {
     const config = await import(`./managers/${cmdr.cmd}.ts`)
     return config?.default

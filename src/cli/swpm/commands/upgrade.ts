@@ -2,7 +2,7 @@ import { CommandModule } from 'yargs'
 import { translateArgs } from '../../../helpers/args.js'
 import cmdr from '../../../translator/commander.js'
 
-type Options = {
+interface Options {
   'package'?: string
   'latest'?: boolean
   'save-exact'?: boolean
@@ -20,7 +20,7 @@ const upgrade: CommandModule<Record<string, unknown>, Options> = {
         type: 'string',
         desc: '<package>'
       })
-      .conflicts('upgrade',['add', 'clean', 'install', 'remove', 'upgrade'])
+      .conflicts('upgrade', ['add', 'clean', 'install', 'remove', 'upgrade'])
       .option('latest', {
         alias: 'L',
         type: 'boolean',
@@ -45,11 +45,11 @@ const upgrade: CommandModule<Record<string, unknown>, Options> = {
 
   handler: (yargs) => {
     if (yargs?.['save-exact']) {
-      translateArgs({yargs, cmdr, flag: '--save-exact', alias: '-E'})
+      translateArgs({ yargs, cmdr, flag: '--save-exact', alias: '-E' })
     }
 
     if (yargs?.latest) {
-      translateArgs({yargs, cmdr, flag: '--latest', alias: '-L'})
+      translateArgs({ yargs, cmdr, flag: '--latest', alias: '-L' })
     }
   }
 }

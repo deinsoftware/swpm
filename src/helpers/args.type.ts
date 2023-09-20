@@ -2,42 +2,42 @@ import { PackageConfiguration } from '../packages/packages.types.js'
 import { CommanderPackage } from '../translator/commander.types.js'
 import { ArgumentsCamelCase } from 'yargs'
 
-export type FindVoltaGlobalsProps = {
+export interface FindVoltaGlobalsProps {
   yargs: ArgumentsCamelCase<{global?: boolean}>
   cmdr: CommanderPackage
   flags: ('add' | 'install' | 'uninstall' | 'remove')[]
 }
 
-export type FindFlagIndexProps = {
+export interface FindFlagIndexProps {
   args: CommanderPackage['args']
   flag: string
 }
 
-export type GetKeyProps = {
+export interface GetKeyProps {
   args: CommanderPackage['args']
   flag: string
 }
 
-export type ClanFlagProp = {
+export interface ClanFlagProp {
   yargs: ArgumentsCamelCase
   cmdr: CommanderPackage
   flag: string
 }
 
-export type ReplaceFlagProps = {
+export interface ReplaceFlagProps {
   cmdr: CommanderPackage
   flag: string
   newFlag: string
 }
 
-export type MoveFlagProps = {
+export interface MoveFlagProps {
   yargs: ArgumentsCamelCase<{package?: string}>
   cmdr: CommanderPackage
   flag: string,
   argConfig: [string, number]
 }
 
-export type ReplaceCommandProps = {
+export interface ReplaceCommandProps {
   yargs: ArgumentsCamelCase
   cmdr: CommanderPackage
   cmdConfig: {
@@ -45,21 +45,20 @@ export type ReplaceCommandProps = {
   }
 }
 
-export type GetActionProp = {
+export interface GetActionProp {
   args: PackageConfiguration['args']
   key: string
 }
 
-export type TranslateFlagProp = {
+export interface TranslateFlagProp {
   yargs: ArgumentsCamelCase
   cmdr: CommanderPackage
   flag: string
 }
 
-export type TranslateArgsProp = {
+export interface TranslateArgsProp {
   yargs: ArgumentsCamelCase
   cmdr: CommanderPackage
   flag: string
   alias?: string
 }
-

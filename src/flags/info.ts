@@ -17,11 +17,11 @@ const commandVerification = async (cmd: string) => {
   }
 }
 
-export const showPackageInformation = async ({ origin, cmd, config, volta }: Required<CommanderPackage> ) => {
-  const nodeVersion = getCommandResult({command: 'node --version', volta})
+export const showPackageInformation = async ({ origin, cmd, config, volta }: Required<CommanderPackage>) => {
+  const nodeVersion = getCommandResult({ command: 'node --version', volta })
 
   const isInstalled = await commandVerification(cmd!)
-  const packageVersion = isInstalled ? getCommandResult({command: `${cmd} --version`, volta}) : 'not found'
+  const packageVersion = isInstalled ? getCommandResult({ command: `${cmd} --version`, volta }) : 'not found'
 
   const { version: swpmVersion } = await getSwpmInfo()
 

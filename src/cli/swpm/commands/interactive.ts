@@ -2,7 +2,7 @@ import { CommandModule } from 'yargs'
 import { translateArgs } from '../../../helpers/args.js'
 import cmdr from '../../../translator/commander.js'
 
-type Options = {
+interface Options {
   'package'?: string
   'latest'?: boolean
   'global'?: boolean
@@ -19,7 +19,7 @@ const interactive: CommandModule<Record<string, unknown>, Options> = {
         type: 'string',
         desc: '<package>'
       })
-      .conflicts('interactive',['add', 'clean', 'install', 'remove', 'upgrade'])
+      .conflicts('interactive', ['add', 'clean', 'install', 'remove', 'upgrade'])
       .option('latest', {
         alias: 'L',
         type: 'boolean',
@@ -35,7 +35,7 @@ const interactive: CommandModule<Record<string, unknown>, Options> = {
 
   handler: (yargs) => {
     if (yargs?.latest) {
-      translateArgs({yargs, cmdr, flag: '--latest', alias: '-L'})
+      translateArgs({ yargs, cmdr, flag: '--latest', alias: '-L' })
     }
   }
 }

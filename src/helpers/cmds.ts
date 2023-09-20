@@ -7,7 +7,7 @@ import { PackageManagerList } from '../packages/packages.types.js'
 import { CommanderPackage } from '../translator/commander.types.js'
 import { AddArgs, AddPositionalProps, GetCommandResultProps, ReplaceCommandProps, SpreadCommand, TranslateCommandProp } from './cmds.types.js'
 
-const addArgs = ({yargs, cmdr, flags}: AddArgs) => {
+const addArgs = ({ yargs, cmdr, flags }: AddArgs) => {
   for (const flag of flags) {
     const key = flag?.toString().replace(/^-+/, '') as keyof CommanderPackage
     yargs[key] = true
@@ -17,11 +17,11 @@ const addArgs = ({yargs, cmdr, flags}: AddArgs) => {
   cmdr.args = [...cmdr.args, ...textFlags]
 }
 
-const replaceCommand = ({args, action}: ReplaceCommandProps) => {
+const replaceCommand = ({ args, action }: ReplaceCommandProps) => {
   args[0] = action
 }
 
-const addPositional = ({args, action}: AddPositionalProps) => {
+const addPositional = ({ args, action }: AddPositionalProps) => {
   const { 0: key, 1: value } = Object.entries(action)[0]
   const start = args?.findIndex((arg) => arg.startsWith(key))
 
@@ -30,13 +30,13 @@ const addPositional = ({args, action}: AddPositionalProps) => {
   }
 }
 
-export const translateCommand = ({yargs, cmdr}: TranslateCommandProp) => {
+export const translateCommand = ({ yargs, cmdr }: TranslateCommandProp) => {
   if (yargs?._?.length > 0) {
     const key = yargs._[0]
     const action = cmdr?.config?.cmds?.[key]
 
     if (typeof action === 'string') {
-      replaceCommand({args: cmdr.args, action})
+      replaceCommand({ args: cmdr.args, action })
     }
 
     if (Array.isArray(action)) {
@@ -47,17 +47,17 @@ export const translateCommand = ({yargs, cmdr}: TranslateCommandProp) => {
         exit(1)
       }
 
-      replaceCommand({args: cmdr.args, action: cmd})
-      addArgs({yargs, cmdr, flags: rest})
+      replaceCommand({ args: cmdr.args, action: cmd })
+      addArgs({ yargs, cmdr, flags: rest })
     }
 
     if (typeof action === 'object') {
-      addPositional({args: cmdr.args, action})
+      addPositional({ args: cmdr.args, action })
     }
   }
 }
 
-export const showCommand = async ({ origin, cmd, args, config }: CommanderPackage)  => {
+export const showCommand = async ({ origin, cmd, args, config }: CommanderPackage) => {
   console.log(`${(origin ? getOriginIcon(origin) + ' ' : '')}${chalk.hex(config?.color ?? '').bold(cmd)} ${args?.join(' ')}`)
 }
 
@@ -95,7 +95,7 @@ export const runCommand = ({ cmd, args, volta = false }: CommanderPackage) => {
   })
 }
 
-export const spreadCommand = async ({cmd, args}: SpreadCommand) => {
+export const spreadCommand = async ({ cmd, args }: SpreadCommand) => {
   const child = spawn(
     cmd,
     args,
@@ -118,7 +118,7 @@ export const spreadCommand = async ({cmd, args}: SpreadCommand) => {
   })
 }
 
-export const getCommandResult = ({command, volta = false}: GetCommandResultProps): string => {
+export const getCommandResult = ({ command, volta = false }: GetCommandResultProps): string => {
   try {
     if (volta) {
       command = `volta run ${command}`

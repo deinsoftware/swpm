@@ -33,9 +33,9 @@ if (yargs?.pin) {
   cmdr.cmd = yargs.pin!
   await setPackageVersion(cmdr.cmd!)
 
-  const {cmd, config} = cmdr
+  const { cmd, config } = cmdr
   if (cmd && config) {
-    await pinPackageManager({cmd, config})
+    await pinPackageManager({ cmd, config })
   }
 }
 

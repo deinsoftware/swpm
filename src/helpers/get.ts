@@ -128,5 +128,5 @@ export const detectVoltaPin = async (cmdr: CommanderPackage) => {
   if (!propertyExists(packageJson, prop)) return
   if (packageJson[prop] === undefined) return
 
-  return(cmdr.cmd in packageJson[prop])
+  return (cmdr.cmd in packageJson[prop])
 }

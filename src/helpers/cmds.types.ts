@@ -1,33 +1,33 @@
 import { CommanderPackage } from '../translator/commander.types.js'
 import { ArgumentsCamelCase } from 'yargs'
 
-export type AddArgs = {
+export interface AddArgs {
   yargs: ArgumentsCamelCase
   cmdr: CommanderPackage
   flags: (string|number)[]
 }
 
-export type ReplaceCommandProps = {
+export interface ReplaceCommandProps {
   args: CommanderPackage['args']
   action: string
 }
 
-export type AddPositionalProps = {
+export interface AddPositionalProps {
   args: CommanderPackage['args']
   action: string[] | [string, number] | { [key: string]: string | string[] }
 }
 
-export type TranslateCommandProp = {
+export interface TranslateCommandProp {
   yargs: ArgumentsCamelCase
   cmdr: CommanderPackage
 }
 
-export type SpreadCommand = {
+export interface SpreadCommand {
   cmd: 'swpm' | 'swpx'
   args: string[]
 }
 
-export type GetCommandResultProps = {
+export interface GetCommandResultProps {
   command: string
   volta?: boolean
 }

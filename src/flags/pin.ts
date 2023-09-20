@@ -3,7 +3,7 @@ import chalk from 'chalk'
 import { getPackageJson, savePackageJson } from '../helpers/files.js'
 import { PackageConfiguration } from '../packages/packages.types.js'
 
-type Props = {
+interface Props {
   cmd: PackageConfiguration['cmd']
   config: Pick<PackageConfiguration, 'color'>
 }

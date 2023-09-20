@@ -14,14 +14,14 @@ describe('translateCommand()', () => {
       _: args
     }
     const cmdr: CommanderPackage = {
-      args: args,
+      args,
       config: {
         ...npm,
         cmds: {}
       }
     }
 
-    const result = translateCommand({yargs, cmdr})
+    const result = translateCommand({ yargs, cmdr })
     expect(result).toBeFalsy()
   })
 
@@ -32,17 +32,17 @@ describe('translateCommand()', () => {
 
     const yargs: ArgumentsCamelCase = {
       $0: 'swpm',
-      _: args,
+      _: args
     }
     const cmdr: CommanderPackage = {
-      args: args,
+      args,
       config: {
         ...npm,
         cmds: {}
       }
     }
 
-    translateCommand({yargs, cmdr})
+    translateCommand({ yargs, cmdr })
     expect(cmdr.args.includes(command)).toBeTruthy()
   })
 
@@ -54,10 +54,10 @@ describe('translateCommand()', () => {
 
     const yargs: ArgumentsCamelCase = {
       $0: 'swpm',
-      _: args,
+      _: args
     }
     const cmdr: CommanderPackage = {
-      args: args,
+      args,
       config: {
         ...npm,
         cmds: {
@@ -66,7 +66,7 @@ describe('translateCommand()', () => {
       }
     }
 
-    translateCommand({yargs, cmdr})
+    translateCommand({ yargs, cmdr })
     expect(cmdr.args.includes(command)).toBeFalsy()
     expect(cmdr.args.includes(replace)).toBeTruthy()
   })
@@ -79,11 +79,11 @@ describe('translateCommand()', () => {
 
     const yargs: ArgumentsCamelCase = {
       $0: 'swpm',
-      _: args,
+      _: args
     }
 
     const cmdr: CommanderPackage = {
-      args: args,
+      args,
       config: {
         ...npm,
         cmds: {
@@ -92,7 +92,7 @@ describe('translateCommand()', () => {
       }
     }
 
-    translateCommand({yargs, cmdr})
+    translateCommand({ yargs, cmdr })
     expect(cmdr.args.includes('--')).toBeTruthy()
     const index = cmdr.args.findIndex(arg => arg === '--')
     expect(cmdr.args[index + 1].startsWith('--')).toBeTruthy()
@@ -103,14 +103,14 @@ describe('getCommandResult()', () => {
   it('should return the command result', () => {
     const command = 'echo a'
     const expected = 'a'
-    const result = getCommandResult({command})
+    const result = getCommandResult({ command })
     expect(result).toBe(expected)
   })
 
   it('should return empty when command fail', () => {
     const command = 'foo bar'
     const expected = ''
-    const result = getCommandResult({command})
+    const result = getCommandResult({ command })
     expect(result).toBe(expected)
   })
 })

@@ -7,7 +7,7 @@ import cmdr from '../../../translator/commander.js'
 import prompts from 'prompts'
 import { spreadCommand } from '../../../helpers/cmds.js'
 
-type Options = {
+interface Options {
   'package-lock'?: boolean,
   'frozen'?: boolean
 }
@@ -19,7 +19,7 @@ const install: CommandModule<Record<string, unknown>, Options> = {
 
   builder: (yargs) =>
     yargs
-      .conflicts('install',['add', 'clean', 'remove', 'update', 'upgrade'])
+      .conflicts('install', ['add', 'clean', 'remove', 'update', 'upgrade'])
       .option('package-lock', {
         alias: 'P',
         type: 'boolean',
@@ -35,18 +35,18 @@ const install: CommandModule<Record<string, unknown>, Options> = {
         conflicts: ['package-lock']
       } as const),
 
-  handler: async(yargs) => {
+  handler: async (yargs) => {
     if (yargs?.['package-lock']) {
-      translateArgs({yargs, cmdr, flag: '--package-lock', alias: '-P'})
+      translateArgs({ yargs, cmdr, flag: '--package-lock', alias: '-P' })
     }
 
     if (yargs?.frozen) {
-      translateArgs({yargs, cmdr, flag: '--frozen', alias: '-F'})
+      translateArgs({ yargs, cmdr, flag: '--frozen', alias: '-F' })
     }
 
-    if (yargs.FLAGS || yargs?.global ) {
-      const args  = ['add', ...cmdr.args.slice(1)]
-      const command  = chalk.blue.bold(`swpm ${args.join(' ')}`)
+    if (yargs.FLAGS || yargs?.global) {
+      const args = ['add', ...cmdr.args.slice(1)]
+      const command = chalk.blue.bold(`swpm ${args.join(' ')}`)
 
       console.error(stripIndents`
         ${chalk.red.bold('Error')}: to install a specific ${chalk.bold('<package>')} please use ${chalk.bold('add')} command.
@@ -66,7 +66,7 @@ const install: CommandModule<Record<string, unknown>, Options> = {
         exit(1)
       }
 
-      spreadCommand({cmd: 'swpm', args})
+      spreadCommand({ cmd: 'swpm', args })
     }
   }
 }

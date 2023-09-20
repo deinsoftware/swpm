@@ -2,7 +2,7 @@ import { CommandModule } from 'yargs'
 import { findVoltaGlobals, translateArgs } from '../../../helpers/args.js'
 import cmdr, { setCommander } from '../../../translator/commander.js'
 
-type Options = {
+interface Options {
   package?: string
   'save-dev'?: boolean
   'save-optional'?: boolean
@@ -21,7 +21,7 @@ const add: CommandModule<Record<string, unknown>, Options> = {
         type: 'string',
         desc: '<package>'
       })
-      .conflicts('add',['clean', 'install', 'remove', 'update', 'upgrade'])
+      .conflicts('add', ['clean', 'install', 'remove', 'update', 'upgrade'])
       .option('save-dev', {
         alias: 'D',
         type: 'boolean',
@@ -63,28 +63,28 @@ const add: CommandModule<Record<string, unknown>, Options> = {
   handler: (yargs) => {
     if (!yargs?.pkg) return
 
-    if (yargs?.package && findVoltaGlobals({yargs, cmdr, flags: ['add', 'install']})
+    if (yargs?.package && findVoltaGlobals({ yargs, cmdr, flags: ['add', 'install'] })
     ) {
       setCommander({
         cmd: 'volta',
-        args: ['install', yargs.package],
+        args: ['install', yargs.package]
       })
     }
 
     if (yargs?.['save-dev']) {
-      translateArgs({yargs, cmdr, flag: '--save-dev', alias: '-D'})
+      translateArgs({ yargs, cmdr, flag: '--save-dev', alias: '-D' })
     }
 
     if (yargs?.['save-optional']) {
-      translateArgs({yargs, cmdr, flag: '--save-optional', alias: '-O'})
+      translateArgs({ yargs, cmdr, flag: '--save-optional', alias: '-O' })
     }
 
     if (yargs?.['save-peer']) {
-      translateArgs({yargs, cmdr, flag: '--save-peer'})
+      translateArgs({ yargs, cmdr, flag: '--save-peer' })
     }
 
     if (yargs?.['save-exact']) {
-      translateArgs({yargs, cmdr, flag: '--save-exact', alias: '-E'})
+      translateArgs({ yargs, cmdr, flag: '--save-exact', alias: '-E' })
     }
   }
 }

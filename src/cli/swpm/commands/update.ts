@@ -1,6 +1,6 @@
 import { CommandModule } from 'yargs'
 
-type Options = {
+interface Options {
   'package'?: string
   'global'?: boolean
 }
@@ -10,13 +10,13 @@ const update: CommandModule<Record<string, unknown>, Options> = {
   aliases: ['up', 'ud'],
   describe: 'update package',
 
-  builder: (yargs)  =>
+  builder: (yargs) =>
     yargs
       .positional('package', {
         type: 'string',
         desc: '<package>'
       })
-      .conflicts('update',['add', 'clean', 'install', 'remove', 'upgrade'])
+      .conflicts('update', ['add', 'clean', 'install', 'remove', 'upgrade'])
       .option('global', {
         alias: 'g',
         type: 'boolean',
