@@ -4,19 +4,27 @@
     "bunx",
     "buymeacoffee",
     "CHEATSHEET",
+    "cmdr",
     "cmds",
+    "dein",
+    "deinsoftware",
     "Dsonar",
     "Eomm",
+    "equiman",
+    "esnext",
     "github",
     "lcov",
     "linux",
     "lockb",
     "Logomark",
+    "npmignore",
     "npmrc",
     "optstrings",
+    "outdir",
     "patreon",
     "paypal",
     "pnpm",
+    "postbuild",
     "sade",
     "setx",
     "sonarcloud",
@@ -26,6 +34,7 @@
     "swpx",
     "tryin",
     "unpublish",
+    "unstub",
     "versioner",
     "volta"
   ],
@@ -33,7 +42,7 @@
     "**/*.js.map": {
       "when": "$(basename)"
     },
-    "**/node_modules": true
+    "**/node_modules": false
   },
   "javascript.autoClosingTags": true,
   "javascript.suggest.autoImports": true,
@@ -43,32 +52,38 @@
   },
   "typescript.autoClosingTags": true,
   "typescript.suggest.autoImports": true,
-  "editor.formatOnSave": true,
   "javascript.format.enable": false,
   "javascript.validate.enable": true,
   "typescript.format.enable": false,
   "typescript.validate.enable": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "eslint.probe": [
+  "editor.formatOnSave": true,
+  "eslint.validate": [
     "javascript",
     "typescript",
   ],
   "[javascript][typescript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "editor.formatOnSave": false,
-    "editor.codeActionsOnSave": [
-      "source.formatDocument",
-      "source.fixAll.eslint"
-    ],
+    "editor.codeActionsOnSave": {
+      "source.formatDocument": true,
+      "source.fixAll.eslint": true
+    },
   },
   "explorer.fileNesting.patterns": {
     "README*": "BRAND*, CHANGELOG*, CODE_OF_CONDUCT.md, CONTRIBUTING.md, LICENSE*, README*, CHEATSHEET*, TEMPLATES*",
-    "package*": "sonar-project*, .gitignore"
+    "package*": "sonar-project*, .gitignore, bunfig.toml, .npmignore, .eslintignore, .eslintrc.cjs, bun.lockb, tsconfig.json, vitest.config.ts, globals.d.ts",
+    "*.js": "$(capture).*.js, $(capture).d.js.map, $(capture)_*.js, $(capture)*.snap",
+    "*.ts": "$(capture).*.ts, $(capture).d.ts.map, $(capture)_*.ts, $(capture)*.snap",
   },
   "sonarlint.connectedMode.project": {
     "connectionId": "dein-vscode",
     "projectKey": "dein:swpm"
-  }
+  },
+  "markdownlint.config": {
+    "MD024": {
+      "siblings_only": true,
+      "allow_different_nesting": true
+    }
+  },
+  "testing.automaticallyOpenPeekView": "never",
 }

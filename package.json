@@ -1,6 +1,6 @@
 {
   "name": "swpm",
-  "version": "1.12.0",
+  "version": "2.0.0-beta-1.0.0",
   "engines": {
     "node": ">=16"
   },
@@ -40,12 +40,18 @@
     "sx": "./src/alias/sx.js"
   },
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
+    "prebuild": "rm -rf bin/",
+    "build": "tsc --project tsconfig.build.json",
+    "postbuild": "cp package*.json .npmignore README.md LICENSE.md CHANGELOG.md bin && (cd bin && npm ci --omit=dev --ignore-scripts)",
+    "pack": "npm pack bin/ --pack-destination=\"bin/\"",
+    "lint": "eslint . --ext .js,.ts",
+    "lint:fix": "eslint . --fix --ext .js,.ts",
     "test": "vitest --run --reporter verbose --no-threads",
     "test:w": "vitest --no-threads",
     "test:c": "vitest run --coverage --no-threads",
-    "test:cw": "vitest watch --coverage --no-threads"
+    "test:wc": "vitest watch --coverage --no-threads",
+    "ts:check": "tsc --noEmit",
+    "ts:trace": "tsc tsc --traceResolution"
   },
   "repository": {
     "type": "git",
@@ -82,23 +88,36 @@
     "command-exists": "1.2.9",
     "common-tags": "1.8.2",
     "find-up": "6.3.0",
+    "prompts": "2.4.2",
     "semver": "7.5.4",
+    "spinnies": "0.5.1",
     "update-notifier": "6.0.2",
     "yargs": "17.7.2"
   },
   "devDependencies": {
-    "@vitest/coverage-v8": "0.34.3",
-    "eslint": "8.48.0",
+    "@types/command-exists": "1.2.1",
+    "@types/common-tags": "1.8.2",
+    "@types/prompts": "2.4.4",
+    "@types/semver": "7.5.2",
+    "@types/spinnies": "0.5.0",
+    "@types/update-notifier": "6.0.5",
+    "@types/yargs": "17.0.24",
+    "@typescript-eslint/eslint-plugin": "6.7.2",
+    "@typescript-eslint/parser": "6.7.2",
+    "@vitest/coverage-v8": "0.34.4",
+    "eslint": "8.49.0",
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-import": "2.28.1",
-    "eslint-plugin-n": "16.0.2",
+    "eslint-plugin-n": "16.1.0",
     "eslint-plugin-promise": "6.1.1",
-    "vitest": "0.34.3"
+    "type-fest": "4.3.1",
+    "typescript": "5.2.2",
+    "vitest": "0.34.4"
   },
   "volta": {
-    "node": "18.16.0",
-    "npm": "9.5.1"
+    "node": "18.18.0",
+    "npm": "9.8.1"
   },
-  "packageManager": "npm@9.5.1",
+  "packageManager": "npm@9.8.1",
   "swpm": "npm"
 }

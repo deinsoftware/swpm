@@ -393,7 +393,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn install --frozen-lockfile` |
 | **yarn@berry** | `yarn install --immutable`       |
 | **pnpm**       | `pnpm install --frozen-lockfile` |
-| **bun**        | `bun install --no-save`          |
+| **bun**        | `bun install --frozen-lockfile`  |
 
 ### sa (add)
 
