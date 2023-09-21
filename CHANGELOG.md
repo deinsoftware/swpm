@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 2.1.0 - 2023/09/21
+
+## Added
+
+- `unpin` flag
+
 ## 2.0.0 - 2023/09/20
 
 ## Changed

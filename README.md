@@ -102,6 +102,7 @@ Options:
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -p, --pin    pin a package manager
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
+      --unpin  unpin current package manager
   -t, --test   test command (without running)
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -m, --mute   mute command translation
@@ -587,6 +588,16 @@ It will store the pinned Package Manager in the `package.json` file, so you can 
 > `yarn set version berry` for `yarn@berry`
 
 You also can set it manually. Just take care writing a valid Package Manager: `npm`, `yarn[@berry]`, `pnpm` or `bun`. And also remember to run the set command for `yarn` projects.
+
+### Unpin
+
+The `swpm --unpin` flag allows you to remove the current pinned Package Manager for a project.
+
+```bash
+swpm --unpin
+```
+
+It will remove the pinned Package Manager in the `package.json` file.
 
 #### Test
 

@@ -3,6 +3,7 @@
 import yargs from './swpm/config.js'
 
 import { pinPackageManager } from '../flags/pin.js'
+import { unpinPackageManager } from '../flags/unpin.js'
 import { showPackageInformation } from '../flags/info.js'
 import { showCommandAlias } from '../flags/alias.js'
 import { testCommand } from '../flags/test.js'
@@ -28,6 +29,13 @@ if (yargs?.pin) {
   const { cmd, config } = cmdr
   if (cmd && config) {
     await pinPackageManager({ cmd, config })
+  }
+}
+
+if (yargs?.unpin) {
+  const { config } = cmdr
+  if (config) {
+    await unpinPackageManager({ config })
   }
 }
 
