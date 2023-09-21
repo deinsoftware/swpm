@@ -670,8 +670,8 @@ Create an `SWPM` environment variable with one of this values `<npm|yarn[@berry]
 | :--: | ------------------------------------------------------------ |
 | 📌   | Search the `swpm` property pinned on `package.json` file     |
 | 📦   | Search the `packageManager` property on `package.json` file  |
-| 🌐   | Search a `SWPM` environment variable                         |
 | 🔒   | Search for a `lock` file                                     |
+| 🌐   | Search a `SWPM` environment variable                         |
 
 ### What can I use as Package parameter?
 

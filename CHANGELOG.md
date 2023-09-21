@@ -20,6 +20,8 @@ Security    to invite users to upgrade in case of vulnerabilities.
 ## Changed
 
 - full migration from JavaScript to TypeScript
+- frozen translation for `bun` package manager
+- priority order detection giving priority to `lock` file of `global` environment
 
 ## Fixed
 
