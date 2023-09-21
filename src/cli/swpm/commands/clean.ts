@@ -74,36 +74,36 @@ const clean: CommandModule<Record<string, unknown>, OptionsProps> = {
   handler: async (yargs) => {
     console.log(`🧽 ${chalk.bold('Cleaning')}: `)
 
-    if (yargs?.all || yargs?.fresh || yargs?.modules) {
+    if (('all' in yargs) || ('fresh' in yargs) || ('modules' in yargs)) {
       await deletePath('node_modules')
       await deleteModulesFiles()
     }
 
-    if (yargs?.modules) {
+    if ('modules' in yargs) {
       await deleteModulesPath()
     }
 
-    if (yargs?.all) {
+    if ('all' in yargs) {
       await deletePath('.yarn')
     }
 
-    if (yargs?.all || yargs?.lock) {
+    if (('all' in yargs) || ('lock' in yargs)) {
       await deleteLockFiles()
     }
 
-    if (yargs?.all || yargs?.fresh || yargs?.log) {
+    if (('all' in yargs) || ('fresh' in yargs) || ('log' in yargs)) {
       await deleteLogFiles()
     }
 
-    if (yargs?.all || yargs?.fresh || yargs?.build) {
+    if (('all' in yargs) || ('fresh' in yargs) || ('build' in yargs)) {
       await deletePath('build')
     }
 
-    if (yargs?.all || yargs?.fresh || yargs?.dist) {
+    if (('all' in yargs) || ('fresh' in yargs) || ('dist' in yargs)) {
       await deletePath('dist')
     }
 
-    if (yargs?.all || yargs?.fresh || yargs?.coverage) {
+    if (('all' in yargs) || ('fresh' in yargs) || ('coverage' in yargs)) {
       await deletePath('coverage')
     }
 

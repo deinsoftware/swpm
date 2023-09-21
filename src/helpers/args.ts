@@ -58,9 +58,9 @@ const moveFlag = ({ yargs, cmdr, flag, argConfig }: MoveFlagProps) => {
     `)
   }
 
-  if (yargs?.package && action.includes('<package>')) {
+  if (('package' in yargs) && action.includes('<package>')) {
     count = 1
-    action = action.replace('<package>', yargs.package)
+    action = action.replace('<package>', yargs.package!)
   }
   cmdr.args.splice(start, count, action)
 }

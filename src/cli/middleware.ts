@@ -12,41 +12,41 @@ import { options } from './swpx/cli.js'
 const middleware: MiddlewareFunction<InferredOptionTypes<typeof options>> = async (yargs) => {
   cmdr.args = argv.slice(2)
 
-  if (yargs?.debug) {
+  if ('debug' in yargs) {
     cleanFlag({ yargs, cmdr, flag: '--debug' })
     cleanFlag({ yargs, cmdr, flag: '-d' })
   }
 
-  if (yargs?.use) {
+  if ('use' in yargs) {
     cleanFlag({ yargs, cmdr, flag: '--use' })
     cleanFlag({ yargs, cmdr, flag: '-u' })
     cmdr.cmd = yargs.use
     await setPackageVersion(yargs.use!)
   }
 
-  if (yargs?.test) {
+  if ('test' in yargs) {
     cleanFlag({ yargs, cmdr, flag: '--test' })
     cleanFlag({ yargs, cmdr, flag: '-t' })
     cmdr.cmd = yargs.test
   }
 
-  if (yargs?.mute) {
+  if ('mute' in yargs) {
     cleanFlag({ yargs, cmdr, flag: '--mute' })
     cleanFlag({ yargs, cmdr, flag: '-m' })
   }
 
-  if (!(cmdr?.cmd) || yargs?.info) {
+  if (!('cmd' in cmdr) || 'info' in yargs) {
     const { origin, cmd } = await getCurrentPackageManager()
     cmdr.origin = origin
     cmdr.cmd = cmd
   }
 
-  if (cmdr?.cmd) {
+  if ('cmd' in cmdr) {
     cmdr.volta = await detectVoltaPin(cmdr as CommanderPackage) ?? false
     cmdr.config = await getPackageConfiguration(cmdr as CommanderPackage)
   }
 
-  if (yargs?.global) {
+  if ('global' in yargs) {
     translateArgs({ yargs, cmdr, flag: '--global', alias: '-g' })
   }
 

@@ -35,15 +35,15 @@ const install: CommandModule<Record<string, unknown>, OptionsProps> = {
       } as const),
 
   handler: async (yargs) => {
-    if (yargs?.['package-lock']) {
+    if ('package-lock' in yargs) {
       translateArgs({ yargs, cmdr, flag: '--package-lock', alias: '-P' })
     }
 
-    if (yargs?.frozen) {
+    if ('frozen' in yargs) {
       translateArgs({ yargs, cmdr, flag: '--frozen', alias: '-F' })
     }
 
-    if (yargs.FLAGS || yargs?.global) {
+    if (('FLAGS' in yargs) || ('global' in yargs)) {
       const args = ['add', ...cmdr.args.slice(1)]
       const command = chalk.blue.bold(`swpm ${args.join(' ')}`)
 

@@ -35,22 +35,22 @@ if (!cmdr?.config?.exc) {
 }
 cmdr.cmd = cmdr.config.exc
 
-if (yargs?.test) {
+if ('test' in yargs) {
   testCommand(cmdr)
 }
 
-if (yargs?.info && cmdr?.cmd && cmdr?.config && cmdr?.origin && cmdr?.volta) {
+if (('info' in yargs) && ('cmd' in cmdr) && ('config' in cmdr) && ('origin' in cmdr) && ('volta' in cmdr)) {
   const cmdrInfo: Required<CommanderPackage> = {
-    cmd: cmdr.cmd,
-    args: cmdr.args,
-    origin: cmdr.origin,
-    config: cmdr.config,
-    volta: cmdr.volta
+    cmd: cmdr.cmd!,
+    args: cmdr.args!,
+    origin: cmdr.origin!,
+    config: cmdr.config!,
+    volta: cmdr.volta!
   }
   await showPackageInformation(cmdrInfo)
 }
 
-if (yargs?.alias) {
+if ('alias' in yargs) {
   await showCommandAlias()
 }
 
