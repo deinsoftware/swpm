@@ -98,14 +98,14 @@ export const getCurrentPackageManager = async (): Promise<{origin: CommanderPack
     }
   }
 
-  const envSwpm = searchForEnv('SWPM') as PackageManagerList
-  if (envSwpm && packageExists(envSwpm)) {
-    return { origin: 'environment', cmd: envSwpm }
-  }
-
   const lock = await searchForLockFiles() as PackageManagerList
   if (lock && packageExists(lock)) {
     return { origin: 'lock', cmd: lock }
+  }
+
+  const envSwpm = searchForEnv('SWPM') as PackageManagerList
+  if (envSwpm && packageExists(envSwpm)) {
+    return { origin: 'environment', cmd: envSwpm }
   }
 
   console.error(stripIndents`
