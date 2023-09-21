@@ -23,6 +23,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 - ask to transform `install` to `add` command when `install` is used to add packages
 - spinner progress when deleting folders or files using the `clean` command
+- unit test on helpers files and functions
 
 ## 1.12.0 - 2023/08/26
 

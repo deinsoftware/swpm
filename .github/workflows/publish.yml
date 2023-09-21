@@ -34,7 +34,7 @@ jobs:
 
       - name: publish js project
         run: npm publish
-        working-directory: bin
+        working-directory: ./bin
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
