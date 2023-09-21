@@ -9,13 +9,7 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
-## 2.1.0 - 2023/09/21
-
-## Added
-
-- `unpin` flag
-
-## 2.0.0 - 2023/09/20
+## 2.0.0 - 2023/09/21
 
 ## Changed
 
@@ -32,6 +26,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 - ask to transform `install` to `add` command when `install` is used to add packages
 - spinner progress when deleting folders or files using the `clean` command
 - unit test on helpers files and functions
+- `unpin` flag
 
 ## 1.12.0 - 2023/08/26
 
