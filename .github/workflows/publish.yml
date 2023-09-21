@@ -11,19 +11,7 @@ env:
   NODE_VERSION: 18
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-      - run: npm ci --ignore-scripts
-      - run: npm run build
-
   publish-package:
-    needs: build
-    if: ${{ success() }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -31,10 +19,12 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: https://registry.npmjs.org/
+      - run: npm ci --ignore-scripts
+      - run: npm run build
 
       - name: publish js project
         run: npm publish
-        working-directory: ./bin
+        working-directory: bin
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
