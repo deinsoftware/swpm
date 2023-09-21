@@ -1,8 +1,8 @@
 import chalk, { ForegroundColorName } from 'chalk'
 import { stripIndent } from 'common-tags'
 import updateNotifier, { NotifyOptions } from 'update-notifier'
-import { getCommandResult } from './cmds.js'
-import { getSwpmInfo } from './info.js'
+import { getCommandResult } from '../helpers/cmds.js'
+import { getSwpmInfo } from '../helpers/info.js'
 import { CommanderPackage } from '../translator/commander.types.js'
 
 const ONE_DAY_MS = 1000 * 60 * 60 * 24
@@ -10,7 +10,7 @@ const ONE_DAY_MS = 1000 * 60 * 60 * 24
 export const autoUpdate = async (cmdr: CommanderPackage) => {
   const { name, version } = await getSwpmInfo()
 
-  const option = {
+  const settings = {
     pkg: {
       name,
       version
@@ -18,7 +18,7 @@ export const autoUpdate = async (cmdr: CommanderPackage) => {
     shouldNotifyInNpmScript: true,
     updateCheckInterval: ONE_DAY_MS
   }
-  const notifier = await updateNotifier(option)
+  const notifier = await updateNotifier(settings)
 
   if (notifier?.update) {
     const { latest, current, type } = notifier.update

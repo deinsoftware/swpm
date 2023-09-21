@@ -7,7 +7,7 @@ import { showPackageInformation } from '../flags/info.js'
 import { showCommandAlias } from '../flags/alias.js'
 import { testCommand } from '../flags/test.js'
 
-import { autoUpdate } from '../helpers/autoUpdate.js'
+import { autoUpdate } from '../libs/autoUpdate.js'
 import { showCommand, runCommand } from '../helpers/cmds.js'
 import { setPackageVersion } from '../helpers/set.js'
 import cmdr from '../translator/commander.js'

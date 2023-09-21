@@ -3,7 +3,7 @@ import { stripIndents } from 'common-tags'
 
 import { getCommandResult } from './cmds.js'
 import { CommanderPackage } from '../translator/commander.types.js'
-import { ClanFlagProp, FindFlagIndexProps, FindVoltaGlobalsProps, GetActionProp, GetKeyProps, MoveFlagProps, ReplaceCommandProps, ReplaceFlagProps, TranslateArgsProp, TranslateFlagProp } from './args.type.js'
+import { ClanFlagProp, FindFlagIndexProps, FindVoltaGlobalsProps, GetActionProp, GetKeyProps, MoveFlagProps, ReplaceCommandProps, ReplaceFlagProps, TranslateArgsProp, TranslateFlagProp } from './args.types.js'
 
 export const findVoltaGlobals = ({ yargs, cmdr, flags }: FindVoltaGlobalsProps) => {
   const hasGlobalOperations = (

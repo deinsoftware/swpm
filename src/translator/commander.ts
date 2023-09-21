@@ -13,7 +13,7 @@ declare global {
   var commander: CommanderPackage
 }
 
-const getCommander = (): CommanderPackage => {
+export const getCommander = (): CommanderPackage => {
   if (!globalThis?.commander) {
     globalThis.commander = commanderInitValues
   }

@@ -34,6 +34,7 @@
     "swpx",
     "tryin",
     "unpublish",
+    "unstub",
     "versioner",
     "volta"
   ],
@@ -84,4 +85,5 @@
       "allow_different_nesting": true
     }
   },
+  "testing.automaticallyOpenPeekView": "never",
 }

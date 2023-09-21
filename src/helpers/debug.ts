@@ -3,7 +3,7 @@ import { inspect } from 'node:util'
 export const debug = (object: Object) => {
   console.log(
     inspect(
-      { object },
+      object,
       {
         showHidden: false,
         depth: null,
