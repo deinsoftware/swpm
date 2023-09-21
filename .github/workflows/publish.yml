@@ -19,8 +19,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
       - run: npm ci --ignore-scripts
-      - name: build ts project
-        run: npm run build
+      - run: npm run build
 
   publish-package:
     needs: build
@@ -32,9 +31,10 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: https://registry.npmjs.org/
-      - working-directory: bin
+
       - name: publish js project
         run: npm publish
+        working-directory: bin
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
