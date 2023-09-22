@@ -21,9 +21,7 @@ if (yargs.debug) {
   debug(cmdr)
 }
 
-if (cmdr?.cmd) {
-  await autoUpdate(cmdr)
-}
+await autoUpdate(cmdr)
 
 if (!cmdr?.config?.exc) {
   console.error(`${chalk.red.bold('Error')}: the execution command is not available on ${chalk.bold(cmdr?.cmd)} Package Manager.`)
