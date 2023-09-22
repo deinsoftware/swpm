@@ -27,9 +27,7 @@ if (yargs.debug) {
   debug(cmdr)
 }
 
-if (cmdr?.cmd) {
-  await autoUpdate(cmdr)
-}
+await autoUpdate(cmdr)
 
 if (yargs?.pin) {
   const { cmd, config } = cmdr
