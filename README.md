@@ -102,6 +102,7 @@ Options:
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -p, --pin    pin a package manager
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
+      --unpin  unpin current package manager
   -t, --test   test command (without running)
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -m, --mute   mute command translation
@@ -588,6 +589,16 @@ It will store the pinned Package Manager in the `package.json` file, so you can 
 
 You also can set it manually. Just take care writing a valid Package Manager: `npm`, `yarn[@berry]`, `pnpm` or `bun`. And also remember to run the set command for `yarn` projects.
 
+### Unpin
+
+The `swpm --unpin` flag allows you to remove the current pinned Package Manager for a project.
+
+```bash
+swpm --unpin
+```
+
+It will remove the pinned Package Manager in the `package.json` file.
+
 #### Test
 
 The `<swpm|swpx> --test` flag show the equivalent command using the selected Package Manager, but **it will not run the command**
@@ -659,8 +670,8 @@ Create an `SWPM` environment variable with one of this values `<npm|yarn[@berry]
 | :--: | ------------------------------------------------------------ |
 | 📌   | Search the `swpm` property pinned on `package.json` file     |
 | 📦   | Search the `packageManager` property on `package.json` file  |
-| 🌐   | Search a `SWPM` environment variable                         |
 | 🔒   | Search for a `lock` file                                     |
+| 🌐   | Search a `SWPM` environment variable                         |
 
 ### What can I use as Package parameter?
 

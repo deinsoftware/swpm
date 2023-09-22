@@ -1,8 +1,10 @@
 import chalk, { ForegroundColorName } from 'chalk'
 import { stripIndent } from 'common-tags'
 import updateNotifier, { NotifyOptions } from 'update-notifier'
+
 import { getCommandResult } from '../helpers/cmds.js'
 import { getSwpmInfo } from '../helpers/info.js'
+
 import { CommanderPackage } from '../translator/commander.types.js'
 
 const ONE_DAY_MS = 1000 * 60 * 60 * 24
@@ -24,10 +26,13 @@ export const autoUpdate = async (cmdr: CommanderPackage) => {
     const { latest, current, type } = notifier.update
 
     let command = 'npm install swpm --location=global'
+
     const voltaVersion = getCommandResult({ command: 'volta --version' })
     if (voltaVersion) {
       command = 'volta install swpm'
-    } else {
+    }
+
+    if (!voltaVersion && !cmdr?.config) {
       const { install } = cmdr?.config || {}
       if (install) {
         command = install

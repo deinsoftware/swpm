@@ -13,7 +13,7 @@ describe('debug', () => {
       colors: true
     }
     const inspector = inspect(object, options)
-
+    // @ts-expect-error object is intentionally wrong
     debug(object)
 
     expect(consoleSpy).toHaveBeenCalledWith(inspector)

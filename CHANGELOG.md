@@ -9,21 +9,26 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
-## 2.0.0 - 2023/09/20
+## 2.0.0 - 2023/09/21
 
 ## Changed
 
 - full migration from JavaScript to TypeScript
+- frozen translation for `bun` package manager
+- priority order detection giving priority to `lock` file of `global` environment
 
 ## Fixed
 
 - sequential delete folder and files previous install packages when are called from alias with multiple commands
+- `info` flag also works when no package manager was detected
 
 ## Added
 
 - ask to transform `install` to `add` command when `install` is used to add packages
 - spinner progress when deleting folders or files using the `clean` command
 - unit test on helpers files and functions
+- `unpin` flag
+- check if pinned package manager is already installed
 
 ## 1.12.0 - 2023/08/26
 

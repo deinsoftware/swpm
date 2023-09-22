@@ -14,7 +14,7 @@ vi.mock('./files.ts', async () => {
 describe('detectVoltaPin', () => {
   it('should return undefined if cmdr is undefined', async () => {
     const cmdr = undefined
-    // @ts-expect-error
+    // @ts-expect-error cmdr is intentionally undefined
     const result = await detectVoltaPin(cmdr)
     expect(result).toBeUndefined()
   })

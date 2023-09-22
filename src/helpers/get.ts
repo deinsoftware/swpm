@@ -2,12 +2,11 @@ import { exit, env } from 'node:process'
 import { stripIndents } from 'common-tags'
 import chalk from 'chalk'
 import semver from 'semver'
+import commandExists from 'command-exists'
 import { getPackageJson, lockFileExists } from '../helpers/files.js'
 import packagesList, { packageExists } from '../packages/list.js'
 import { PackageManagerList } from '../packages/packages.types.js'
 import { CommanderPackage, PackageJson } from '../translator/commander.types.js'
-
-const packageName = 'package.json'
 
 const propertyExists = (packageJson: PackageJson, property: string) => {
   return (property in packageJson)
@@ -46,11 +45,7 @@ const getPropertyValue = async (packageJson: PackageJson, property: 'swpm' | 'pa
     return prop
   }
 
-  console.error(stripIndents`
-    ${chalk.red.bold('Error')}: the value (${chalk.bold(prop)}) in property on ${chalk.bold(packageName)} file is not valid.
-    Use ${chalk.blue.bold('npm --pin <npm|yarn[@berry]|pnpm|bun>')} to fix it.
-  `)
-  exit(1)
+  // showNoPackageDetected()
 }
 
 const searchForLockFiles = async () => {
@@ -82,7 +77,7 @@ const searchForEnv = (name: 'SWPM') => {
   exit(1)
 }
 
-export const getCurrentPackageManager = async (): Promise<{origin: CommanderPackage['origin'], cmd: PackageManagerList}> => {
+export const getCurrentPackageManager = async (): Promise<{origin: CommanderPackage['origin'], cmd: PackageManagerList} | undefined> => {
   const packageJson = await getPackageJson()
 
   if (packageJson) {
@@ -98,23 +93,17 @@ export const getCurrentPackageManager = async (): Promise<{origin: CommanderPack
     }
   }
 
-  const envSwpm = searchForEnv('SWPM') as PackageManagerList
-  if (envSwpm && packageExists(envSwpm)) {
-    return { origin: 'environment', cmd: envSwpm }
-  }
-
   const lock = await searchForLockFiles() as PackageManagerList
   if (lock && packageExists(lock)) {
     return { origin: 'lock', cmd: lock }
   }
 
-  console.error(stripIndents`
-    ${chalk.red.bold('Error')}: no Package Manager or Environment Variable was found.
+  const envSwpm = searchForEnv('SWPM') as PackageManagerList
+  if (envSwpm && packageExists(envSwpm)) {
+    return { origin: 'environment', cmd: envSwpm }
+  }
 
-    Please review if the current path has a ${chalk.bold(packageName)} or a ${chalk.bold('lock')} file.
-    Highly recommend pin a Package Manager with ${chalk.blue.bold('swpm --pin <npm|yarn[@berry]|pnpm|bun>')} command.
-  `)
-  exit(1)
+  // showNoPackageDetected()
 }
 
 // https://volta.sh/
@@ -129,4 +118,13 @@ export const detectVoltaPin = async (cmdr: CommanderPackage) => {
   if (packageJson[prop] === undefined) return
 
   return (cmdr.cmd in packageJson[prop])
+}
+
+export const commandVerification = async (cmd: PackageManagerList) => {
+  try {
+    await commandExists(cmd)
+    return true
+  } catch (error) {
+    return false
+  }
 }

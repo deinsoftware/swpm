@@ -11,21 +11,25 @@
         "moduleDetection": "force",
         "allowJs": false, // allow importing `.js` from `.ts`
         "esModuleInterop": true, // allow default imports for CommonJS modules
+        // build
+        "declaration": true,
+        "declarationDir": "bin/types",
+        "outDir": "bin/src",
         // best practices
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "skipLibCheck": true,
         "strictNullChecks": true,
         "resolveJsonModule": true,
-        "declaration": true,
-        "declarationDir": "bin/types",
-        "outDir": "bin/src",
+        // performance
+        "incremental": true
     },
     "baseUrl": ".",
     "include": [
-        "src/**/*"
+        "src/**/*.ts"
     ],
     "exclude": [
+        "node_modules",
         "coverage",
         "bin",
     ]
