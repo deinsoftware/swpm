@@ -23,7 +23,7 @@ describe('getPackageConfiguration()', () => {
     const pkg = {
       cmd: 'not'
     }
-    // @ts-expect-error
+    // @ts-expect-error expected command is intentionally wrong
     const result = await getPackageConfiguration(pkg)
     expect(result).toEqual(expectedResult)
   })

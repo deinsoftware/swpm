@@ -20,6 +20,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 ## Fixed
 
 - sequential delete folder and files previous install packages when are called from alias with multiple commands
+- `info` flag also works when no package manager was detected
 
 ## Added
 
@@ -27,6 +28,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 - spinner progress when deleting folders or files using the `clean` command
 - unit test on helpers files and functions
 - `unpin` flag
+- check if pinned package manager is already installed
 
 ## 1.12.0 - 2023/08/26
 

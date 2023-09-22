@@ -1,33 +1,29 @@
 #!/usr/bin/env node
 
-import { exit } from 'node:process'
-import { inspect } from 'node:util'
 import yargs from './swpx/config.js'
+
+import { exit } from 'node:process'
 import chalk from 'chalk'
 
-import { showPackageInformation } from '../flags/info.js'
+import { autoUpdate } from '../libs/autoUpdate.js'
+
+import { showNoPackageDetected, showPackageInformation } from '../flags/info.js'
 import { showCommandAlias } from '../flags/alias.js'
 import { testCommand } from '../flags/test.js'
 
-import { autoUpdate } from '../libs/autoUpdate.js'
 import { showCommand, runCommand } from '../helpers/cmds.js'
+import { debug } from '../helpers/debug.js'
+
 import cmdr from '../translator/commander.js'
-import { CommanderPackage } from '../translator/commander.types.js'
 
 if (yargs.debug) {
-  console.log(
-    inspect(
-      yargs,
-      {
-        showHidden: false,
-        depth: null,
-        colors: true
-      }
-    )
-  )
+  debug(yargs)
+  debug(cmdr)
 }
 
-await autoUpdate(cmdr)
+if (cmdr?.cmd) {
+  await autoUpdate(cmdr)
+}
 
 if (!cmdr?.config?.exc) {
   console.error(`${chalk.red.bold('Error')}: the execution command is not available on ${chalk.bold(cmdr?.cmd)} Package Manager.`)
@@ -35,28 +31,23 @@ if (!cmdr?.config?.exc) {
 }
 cmdr.cmd = cmdr.config.exc
 
-if ('test' in yargs) {
+if (yargs?.test) {
   testCommand(cmdr)
 }
 
-if (('info' in yargs) && ('cmd' in cmdr) && ('config' in cmdr) && ('origin' in cmdr) && ('volta' in cmdr)) {
-  const cmdrInfo: Required<CommanderPackage> = {
-    cmd: cmdr.cmd!,
-    args: cmdr.args!,
-    origin: cmdr.origin!,
-    config: cmdr.config!,
-    volta: cmdr.volta!
-  }
-  await showPackageInformation(cmdrInfo)
+if ((yargs?.info)) {
+  await showPackageInformation(cmdr)
 }
 
-if ('alias' in yargs) {
+if (yargs?.alias) {
   await showCommandAlias()
 }
 
-if (cmdr?.cmd) {
-  if (!yargs?.mute) {
-    showCommand(cmdr)
-  }
-  await runCommand(cmdr)
+if (!cmdr?.cmd) {
+  showNoPackageDetected()
 }
+
+if (!yargs?.mute) {
+  showCommand(cmdr)
+}
+await runCommand(cmdr)

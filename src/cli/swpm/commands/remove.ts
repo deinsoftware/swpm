@@ -54,6 +54,8 @@ const remove: CommandModule<Record<string, unknown>, OptionsProps> = {
       }),
 
   handler: (yargs) => {
+    if (!cmdr?.cmd) return
+
     if (findVoltaGlobals({ yargs, cmdr, flags: ['uninstall', 'remove'] })
     ) {
       if (('pkg' in yargs) && ('package' in yargs)) {

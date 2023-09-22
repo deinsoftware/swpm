@@ -7,9 +7,12 @@ import { setPackageVersion } from '../helpers/set.js'
 import { InferredOptionTypes, MiddlewareFunction } from 'yargs'
 import { CommanderPackage } from '../translator/commander.types.js'
 import cmdr from '../translator/commander.js'
-import { options } from './swpx/cli.js'
+import { options as swpmOptions } from './swpm/cli.js'
+import { options as swpxOptions } from './swpx/cli.js'
+import { PackageManagerList } from '../packages/packages.types.js'
 
-const middleware: MiddlewareFunction<InferredOptionTypes<typeof options>> = async (yargs) => {
+type Props = InferredOptionTypes<typeof swpmOptions> | InferredOptionTypes<typeof swpxOptions>
+const middleware: MiddlewareFunction<Props> = async (yargs) => {
   cmdr.args = argv.slice(2)
 
   if ('debug' in yargs) {
@@ -24,6 +27,10 @@ const middleware: MiddlewareFunction<InferredOptionTypes<typeof options>> = asyn
     await setPackageVersion(yargs.use!)
   }
 
+  if ('pin' in yargs && yargs?.pin) {
+    cmdr.cmd = yargs.pin as PackageManagerList
+  }
+
   if ('test' in yargs) {
     cleanFlag({ yargs, cmdr, flag: '--test' })
     cleanFlag({ yargs, cmdr, flag: '-t' })
@@ -35,23 +42,23 @@ const middleware: MiddlewareFunction<InferredOptionTypes<typeof options>> = asyn
     cleanFlag({ yargs, cmdr, flag: '-m' })
   }
 
-  if (!('cmd' in cmdr) || 'info' in yargs) {
-    const { origin, cmd } = await getCurrentPackageManager()
+  if (!cmdr?.cmd || yargs?.info) {
+    const { origin, cmd } = await getCurrentPackageManager() || {}
     cmdr.origin = origin
     cmdr.cmd = cmd
   }
 
-  if ('cmd' in cmdr) {
+  if (cmdr?.cmd) {
     cmdr.volta = await detectVoltaPin(cmdr as CommanderPackage) ?? false
     cmdr.config = await getPackageConfiguration(cmdr as CommanderPackage)
-  }
 
-  if ('global' in yargs) {
-    translateArgs({ yargs, cmdr, flag: '--global', alias: '-g' })
-  }
+    if ('global' in yargs) {
+      translateArgs({ yargs, cmdr, flag: '--global', alias: '-g' })
+    }
 
-  if (yargs._.length) {
-    translateCommand({ yargs, cmdr })
+    if (yargs._.length) {
+      translateCommand({ yargs, cmdr })
+    }
   }
 }
 
