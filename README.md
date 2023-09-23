@@ -377,6 +377,17 @@ Options:
 
 Quick and short aliases for `swpm` and `swpx` commands.
 
+### sp[?] (pin)
+
+| Alias  | Command                                     |
+| ------ | ------------------------------------------- |
+| `sp`   | `swpm --pin <npm\|yarn[@berry]\|pnpm\|bun>` |
+| `spn`  | `swpm --pin npm`                            |
+| `spy`  | `swpm --pin yarn`                           |
+| `spyb` | `swpm --pin yarn@berry`                     |
+| `spp`  | `swpm --pin pnp`                            |
+| `spb`  | `swpm --pin bun`                            |
+
 ### si (install)
 
 | Package/Alias | `si`           |
@@ -499,30 +510,6 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**       | `pnpm create <package>` | `pnpm create vite` |
 | **bun**        | `bun create <package>`  | `bun create vite`  |
 
-### sc<?> (clean)
-
-| Alias  | Command                                        |
-| ------ | ---------------------------------------------- |
-| `scn`  | `swpm clean --modules`                         |
-| `scl`  | `swpm clean --lock`                            |
-| `scb`  | `swpm clean --build`                           |
-| `scd`  | `swpm clean --dist`                            |
-| `scc`  | `swpm clean --coverage`                        |
-| `sca`  | `swpm clean --all`                             |
-| `scf`  | `swpm clean --fresh && swpm install --frozen`  |
-| `sci`  | `swpm clean --all && swpm install`             |
-
-### sp[?] (pin)
-
-| Alias  | Command                                     |
-| ------ | ------------------------------------------- |
-| `sp`   | `swpm --pin <npm\|yarn[@berry]\|pnpm\|bun>` |
-| `spn`  | `swpm --pin npm`                            |
-| `spy`  | `swpm --pin yarn`                           |
-| `spyb` | `swpm --pin yarn@berry`                     |
-| `spp`  | `swpm --pin pnp`                            |
-| `spb`  | `swpm --pin bun`                            |
-
 ### sr (run)
 
 | Package/Alias  | `sr <script>`       | `sr dev --port 3030`         |
@@ -540,6 +527,19 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**          | `yarn dlx <package>` | `yarn dlx vitest` |
 | **pnpm**          | `pnpm dlx <package>` | `pnpm dlx vitest` |
 | **bun**           | `bunx <package>`     | `bunx vitest`     |
+
+### sc<?> (clean)
+
+| Alias  | Command                                        |
+| ------ | ---------------------------------------------- |
+| `scn`  | `swpm clean --modules`                         |
+| `scl`  | `swpm clean --lock`                            |
+| `scb`  | `swpm clean --build`                           |
+| `scd`  | `swpm clean --dist`                            |
+| `scc`  | `swpm clean --coverage`                        |
+| `sca`  | `swpm clean --all`                             |
+| `scf`  | `swpm clean --fresh && swpm install --frozen`  |
+| `sci`  | `swpm clean --all && swpm install`             |
 
 ⇧ [Back to menu](#menu)
 
@@ -723,11 +723,14 @@ A minimalistic solution focus only in the most common used commands:
 
 ### NPM Packages
 
-- [Chalk](https://github.com/chalk/chalk) - Terminal string styling done right.
+- [Chalk](https://www.npmjs.com/package/chalk) - Terminal string styling done right.
 - [command-exists](https://www.npmjs.com/package/command-exists) - node module to check if a command-line command exists.
 - [common-tags](https://www.npmjs.com/package/common-tags) - A set of well-tested, commonly used template literal tag functions for use in ES2015+.
 - [find-up](https://www.npmjs.com/package/find-up) - Find a file or directory by walking up parent directories.
+- [open](https://www.npmjs.com/package/open) - Open stuff like URLs, files, executables. Cross-platform.
+- [prompts](https://www.npmjs.com/package/prompts) - Lightweight, beautiful and user-friendly interactive prompts
 - [semver](https://www.npmjs.com/package/semver) - The semantic versioner for npm.
+- [spinnies](https://www.npmjs.com/package/spinnies)  create and manage multiple spinners in CLI progrags
 - [update-notifier](https://www.npmjs.com/package/update-notifier) - Update notifications for your CLI app.
 - [Yargs](https://yargs.js.org/) - Yargs be a node.js library fer hearties tryin' ter parse optstrings.
 

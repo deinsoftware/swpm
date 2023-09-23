@@ -15,6 +15,12 @@ const commandVerification = async (cmd: string) => {
 }
 
 const aliases = {
+  sp: 'swpm --pin <npm|yarn[@berry]|pnpm|bun>',
+  spn: 'swpm --pin npm',
+  spy: 'swpm --pin yarn',
+  spyb: 'swpm --pin yarn@berry',
+  spp: 'swpm --pin pnpm',
+  spb: 'swpm --pin bun',
   si: 'swpm install',
   sif: 'swpm install --frozen',
   sa: 'swpm add <package>',
@@ -28,6 +34,8 @@ const aliases = {
   sug: 'swpm upgrade <package>',
   sui: 'swpm interactive',
   scr: 'swpm create <package>',
+  sr: 'swpm run <command>',
+  sx: 'swpx <package>',
   scn: 'swpm clean --modules',
   scl: 'swpm clean --lock',
   scb: 'swpm clean --build',
@@ -35,15 +43,7 @@ const aliases = {
   scc: 'swpm clean --coverage',
   sca: 'swpm clean --all',
   scf: 'swpm clean --fresh && swpm install --frozen',
-  sci: 'swpm clean --all && swpm install',
-  sp: 'swpm --pin <npm|yarn[@berry]|pnpm|bun>',
-  spn: 'swpm --pin npm',
-  spy: 'swpm --pin yarn',
-  spyb: 'swpm --pin yarn@berry',
-  spp: 'swpm --pin pnpm',
-  spb: 'swpm --pin bun',
-  sr: 'swpm run <command>',
-  sx: 'swpx <package>'
+  sci: 'swpm clean --all && swpm install'
 }
 
 export const showCommandAlias = async () => {
