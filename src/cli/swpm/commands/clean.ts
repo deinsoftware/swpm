@@ -1,5 +1,4 @@
 import chalk from 'chalk'
-import { exit } from 'node:process'
 import { CommandModule } from 'yargs'
 import { deleteModulesPath, deleteModulesFiles, deleteLockFiles, deleteLogFiles, deletePath } from '../../../helpers/delete.js'
 
@@ -69,6 +68,21 @@ const clean: CommandModule<Record<string, unknown>, OptionsProps> = {
         desc: 'delete coverage folder',
         usage: '$0 clean --coverage',
         conflicts: ['all', 'fresh']
+      })
+      .check((yargs) => {
+        const options = yargs.all ||
+        yargs.fresh ||
+        yargs.modules ||
+        yargs.lock ||
+        yargs.log ||
+        yargs.build ||
+        yargs.dist ||
+        yargs.coverage
+
+        if (!options) {
+          throw new Error('Error: clean command requires at least one option')
+        }
+        return true
       }),
 
   handler: async (yargs) => {
@@ -106,8 +120,6 @@ const clean: CommandModule<Record<string, unknown>, OptionsProps> = {
     if (('all' in yargs) || ('fresh' in yargs) || ('coverage' in yargs)) {
       await deletePath('coverage')
     }
-
-    exit(0)
   }
 }
 
