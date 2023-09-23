@@ -44,8 +44,6 @@ const getPropertyValue = async (packageJson: PackageJson, property: 'swpm' | 'pa
   if (prop && packageExists(prop as PackageManagerList)) {
     return prop
   }
-
-  // showNoPackageDetected()
 }
 
 const searchForLockFiles = async () => {
@@ -102,8 +100,6 @@ export const getCurrentPackageManager = async (): Promise<{origin: CommanderPack
   if (envSwpm && packageExists(envSwpm)) {
     return { origin: 'environment', cmd: envSwpm }
   }
-
-  // showNoPackageDetected()
 }
 
 // https://volta.sh/
