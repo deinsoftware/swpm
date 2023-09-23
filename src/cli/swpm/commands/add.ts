@@ -21,7 +21,7 @@ const add: CommandModule<Record<string, unknown>, OptionsProps> = {
         type: 'string',
         desc: '<package>'
       })
-      .conflicts('add', ['clean', 'install', 'remove', 'update', 'upgrade'])
+      .conflicts('add', ['clean', 'open', 'install', 'remove', 'update', 'upgrade'])
       .option('save-dev', {
         alias: 'D',
         type: 'boolean',

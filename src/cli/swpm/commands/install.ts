@@ -18,7 +18,7 @@ const install: CommandModule<Record<string, unknown>, OptionsProps> = {
 
   builder: (yargs) =>
     yargs
-      .conflicts('install', ['add', 'clean', 'remove', 'update', 'upgrade'])
+      .conflicts('install', ['add', 'clean', 'open', 'remove', 'update', 'upgrade'])
       .option('package-lock', {
         alias: 'P',
         type: 'boolean',

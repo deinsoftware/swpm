@@ -16,7 +16,7 @@ const update: CommandModule<Record<string, unknown>, OptionsProps> = {
         type: 'string',
         desc: '<package>'
       })
-      .conflicts('update', ['add', 'clean', 'install', 'remove', 'upgrade'])
+      .conflicts('update', ['add', 'clean', 'open', 'install', 'remove', 'upgrade'])
       .option('global', {
         alias: 'g',
         type: 'boolean',

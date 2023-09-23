@@ -87,6 +87,7 @@ export const runCommand = ({ cmd, args, volta = false }: CommanderPackage) => {
         ${chalk.red.bold('Error')}:
         ${error}
       `)
+    // child.kill()
     exit(1)
   })
 
@@ -105,7 +106,7 @@ export const spreadCommand = async ({ cmd, args }: SpreadCommand) => {
     }
   )
 
-  if (child?.stderr) {
+  if (child.status !== 0) {
     console.error(stripIndents`
         ${chalk.red.bold('Error')}:
         ${child?.stderr}

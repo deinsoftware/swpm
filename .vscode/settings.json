@@ -36,7 +36,8 @@
     "unpublish",
     "unstub",
     "versioner",
-    "volta"
+    "volta",
+    "wslpath"
   ],
   "files.exclude": {
     "**/*.js.map": {

@@ -20,7 +20,7 @@ const upgrade: CommandModule<Record<string, unknown>, OptionsProps> = {
         type: 'string',
         desc: '<package>'
       })
-      .conflicts('upgrade', ['add', 'clean', 'install', 'remove', 'upgrade'])
+      .conflicts('upgrade', ['add', 'clean', 'open', 'install', 'remove', 'upgrade'])
       .option('latest', {
         alias: 'L',
         type: 'boolean',

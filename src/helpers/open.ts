@@ -1,16 +1,21 @@
 import { platform, release } from 'node:os'
-import { exit } from 'node:process'
-import { spawn } from 'node:child_process'
-import path from 'path'
-import { fileURLToPath } from 'url'
-import { wslToWindows } from 'wsl-path'
+import { exit, cwd } from 'node:process'
+import { spawnSync } from 'node:child_process'
+import { getCommandResult } from './cmds.js'
+import { spinnies } from '../libs/spinnies.js'
+import open from 'open'
+
+const wslToWindows = (path: string) => {
+  const newPath = getCommandResult({ command: `wslpath -w ${path}` })
+  return !newPath ? path : newPath
+}
 
 const isWSL = () => {
   const version = release().toLowerCase().trim()
   return version.includes('wsl') && version.includes('microsoft')
 }
 
-export const detectOs = () => {
+const detectOs = () => {
   let os = platform().toLowerCase().replace(/[0-9]/g, '')
   if (os === 'linux') {
     os = isWSL() ? 'wsl' : os
@@ -18,7 +23,7 @@ export const detectOs = () => {
   return os
 }
 
-export const openExplorer = async (path: string) => {
+export const openExplorer = (path: string = cwd()) => {
   let cmd = ''
   switch (detectOs()) {
     case 'win':
@@ -26,7 +31,7 @@ export const openExplorer = async (path: string) => {
       cmd = 'explorer'
       break
     case 'wsl':
-      path = await wslToWindows(path || '=')
+      path = wslToWindows(path || '=')
       cmd = 'explorer.exe'
       break
     case 'linux':
@@ -38,18 +43,36 @@ export const openExplorer = async (path: string) => {
       cmd = 'open'
       break
   }
-  console.log({ path })
-  const child = spawn(cmd, [path])
 
-  child.on('error', (err) => {
-    console.error(err)
-    child.kill()
+  spinnies.add(path)
+  const child = spawnSync(cmd, [path, '2>&1'], { stdio: 'inherit', shell: true })
+
+  if (child.status !== 0) { // TODO: open the file but return it as error
+    spinnies.fail(path)
     exit(1)
-  })
+  }
+
+  spinnies.succeed(path)
+  return child.status
 }
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const isUrl = (url: string) => {
+  return url.startsWith('http') || url.startsWith('https')
+}
 
-const currentPath = path.join(__dirname, '/')
-openExplorer(currentPath)
+export const openBrowser = async (url: string) => {
+  try {
+    spinnies.add(url)
+    if (!isUrl(url)) {
+      if (detectOs() === 'wsl') {
+        url = wslToWindows(url)
+      }
+      url = `file://${url}`
+    }
+
+    await open(url) // TODO: this lib doesn't open the browser tested with opera
+    spinnies.succeed(url)
+  } catch (error) {
+    spinnies.fail(url)
+  }
+}
