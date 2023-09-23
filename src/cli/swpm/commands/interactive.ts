@@ -15,10 +15,6 @@ const interactive: CommandModule<Record<string, unknown>, OptionsProps> = {
 
   builder: (yargs) =>
     yargs
-      .positional('package', {
-        type: 'string',
-        desc: '<package>'
-      })
       .conflicts('interactive', ['add', 'clean', 'open', 'install', 'remove', 'upgrade'])
       .option('latest', {
         alias: 'L',

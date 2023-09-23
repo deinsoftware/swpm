@@ -12,11 +12,11 @@ const update: CommandModule<Record<string, unknown>, OptionsProps> = {
 
   builder: (yargs) =>
     yargs
+      .conflicts('update', ['add', 'clean', 'open', 'install', 'remove', 'upgrade'])
       .positional('package', {
         type: 'string',
         desc: '<package>'
       })
-      .conflicts('update', ['add', 'clean', 'open', 'install', 'remove', 'upgrade'])
       .option('global', {
         alias: 'g',
         type: 'boolean',

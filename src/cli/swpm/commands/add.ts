@@ -17,11 +17,11 @@ const add: CommandModule<Record<string, unknown>, OptionsProps> = {
 
   builder: (yargs) =>
     yargs
+      .conflicts('add', ['clean', 'open', 'install', 'remove', 'update', 'upgrade'])
       .positional('package', {
         type: 'string',
         desc: '<package>'
       })
-      .conflicts('add', ['clean', 'open', 'install', 'remove', 'update', 'upgrade'])
       .option('save-dev', {
         alias: 'D',
         type: 'boolean',

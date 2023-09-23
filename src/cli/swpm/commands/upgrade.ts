@@ -16,11 +16,11 @@ const upgrade: CommandModule<Record<string, unknown>, OptionsProps> = {
 
   builder: (yargs) =>
     yargs
+      .conflicts('upgrade', ['add', 'clean', 'open', 'install', 'remove', 'upgrade'])
       .positional('package', {
         type: 'string',
         desc: '<package>'
       })
-      .conflicts('upgrade', ['add', 'clean', 'open', 'install', 'remove', 'upgrade'])
       .option('latest', {
         alias: 'L',
         type: 'boolean',
