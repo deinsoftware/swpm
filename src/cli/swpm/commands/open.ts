@@ -1,9 +1,11 @@
 import chalk from 'chalk'
 import { exit, cwd } from 'node:process'
+import { resolve as resolvePath } from 'node:path'
 import { ArgumentsCamelCase, CommandModule } from 'yargs'
 import { openBrowser, openExplorer } from '../../../helpers/open.js'
 import { fileExists } from '../../../helpers/files.js'
 import { getRepoUrl, gitCurrentBranch } from '../../../helpers/repos.js'
+import { stripIndents } from 'common-tags'
 
 type OptionsProps = {
   'explorer'?: boolean,
@@ -93,13 +95,15 @@ const clean: CommandModule<Record<string, unknown>, OptionsProps> = {
     if ('coverage' in yargs) {
       let url = yargs?.file
       if (!url) {
-        url = `${cwd()}/coverage/index.html`
+        url = resolvePath(cwd(), 'coverage/lcov-report/index.html')
       }
 
       if (await fileExists(url)) {
         await openBrowser(url)
       } else {
-        // TODO: show error
+        console.error(stripIndents`
+        ${chalk.red.bold('Error')}: ${chalk.bold(url)} file not found.
+      `)
       }
     }
 

@@ -87,7 +87,7 @@ export const runCommand = ({ cmd, args, volta = false }: CommanderPackage) => {
         ${chalk.red.bold('Error')}:
         ${error}
       `)
-    // child.kill()
+    child.kill()
     exit(1)
   })
 
