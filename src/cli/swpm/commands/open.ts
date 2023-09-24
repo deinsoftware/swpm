@@ -1,150 +1,252 @@
 import chalk from 'chalk'
-import { exit, cwd } from 'node:process'
+import { cwd } from 'node:process'
 import { resolve as resolvePath } from 'node:path'
 import { ArgumentsCamelCase, CommandModule } from 'yargs'
 import { openBrowser, openExplorer } from '../../../helpers/open.js'
-import { fileExists } from '../../../helpers/files.js'
-import { getRepoUrl, gitCurrentBranch } from '../../../helpers/repos.js'
+import { fileExists, getPackageJson } from '../../../helpers/files.js'
+import { gerReposStatus } from '../../../helpers/repos.js'
 import { stripIndents } from 'common-tags'
+import { pathExists } from 'find-up'
+import { checkErrorMessage } from '../../../helpers/messages.js'
 
 type OptionsProps = {
-  'explorer'?: boolean,
-  'coverage'?: boolean,
-  'git-repo'?: boolean,
-  'git-branch'?: boolean,
-  'git-pulls'?: boolean,
-  'git-compare'?: boolean,
-  'npm-package'?: boolean,
-  file?: string,
-  path?: string,
+  'explorer'?: boolean
+  'coverage'?: boolean
+  'git-repo'?: boolean
+  'git-branch'?: boolean
+  'git-pulls'?: boolean
+  'git-compare'?: boolean
+  npm?: boolean
+  path?: string
+  filePath?: string
   branch?: string
-} // TODO: check how can i do this parameter on commands
+  git?: boolean
+  url?: `https://${string}`
+  provider?: string
+  current?: string
+  pullPath?: string
+  package?: string
+}
 
 const hasGitProperty = (yargs: ArgumentsCamelCase<OptionsProps>) => {
   return Object.keys(yargs).some((key) => key.startsWith('git'))
 }
 
-const clean: CommandModule<Record<string, unknown>, OptionsProps> = {
-  command: 'open [FLAGS]',
+const open: CommandModule<Record<string, unknown>, OptionsProps> = {
+  command: 'open [path|filePath|branch|package] [args]',
   aliases: ['o'],
   describe: 'open in the file explore or browser',
 
   builder: (yargs) =>
     yargs
       .conflicts('open', ['add', 'install', 'remove', 'update', 'upgrade', 'clean'])
+      .positional('path', {
+        type: 'string',
+        desc: '[path]',
+        default: '.'
+      })
+      .positional('filePath', {
+        type: 'string',
+        desc: '[filePath]',
+        default: './coverage/lcov-report/index.html'
+      })
+      .positional('branch', {
+        type: 'string',
+        desc: '[branch]',
+        default: 'dev'
+      })
+      .positional('package', {
+        type: 'string',
+        desc: '[package]',
+        default: '.'
+      })
       .option('explorer', {
+        alias: 'E',
         type: 'boolean',
-        desc: 'open path on file explorer',
-        usage: '$0 open --explorer <path>',
-        conflicts: ['coverage', 'git-repo', 'git-branch', 'git-pulls', 'git-compare', 'npm-package']
+        desc: 'open path on file explorer in [path]',
+        usage: '$0 open [path] --explorer',
+        conflicts: ['coverage', 'git-repo', 'git-branch', 'git-pulls', 'git-compare', 'npm'],
+        implies: ['path']
       })
       .option('coverage', {
+        alias: 'V',
         type: 'boolean',
-        desc: 'open coverage report',
-        usage: '$0 open --coverage <file>',
-        conflicts: ['explorer', 'git-repo', 'git-branch', 'git-pulls', 'git-compare', 'npm-package']
+        desc: 'view coverage report in [filePath]',
+        usage: '$0 open [filePath] --coverage',
+        conflicts: ['explorer', 'git-repo', 'git-branch', 'git-pulls', 'git-compare', 'npm'],
+        implies: ['filePath']
       })
       .option('git-repo', {
+        alias: 'R',
         type: 'boolean',
         desc: 'browse current repo',
         usage: '$0 open --git-repo',
-        conflicts: ['explorer', 'coverage', 'git-branch', 'git-pulls', 'git-compare', 'npm-package']
+        conflicts: ['explorer', 'coverage', 'git-branch', 'git-pulls', 'git-compare', 'npm']
       })
       .option('git-branch', {
+        alias: 'B',
         type: 'boolean',
         desc: 'browse current branch',
         usage: '$0 open --git-branch',
-        conflicts: ['explorer', 'coverage', 'git-repo', 'git-pulls', 'git-compare', 'npm-package']
+        conflicts: ['explorer', 'coverage', 'git-repo', 'git-pulls', 'git-compare', 'npm']
       })
       .option('git-actions', {
+        alias: 'A',
         type: 'boolean',
-        desc: 'browse actions tab',
+        desc: 'browse actions tab (only github.com)',
         usage: '$0 open --git-branch',
-        conflicts: ['explorer', 'coverage', 'git-repo', 'git-pulls', 'git-compare', 'npm-package']
+        conflicts: ['explorer', 'coverage', 'git-repo', 'git-pulls', 'git-compare', 'npm']
       })
       .option('git-pulls', {
+        alias: 'P',
         type: 'boolean',
         desc: 'browse pull request tab',
         usage: '$0 open --git-pulls',
-        conflicts: ['explorer', 'coverage', 'git-repo', 'git-branch', 'git-compare', 'npm-package']
+        conflicts: ['explorer', 'coverage', 'git-repo', 'git-branch', 'git-compare', 'npm']
       })
       .option('git-compare', {
+        alias: 'C',
         type: 'boolean',
-        desc: 'browse compare current branch with another branch',
-        usage: '$0 open --git-compare <branch>',
-        conflicts: ['explorer', 'coverage', 'git-repo', 'git-branch', 'git-pulls', 'npm-package']
+        desc: 'browse compare current with another [branch]',
+        usage: '$0 open [branch] --git-compare',
+        conflicts: ['explorer', 'coverage', 'git-repo', 'git-branch', 'git-pulls', 'npm'],
+        implies: ['branch']
       })
-      .option('npm-package', {
+      .option('npm', {
+        alias: 'N',
         type: 'boolean',
-        desc: 'browse package name on npm package site',
-        usage: '$0 open --npm-package',
-        conflicts: ['explorer', 'coverage', 'git-repo', 'git-branch', 'git-pulls', 'git-compare']
+        desc: 'browse package on npmjs.com',
+        usage: '$0 open --npm',
+        conflicts: ['explorer', 'coverage', 'git-repo', 'git-branch', 'git-pulls', 'git-compare'],
+        implies: ['package']
+      })
+      .check(async (yargs) => {
+        const options = yargs.explorer ||
+        yargs.coverage ||
+        yargs['git-repo'] ||
+        yargs['git-branch'] ||
+        yargs['git-actions'] ||
+        yargs['git-pulls'] ||
+        yargs['git-compare'] ||
+        yargs.npm
+
+        if (!options) {
+          const errorMessage = 'clean command requires to be combined with at least one available option'
+          checkErrorMessage(yargs.$0, 'open', errorMessage)
+        }
+
+        if (hasGitProperty(yargs)) {
+          const gitPath = resolvePath(cwd(), '.git')
+          yargs.git = pathExists(gitPath)
+
+          if (!yargs.git) {
+            const errorMessage = 'no repository found'
+            checkErrorMessage(yargs.$0, 'open', errorMessage)
+            yargs.repo = gerReposStatus()
+          }
+
+          if (('actions' in yargs) && yargs.url !== 'github.com') {
+            const errorMessage = 'git-actions" option is only available for github'
+            checkErrorMessage(yargs.$0, 'open', errorMessage)
+          }
+
+          if (('git-pulls' in yargs) && !yargs?.pullPath) {
+            const errorMessage = `"git-pulls" option is not available for  ${yargs.provider}`
+            checkErrorMessage(yargs.$0, 'open', errorMessage)
+          }
+        }
+
+        if ('npm' in yargs) {
+          if (yargs.package === '.') {
+            const packageJson = await getPackageJson()
+
+            if (!packageJson) {
+              const errorMessage = 'no package.json found'
+              checkErrorMessage(yargs.$0, 'open', errorMessage)
+            } else {
+              yargs.package = packageJson.name
+            }
+          }
+        }
+
+        // if (yargs?.['path,file-path,branch']) {
+        //   const value = yargs['path,file-path,branch']
+        //   if ('explorer' in yargs) {
+        //     yargs.path = value
+        //   }
+        //   if ('coverage' in yargs) {
+        //     yargs.fileName = value
+        //   }
+        //   if ('git-compare' in yargs) {
+        //     yargs.branch = value
+        //   }
+        // }
+
+        return true
       }),
 
   handler: async (yargs) => {
     console.log(`🚀 ${chalk.bold('Opening')}: `)
 
     if ('explorer' in yargs) {
-      let path = cwd()
-      if ('path' in yargs && yargs?.path) {
-        path = yargs?.path
+      // TODO: check absolute and relative paths
+      // TODO: test from WSL
+      const path = resolvePath(cwd(), yargs.path ?? '.')
+
+      if (await pathExists(path)) {
+        openExplorer(path)
+      } else {
+        console.error(stripIndents`
+          ${chalk.red.bold('Error')}: ${chalk.bold(path)} path not found.
+        `)
       }
-      openExplorer(path)
     }
 
     if ('coverage' in yargs) {
-      let url = yargs?.file
-      if (!url) {
-        url = resolvePath(cwd(), 'coverage/lcov-report/index.html')
-      }
+      // TODO: check absolute and relative paths
+      // TODO: test from WSL
+      const filePath = resolvePath(cwd(), yargs.filePath ?? './coverage/lcov-report/index.html')
 
-      if (await fileExists(url)) {
-        await openBrowser(url)
+      if (await fileExists(filePath)) {
+        await openBrowser(filePath)
       } else {
         console.error(stripIndents`
-        ${chalk.red.bold('Error')}: ${chalk.bold(url)} file not found.
+        ${chalk.red.bold('Error')}: ${chalk.bold(filePath)} file not found.
       `)
       }
     }
 
-    if (hasGitProperty(yargs)) {
-      const repoUrl = getRepoUrl()
-      const currentBranch = gitCurrentBranch()
-
+    if ('git' in yargs && yargs?.url) {
       if ('git-repo' in yargs) {
-        await openBrowser(repoUrl)
+        await openBrowser(yargs.url)
       }
 
       if ('git-branch' in yargs) {
-        const url = `${repoUrl}/tree/${currentBranch}`
+        const url = `${yargs.url}/tree/${yargs.currentBranch}`
         await openBrowser(url)
       }
 
       if ('git-actions' in yargs) {
-        await openBrowser(`${repoUrl}/actions`)
+        await openBrowser(`${yargs.url}/actions`)
       }
 
       if ('git-pulls' in yargs) {
-        await openBrowser(`${repoUrl}/pulls`)
+        await openBrowser(`${yargs.url}/${yargs.pullPath}`)
       }
 
       if ('git-compare' in yargs) {
-        let baseBranch = yargs?.branch
-        if (!baseBranch) {
-          baseBranch = 'dev'
-        }
+        const baseBranch = yargs.branch ?? 'dev'
 
-        const url = `${repoUrl}/compare/${baseBranch}..${currentBranch}`
+        const url = `${yargs.url}/compare/${baseBranch}..${yargs.currentBranch}`
         await openBrowser(url)
       }
     }
 
-    if ('npm-package' in yargs) {
-      // TODO: implement getting the name from package.json
+    if ('npm' in yargs && yargs?.package) {
+      const url = `https://www.npmjs.com/package/${yargs.package}`
+      await openBrowser(url)
     }
-
-    exit(0)
   }
 }
 
-export default clean
+export default open

@@ -86,22 +86,23 @@ With `swpm --help` it will show a command help resume.
 swpm [<command>] [args] [FLAGS]
 
 Commands:
-  swpm install [args]                      install packages from package.json
+  swpm install [args]                       install packages from package.json
                                                                     [aliases: i]
-  swpm add <package> [args]                add package              [aliases: a]
-  swpm remove <package> [args]             remove package
+  swpm add <package> [args]                 add package             [aliases: a]
+  swpm remove <package> [args]              remove package
                                                  [aliases: r, rm, uninstall, un]
-  swpm update <package> [args]             update package      [aliases: up, ud]
-  swpm upgrade <package> [args]            upgrade package to latest
+  swpm update <package> [args]              update package     [aliases: up, ud]
+  swpm upgrade <package> [args]             upgrade package to latest
                                                                    [aliases: ug]
-  swpm interactive [args]                  update packages interactive
+  swpm interactive [args]                   update packages interactive
                                                                    [aliases: ui]
-  swpm open [path,filePath,branch] [args]  open in the file explore or browser
-                                                                    [aliases: o]
-  swpm clean [args]                        clean packages           [aliases: c]
+  swpm open [path|filePath|branch|package]  open in the file explore or browser
+   [args]                                                           [aliases: o]
+  swpm clean [args]                         clean packages          [aliases: c]
 
 Options:
   -u, --use    use a package manager
+                           [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -p, --pin    pin a package manager
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
@@ -542,6 +543,43 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | `sca`  | `swpm clean --all`                             |
 | `scf`  | `swpm clean --fresh && swpm install --frozen`  |
 | `sci`  | `swpm clean --all && swpm install`             |
+
+### soe (open explorer)
+
+| Alias           | `soe [path]`                  |
+| --------------- | ----------------------------- |
+| **soe**         | `swpm open --explorer`        |
+| **soe [path]**  | `swpm open [path] --explorer` |
+
+### soc (open coverage)
+
+| Alias           | `soc [fileName]`                  |
+| --------------- | --------------------------------- |
+| **soc**         | `swpm open --coverage`            |
+| **soc [path]**  | `swpm open [fileName] --coverage` |
+
+### sg<?> (open git)
+
+| Alias  | Command                   |
+| ------ | ------------------------- |
+| `sgr`  | `swpm open --git-repo`    |
+| `sgb`  | `swpm open --git-branch`  |
+| `sga`  | `swpm open --git-actions` |
+| `sgp`  | `swpm open --git-pulls`   |
+
+### sgc (open git-compare)
+
+| Alias             | `sgc [branch]`                     |
+| ----------------- | ---------------------------------- |
+| **sgc**           | `swpm open --git-compare`          |
+| **sgc [branch]**  | `swpm open [branch] --git-compare` |
+
+### son (open npm package)
+
+| Alias              | `son [package]`             |
+| ------------------ | --------------------------- |
+| **son**            | `swpm open --npm`           |
+| **son [package]**  | `swpm open [package] --npm` |
 
 ⇧ [Back to menu](#menu)
 

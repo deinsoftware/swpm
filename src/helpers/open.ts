@@ -50,7 +50,7 @@ export const openExplorer = (path: string = cwd()) => {
   spinnies.add(path)
   const child = spawnSync(cmd, [path, '2>&1'], { stdio: 'inherit', shell: true })
 
-  if (child.status !== 0) { // TODO: open the file but return it as error
+  if (child.status !== 0) { // FIXME: open the file but return it as error
     spinnies.fail(path)
     exit(1)
   }
