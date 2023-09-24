@@ -1,10 +1,10 @@
 import { CommandModule } from 'yargs'
-import { exit } from 'node:process'
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
 import { translateArgs } from '../../../helpers/args.js'
 import cmdr from '../../../translator/commander.js'
 import prompts from 'prompts'
+import { checkErrorMessage } from '../../../helpers/messages.js'
 
 type OptionsProps = {
   'package-lock'?: boolean,
@@ -39,8 +39,8 @@ const install: CommandModule<Record<string, unknown>, OptionsProps> = {
           const command = chalk.blue.bold(`swpm ${args.join(' ')}`)
 
           console.error(stripIndents`
-        ${chalk.red.bold('Error')}: to install a specific ${chalk.bold('<package>')} please use ${chalk.bold('add')} command.
-      `)
+            ${chalk.red.bold('Error')}: to install a specific ${chalk.bold('<package>')} please use ${chalk.bold('add')} command.
+          `)
 
           const response = await prompts({
             type: 'confirm',
@@ -50,7 +50,7 @@ const install: CommandModule<Record<string, unknown>, OptionsProps> = {
           })
 
           if (!response.value) {
-            exit(1)
+            checkErrorMessage(yargs.$0, 'install')
           }
 
           cmdr.args = cmdr.args.map(arg => arg === 'install' ? 'add' : arg)

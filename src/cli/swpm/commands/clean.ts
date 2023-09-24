@@ -1,6 +1,7 @@
 import chalk from 'chalk'
 import { CommandModule } from 'yargs'
 import { deleteModulesPath, deleteModulesFiles, deleteLockFiles, deleteLogFiles, deletePath } from '../../../helpers/delete.js'
+import { checkErrorMessage } from '../../../helpers/messages.js'
 
 type OptionsProps = {
   'all'?: boolean,
@@ -80,7 +81,8 @@ const clean: CommandModule<Record<string, unknown>, OptionsProps> = {
         yargs.coverage
 
         if (!options) {
-          throw new Error('Error: clean command requires at least one option')
+          const errorMessage = 'clean command requires to be combined with at least one available option'
+          checkErrorMessage(yargs.$0, 'clean', errorMessage)
         }
         return true
       }),
