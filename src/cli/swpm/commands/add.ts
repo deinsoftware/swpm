@@ -11,7 +11,7 @@ type OptionsProps = {
 }
 
 const add: CommandModule<Record<string, unknown>, OptionsProps> = {
-  command: 'add <package> [args] [FLAGS]',
+  command: 'add <package> [args]',
   aliases: ['a'],
   describe: 'add package',
 

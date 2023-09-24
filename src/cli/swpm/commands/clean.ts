@@ -14,7 +14,7 @@ type OptionsProps = {
 }
 
 const clean: CommandModule<Record<string, unknown>, OptionsProps> = {
-  command: 'clean [FLAGS]',
+  command: 'clean [args]',
   aliases: ['c'],
   describe: 'clean packages',
 

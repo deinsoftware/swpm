@@ -75,7 +75,7 @@ Install as global with any of this package managers
 The `swpm` will run the command switching automatically searching for the `lock` file or the pinned Package Manager.
 
 ```bash
-swpm <command> [args] [FLAGS]
+swpm [<command>] [args] [FLAGS]
 ```
 
 ### Help
@@ -86,16 +86,19 @@ With `swpm --help` it will show a command help resume.
 swpm [<command>] [args] [FLAGS]
 
 Commands:
-  swpm install [FLAGS]                   install packages from package.json     
+  swpm install [args]                      install packages from package.json
                                                                     [aliases: i]
-  swpm add <package> [args] [FLAGS]      add package                [aliases: a]
-  swpm remove <package> [args] [FLAGS]   remove package
+  swpm add <package> [args]                add package              [aliases: a]
+  swpm remove <package> [args]             remove package
                                                  [aliases: r, rm, uninstall, un]
-  swpm update <package> [args] [FLAGS]   update package        [aliases: up, ud]
-  swpm upgrade <package> [args] [FLAGS]  upgrade package to latest [aliases: ug]
-  swpm interactive [args] [FLAGS]        update packages interactive
+  swpm update <package> [args]             update package      [aliases: up, ud]
+  swpm upgrade <package> [args]            upgrade package to latest
+                                                                   [aliases: ug]
+  swpm interactive [args]                  update packages interactive
                                                                    [aliases: ui]
-  swpm clean [FLAGS]                     clean packages             [aliases: c]
+  swpm open [path,filePath,branch] [args]  open in the file explore or browser
+                                                                    [aliases: o]
+  swpm clean [args]                        clean packages           [aliases: c]
 
 Options:
   -u, --use    use a package manager
@@ -106,8 +109,8 @@ Options:
   -t, --test   test command (without running)
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -m, --mute   mute command translation
-      --info   show information and versions                           [boolean]
       --alias  show command alias                                      [boolean]
+      --info   show information and versions                           [boolean]
       --help   Show help                                               [boolean]
 ```
 
@@ -118,7 +121,7 @@ Options:
 By default, will install all modules listed as dependencies in `package.json`.
 
 ```bash
-swpm install [args] [FLAGS]
+swpm install [args]
 ```
 
 > Alias: `i`
@@ -138,7 +141,7 @@ This command installs a package and any packages that it depends on. If the pack
 This command, no arguments, will add a package to local `package.json` file. Package will appear as **dependencies** by default.
 
 ```bash
-swpm add <package> [args] [FLAGS]
+swpm add <package> [args]
 ```
 
 > Alias: `a`
@@ -158,7 +161,7 @@ swpm add <package> [args] [FLAGS]
 This command, no arguments, will remove a package to local `package.json` file. Package will be removed as **dependencies** by default.
 
 ```bash
-swpm remove <package> [args] [FLAGS]
+swpm remove <package> [args]
 ```
 
 > Aliases: `r`, `rm`, `uninstall`, `un`
@@ -175,7 +178,7 @@ swpm remove <package> [args] [FLAGS]
 This command will update all the packages listed to the latest version (specified by the `tag` config), respecting the semver constraints of both your package and its dependencies (if they also require the same package). It will also install missing packages.
 
 ```bash
-swpm update [<package>] [args] [FLAGS]
+swpm update [<package>] [args]
 ```
 
 > Aliases: `up`, `ud`
@@ -193,7 +196,7 @@ This command will upgrade the packages to the latest version, ignoring ranges sp
 > It will save new version on `package.json` file
 
 ```bash
-swpm upgrade <package> [args] [FLAGS]
+swpm upgrade <package> [args]
 ```
 
 > Alias: `ug`
@@ -211,7 +214,7 @@ swpm upgrade <package> [args] [FLAGS]
 Show outdated dependencies and select which ones to upgrade.
 
 ```bash
-swpm interactive [FLAGS]
+swpm interactive [args]
 ```
 
 > Alias: `ui`
@@ -340,7 +343,7 @@ swpm outdated [<package>] [--global]
 The `swpx` will execute the command switching automatically to the pinned Package Manager without previous installing the package.
 
 ```bash
-swpx <command> [FLAGS]
+swpx [<command>] [FLAGS]
 ```
 
 ### Help
@@ -354,11 +357,10 @@ Options:
   -u, --use    use a package manager
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -t, --test   test command (without running)
-  -t, --test   test command (without running)
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -m, --mute   mute command translation
-      --info   show information and versions                           [boolean]
       --alias  show command alias                                      [boolean]
+      --info   show information and versions                           [boolean]
       --help   Show help                                               [boolean]
 ```
 

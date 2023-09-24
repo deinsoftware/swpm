@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 2.0.1 - 2023/09/21
+
+## Added
+
+- `open` command to easy access the file explorer or open repository urls in the browser
+
 ## 2.0.0 - 2023/09/21
 
 ## Changed

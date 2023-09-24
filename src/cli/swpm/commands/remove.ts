@@ -11,7 +11,7 @@ type OptionsProps = {
 }
 
 const remove: CommandModule<Record<string, unknown>, OptionsProps> = {
-  command: 'remove <package> [args] [FLAGS]',
+  command: 'remove <package> [args]',
   aliases: ['r', 'rm', 'uninstall', 'un'],
   describe: 'remove package',
 

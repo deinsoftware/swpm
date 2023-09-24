@@ -9,7 +9,7 @@ type OptionsProps = {
 }
 
 const interactive: CommandModule<Record<string, unknown>, OptionsProps> = {
-  command: 'interactive [args] [FLAGS]',
+  command: 'interactive [args]',
   aliases: ['ui'],
   describe: 'update packages interactive',
 

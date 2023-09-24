@@ -6,7 +6,7 @@ type OptionsProps = {
 }
 
 const update: CommandModule<Record<string, unknown>, OptionsProps> = {
-  command: 'update <package> [args] [FLAGS]',
+  command: 'update <package> [args]',
   aliases: ['up', 'ud'],
   describe: 'update package',
 
