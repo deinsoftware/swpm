@@ -8,6 +8,7 @@ import { fileExists, getPackageJson } from '../../../helpers/files.js'
 import { gerReposStatus, hasRepository } from '../../../helpers/repos.js'
 import { stripIndents } from 'common-tags'
 import { checkErrorMessage } from '../../../helpers/messages.js'
+import { Repository } from '../../../helpers/repos.types.js'
 
 type OptionsProps = {
   'explorer'?: boolean
@@ -18,13 +19,10 @@ type OptionsProps = {
   'git-compare'?: boolean
   npm?: boolean
   path?: string
-  filePath?: string
-  branch?: string
   git?: boolean
-  url?: `https://${string}`
-  provider?: string
-  current?: string
-  pullPath?: string
+  branch?: string
+  repo?: Repository
+  filePath?: string
   package?: string
 }
 
@@ -155,27 +153,33 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
         }
 
         if (hasGitProperty(yargs)) {
-          yargs.git = await hasRepository()
-
-          if (!yargs.git) {
+          const git = await hasRepository()
+          if (!git) {
             const errorMessage = 'no repository found'
             checkErrorMessage(yargs.$0, 'open', errorMessage)
-          } else {
-            const { url, provider, current, pullPath } = gerReposStatus()
-            yargs.url = url
-            yargs.provider = provider
-            yargs.current = current
-            yargs.pullPath = pullPath
           }
 
-          if (('git-actions' in yargs) && yargs.url !== 'github.com') {
+          const repo = gerReposStatus()
+
+          if (('git-branch' in yargs) && !repo?.paths?.branch) {
+            const errorMessage = `"git-branch" option is not available for ${yargs.provider}`
+            checkErrorMessage(yargs.$0, 'open', errorMessage)
+          }
+
+          if (('git-actions' in yargs) && repo.url !== 'github.com') {
             const errorMessage = 'git-actions" option is only available for github'
             checkErrorMessage(yargs.$0, 'open', errorMessage)
           }
 
-          if (('git-pulls' in yargs) && !yargs?.pullPath) {
-            const errorMessage = `"git-pulls" option is not available for  ${yargs.provider}`
+          if (('git-pulls' in yargs) && !repo?.paths?.pull) {
+            const errorMessage = `"git-pulls" option is not available for ${yargs.provider}`
             checkErrorMessage(yargs.$0, 'open', errorMessage)
+          }
+
+          yargs = {
+            ...yargs,
+            git,
+            repo
           }
         }
 
@@ -210,28 +214,28 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
       }
     }
 
-    if ('git' in yargs && yargs?.url) {
+    if ('git' in yargs && yargs?.repo?.url) {
       if ('git-repo' in yargs) {
-        await openBrowser(yargs.url)
+        await openBrowser(yargs.repo.url)
       }
 
       if ('git-branch' in yargs) {
-        const url = `${yargs.url}/tree/${yargs.current}`
+        const url = `${yargs.repo.url}/${yargs?.repo?.paths?.branch ?? 'tree'}/${yargs.repo.current}`
         await openBrowser(url)
       }
 
       if ('git-actions' in yargs) {
-        await openBrowser(`${yargs.url}/actions`)
+        await openBrowser(`${yargs.repo.url}/actions`)
       }
 
       if ('git-pulls' in yargs) {
-        await openBrowser(`${yargs.url}/${yargs?.pullPath}`)
+        await openBrowser(`${yargs.repo.url}/${yargs?.repo?.paths?.pull ?? 'pulls'}`)
       }
 
       if ('git-compare' in yargs) {
         const baseBranch = yargs.branch ?? 'dev'
 
-        const url = `${yargs.url}/compare/${baseBranch}..${yargs.current}`
+        const url = `${yargs.repo.url}/compare/${baseBranch}..${yargs.repo.current}`
         await openBrowser(url)
       }
     }
