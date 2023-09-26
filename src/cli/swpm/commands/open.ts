@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import { exit, cwd } from 'node:process'
 import { resolve as resolvePath } from 'node:path'
-,import { ArgumentsCamelCase, CommandModule } from 'yargs'
+import { ArgumentsCamelCase, CommandModule } from 'yargs'
 import { openBrowser, openExplorer } from '../../../helpers/open.js'
 import { fileExists, getPackageJson, pathExists } from '../../../helpers/files.js'
 import { getReposStatus, hasRepository } from '../../../helpers/repos.js'
