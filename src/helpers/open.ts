@@ -32,7 +32,7 @@ const osConfig: Record<string, {path: string, cmd: string}> = {
   macos: { path: '/', cmd: 'open' }
 }
 
-export const openExplorer = async (path: string = cwd()) => {
+export const openFileExplorer = async (path: string = cwd()) => {
   const os = detectOs()
   const { cmd } = osConfig[os]
   if (os === 'wsl') {

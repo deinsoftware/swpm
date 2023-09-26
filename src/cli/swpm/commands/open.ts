@@ -2,7 +2,7 @@ import chalk from 'chalk'
 import { exit, cwd } from 'node:process'
 import { resolve as resolvePath } from 'node:path'
 import { ArgumentsCamelCase, CommandModule } from 'yargs'
-import { openBrowser, openExplorer } from '../../../helpers/open.js'
+import { openBrowser, openFileExplorer } from '../../../helpers/open.js'
 import { fileExists, getPackageJson, pathExists } from '../../../helpers/files.js'
 import { getReposStatus, hasRepository } from '../../../helpers/repos.js'
 import { stripIndents } from 'common-tags'
@@ -27,6 +27,64 @@ type OptionsProps = {
 
 const hasGitProperty = (yargs: ArgumentsCamelCase<OptionsProps>) => {
   return Object.keys(yargs).some((key) => key.startsWith('git'))
+}
+const openExplorer = async (yargs: ArgumentsCamelCase<OptionsProps>) => {
+  const path = resolvePath(cwd(), yargs?.path ?? '.')
+
+  if (await pathExists(path)) {
+    await openFileExplorer(path)
+  } else {
+    console.error(stripIndents`
+          ${chalk.red.bold('Error')}: ${chalk.bold(path)} path not found.
+        `)
+    exit(1)
+  }
+}
+
+const openCoverage = async (yargs: ArgumentsCamelCase<OptionsProps>) => {
+  const filePath = resolvePath(cwd(), yargs?.filePath ?? './coverage/lcov-report/index.html')
+
+  if (await fileExists(filePath)) {
+    await openBrowser(filePath)
+  } else {
+    console.error(stripIndents`
+          ${chalk.red.bold('Error')}: ${chalk.bold(filePath)} file not found.
+        `)
+    exit(1)
+  }
+}
+
+const openGit = async (yargs: ArgumentsCamelCase<OptionsProps>) => {
+  if (!yargs?.repo?.url) return
+
+  if ('git-repo' in yargs) {
+    await openBrowser(yargs.repo.url)
+  }
+
+  if ('git-branch' in yargs) {
+    const url = `${yargs.repo.url}/${yargs?.repo?.paths?.branch ?? 'tree'}/${yargs.repo.current}`
+    await openBrowser(url)
+  }
+
+  if ('git-pipeline' in yargs) {
+    await openBrowser(`${yargs.repo.url}/${yargs?.repo?.paths?.ci ?? 'actions'}`)
+  }
+
+  if ('git-merge' in yargs) {
+    await openBrowser(`${yargs.repo.url}/${yargs?.repo?.paths?.pull ?? 'pulls'}`)
+  }
+
+  if ('git-diff' in yargs) {
+    const baseBranch = yargs.branch ?? 'dev'
+
+    const url = `${yargs.repo.url}/${yargs?.repo?.paths?.diff ?? 'compare'}/${baseBranch}..${yargs.repo.current}`
+    await openBrowser(url)
+  }
+}
+
+const openNpm = async (yargs: ArgumentsCamelCase<OptionsProps>) => {
+  const url = `https://www.npmjs.com/package/${yargs.package}`
+  await openBrowser(url)
 }
 
 const open: CommandModule<Record<string, unknown>, OptionsProps> = {
@@ -199,60 +257,19 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
     console.log(`🚀 ${chalk.bold('Opening')}: `)
 
     if ('explorer' in yargs) {
-      const path = resolvePath(cwd(), yargs?.path ?? '.')
-
-      if (await pathExists(path)) {
-        await openExplorer(path)
-      } else {
-        console.error(stripIndents`
-          ${chalk.red.bold('Error')}: ${chalk.bold(path)} path not found.
-        `)
-        exit(1)
-      }
+      await openExplorer(yargs)
     }
 
-    if ('git' in yargs && yargs?.repo?.url) {
-      if ('git-repo' in yargs) {
-        await openBrowser(yargs.repo.url)
-      }
-
-      if ('git-branch' in yargs) {
-        const url = `${yargs.repo.url}/${yargs?.repo?.paths?.branch ?? 'tree'}/${yargs.repo.current}`
-        await openBrowser(url)
-      }
-
-      if ('git-pipeline' in yargs) {
-        await openBrowser(`${yargs.repo.url}/${yargs?.repo?.paths?.ci ?? 'actions'}`)
-      }
-
-      if ('git-merge' in yargs) {
-        await openBrowser(`${yargs.repo.url}/${yargs?.repo?.paths?.pull ?? 'pulls'}`)
-      }
-
-      if ('git-diff' in yargs) {
-        const baseBranch = yargs.branch ?? 'dev'
-
-        const url = `${yargs.repo.url}/${yargs?.repo?.paths?.diff ?? 'compare'}/${baseBranch}..${yargs.repo.current}`
-        await openBrowser(url)
-      }
+    if ('git' in yargs) {
+      await openGit(yargs)
     }
 
     if ('coverage' in yargs) {
-      const filePath = resolvePath(cwd(), yargs?.filePath ?? './coverage/lcov-report/index.html')
-
-      if (await fileExists(filePath)) {
-        await openBrowser(filePath)
-      } else {
-        console.error(stripIndents`
-          ${chalk.red.bold('Error')}: ${chalk.bold(filePath)} file not found.
-        `)
-        exit(1)
-      }
+      await openCoverage(yargs)
     }
 
     if ('npm' in yargs && yargs?.package) {
-      const url = `https://www.npmjs.com/package/${yargs.package}`
-      await openBrowser(url)
+      await openNpm(yargs)
     }
   }
 }
