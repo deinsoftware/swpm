@@ -191,58 +191,64 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
         }
 
         const checkResource = () => {
-          if ('explorer' in yargs) {
-            yargs.path = yargs.resource ?? '.'
-          } else if ('git-diff' in yargs) {
-            yargs.branch = yargs.resource ?? 'dev'
-          } else if ('coverage' in yargs) {
-            yargs.filePath = yargs.resource ?? './coverage/index.html'
-          } else if ('npm' in yargs) {
-            yargs.package = yargs.resource ?? '.'
+          if ('resource' in yargs) {
+            if ('explorer' in yargs) {
+              yargs.path = yargs?.resource
+            } else if ('git-diff' in yargs) {
+              yargs.branch = yargs.resource
+            } else if ('coverage' in yargs) {
+              yargs.filePath = yargs.resource
+            } else if ('npm' in yargs) {
+              yargs.package = yargs.resource
+            }
           }
         }
 
         const checkGit = async () => {
-          const git = await hasRepository()
-          if (!git) {
-            const errorMessage = 'no repository found'
-            checkErrorMessage(yargs.$0, 'open', errorMessage)
+          if (hasGitProperty(yargs)) {
+            const git = await hasRepository()
+            if (!git) {
+              const errorMessage = 'no repository found'
+              checkErrorMessage(yargs.$0, 'open', errorMessage)
+            }
+
+            const repo = await getReposStatus()
+
+            if (('git-branch' in yargs) && !repo?.paths?.branch) {
+              const errorMessage = `"git-branch" option is not available for ${yargs.provider}`
+              checkErrorMessage(yargs.$0, 'open', errorMessage)
+            } else if (('git-pipeline' in yargs) && !repo?.paths?.ci) {
+              const errorMessage = `"git-pipeline" option is not available for ${yargs.provider}`
+              checkErrorMessage(yargs.$0, 'open', errorMessage)
+            } else if (('git-merge' in yargs) && !repo?.paths?.pull) {
+              const errorMessage = `"git-merge" option is not available for ${yargs.provider}`
+              checkErrorMessage(yargs.$0, 'open', errorMessage)
+            }
+
+            yargs.git = git
+            yargs.repo = repo
           }
-
-          const repo = await getReposStatus()
-
-          if (('git-branch' in yargs) && !repo?.paths?.branch) {
-            const errorMessage = `"git-branch" option is not available for ${yargs.provider}`
-            checkErrorMessage(yargs.$0, 'open', errorMessage)
-          } else if (('git-pipeline' in yargs) && !repo?.paths?.ci) {
-            const errorMessage = `"git-pipeline" option is not available for ${yargs.provider}`
-            checkErrorMessage(yargs.$0, 'open', errorMessage)
-          } else if (('git-merge' in yargs) && !repo?.paths?.pull) {
-            const errorMessage = `"git-merge" option is not available for ${yargs.provider}`
-            checkErrorMessage(yargs.$0, 'open', errorMessage)
-          }
-
-          yargs.git = git
-          yargs.repo = repo
         }
 
         const checkNpm = async () => {
-          if (yargs.package === '.') {
-            const packageJson = await getPackageJson()
+          if ('npm' in yargs) {
+            if (yargs.package === '.') {
+              const packageJson = await getPackageJson()
 
-            if (!packageJson) {
-              const errorMessage = 'no package.json found'
-              checkErrorMessage(yargs.$0, 'open', errorMessage)
-            } else {
-              yargs.package = packageJson.name
+              if (!packageJson) {
+                const errorMessage = 'no package.json found'
+                checkErrorMessage(yargs.$0, 'open', errorMessage)
+              } else {
+                yargs.package = packageJson.name
+              }
             }
           }
         }
 
         checkOptions()
-        if ('resource' in yargs) checkResource()
-        if (hasGitProperty(yargs)) await checkGit()
-        if ('npm' in yargs) await checkNpm()
+        checkResource()
+        await checkGit()
+        await checkNpm()
 
         return true
       }),
