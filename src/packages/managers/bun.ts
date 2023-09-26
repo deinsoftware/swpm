@@ -21,12 +21,16 @@ const bun: PackageConfiguration = {
     interactive: ['', -1]
   },
   args: {
-    '--save-dev': '-d',
+    '--save-dev': '--dev',
     '-D': '-d',
+    '--save-exact': '--exact',
+    '-E': '--exact',
+    '--save-optional': '--optional',
+    '-O': '--optional',
     '--frozen': '--frozen-lockfile',
     '-F': '--frozen-lockfile',
-    '--package-lock': ['', -1],
-    '-P': ['', -1]
+    '--package-lock': '--no-save',
+    '-P': '--no-save'
   }
 }
 

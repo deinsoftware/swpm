@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 2.3.0 - 2023/09/26
+
+## Added
+
+- `bun` command and flags included in new version
+
 ## 2.2.1 - 2023/09/26
 
 ## Fixed
