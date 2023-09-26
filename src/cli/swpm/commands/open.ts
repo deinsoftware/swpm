@@ -28,6 +28,7 @@ type OptionsProps = {
 const hasGitProperty = (yargs: ArgumentsCamelCase<OptionsProps>) => {
   return Object.keys(yargs).some((key) => key.startsWith('git'))
 }
+
 const openExplorer = async (yargs: ArgumentsCamelCase<OptionsProps>) => {
   const path = resolvePath(cwd(), yargs?.path ?? '.')
 
