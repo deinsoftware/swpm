@@ -243,6 +243,9 @@ swpm open [resource] [args]
 | `--coverage [filePath]`  | `-C`  | Browse coverage report on browser (`./coverage/index.html` by default) |
 | `--npm [package]`        | `-N`  | Browse package on nmpjs.com (current name by default)                  |
 
+> **Info**:  
+> Those `--git` flags are compatible with `GitHub`, `GitLab` and `BitBucket`.
+
 **Examples:**
 
 Assuming that the current path is `/path/to/project`, with `--explorer` it will open the path in the file explorer:
@@ -255,17 +258,17 @@ Assuming that the current path is `/path/to/project`, with `--explorer` it will 
 | `swpm open --explorer ..`         | `soe ..`         | `/path/to`                   |
 | `swpm open --explorer ...`        | `soe ...`        | `/path`                      |
 | `swpm open --explorer ../another` | `soe ../another` | `/path/to/another`           |
-| `swpm open --explorer /`          | `soe /`          | `/`                          |
-| `swpm open --explorer ~`          | `soe ~`          | `~`                          |
+| `swpm open --explorer /`          | `soe /`          | `/` (only on unixish OS)     |
+| `swpm open --explorer ~`          | `soe ~`          | `~` (only on unixish OS)     |
 
 Assuming the current branch is `new-feat`, with `--diff` will open the diff comparison in the browser:
 
-| Command                     | Alias         | Diff                                 |
-| --------------------------- |-------------- | ------------------------------------ |
-| `swpm open --diff`          |`sgd`          | `dev` branch vs `new-feat`           |
-| `swpm open --diff main`     |`sgd main`     | `main` branch vs `new-feat`          |
-| `swpm open --diff f92fbcf8` |`sgd f92fbcf8` | `f92fbcf8` commit hash vs `new-feat` |
-| `swpm open --diff v1.0.0`   |`sgd v1.0.0`   | `v1.0.0` tag vs `new-feat`           |
+| Command                     | Alias         | Diff                                        |
+| --------------------------- |-------------- | ------------------------------------------- |
+| `swpm open --diff`          |`sgd`          | `dev` branch vs `new-feat` branch           |
+| `swpm open --diff main`     |`sgd main`     | `main` branch vs `new-feat` branch          |
+| `swpm open --diff f92fbcf8` |`sgd f92fbcf8` | `f92fbcf8` commit hash vs `new-feat` branch |
+| `swpm open --diff v1.0.0`   |`sgd v1.0.0`   | `v1.0.0` tag vs `new-feat` branch           |
 
 Assuming you have generated a coverage report, with `--coverage` it will open the report in the browser:
 
@@ -283,8 +286,6 @@ Assuming that the property `name` in `package.json` file is `swpm`, with `--npm`
 | ---------------------------- |---------------- | ------------------------------------------ |
 | `swpm open --npm`            |`son`            | `https://www.npmjs.com/package/swpm`       |
 | `swpm open --npm typescript` |`son typescript` | `https://www.npmjs.com/package/typescript` |
-
-<!-- TODO: check if also works outside of WSL -->
 
 #### Clean
 
