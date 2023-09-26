@@ -2,4 +2,4 @@
 
 import { spreadCommand } from '../helpers/cmds.js'
 
-spreadCommand({ cmd: 'swpm', args: ['open', '--git-actions'] })
+spreadCommand({ cmd: 'swpm', args: ['open', '--git-merge'] })

@@ -32,7 +32,7 @@ const osConfig: Record<string, {path: string, cmd: string}> = {
   macos: { path: '/', cmd: 'open' }
 }
 
-export const openExplorer = (path: string = cwd()) => {
+export const openExplorer = async (path: string = cwd()) => {
   const os = detectOs()
   const { cmd } = osConfig[os]
   if (os === 'wsl') {
@@ -42,13 +42,13 @@ export const openExplorer = (path: string = cwd()) => {
   spinnies.add(path)
   const child = spawnSync(cmd, [`"${path}"`, '2>&1'], { stdio: 'inherit', shell: true })
 
-  if (child.status !== 0) { // FIXME: open the file but return it as error
-    spinnies.fail(path)
+  if (child.status !== 0) {
+    spinnies.succeed(path)
     exit(1)
   }
 
   spinnies.succeed(path)
-  exit(child.status)
+  exit(0)
 }
 
 const isUrl = (url: string) => {

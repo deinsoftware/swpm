@@ -1,11 +1,11 @@
 import chalk from 'chalk'
-import { cwd } from 'node:process'
+import { exit, cwd } from 'node:process'
 import { resolve as resolvePath } from 'node:path'
 import { pathExists } from 'find-up'
 import { ArgumentsCamelCase, CommandModule } from 'yargs'
 import { openBrowser, openExplorer } from '../../../helpers/open.js'
 import { fileExists, getPackageJson } from '../../../helpers/files.js'
-import { gerReposStatus, hasRepository } from '../../../helpers/repos.js'
+import { getReposStatus, hasRepository } from '../../../helpers/repos.js'
 import { stripIndents } from 'common-tags'
 import { checkErrorMessage } from '../../../helpers/messages.js'
 import { Repository } from '../../../helpers/repos.types.js'
@@ -15,8 +15,8 @@ type OptionsProps = {
   'coverage'?: boolean
   'git-repo'?: boolean
   'git-branch'?: boolean
-  'git-pulls'?: boolean
-  'git-compare'?: boolean
+  'git-merge'?: boolean
+  'git-diff'?: boolean
   npm?: boolean
   path?: string
   git?: boolean
@@ -65,9 +65,9 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
       .option('explorer', {
         alias: 'E',
         type: 'boolean',
-        desc: 'open path on file explorer in [path]',
+        desc: 'open [path] on file explorer',
         usage: '$0 open [path] --explorer',
-        conflicts: ['coverage', 'git-repo', 'git-branch', 'git-pulls', 'git-compare', 'npm'],
+        conflicts: ['coverage', 'git-repo', 'git-branch', 'git-pipeline', 'git-merge', 'git-diff', 'npm'],
         implies: ['path']
       })
       .option('git-repo', {
@@ -75,43 +75,43 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
         type: 'boolean',
         desc: 'browse current repo',
         usage: '$0 open --git-repo',
-        conflicts: ['explorer', 'coverage', 'git-branch', 'git-pulls', 'git-compare', 'npm']
+        conflicts: ['explorer', 'coverage', 'git-branch', 'git-pipeline', 'git-merge', 'git-diff', 'npm']
       })
       .option('git-branch', {
         alias: 'B',
         type: 'boolean',
         desc: 'browse current branch',
         usage: '$0 open --git-branch',
-        conflicts: ['explorer', 'coverage', 'git-repo', 'git-pulls', 'git-compare', 'npm']
+        conflicts: ['explorer', 'coverage', 'git-repo', 'git-pipeline', 'git-merge', 'git-diff', 'npm']
       })
-      .option('git-actions', {
-        alias: 'A',
-        type: 'boolean',
-        desc: 'browse actions tab (only github.com)',
-        usage: '$0 open --git-branch',
-        conflicts: ['explorer', 'coverage', 'git-repo', 'git-pulls', 'git-compare', 'npm']
-      })
-      .option('git-pulls', {
+      .option('git-pipeline', {
         alias: 'P',
         type: 'boolean',
-        desc: 'browse pull request tab',
-        usage: '$0 open --git-pulls',
-        conflicts: ['explorer', 'coverage', 'git-repo', 'git-branch', 'git-compare', 'npm']
+        desc: 'browse pipeline/actions tab',
+        usage: '$0 open --git-branch',
+        conflicts: ['explorer', 'coverage', 'git-repo', 'git-pipeline', 'git-merge', 'git-diff', 'npm']
       })
-      .option('git-compare', {
-        alias: 'C',
+      .option('git-merge', {
+        alias: 'M',
         type: 'boolean',
-        desc: 'browse compare current with another [branch]',
-        usage: '$0 open [branch] --git-compare',
-        conflicts: ['explorer', 'coverage', 'git-repo', 'git-branch', 'git-pulls', 'npm'],
+        desc: 'browse merge/pull request tab',
+        usage: '$0 open --git-merge',
+        conflicts: ['explorer', 'coverage', 'git-repo', 'git-pipeline', 'git-branch', 'git-diff', 'npm']
+      })
+      .option('git-diff', {
+        alias: 'D',
+        type: 'boolean',
+        desc: 'browse diff current with another [branch]',
+        usage: '$0 open [branch] --git-diff',
+        conflicts: ['explorer', 'coverage', 'git-repo', 'git-pipeline', 'git-branch', 'git-merge', 'npm'],
         implies: ['branch']
       })
       .option('coverage', {
-        alias: 'V',
+        alias: 'C',
         type: 'boolean',
-        desc: 'view coverage report in [filePath]',
+        desc: 'browse coverage report in [filePath]',
         usage: '$0 open [filePath] --coverage',
-        conflicts: ['explorer', 'git-repo', 'git-branch', 'git-pulls', 'git-compare', 'npm'],
+        conflicts: ['explorer', 'git-repo', 'git-branch', 'git-pipeline', 'git-merge', 'git-diff', 'npm'],
         implies: ['filePath']
       })
       .option('npm', {
@@ -119,7 +119,7 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
         type: 'boolean',
         desc: 'browse package on npmjs.com',
         usage: '$0 open --npm',
-        conflicts: ['explorer', 'coverage', 'git-repo', 'git-branch', 'git-pulls', 'git-compare'],
+        conflicts: ['explorer', 'coverage', 'git-repo', 'git-pipeline', 'git-branch', 'git-merge', 'git-diff'],
         implies: ['package']
       })
       .check(async (yargs) => {
@@ -127,9 +127,9 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
         yargs.coverage ||
         yargs['git-repo'] ||
         yargs['git-branch'] ||
-        yargs['git-actions'] ||
-        yargs['git-pulls'] ||
-        yargs['git-compare'] ||
+        yargs['git-pipeline'] ||
+        yargs['git-merge'] ||
+        yargs['git-diff'] ||
         yargs.npm
 
         if (!options) {
@@ -141,7 +141,7 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
           if ('explorer' in yargs) {
             yargs.path = yargs.resource ?? '.'
           }
-          if ('git-compare' in yargs) {
+          if ('git-diff' in yargs) {
             yargs.branch = yargs.resource ?? 'dev'
           }
           if ('coverage' in yargs) {
@@ -159,28 +159,25 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
             checkErrorMessage(yargs.$0, 'open', errorMessage)
           }
 
-          const repo = gerReposStatus()
+          const repo = await getReposStatus()
 
           if (('git-branch' in yargs) && !repo?.paths?.branch) {
             const errorMessage = `"git-branch" option is not available for ${yargs.provider}`
             checkErrorMessage(yargs.$0, 'open', errorMessage)
           }
 
-          if (('git-actions' in yargs) && repo.url !== 'github.com') {
-            const errorMessage = 'git-actions" option is only available for github'
+          if (('git-pipeline' in yargs) && !repo?.paths?.ci) {
+            const errorMessage = `"git-pipeline" option is not available for ${yargs.provider}`
             checkErrorMessage(yargs.$0, 'open', errorMessage)
           }
 
-          if (('git-pulls' in yargs) && !repo?.paths?.pull) {
-            const errorMessage = `"git-pulls" option is not available for ${yargs.provider}`
+          if (('git-merge' in yargs) && !repo?.paths?.pull) {
+            const errorMessage = `"git-merge" option is not available for ${yargs.provider}`
             checkErrorMessage(yargs.$0, 'open', errorMessage)
           }
 
-          yargs = {
-            ...yargs,
-            git,
-            repo
-          }
+          yargs.git = git
+          yargs.repo = repo
         }
 
         if ('npm' in yargs) {
@@ -206,11 +203,12 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
       const path = resolvePath(cwd(), yargs?.path ?? '.')
 
       if (await pathExists(path)) {
-        openExplorer(path)
+        await openExplorer(path)
       } else {
         console.error(stripIndents`
           ${chalk.red.bold('Error')}: ${chalk.bold(path)} path not found.
         `)
+        exit(1)
       }
     }
 
@@ -224,18 +222,18 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
         await openBrowser(url)
       }
 
-      if ('git-actions' in yargs) {
-        await openBrowser(`${yargs.repo.url}/actions`)
+      if ('git-pipeline' in yargs) {
+        await openBrowser(`${yargs.repo.url}/${yargs?.repo?.paths?.ci ?? 'actions'}`)
       }
 
-      if ('git-pulls' in yargs) {
+      if ('git-merge' in yargs) {
         await openBrowser(`${yargs.repo.url}/${yargs?.repo?.paths?.pull ?? 'pulls'}`)
       }
 
-      if ('git-compare' in yargs) {
+      if ('git-diff' in yargs) {
         const baseBranch = yargs.branch ?? 'dev'
 
-        const url = `${yargs.repo.url}/compare/${baseBranch}..${yargs.repo.current}`
+        const url = `${yargs.repo.url}/${yargs?.repo?.paths?.diff ?? 'compare'}/${baseBranch}..${yargs.repo.current}`
         await openBrowser(url)
       }
     }
@@ -247,8 +245,9 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
         await openBrowser(filePath)
       } else {
         console.error(stripIndents`
-        ${chalk.red.bold('Error')}: ${chalk.bold(filePath)} file not found.
-      `)
+          ${chalk.red.bold('Error')}: ${chalk.bold(filePath)} file not found.
+        `)
+        exit(1)
       }
     }
 

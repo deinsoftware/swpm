@@ -235,13 +235,56 @@ swpm open [resource] [args]
 | Args                     | Alias | Description                                                            |
 | ------------------------ | ----- | ---------------------------------------------------------------------- |
 | `--explorer [path]`      | `-E`  | Open path on file explorer (current path by default)                   |
-| `--git-repo`             | `-R`  | Open current repo on browser                                           |
-| `--git-branch`           | `-B`  | Open current branch on browser                                         |
-| `--git-pulls`            | `-P`  | Open pulls tab of current repo on browser                              |
-| `--git-actions`          | `-A`  | Open actions tab of current repo (only github.com) on browser          |
-| `--git-compare [branch]` | `-C`  | Open compare current branch with another (`dev` by default) on browser |
-| `--coverage [filePath]`  | `-V`  | Open coverage report on browser (`./coverage/index.html` by default)   |
-| `--npm [package]`        | `-N`  | Open package on nmpjs.com (current by default)                         |
+| `--git-repo`             | `-R`  | Browse current repo on browser                                         |
+| `--git-branch`           | `-B`  | Browse current branch on browser                                       |
+| `--git-pipelines`        | `-P`  | Browse pipelines/actions tab of current repo on browser                |
+| `--git-merge`            | `-M`  | Browse merge/pull request tab of current repo on browser               |
+| `--git-diff [branch]`    | `-D`  | Browse diff current branch with another (`dev` by default)             |
+| `--coverage [filePath]`  | `-C`  | Browse coverage report on browser (`./coverage/index.html` by default) |
+| `--npm [package]`        | `-N`  | Browse package on nmpjs.com (current name by default)                  |
+
+**Examples:**
+
+Assuming that the current path is `/path/to/project`, with `--explorer` it will open the path in the file explorer:
+
+| Command                           | Alias            | Path                         |
+| --------------------------------- | ---------------- | ---------------------------- |
+| `swpm open --explorer`            | `soe`            | `/path/to/project`           |
+| `swpm open --explorer .`          | `soe .`          | `/path/to/project`           |
+| `swpm open --explorer subfolder`  | `soe subfolder`  | `/path/to/project/subfolder` |
+| `swpm open --explorer ..`         | `soe ..`         | `/path/to`                   |
+| `swpm open --explorer ...`        | `soe ...`        | `/path`                      |
+| `swpm open --explorer ../another` | `soe ../another` | `/path/to/another`           |
+| `swpm open --explorer /`          | `soe /`          | `/`                          |
+| `swpm open --explorer ~`          | `soe ~`          | `~`                          |
+
+Assuming the current branch is `new-feat`, with `--diff` will open the diff comparison in the browser:
+
+| Command                     | Alias         | Diff                                 |
+| --------------------------- |-------------- | ------------------------------------ |
+| `swpm open --diff`          |`sgd`          | `dev` branch vs `new-feat`           |
+| `swpm open --diff main`     |`sgd main`     | `main` branch vs `new-feat`          |
+| `swpm open --diff f92fbcf8` |`sgd f92fbcf8` | `f92fbcf8` commit hash vs `new-feat` |
+| `swpm open --diff v1.0.0`   |`sgd v1.0.0`   | `v1.0.0` tag vs `new-feat`           |
+
+Assuming you have generated a coverage report, with `--coverage` it will open the report in the browser:
+
+| Command                                                 | Alias                                  | File Path                                          |
+| ------------------------------------------------------- | -------------------------------------- | -------------------------------------------------- |
+| `swpm open --coverage`                                  | `soc`                                  | `/path/to/project/coverage/index.html`             |
+| `swpm open --coverage .`                                | `soc .`                                | Fails (also need the file name)                    |
+| `swpm open --coverage ./index.html`                     | `soc ./index.html`                     | `/path/to/project/index.html`                      |
+| `swpm open --coverage coverage/lcov-report/index.html`  | `soc coverage/lcov-report/index.html`  | `/path/to/project/coverage/lcov-report/index.html` |
+| `swpm open --coverage ../index.html`                    | `soc ../index.html`                    | `/path/to/index.html`                              |
+
+Assuming that the property `name` in `package.json` file is `swpm`, with `--npm` will open the package on npmjs.com:
+
+| Command                      | Alias           | npm Url                                    |
+| ---------------------------- |---------------- | ------------------------------------------ |
+| `swpm open --npm`            |`son`            | `https://www.npmjs.com/package/swpm`       |
+| `swpm open --npm typescript` |`son typescript` | `https://www.npmjs.com/package/typescript` |
+
+<!-- TODO: check if also works outside of WSL -->
 
 #### Clean
 
@@ -555,19 +598,19 @@ Quick and short aliases for `swpm` and `swpx` commands.
 
 ### sg<?> (open git)
 
-| Alias  | Command                   |
-| ------ | ------------------------- |
-| `sgr`  | `swpm open --git-repo`    |
-| `sgb`  | `swpm open --git-branch`  |
-| `sga`  | `swpm open --git-actions` |
-| `sgp`  | `swpm open --git-pulls`   |
+| Alias  | Command                    |
+| ------ | -------------------------- |
+| `sgr`  | `swpm open --git-repo`     |
+| `sgb`  | `swpm open --git-branch`   |
+| `sgp`  | `swpm open --git-pipeline` |
+| `sgm`  | `swpm open --git-merge`    |
 
-### sgc (open git-compare)
+### sgd (open git-diff)
 
-| Alias             | `sgc [branch]`                     |
-| ----------------- | ---------------------------------- |
-| **sgc**           | `swpm open --git-compare`          |
-| **sgc [branch]**  | `swpm open --git-compare [branch]` |
+| Alias             | `sgd [branch]`                  |
+| ----------------- | ------------------------------- |
+| **sgd**           | `swpm open --git-diff`          |
+| **sgd [branch]**  | `swpm open --git-diff [branch]` |
 
 ### soc (open coverage)
 
