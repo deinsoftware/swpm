@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 2.2.0 - 2023/09/26
+
+## Changed
+
+- `--use` and `--pin` flag now ask to the user if want to run the `set version` command for `yarn`
+
 ## 2.0.1 - 2023/09/21
 
 ## Added
