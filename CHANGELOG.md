@@ -42,6 +42,12 @@ Security    to invite users to upgrade in case of vulnerabilities.
 - `unpin` flag
 - check if pinned package manager is already installed
 
+## 1.12.1 - 2023/09/01
+
+## Fixed
+
+- beta wrong publishing
+
 ## 1.12.0 - 2023/08/26
 
 ## Added
