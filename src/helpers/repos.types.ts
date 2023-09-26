@@ -1,9 +1,7 @@
-export type Repository = {
-  url?: string
+import { ProvidersConfiguration } from '../git/providers.types.js'
+
+export type Repository = Partial<ProvidersConfiguration> & {
+  url?: `https://${string}`
   provider?: string
   current?: string
-  paths?: {
-    pull?: string
-    branch?: string
-  }
 }

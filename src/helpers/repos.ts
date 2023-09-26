@@ -3,32 +3,35 @@ import { pathExists } from 'find-up'
 import { cwd } from 'node:process'
 import { getCommandResult } from './cmds.js'
 import { Repository } from './repos.types.js'
+import { getProviderConfiguration } from '../git/list.js'
+import { Providers } from '../git/providers.types.js'
 
 const gitCurrentBranch = () => {
   return getCommandResult({ command: 'git branch --show-current' })
 }
 
-const providersUrl: Record<string, {pull: string, branch: string}> = {
-  'github.com': { pull: 'pulls', branch: 'tree' },
-  'gitlab.com': { pull: '-/merge_requests', branch: '-/tree' },
-  'bitbucket.org': { pull: 'pull-requests', branch: 'src' }
-}
+export const getReposStatus = async () => {
+  const origin = getCommandResult({ command: 'git config remote.origin.url' })
+  const host = new URL(origin)?.hostname
+  const provider = host?.split('.').at(0) as Providers
 
-export const gerReposStatus = (): Repository => {
-  const host = getCommandResult({ command: 'git config remote.origin.url' })
+  const config = await getProviderConfiguration({ id: provider })
 
-  const provider = new URL(host)?.hostname
-
-  let url = host.replace(`git@${provider}`, `https://${provider}/`)
+  let url = origin.replace(`git@${origin}`, `https://${origin}/`)
   if (url.endsWith('.git')) {
     url = url.slice(0, -4)
   }
 
   const current = gitCurrentBranch()
 
-  const paths = providersUrl[provider]
+  const repository: Repository = {
+    ...config,
+    url,
+    provider,
+    current
+  }
 
-  return { url, provider, current, paths }
+  return repository
 }
 
 export const hasRepository = async () => {
