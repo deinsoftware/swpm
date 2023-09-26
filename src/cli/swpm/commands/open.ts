@@ -180,21 +180,23 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
         implies: ['package']
       })
       .check(async (yargs) => {
-        const options = yargs.explorer ||
-        yargs.coverage ||
-        yargs['git-repo'] ||
-        yargs['git-branch'] ||
-        yargs['git-pipeline'] ||
-        yargs['git-merge'] ||
-        yargs['git-diff'] ||
-        yargs.npm
+        const checkOptions = () => {
+          const options = yargs.explorer ||
+            yargs.coverage ||
+            yargs['git-repo'] ||
+            yargs['git-branch'] ||
+            yargs['git-pipeline'] ||
+            yargs['git-merge'] ||
+            yargs['git-diff'] ||
+            yargs.npm
 
-        if (!options) {
-          const errorMessage = 'clean command requires to be combined with at least one available option'
-          checkErrorMessage(yargs.$0, 'open', errorMessage)
+          if (!options) {
+            const errorMessage = 'clean command requires to be combined with at least one available option'
+            checkErrorMessage(yargs.$0, 'open', errorMessage)
+          }
         }
 
-        if ('resource' in yargs) {
+        const checkResource = () => {
           if ('explorer' in yargs) {
             yargs.path = yargs.resource ?? '.'
           }
@@ -209,7 +211,7 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
           }
         }
 
-        if (hasGitProperty(yargs)) {
+        const checkGit = async () => {
           const git = await hasRepository()
           if (!git) {
             const errorMessage = 'no repository found'
@@ -237,7 +239,7 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
           yargs.repo = repo
         }
 
-        if ('npm' in yargs) {
+        const checkNpm = async () => {
           if (yargs.package === '.') {
             const packageJson = await getPackageJson()
 
@@ -250,27 +252,21 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
           }
         }
 
+        checkOptions()
+        if ('resource' in yargs) checkResource()
+        if (hasGitProperty(yargs)) await checkGit()
+        if ('npm' in yargs) await checkNpm()
+
         return true
       }),
 
   handler: async (yargs) => {
     console.log(`🚀 ${chalk.bold('Opening')}: `)
 
-    if ('explorer' in yargs) {
-      await openExplorer(yargs)
-    }
-
-    if ('git' in yargs) {
-      await openGit(yargs)
-    }
-
-    if ('coverage' in yargs) {
-      await openCoverage(yargs)
-    }
-
-    if ('npm' in yargs && yargs?.package) {
-      await openNpm(yargs)
-    }
+    if ('explorer' in yargs) await openExplorer(yargs)
+    if ('git' in yargs) await openGit(yargs)
+    if ('coverage' in yargs) await openCoverage(yargs)
+    if ('npm' in yargs && yargs?.package) await openNpm(yargs)
   }
 }
 
