@@ -15,7 +15,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 - `--use` and `--pin` flag now ask to the user if want to run the `set version` command for `yarn`
 
-## 2.0.1 - 2023/09/25
+## 2.1.0 - 2023/09/25
 
 ## Added
 
