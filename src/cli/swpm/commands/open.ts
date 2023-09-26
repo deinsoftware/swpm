@@ -200,14 +200,11 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
         const checkResource = () => {
           if ('explorer' in yargs) {
             yargs.path = yargs.resource ?? '.'
-          }
-          if ('git-diff' in yargs) {
+          } else if ('git-diff' in yargs) {
             yargs.branch = yargs.resource ?? 'dev'
-          }
-          if ('coverage' in yargs) {
+          } else if ('coverage' in yargs) {
             yargs.filePath = yargs.resource ?? './coverage/index.html'
-          }
-          if ('npm' in yargs) {
+          } else if ('npm' in yargs) {
             yargs.package = yargs.resource ?? '.'
           }
         }
@@ -224,14 +221,10 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
           if (('git-branch' in yargs) && !repo?.paths?.branch) {
             const errorMessage = `"git-branch" option is not available for ${yargs.provider}`
             checkErrorMessage(yargs.$0, 'open', errorMessage)
-          }
-
-          if (('git-pipeline' in yargs) && !repo?.paths?.ci) {
+          } else if (('git-pipeline' in yargs) && !repo?.paths?.ci) {
             const errorMessage = `"git-pipeline" option is not available for ${yargs.provider}`
             checkErrorMessage(yargs.$0, 'open', errorMessage)
-          }
-
-          if (('git-merge' in yargs) && !repo?.paths?.pull) {
+          } else if (('git-merge' in yargs) && !repo?.paths?.pull) {
             const errorMessage = `"git-merge" option is not available for ${yargs.provider}`
             checkErrorMessage(yargs.$0, 'open', errorMessage)
           }
@@ -265,9 +258,9 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
     console.log(`🚀 ${chalk.bold('Opening')}: `)
 
     if ('explorer' in yargs) await openExplorer(yargs)
-    if ('git' in yargs) await openGit(yargs)
-    if ('coverage' in yargs) await openCoverage(yargs)
-    if ('npm' in yargs && yargs?.package) await openNpm(yargs)
+    else if ('git' in yargs) await openGit(yargs)
+    else if ('coverage' in yargs) await openCoverage(yargs)
+    else if ('npm' in yargs && yargs?.package) await openNpm(yargs)
   }
 }
 
