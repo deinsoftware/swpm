@@ -33,7 +33,7 @@ export const autoUpdate = async (cmdr: CommanderPackage) => {
     }
 
     if (!voltaVersion && !cmdr?.config) {
-      const { install } = cmdr?.config || {}
+      const { install } = cmdr?.config ?? {}
       if (install) {
         command = install
       }

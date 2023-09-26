@@ -43,14 +43,14 @@ const middleware: MiddlewareFunction<Props> = async (yargs) => {
   }
 
   if (!cmdr?.cmd || yargs?.info) {
-    const { origin, cmd } = await getCurrentPackageManager() || {}
+    const { origin, cmd } = await getCurrentPackageManager() ?? {}
     cmdr.origin = origin
     cmdr.cmd = cmd
   }
 
   if (cmdr?.cmd) {
-    cmdr.volta = await detectVoltaPin(cmdr as CommanderPackage) ?? false
-    cmdr.config = await getPackageConfiguration(cmdr as CommanderPackage)
+    cmdr.volta = await detectVoltaPin(cmdr) ?? false
+    cmdr.config = await getPackageConfiguration(cmdr)
 
     if ('global' in yargs) {
       translateArgs({ yargs, cmdr, flag: '--global', alias: '-g' })

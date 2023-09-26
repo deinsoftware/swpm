@@ -44,7 +44,7 @@ export const setPackageVersion = async (packageName: PackageManagerList) => {
       }
 
       showCommand(cmdr)
-      await runCommand(cmdr)
+      runCommand(cmdr)
     }
   }
 }

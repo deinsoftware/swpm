@@ -48,4 +48,4 @@ if (!cmdr?.cmd) {
 if (!yargs?.mute) {
   showCommand(cmdr)
 }
-await runCommand(cmdr)
+runCommand(cmdr)
