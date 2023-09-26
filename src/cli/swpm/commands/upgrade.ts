@@ -10,17 +10,17 @@ type OptionsProps = {
 }
 
 const upgrade: CommandModule<Record<string, unknown>, OptionsProps> = {
-  command: 'upgrade <package> [args] [FLAGS]',
+  command: 'upgrade <package> [args]',
   aliases: ['ug'],
   describe: 'upgrade package to latest',
 
   builder: (yargs) =>
     yargs
+      .conflicts('upgrade', ['add', 'clean', 'open', 'install', 'remove', 'upgrade'])
       .positional('package', {
         type: 'string',
         desc: '<package>'
       })
-      .conflicts('upgrade', ['add', 'clean', 'install', 'remove', 'upgrade'])
       .option('latest', {
         alias: 'L',
         type: 'boolean',

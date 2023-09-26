@@ -83,10 +83,13 @@ export const runCommand = ({ cmd, args, volta = false }: CommanderPackage) => {
   )
 
   child.on('error', (error) => {
-    console.error(stripIndents`
-        ${chalk.red.bold('Error')}:
-        ${error}
-      `)
+    if (error) {
+      console.error(stripIndents`
+          ${chalk.red.bold('Error')}:
+          ${error}
+        `)
+    }
+    child.kill()
     exit(1)
   })
 
@@ -105,11 +108,13 @@ export const spreadCommand = async ({ cmd, args }: SpreadCommand) => {
     }
   )
 
-  if (child?.stderr) {
-    console.error(stripIndents`
-        ${chalk.red.bold('Error')}:
-        ${child?.stderr}
-      `)
+  if (child.status !== 0) {
+    if (child?.stderr) {
+      console.error(stripIndents`
+          ${chalk.red.bold('Error')}:
+          ${child?.stderr}
+        `)
+    }
     exit(1)
   }
 

@@ -4,6 +4,7 @@ import remove from './commands/remove.js'
 import update from './commands/update.js'
 import upgrade from './commands/upgrade.js'
 import interactive from './commands/interactive.js'
+import open from './commands/open.js'
 import clean from './commands/clean.js'
 
 import debug from '../options/debug.js'
@@ -22,6 +23,7 @@ const commands = [
   update,
   upgrade,
   interactive,
+  open,
   clean
 ]
 

@@ -9,17 +9,13 @@ type OptionsProps = {
 }
 
 const interactive: CommandModule<Record<string, unknown>, OptionsProps> = {
-  command: 'interactive [args] [FLAGS]',
+  command: 'interactive [args]',
   aliases: ['ui'],
   describe: 'update packages interactive',
 
   builder: (yargs) =>
     yargs
-      .positional('package', {
-        type: 'string',
-        desc: '<package>'
-      })
-      .conflicts('interactive', ['add', 'clean', 'install', 'remove', 'upgrade'])
+      .conflicts('interactive', ['add', 'clean', 'open', 'install', 'remove', 'upgrade'])
       .option('latest', {
         alias: 'L',
         type: 'boolean',

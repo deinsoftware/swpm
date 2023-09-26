@@ -11,17 +11,17 @@ type OptionsProps = {
 }
 
 const remove: CommandModule<Record<string, unknown>, OptionsProps> = {
-  command: 'remove <package> [args] [FLAGS]',
+  command: 'remove <package> [args]',
   aliases: ['r', 'rm', 'uninstall', 'un'],
   describe: 'remove package',
 
   builder: (yargs) =>
     yargs
+      .conflicts('remove', ['add', 'clean', 'open', 'install', 'update', 'upgrade'])
       .positional('package', {
         type: 'string',
         desc: '<package>'
       })
-      .conflicts('remove', ['add', 'clean', 'install', 'update', 'upgrade'])
       .option('save-dev', {
         alias: 'D',
         type: 'boolean',

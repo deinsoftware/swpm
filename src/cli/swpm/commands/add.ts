@@ -11,17 +11,17 @@ type OptionsProps = {
 }
 
 const add: CommandModule<Record<string, unknown>, OptionsProps> = {
-  command: 'add <package> [args] [FLAGS]',
+  command: 'add <package> [args]',
   aliases: ['a'],
   describe: 'add package',
 
   builder: (yargs) =>
     yargs
+      .conflicts('add', ['clean', 'open', 'install', 'remove', 'update', 'upgrade'])
       .positional('package', {
         type: 'string',
         desc: '<package>'
       })
-      .conflicts('add', ['clean', 'install', 'remove', 'update', 'upgrade'])
       .option('save-dev', {
         alias: 'D',
         type: 'boolean',

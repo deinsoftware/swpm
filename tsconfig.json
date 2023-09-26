@@ -32,5 +32,6 @@
         "node_modules",
         "coverage",
         "bin",
+        "**/*.test.ts"
     ]
 }

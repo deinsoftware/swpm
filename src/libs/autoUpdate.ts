@@ -39,20 +39,11 @@ export const autoUpdate = async (cmdr: CommanderPackage) => {
       }
     }
 
-    let color: ForegroundColorName
-    switch (type) {
-      case 'major':
-        color = 'red'
-        break
-
-      case 'minor':
-        color = 'yellow'
-        break
-
-      default:
-        color = 'green'
-        break
+    const colors: Record<string, ForegroundColorName> = {
+      major: 'red',
+      minor: 'yellow'
     }
+    const color = colors[type] ?? 'green'
 
     const message = stripIndent`
       New ${type} version available: ${chalk.dim(`${current}`)}${chalk.reset(' → ')}${chalk[color](`${latest}`)}

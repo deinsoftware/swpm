@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
+    "bitbucket",
     "bun",
     "bunx",
     "buymeacoffee",
@@ -13,11 +14,15 @@
     "equiman",
     "esnext",
     "github",
+    "gitlab",
     "lcov",
     "linux",
     "lockb",
     "Logomark",
+    "nargs",
+    "nmpjs",
     "npmignore",
+    "npmjs",
     "npmrc",
     "optstrings",
     "outdir",
@@ -33,10 +38,12 @@
     "swpm",
     "swpx",
     "tryin",
+    "unixish",
     "unpublish",
     "unstub",
     "versioner",
-    "volta"
+    "volta",
+    "wslpath"
   ],
   "files.exclude": {
     "**/*.js.map": {

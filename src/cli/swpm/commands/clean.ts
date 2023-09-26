@@ -1,7 +1,7 @@
 import chalk from 'chalk'
-import { exit } from 'node:process'
 import { CommandModule } from 'yargs'
 import { deleteModulesPath, deleteModulesFiles, deleteLockFiles, deleteLogFiles, deletePath } from '../../../helpers/delete.js'
+import { checkErrorMessage } from '../../../helpers/messages.js'
 
 type OptionsProps = {
   'all'?: boolean,
@@ -15,7 +15,7 @@ type OptionsProps = {
 }
 
 const clean: CommandModule<Record<string, unknown>, OptionsProps> = {
-  command: 'clean [FLAGS]',
+  command: 'clean [args]',
   aliases: ['c'],
   describe: 'clean packages',
 
@@ -69,6 +69,22 @@ const clean: CommandModule<Record<string, unknown>, OptionsProps> = {
         desc: 'delete coverage folder',
         usage: '$0 clean --coverage',
         conflicts: ['all', 'fresh']
+      })
+      .check((yargs) => {
+        const options = yargs.all ||
+        yargs.fresh ||
+        yargs.modules ||
+        yargs.lock ||
+        yargs.log ||
+        yargs.build ||
+        yargs.dist ||
+        yargs.coverage
+
+        if (!options) {
+          const errorMessage = 'clean command requires to be combined with at least one available option'
+          checkErrorMessage(yargs.$0, 'clean', errorMessage)
+        }
+        return true
       }),
 
   handler: async (yargs) => {
@@ -106,8 +122,6 @@ const clean: CommandModule<Record<string, unknown>, OptionsProps> = {
     if (('all' in yargs) || ('fresh' in yargs) || ('coverage' in yargs)) {
       await deletePath('coverage')
     }
-
-    exit(0)
   }
 }
 
