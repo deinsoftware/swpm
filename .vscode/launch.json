@@ -11,7 +11,7 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/src/cli/swpm.js"
+      "program": "${workspaceFolder}/src/cli/swpm.ts"
     },
     {
       "type": "node",
@@ -20,7 +20,7 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/src/cli/swpm.js",
+      "program": "${workspaceFolder}/src/cli/swpm.ts",
       "args": [
         "--info"
       ]
@@ -32,7 +32,7 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/src/cli/swpm.js",
+      "program": "${workspaceFolder}/src/cli/swpm.ts",
       "args": [
         "add",
         "public-ip-cli",
@@ -48,7 +48,7 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/src/cli/swpm.js",
+      "program": "${workspaceFolder}/src/cli/swpm.ts",
       "args": [
         "rm",
         "public-ip-cli",

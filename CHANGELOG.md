@@ -9,6 +9,39 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 2.2.0 - 2023/09/26
+
+## Changed
+
+- `--use` and `--pin` flag now ask to the user if want to run the `set version` command for `yarn`
+
+## 2.1.0 - 2023/09/25
+
+## Added
+
+- `open` command to easy access the file explorer or open repository urls in the browser
+
+## 2.0.0 - 2023/09/21
+
+## Changed
+
+- full migration from JavaScript to TypeScript
+- frozen translation for `bun` package manager
+- priority order detection giving priority to `lock` file of `global` environment
+
+## Fixed
+
+- sequential delete folder and files previous install packages when are called from alias with multiple commands
+- `info` flag also works when no package manager was detected
+
+## Added
+
+- ask to transform `install` to `add` command when `install` is used to add packages
+- spinner progress when deleting folders or files using the `clean` command
+- unit test on helpers files and functions
+- `unpin` flag
+- check if pinned package manager is already installed
+
 ## 1.12.1 - 2023/09/01
 
 ## Fixed

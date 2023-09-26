@@ -1,13 +1,4 @@
 node_modules/
-.github/
-.vscode/
+types/
 build/
-*.test.*
-*.md
-!CHANGELOG.md
-!README.md
-!LICENSE.md
-.eslintignore
-.eslintrc.cjs
-sonar-project.properties
-vitest.config.ts
+swpm*.tgz

@@ -178,4 +178,4 @@ Thumbs.db
 *Zone.Identifier
 
 # Generated Files
-build
+bin/

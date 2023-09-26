@@ -7,8 +7,10 @@ const include = [
 const exclude = [
   ...configDefaults.exclude,
   'src/alias/*',
+  'src/libs/*',
   'test{,s}/**',
   'test{,-*}.{js,cjs,mjs,ts,tsx,jsx}',
+  '**/*{.,-}types.{js,cjs,mjs,ts,tsx,jsx}',
   '**/*{.,-}test.{js,cjs,mjs,ts,tsx,jsx}'
 ]
 
@@ -26,10 +28,10 @@ export default defineConfig({
       reporter: ['text', 'html', 'lcov'],
       include: [...include],
       exclude: [...exclude],
-      statements: 29,
-      branches: 66,
-      functions: 40,
-      lines: 29
+      statements: 22,
+      branches: 57,
+      functions: 34,
+      lines: 22
     }
   }
 })

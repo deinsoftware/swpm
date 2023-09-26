@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        // enable latest features
+        "lib": [
+            "ESNext"
+        ],
+        "module": "ESNext",
+        "target": "ESNext",
+        // if TS 5.x+
+        "moduleResolution": "bundler",
+        "moduleDetection": "force",
+        "allowJs": false, // allow importing `.js` from `.ts`
+        "esModuleInterop": true, // allow default imports for CommonJS modules
+        // build
+        "declaration": true,
+        "declarationDir": "bin/types",
+        "outDir": "bin/src",
+        // best practices
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "skipLibCheck": true,
+        "strictNullChecks": true,
+        "resolveJsonModule": true,
+        // performance
+        "incremental": true
+    },
+    "baseUrl": ".",
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "coverage",
+        "bin",
+        "**/*.test.ts"
+    ]
+}

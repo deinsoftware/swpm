@@ -111,7 +111,7 @@ Replace a flag (or shorthand) with a command and place in a specific position.
 ```JavaScript
 args: {
   '--flag': ['command', 1],
-  '-f': ['command', 1],,
+  '-f': ['command', 1],
 }
 ```
 
@@ -132,7 +132,7 @@ Replace a command or alias when found a flag (or shorthand). It also removes the
 args: {
   '--flag': {
     command: 'to',
-    alias: 'to'
+    alias: 'to',
   }
 }
 ```
@@ -142,7 +142,7 @@ Example
 ```JavaScript
 args: {
   '--frozen': {
-    install: 'ci'
+    install: 'ci',
     i: 'ci',
   }
 }
@@ -156,7 +156,7 @@ Remove a command or alias when found a flag (or shorthand). It also removes the 
 args: {
   '--flag': {
     command: '',
-    alias: ''
+    alias: '',
   }
 }
 ```
@@ -178,7 +178,7 @@ Replace a flag with a package decoration.
 ```JavaScript
 args: {
     '--flag': ['<package>@decoration', 1],
-    '-f': ['<package>@decoration', 1]
+    '-f': ['<package>@decoration', 1],
 }
 ```
 
@@ -187,7 +187,7 @@ Example
 ```JavaScript
 args: {
   '--latest': ['<package>@latest', 1],
-  '-L': ['<package>@latest', 1]
+  '-L': ['<package>@latest', 1],
 }
 ```
 
@@ -198,7 +198,7 @@ Flag (or shorthand) not available on the package manager
 ```JavaScript
 cmds: {
   '--flag': ['', -1],
-  '-f': ['', -1]
+  '-f': ['', -1],
 }
 ```
 
@@ -207,6 +207,6 @@ Example
 ```JavaScript
 cmds: {
   '--audit': ['', -1],
-  '-A': ['', -1]
+  '-A': ['', -1],
 }
 ```

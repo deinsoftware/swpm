@@ -7,22 +7,29 @@ on:
   release:
     types: [published]
 
+env:
+  NODE_VERSION: 18
+
 jobs:
-  publish-npm:
+  publish-package:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: ${{ env.NODE_VERSION }}
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm publish
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+
+      - name: publish js project
+        run: npm publish
+        working-directory: bin
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
   tweet:
-    needs: publish-npm
+    needs: publish-package
     if: ${{ success() }}
     runs-on: ubuntu-latest
     steps:
@@ -31,7 +38,7 @@ jobs:
         with:
           tweet-message: "swpm ${{ github.event.release.tag_name }} 🐛🔨 is here 🥳\n\n
           $ npm install swpm@latest --location=global\n\n
-          #swpm #cli #npm #yarn #pnpm #bun #nodejs #javascript\n\n
+          #swpm #cli #npm #yarn #pnpm #bun #nodejs #javascript #typescript\n\n
           https://github.com/deinsoftware/swpm/blob/main/CHANGELOG.md"
         env:
           TWITTER_CONSUMER_API_KEY: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
