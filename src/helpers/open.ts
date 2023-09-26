@@ -18,7 +18,7 @@ const isWSL = () => {
 }
 
 const detectOs = () => {
-  let os = platform().toLowerCase().replace(/[0-9]/g, '')
+  let os = platform().toLowerCase().replace(/\d/g, '')
   if (os === 'linux') {
     os = isWSL() ? 'wsl' : os
   }
