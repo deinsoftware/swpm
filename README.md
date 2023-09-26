@@ -660,7 +660,7 @@ swpx <command> [args] -u <npm|yarn[@berry]|pnpm|bun>
 It will run the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
 
 > **Info**:  
-> Previously it will run the set command when use `yarn`:  
+> Previously it will ask to run the set command when use `yarn`:  
 > `yarn set version classic` for `yarn`
 > `yarn set version berry` for `yarn@berry`
 
@@ -682,7 +682,7 @@ It will store the pinned Package Manager in the `package.json` file, so you can 
 ```
 
 > **Info**:  
-> Additionally it will run the set command when pin `yarn`:  
+> Additionally it will ask to run the set command when pin `yarn`:  
 > `yarn set version classic` for `yarn`
 > `yarn set version berry` for `yarn@berry`
 
