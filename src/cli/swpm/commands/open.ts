@@ -61,16 +61,17 @@ const openGit = async (yargs: ArgumentsCamelCase<OptionsProps>) => {
   if ('git-repo' in yargs) {
     await openBrowser(yargs.repo.url)
   } else if ('git-branch' in yargs) {
-    const url = `${yargs.repo.url}/${yargs?.repo?.paths?.branch ?? 'tree'}/${yargs.repo.current}`
+    const url = `${yargs.repo.url}/${yargs?.repo?.paths?.branch}/${yargs.repo.current}`
     await openBrowser(url)
   } else if ('git-pipeline' in yargs) {
-    await openBrowser(`${yargs.repo.url}/${yargs?.repo?.paths?.ci ?? 'actions'}`)
+    const url = `${yargs.repo.url}/${yargs?.repo?.paths?.ci}`
+    await openBrowser(url)
   } else if ('git-merge' in yargs) {
-    await openBrowser(`${yargs.repo.url}/${yargs?.repo?.paths?.pull ?? 'pulls'}`)
+    const url = `${yargs.repo.url}/${yargs?.repo?.paths?.pull}`
+    await openBrowser(url)
   } else if ('git-diff' in yargs) {
-    const baseBranch = yargs.branch ?? 'dev'
-
-    const url = `${yargs.repo.url}/${yargs?.repo?.paths?.diff ?? 'compare'}/${baseBranch}..${yargs.repo.current}`
+    const baseBranch = yargs.branch
+    const url = `${yargs.repo.url}/${yargs?.repo?.paths?.diff}/${baseBranch}..${yargs.repo.current}`
     await openBrowser(url)
   }
 }
