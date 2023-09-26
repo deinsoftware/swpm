@@ -88,21 +88,21 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
         type: 'boolean',
         desc: 'browse pipeline/actions tab',
         usage: '$0 open --git-branch',
-        conflicts: ['explorer', 'coverage', 'git-repo', 'git-pipeline', 'git-merge', 'git-diff', 'npm']
+        conflicts: ['explorer', 'coverage', 'git-repo', 'git-branch', 'git-merge', 'git-diff', 'npm']
       })
       .option('git-merge', {
         alias: 'M',
         type: 'boolean',
         desc: 'browse merge/pull request tab',
         usage: '$0 open --git-merge',
-        conflicts: ['explorer', 'coverage', 'git-repo', 'git-pipeline', 'git-branch', 'git-diff', 'npm']
+        conflicts: ['explorer', 'coverage', 'git-repo', 'git-branch', 'git-pipeline', 'git-diff', 'npm']
       })
       .option('git-diff', {
         alias: 'D',
         type: 'boolean',
         desc: 'browse diff current with another [branch]',
         usage: '$0 open [branch] --git-diff',
-        conflicts: ['explorer', 'coverage', 'git-repo', 'git-pipeline', 'git-branch', 'git-merge', 'npm'],
+        conflicts: ['explorer', 'coverage', 'git-repo', 'git-branch', 'git-pipeline', 'git-merge', 'npm'],
         implies: ['branch']
       })
       .option('coverage', {
@@ -116,9 +116,9 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
       .option('npm', {
         alias: 'N',
         type: 'boolean',
-        desc: 'browse package on npmjs.com',
+        desc: 'browse [package] on npmjs.com',
         usage: '$0 open --npm',
-        conflicts: ['explorer', 'coverage', 'git-repo', 'git-pipeline', 'git-branch', 'git-merge', 'git-diff'],
+        conflicts: ['explorer', 'coverage', 'git-repo', 'git-branch', 'git-pipeline', 'git-merge', 'git-diff'],
         implies: ['package']
       })
       .check(async (yargs) => {
