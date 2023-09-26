@@ -86,23 +86,17 @@ With `swpm --help` it will show a command help resume.
 swpm [<command>] [args] [FLAGS]
 
 Commands:
-  swpm install [args]                       install packages from package.json
-                                                                    [aliases: i]
-  swpm add <package> [args]                 add package             [aliases: a]
-  swpm remove <package> [args]              remove package
-                                                 [aliases: r, rm, uninstall, un]
-  swpm update <package> [args]              update package     [aliases: up, ud]
-  swpm upgrade <package> [args]             upgrade package to latest
-                                                                   [aliases: ug]
-  swpm interactive [args]                   update packages interactive
-                                                                   [aliases: ui]
-  swpm open [path|filePath|branch|package]  open in the file explore or browser
-   [args]                                                           [aliases: o]
-  swpm clean [args]                         clean packages          [aliases: c]
+  swpm install [args]            install packages from package.json [aliases: i]
+  swpm add <package> [args]      add package                        [aliases: a]
+  swpm remove <package> [args]   remove package  [aliases: r, rm, uninstall, un]
+  swpm update <package> [args]   update package                [aliases: up, ud]
+  swpm upgrade <package> [args]  upgrade package to latest         [aliases: ug]
+  swpm interactive [args]        update packages interactive       [aliases: ui]
+  swpm open [resource] [args]    open in the file explore or browser[aliases: o]
+  swpm clean [args]              clean packages                     [aliases: c]
 
 Options:
   -u, --use    use a package manager
-                           [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -p, --pin    pin a package manager
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
@@ -227,6 +221,27 @@ swpm interactive [args]
 
 > **Warning**:  
 > This command is not available on **npm** and **bun** Package Manager.
+
+#### Open
+
+This command does not exist in the package managers, but is a common task open a path or urls related to the project in the file explorer or browser.
+
+```bash
+swpm open [resource] [args]
+```
+
+> Alias: `o`
+
+| Args                     | Alias | Description                                                            |
+| ------------------------ | ----- | ---------------------------------------------------------------------- |
+| `--explorer [path]`      | `-E`  | Open path on file explorer (current path by default)                   |
+| `--git-repo`             | `-R`  | Open current repo on browser                                           |
+| `--git-branch`           | `-B`  | Open current branch on browser                                         |
+| `--git-pulls`            | `-P`  | Open pulls tab of current repo on browser                              |
+| `--git-actions`          | `-A`  | Open actions tab of current repo (only github.com) on browser          |
+| `--git-compare [branch]` | `-C`  | Open compare current branch with another (`dev` by default) on browser |
+| `--coverage [filePath]`  | `-V`  | Open coverage report on browser (`./coverage/index.html` by default)   |
+| `--npm [package]`        | `-N`  | Open package on nmpjs.com (current by default)                         |
 
 #### Clean
 
@@ -531,32 +546,12 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **pnpm**          | `pnpm dlx <package>` | `pnpm dlx vitest` |
 | **bun**           | `bunx <package>`     | `bunx vitest`     |
 
-### sc<?> (clean)
-
-| Alias  | Command                                        |
-| ------ | ---------------------------------------------- |
-| `scn`  | `swpm clean --modules`                         |
-| `scl`  | `swpm clean --lock`                            |
-| `scb`  | `swpm clean --build`                           |
-| `scd`  | `swpm clean --dist`                            |
-| `scc`  | `swpm clean --coverage`                        |
-| `sca`  | `swpm clean --all`                             |
-| `scf`  | `swpm clean --fresh && swpm install --frozen`  |
-| `sci`  | `swpm clean --all && swpm install`             |
-
 ### soe (open explorer)
 
 | Alias           | `soe [path]`                  |
 | --------------- | ----------------------------- |
 | **soe**         | `swpm open --explorer`        |
-| **soe [path]**  | `swpm open [path] --explorer` |
-
-### soc (open coverage)
-
-| Alias           | `soc [fileName]`                  |
-| --------------- | --------------------------------- |
-| **soc**         | `swpm open --coverage`            |
-| **soc [path]**  | `swpm open [fileName] --coverage` |
+| **soe [path]**  | `swpm open --explorer [path]` |
 
 ### sg<?> (open git)
 
@@ -572,14 +567,34 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | Alias             | `sgc [branch]`                     |
 | ----------------- | ---------------------------------- |
 | **sgc**           | `swpm open --git-compare`          |
-| **sgc [branch]**  | `swpm open [branch] --git-compare` |
+| **sgc [branch]**  | `swpm open --git-compare [branch]` |
+
+### soc (open coverage)
+
+| Alias           | `soc [fileName]`                  |
+| --------------- | --------------------------------- |
+| **soc**         | `swpm open --coverage`            |
+| **soc [path]**  | `swpm open --coverage [fileName]` |
 
 ### son (open npm package)
 
 | Alias              | `son [package]`             |
 | ------------------ | --------------------------- |
 | **son**            | `swpm open --npm`           |
-| **son [package]**  | `swpm open [package] --npm` |
+| **son [package]**  | `swpm open --npm [package]` |
+
+### sc<?> (clean)
+
+| Alias  | Command                                        |
+| ------ | ---------------------------------------------- |
+| `scn`  | `swpm clean --modules`                         |
+| `scl`  | `swpm clean --lock`                            |
+| `scb`  | `swpm clean --build`                           |
+| `scd`  | `swpm clean --dist`                            |
+| `scc`  | `swpm clean --coverage`                        |
+| `sca`  | `swpm clean --all`                             |
+| `scf`  | `swpm clean --fresh && swpm install --frozen`  |
+| `sci`  | `swpm clean --all && swpm install`             |
 
 ⇧ [Back to menu](#menu)
 
@@ -656,8 +671,8 @@ It will show the command using the selected Package Manager, no matter the `swpm
 The `<swpm|swpx> --mute` flag hide the package manager command translation.
 
 ```bash
-swpm --mute
-swpx --mute
+swpm <command> [args] --mute
+swpx <command> [args] --mute
 ```
 
 #### Alias
@@ -755,6 +770,7 @@ A minimalistic solution focus only in the most common used commands:
 ### Built With
 
 - [VS Code](https://code.visualstudio.com/) - Code editing redefined.
+- [TypeScript](https://www.typescriptlang.org) - JavaScript With Syntax For Types.
 - [WSL](https://docs.microsoft.com/en-us/windows/wsl/) - Windows Subsystem for Linux.
 - [Windows Terminal](https://github.com/Microsoft/Terminal/) - A modern terminal application for users of command-line tools and shells.
 - [Node.js](https://nodejs.org/) - A JavaScript runtime built on Chrome's V8 JavaScript engine.

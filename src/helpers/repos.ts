@@ -1,3 +1,6 @@
+import { resolve as resolvePath } from 'node:path'
+import { pathExists } from 'find-up'
+import { cwd } from 'node:process'
 import { getCommandResult } from './cmds.js'
 
 const gitCurrentBranch = () => {
@@ -7,7 +10,7 @@ const gitCurrentBranch = () => {
 const pullRequest: Record<string, string> = {
   'github.com': 'pulls',
   'gitlab.com': '-/merge_requests',
-  'bitbucket.org': 'pull-requests/'
+  'bitbucket.org': 'pull-requests'
 }
 
 export const gerReposStatus = () => {
@@ -25,4 +28,9 @@ export const gerReposStatus = () => {
   const pullPath = pullRequest[provider]
 
   return { url, provider, current, pullPath }
+}
+
+export const hasRepository = async () => {
+  const gitPath = await resolvePath(cwd(), '.git')
+  return await pathExists(gitPath)
 }

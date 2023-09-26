@@ -1,12 +1,12 @@
 import chalk from 'chalk'
 import { cwd } from 'node:process'
 import { resolve as resolvePath } from 'node:path'
+import { pathExists } from 'find-up'
 import { ArgumentsCamelCase, CommandModule } from 'yargs'
 import { openBrowser, openExplorer } from '../../../helpers/open.js'
 import { fileExists, getPackageJson } from '../../../helpers/files.js'
-import { gerReposStatus } from '../../../helpers/repos.js'
+import { gerReposStatus, hasRepository } from '../../../helpers/repos.js'
 import { stripIndents } from 'common-tags'
-import { pathExists } from 'find-up'
 import { checkErrorMessage } from '../../../helpers/messages.js'
 
 type OptionsProps = {
@@ -33,13 +33,17 @@ const hasGitProperty = (yargs: ArgumentsCamelCase<OptionsProps>) => {
 }
 
 const open: CommandModule<Record<string, unknown>, OptionsProps> = {
-  command: 'open [path|filePath|branch|package] [args]',
+  command: 'open [resource] [args]',
   aliases: ['o'],
   describe: 'open in the file explore or browser',
 
   builder: (yargs) =>
     yargs
       .conflicts('open', ['add', 'install', 'remove', 'update', 'upgrade', 'clean'])
+      .positional('resource', {
+        type: 'string',
+        desc: '[resource]'
+      })
       .positional('path', {
         type: 'string',
         desc: '[path]',
@@ -48,7 +52,7 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
       .positional('filePath', {
         type: 'string',
         desc: '[filePath]',
-        default: './coverage/lcov-report/index.html'
+        default: './coverage/index.html'
       })
       .positional('branch', {
         type: 'string',
@@ -67,14 +71,6 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
         usage: '$0 open [path] --explorer',
         conflicts: ['coverage', 'git-repo', 'git-branch', 'git-pulls', 'git-compare', 'npm'],
         implies: ['path']
-      })
-      .option('coverage', {
-        alias: 'V',
-        type: 'boolean',
-        desc: 'view coverage report in [filePath]',
-        usage: '$0 open [filePath] --coverage',
-        conflicts: ['explorer', 'git-repo', 'git-branch', 'git-pulls', 'git-compare', 'npm'],
-        implies: ['filePath']
       })
       .option('git-repo', {
         alias: 'R',
@@ -112,6 +108,14 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
         conflicts: ['explorer', 'coverage', 'git-repo', 'git-branch', 'git-pulls', 'npm'],
         implies: ['branch']
       })
+      .option('coverage', {
+        alias: 'V',
+        type: 'boolean',
+        desc: 'view coverage report in [filePath]',
+        usage: '$0 open [filePath] --coverage',
+        conflicts: ['explorer', 'git-repo', 'git-branch', 'git-pulls', 'git-compare', 'npm'],
+        implies: ['filePath']
+      })
       .option('npm', {
         alias: 'N',
         type: 'boolean',
@@ -135,17 +139,36 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
           checkErrorMessage(yargs.$0, 'open', errorMessage)
         }
 
+        if ('resource' in yargs) {
+          if ('explorer' in yargs) {
+            yargs.path = yargs.resource ?? '.'
+          }
+          if ('git-compare' in yargs) {
+            yargs.branch = yargs.resource ?? 'dev'
+          }
+          if ('coverage' in yargs) {
+            yargs.filePath = yargs.resource ?? './coverage/index.html'
+          }
+          if ('npm' in yargs) {
+            yargs.package = yargs.resource ?? '.'
+          }
+        }
+
         if (hasGitProperty(yargs)) {
-          const gitPath = resolvePath(cwd(), '.git')
-          yargs.git = pathExists(gitPath)
+          yargs.git = await hasRepository()
 
           if (!yargs.git) {
             const errorMessage = 'no repository found'
             checkErrorMessage(yargs.$0, 'open', errorMessage)
-            yargs.repo = gerReposStatus()
+          } else {
+            const { url, provider, current, pullPath } = gerReposStatus()
+            yargs.url = url
+            yargs.provider = provider
+            yargs.current = current
+            yargs.pullPath = pullPath
           }
 
-          if (('actions' in yargs) && yargs.url !== 'github.com') {
+          if (('git-actions' in yargs) && yargs.url !== 'github.com') {
             const errorMessage = 'git-actions" option is only available for github'
             checkErrorMessage(yargs.$0, 'open', errorMessage)
           }
@@ -169,19 +192,6 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
           }
         }
 
-        // if (yargs?.['path,file-path,branch']) {
-        //   const value = yargs['path,file-path,branch']
-        //   if ('explorer' in yargs) {
-        //     yargs.path = value
-        //   }
-        //   if ('coverage' in yargs) {
-        //     yargs.fileName = value
-        //   }
-        //   if ('git-compare' in yargs) {
-        //     yargs.branch = value
-        //   }
-        // }
-
         return true
       }),
 
@@ -189,9 +199,7 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
     console.log(`🚀 ${chalk.bold('Opening')}: `)
 
     if ('explorer' in yargs) {
-      // TODO: check absolute and relative paths
-      // TODO: test from WSL
-      const path = resolvePath(cwd(), yargs.path ?? '.')
+      const path = resolvePath(cwd(), yargs?.path ?? '.')
 
       if (await pathExists(path)) {
         openExplorer(path)
@@ -202,27 +210,13 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
       }
     }
 
-    if ('coverage' in yargs) {
-      // TODO: check absolute and relative paths
-      // TODO: test from WSL
-      const filePath = resolvePath(cwd(), yargs.filePath ?? './coverage/lcov-report/index.html')
-
-      if (await fileExists(filePath)) {
-        await openBrowser(filePath)
-      } else {
-        console.error(stripIndents`
-        ${chalk.red.bold('Error')}: ${chalk.bold(filePath)} file not found.
-      `)
-      }
-    }
-
     if ('git' in yargs && yargs?.url) {
       if ('git-repo' in yargs) {
         await openBrowser(yargs.url)
       }
 
       if ('git-branch' in yargs) {
-        const url = `${yargs.url}/tree/${yargs.currentBranch}`
+        const url = `${yargs.url}/tree/${yargs.current}`
         await openBrowser(url)
       }
 
@@ -231,14 +225,26 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
       }
 
       if ('git-pulls' in yargs) {
-        await openBrowser(`${yargs.url}/${yargs.pullPath}`)
+        await openBrowser(`${yargs.url}/${yargs?.pullPath}`)
       }
 
       if ('git-compare' in yargs) {
         const baseBranch = yargs.branch ?? 'dev'
 
-        const url = `${yargs.url}/compare/${baseBranch}..${yargs.currentBranch}`
+        const url = `${yargs.url}/compare/${baseBranch}..${yargs.current}`
         await openBrowser(url)
+      }
+    }
+
+    if ('coverage' in yargs) {
+      const filePath = resolvePath(cwd(), yargs?.filePath ?? './coverage/lcov-report/index.html')
+
+      if (await fileExists(filePath)) {
+        await openBrowser(filePath)
+      } else {
+        console.error(stripIndents`
+        ${chalk.red.bold('Error')}: ${chalk.bold(filePath)} file not found.
+      `)
       }
     }
 
