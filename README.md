@@ -552,16 +552,16 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn upgrade <package> --latest` | `yarn upgrade vite --latest` |
 | **yarn@berry** | `yarn up <package>`               | `yarn up vite`               |
 | **pnpm**       | `pnpm update <package> --latest`  | `pnpm update vite --latest`  |
-| **bun**        | N/A                               | N/A                          |
+| **bun**        |  N/A                              |  N/A                         |
 
 ### sui (interactive)
 
-| Package/Alias  | `sui <package>`             |
+| Package/Alias  | `sui`                       |
 | -------------- | --------------------------- |
-| **npm**        | N/A                         |
+| **npm**        |  N/A                        |
 | **yarn**       | `yarn upgrade-interactive`  |
 | **pnpm**       | `pnpm update --interactive` |
-| **bun**        | N/A                         |
+| **bun**        |  N/A                        |
 
 ### scr (create)
 
