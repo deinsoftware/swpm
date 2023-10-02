@@ -6,41 +6,34 @@
         ],
         // enable latest features
         "lib": [
-            "esnext"
+            "ESNext"
         ],
-        "module": "esnext",
-        "target": "esnext",
+        "module": "ESNext",
+        "target": "ESNext",
         // if TS 5.x+
         "moduleResolution": "bundler",
         "noEmit": true,
         "allowImportingTsExtensions": true,
         "moduleDetection": "force",
         "allowJs": false, // allow importing `.js` from `.ts`
-        "esModuleInterop": false, // allow default imports for CommonJS modules
+        "esModuleInterop": true, // allow default imports for CommonJS modules
         // best practices
         "strict": true,
         "forceConsistentCasingInFileNames": true,
         "skipLibCheck": true,
-        "baseUrl": "./",
-        "paths": {
-            "cli/*": [
-                "./src/cli/*"
-            ],
-            "flags/*": [
-                "./src/flags/*"
-            ],
-            "helpers/*": [
-                "./src/helpers/*"
-            ],
-            "packages/*": [
-                "./src/packages/*"
-            ],
-            "translator/*": [
-                "./src/translator/*"
-            ],
-            "types/*": [
-                "./src/types/*"
-            ],
-        },
-    }
+        "strictNullChecks": true,
+        "resolveJsonModule": true,
+        // performance
+        "incremental": true
+    },
+    "baseUrl": ".",
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "coverage",
+        "bin",
+        "**/*.test.ts"
+    ]
 }

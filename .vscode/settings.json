@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
+    "bitbucket",
     "bun",
     "bunx",
     "buymeacoffee",
@@ -13,16 +14,22 @@
     "equiman",
     "esnext",
     "github",
+    "gitlab",
     "lcov",
     "linux",
     "lockb",
     "Logomark",
+    "nargs",
+    "nmpjs",
+    "npmignore",
+    "npmjs",
     "npmrc",
     "optstrings",
     "outdir",
     "patreon",
     "paypal",
     "pnpm",
+    "postbuild",
     "sade",
     "setx",
     "sonarcloud",
@@ -31,15 +38,18 @@
     "swpm",
     "swpx",
     "tryin",
+    "unixish",
     "unpublish",
+    "unstub",
     "versioner",
-    "volta"
+    "volta",
+    "wslpath"
   ],
   "files.exclude": {
     "**/*.js.map": {
       "when": "$(basename)"
     },
-    "**/node_modules": true
+    "**/node_modules": false
   },
   "javascript.autoClosingTags": true,
   "javascript.suggest.autoImports": true,
@@ -49,29 +59,26 @@
   },
   "typescript.autoClosingTags": true,
   "typescript.suggest.autoImports": true,
-  "editor.formatOnSave": true,
   "javascript.format.enable": false,
   "javascript.validate.enable": true,
   "typescript.format.enable": false,
   "typescript.validate.enable": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "eslint.probe": [
+  "editor.formatOnSave": true,
+  "eslint.validate": [
     "javascript",
     "typescript",
   ],
   "[javascript][typescript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "editor.formatOnSave": false,
-    "editor.codeActionsOnSave": [
-      "source.formatDocument",
-      "source.fixAll.eslint"
-    ],
+    "editor.codeActionsOnSave": {
+      "source.formatDocument": true,
+      "source.fixAll.eslint": true
+    },
   },
   "explorer.fileNesting.patterns": {
     "README*": "BRAND*, CHANGELOG*, CODE_OF_CONDUCT.md, CONTRIBUTING.md, LICENSE*, README*, CHEATSHEET*, TEMPLATES*",
-    "package*": "sonar-project*, .gitignore, bunfig.toml, .npmignore, .eslintignore, .eslintrc.cjs, bun.lockb, tsconfig.json",
+    "package*": "sonar-project*, .gitignore, bunfig.toml, .npmignore, .eslintignore, .eslintrc.cjs, bun.lockb, tsconfig.json, vitest.config.ts, globals.d.ts",
     "*.js": "$(capture).*.js, $(capture).d.js.map, $(capture)_*.js, $(capture)*.snap",
     "*.ts": "$(capture).*.ts, $(capture).d.ts.map, $(capture)_*.ts, $(capture)*.snap",
   },
@@ -79,6 +86,13 @@
     "connectionId": "dein-vscode",
     "projectKey": "dein:swpm"
   },
+  "markdownlint.config": {
+    "MD024": {
+      "siblings_only": true,
+      "allow_different_nesting": true
+    }
+  },
+  "testing.automaticallyOpenPeekView": "never",
   "bun.debugTerminal": {},
   "bun.runtime": "~/.bun/bin/bun",
   // If support for Bun should be added to the default "JavaScript Debug Terminal".

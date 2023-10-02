@@ -1,44 +1,35 @@
-import { cwd, exit } from 'node:process'
+import { cwd } from 'node:process'
 import fs from 'node:fs/promises'
 import { resolve as resolvePath } from 'node:path'
 
-import packagesList from 'packages/list'
-import { fileExists, pathExists } from 'helpers/files'
-import { getResultIcon } from 'helpers/icons'
-
-const deleteResult = (result: boolean, name: string) => {
-  const icon = getResultIcon(result ? 'success' : 'failure')
-  console.log(`${icon} ${name}`)
-
-  if (result !== undefined) {
-    exit(1)
-  }
-}
+import packagesList from '../packages/list.js'
+import { fileExists, pathExists } from '../helpers/files.js'
+import { spinnies } from '../libs/spinnies.js'
 
 export const deletePath = async (folderName: string) => {
   if (await pathExists(folderName)) {
+    spinnies.add(folderName)
     const path = resolvePath(cwd(), folderName)
-    let result = true
     try {
       await fs.rm(path, { force: true, recursive: true })
     } catch {
-      result = false
+      spinnies.fail(folderName)
     } finally {
-      deleteResult(result, folderName)
+      spinnies.succeed(folderName)
     }
   }
 }
 
 export const deleteFile = async (fileName: string) => {
   if (await fileExists(fileName)) {
+    spinnies.add(fileName)
     const path = resolvePath(cwd(), fileName)
-    let result = true
     try {
       await fs.rm(path, { force: true })
     } catch {
-      result = false
+      spinnies.fail(fileName)
     } finally {
-      deleteResult(result, fileName)
+      spinnies.succeed(fileName)
     }
   }
 }

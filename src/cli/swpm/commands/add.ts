@@ -1,8 +1,8 @@
 import { CommandModule } from 'yargs'
-import { findVoltaGlobals, translateArgs } from 'helpers/args'
-import cmdr, { setCommander } from "translator/commander";
+import { findVoltaGlobals, translateArgs } from '../../../helpers/args.js'
+import cmdr from '../../../translator/commander.js'
 
-type Options = {
+type OptionsProps = {
   package?: string
   'save-dev'?: boolean
   'save-optional'?: boolean
@@ -10,18 +10,18 @@ type Options = {
   'global'?: boolean
 }
 
-const add: CommandModule<Record<string, unknown>, Options> = {
-  command: 'add <package> [args] [FLAGS]',
+const add: CommandModule<Record<string, unknown>, OptionsProps> = {
+  command: 'add <package> [args]',
   aliases: ['a'],
   describe: 'add package',
 
   builder: (yargs) =>
     yargs
+      .conflicts('add', ['clean', 'open', 'install', 'remove', 'update', 'upgrade'])
       .positional('package', {
         type: 'string',
         desc: '<package>'
       })
-      .conflicts('add',['clean', 'install', 'remove', 'update', 'upgrade'])
       .option('save-dev', {
         alias: 'D',
         type: 'boolean',
@@ -62,29 +62,28 @@ const add: CommandModule<Record<string, unknown>, Options> = {
 
   handler: (yargs) => {
     if (!yargs?.pkg) return
+    if (!cmdr?.cmd) return
 
-    if (yargs?.package && findVoltaGlobals({yargs, cmdr, flags: ['add', 'install']})
+    if (('package' in yargs) && findVoltaGlobals({ yargs, cmdr, flags: ['add', 'install'] })
     ) {
-      setCommander({
-        cmd: 'volta',
-        args: ['install', yargs.package],
-      })
+      cmdr.cmd = 'volta'
+      cmdr.args = ['install', yargs.package!]
     }
 
     if ('save-dev' in yargs) {
-      translateArgs({yargs, cmdr, flag: '--save-dev', alias: '-D'})
+      translateArgs({ yargs, cmdr, flag: '--save-dev', alias: '-D' })
     }
 
     if ('save-optional' in yargs) {
-      translateArgs({yargs, cmdr, flag: '--save-optional', alias: '-O'})
+      translateArgs({ yargs, cmdr, flag: '--save-optional', alias: '-O' })
     }
 
     if ('save-peer' in yargs) {
-      translateArgs({yargs, cmdr, flag: '--save-peer'})
+      translateArgs({ yargs, cmdr, flag: '--save-peer' })
     }
 
     if ('save-exact' in yargs) {
-      translateArgs({yargs, cmdr, flag: '--save-exact', alias: '-E'})
+      translateArgs({ yargs, cmdr, flag: '--save-exact', alias: '-E' })
     }
   }
 }

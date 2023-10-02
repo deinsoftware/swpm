@@ -2,11 +2,11 @@ import { exit } from 'node:process'
 import fs from 'node:fs/promises'
 import chalk from 'chalk'
 import { findUp } from 'find-up'
-import { PackageJson } from 'translator/commander.types'
+import { PackageJson } from '../translator/commander.types.js'
 
-const packageName = 'package.json'
+const PACKAGE_NAME = 'package.json'
 
-export const fileExists = async(path: string) => {
+export const fileExists = async (path: string) => {
   try {
     const result = await Bun.file(path).exists()
     return result
@@ -15,7 +15,6 @@ export const fileExists = async(path: string) => {
   }
 }
 
-//TASK: pending to move
 export const pathExists = async (path: string) => {
   try {
     await fs.access(path)
@@ -47,9 +46,7 @@ export const getPackageJson = async (fileName: `${string}.json` = packageName): 
 
 export const lockFileExists = async (fileName: string) => {
   const closestLockfilePath = await findUp(fileName)
-  if (!closestLockfilePath) {
-    return false
-  }
+  if (!closestLockfilePath) return false
 
   return fileExists(closestLockfilePath)
 }

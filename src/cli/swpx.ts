@@ -1,29 +1,24 @@
 #!/usr/bin/env node
 
-import { exit } from 'node:process'
-import { inspect } from 'node:util'
 import yargs from './swpx/config.js'
+
+import { exit } from 'node:process'
 import chalk from 'chalk'
 
-import { showPackageInformation } from 'flags/info'
-import { showCommandAlias } from 'flags/alias'
-import { testCommand } from 'flags/test'
+import { autoUpdate } from '../libs/autoUpdate.js'
 
-import { autoUpdate } from '../helpers/autoUpdate.js'
+import { showNoPackageDetected, showPackageInformation } from '../flags/info.js'
+import { showCommandAlias } from '../flags/alias.js'
+import { testCommand } from '../flags/test.js'
+
 import { showCommand, runCommand } from '../helpers/cmds.js'
-import cmdr from 'translator/commander.js'
+import { debug } from '../helpers/debug.js'
+
+import cmdr from '../translator/commander.js'
 
 if (yargs.debug) {
-  console.log(
-    inspect(
-      yargs,
-      {
-        showHidden: false,
-        depth: null,
-        colors: true
-      }
-    )
-  )
+  debug(yargs)
+  debug(cmdr)
 }
 
 await autoUpdate(cmdr)
@@ -38,7 +33,7 @@ if (yargs?.test) {
   testCommand(cmdr)
 }
 
-if (yargs?.info) {
+if ((yargs?.info)) {
   await showPackageInformation(cmdr)
 }
 
@@ -46,9 +41,11 @@ if (yargs?.alias) {
   await showCommandAlias()
 }
 
-if (cmdr?.cmd) {
-  if (!yargs?.mute) {
-    showCommand(cmdr)
-  }
-  await runCommand(cmdr)
+if (!cmdr?.cmd) {
+  showNoPackageDetected()
 }
+
+if (!yargs?.mute) {
+  showCommand(cmdr)
+}
+runCommand(cmdr)

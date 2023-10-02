@@ -1,26 +1,26 @@
 import { CommandModule } from 'yargs'
-import { translateArgs } from 'helpers/args'
-import cmdr from 'translator/commander'
+import { translateArgs } from '../../../helpers/args.js'
+import cmdr from '../../../translator/commander.js'
 
-type Options = {
+type OptionsProps = {
   'package'?: string
   'latest'?: boolean
   'save-exact'?: boolean
   'global'?: boolean
 }
 
-const upgrade: CommandModule<Record<string, unknown>, Options> = {
-  command: 'upgrade <package> [args] [FLAGS]',
+const upgrade: CommandModule<Record<string, unknown>, OptionsProps> = {
+  command: 'upgrade <package> [args]',
   aliases: ['ug'],
   describe: 'upgrade package to latest',
 
   builder: (yargs) =>
     yargs
+      .conflicts('upgrade', ['add', 'clean', 'open', 'install', 'remove', 'upgrade'])
       .positional('package', {
         type: 'string',
         desc: '<package>'
       })
-      .conflicts('upgrade',['add', 'clean', 'install', 'remove', 'upgrade'])
       .option('latest', {
         alias: 'L',
         type: 'boolean',
@@ -44,12 +44,14 @@ const upgrade: CommandModule<Record<string, unknown>, Options> = {
       }),
 
   handler: (yargs) => {
+    if (!cmdr?.cmd) return
+
     if ('save-exact' in yargs) {
-      translateArgs({yargs, cmdr, flag: '--save-exact', alias: '-E'})
+      translateArgs({ yargs, cmdr, flag: '--save-exact', alias: '-E' })
     }
 
     if ('latest' in yargs) {
-      translateArgs({yargs, cmdr, flag: '--latest', alias: '-L'})
+      translateArgs({ yargs, cmdr, flag: '--latest', alias: '-L' })
     }
   }
 }

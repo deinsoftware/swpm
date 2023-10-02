@@ -75,7 +75,7 @@ Install as global with any of this package managers
 The `swpm` will run the command switching automatically searching for the `lock` file or the pinned Package Manager.
 
 ```bash
-swpm <command> [args] [FLAGS]
+swpm [<command>] [args] [FLAGS]
 ```
 
 ### Help
@@ -86,27 +86,26 @@ With `swpm --help` it will show a command help resume.
 swpm [<command>] [args] [FLAGS]
 
 Commands:
-  swpm install [FLAGS]                   install packages from package.json     
-                                                                    [aliases: i]
-  swpm add <package> [args] [FLAGS]      add package                [aliases: a]
-  swpm remove <package> [args] [FLAGS]   remove package
-                                                 [aliases: r, rm, uninstall, un]
-  swpm update <package> [args] [FLAGS]   update package        [aliases: up, ud]
-  swpm upgrade <package> [args] [FLAGS]  upgrade package to latest [aliases: ug]
-  swpm interactive [args] [FLAGS]        update packages interactive
-                                                                   [aliases: ui]
-  swpm clean [FLAGS]                     clean packages             [aliases: c]
+  swpm install [args]            install packages from package.json [aliases: i]
+  swpm add <package> [args]      add package                        [aliases: a]
+  swpm remove <package> [args]   remove package  [aliases: r, rm, uninstall, un]
+  swpm update <package> [args]   update package                [aliases: up, ud]
+  swpm upgrade <package> [args]  upgrade package to latest         [aliases: ug]
+  swpm interactive [args]        update packages interactive       [aliases: ui]
+  swpm open [resource] [args]    open in the file explore or browser[aliases: o]
+  swpm clean [args]              clean packages                     [aliases: c]
 
 Options:
   -u, --use    use a package manager
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -p, --pin    pin a package manager
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
+      --unpin  unpin current package manager
   -t, --test   test command (without running)
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -m, --mute   mute command translation
-      --info   show information and versions                           [boolean]
       --alias  show command alias                                      [boolean]
+      --info   show information and versions                           [boolean]
       --help   Show help                                               [boolean]
 ```
 
@@ -117,7 +116,7 @@ Options:
 By default, will install all modules listed as dependencies in `package.json`.
 
 ```bash
-swpm install [args] [FLAGS]
+swpm install [args]
 ```
 
 > Alias: `i`
@@ -137,7 +136,7 @@ This command installs a package and any packages that it depends on. If the pack
 This command, no arguments, will add a package to local `package.json` file. Package will appear as **dependencies** by default.
 
 ```bash
-swpm add <package> [args] [FLAGS]
+swpm add <package> [args]
 ```
 
 > Alias: `a`
@@ -157,7 +156,7 @@ swpm add <package> [args] [FLAGS]
 This command, no arguments, will remove a package to local `package.json` file. Package will be removed as **dependencies** by default.
 
 ```bash
-swpm remove <package> [args] [FLAGS]
+swpm remove <package> [args]
 ```
 
 > Aliases: `r`, `rm`, `uninstall`, `un`
@@ -174,7 +173,7 @@ swpm remove <package> [args] [FLAGS]
 This command will update all the packages listed to the latest version (specified by the `tag` config), respecting the semver constraints of both your package and its dependencies (if they also require the same package). It will also install missing packages.
 
 ```bash
-swpm update [<package>] [args] [FLAGS]
+swpm update [<package>] [args]
 ```
 
 > Aliases: `up`, `ud`
@@ -192,7 +191,7 @@ This command will upgrade the packages to the latest version, ignoring ranges sp
 > It will save new version on `package.json` file
 
 ```bash
-swpm upgrade <package> [args] [FLAGS]
+swpm upgrade <package> [args]
 ```
 
 > Alias: `ug`
@@ -210,7 +209,7 @@ swpm upgrade <package> [args] [FLAGS]
 Show outdated dependencies and select which ones to upgrade.
 
 ```bash
-swpm interactive [FLAGS]
+swpm interactive [args]
 ```
 
 > Alias: `ui`
@@ -222,6 +221,71 @@ swpm interactive [FLAGS]
 
 > **Warning**:  
 > This command is not available on **npm** and **bun** Package Manager.
+
+#### Open
+
+This command does not exist in the package managers, but is a common task open a path or urls related to the project in the file explorer or browser.
+
+```bash
+swpm open [resource] [args]
+```
+
+> Alias: `o`
+
+| Args                     | Alias | Description                                                            |
+| ------------------------ | ----- | ---------------------------------------------------------------------- |
+| `--explorer [path]`      | `-E`  | Open path on file explorer (current path by default)                   |
+| `--git-repo`             | `-R`  | Browse current repo on browser                                         |
+| `--git-branch`           | `-B`  | Browse current branch on browser                                       |
+| `--git-pipelines`        | `-P`  | Browse pipelines/actions tab of current repo on browser                |
+| `--git-merge`            | `-M`  | Browse merge/pull request tab of current repo on browser               |
+| `--git-diff [branch]`    | `-D`  | Browse diff current branch with another (`dev` by default)             |
+| `--coverage [filePath]`  | `-C`  | Browse coverage report on browser (`./coverage/index.html` by default) |
+| `--npm [package]`        | `-N`  | Browse package on nmpjs.com (current name by default)                  |
+
+> **Info**:  
+> Those `--git` flags are compatible with `GitHub`, `GitLab` and `BitBucket`.
+
+**Examples:**
+
+Assuming that the current path is `/path/to/project`, with `--explorer` it will open the path in the file explorer:
+
+| Command                           | Alias            | Path                         |
+| --------------------------------- | ---------------- | ---------------------------- |
+| `swpm open --explorer`            | `soe`            | `/path/to/project`           |
+| `swpm open --explorer .`          | `soe .`          | `/path/to/project`           |
+| `swpm open --explorer subfolder`  | `soe subfolder`  | `/path/to/project/subfolder` |
+| `swpm open --explorer ..`         | `soe ..`         | `/path/to`                   |
+| `swpm open --explorer ...`        | `soe ...`        | `/path`                      |
+| `swpm open --explorer ../another` | `soe ../another` | `/path/to/another`           |
+| `swpm open --explorer /`          | `soe /`          | `/` (only on unixish OS)     |
+| `swpm open --explorer ~`          | `soe ~`          | `~` (only on unixish OS)     |
+
+Assuming the current branch is `new-feat`, with `--diff` will open the diff comparison in the browser:
+
+| Command                     | Alias         | Diff                                        |
+| --------------------------- |-------------- | ------------------------------------------- |
+| `swpm open --diff`          |`sgd`          | `dev` branch vs `new-feat` branch           |
+| `swpm open --diff main`     |`sgd main`     | `main` branch vs `new-feat` branch          |
+| `swpm open --diff f92fbcf8` |`sgd f92fbcf8` | `f92fbcf8` commit hash vs `new-feat` branch |
+| `swpm open --diff v1.0.0`   |`sgd v1.0.0`   | `v1.0.0` tag vs `new-feat` branch           |
+
+Assuming you have generated a coverage report, with `--coverage` it will open the report in the browser:
+
+| Command                                                 | Alias                                  | File Path                                          |
+| ------------------------------------------------------- | -------------------------------------- | -------------------------------------------------- |
+| `swpm open --coverage`                                  | `soc`                                  | `/path/to/project/coverage/index.html`             |
+| `swpm open --coverage .`                                | `soc .`                                | Fails (also need the file name)                    |
+| `swpm open --coverage ./index.html`                     | `soc ./index.html`                     | `/path/to/project/index.html`                      |
+| `swpm open --coverage coverage/lcov-report/index.html`  | `soc coverage/lcov-report/index.html`  | `/path/to/project/coverage/lcov-report/index.html` |
+| `swpm open --coverage ../index.html`                    | `soc ../index.html`                    | `/path/to/index.html`                              |
+
+Assuming that the property `name` in `package.json` file is `swpm`, with `--npm` will open the package on npmjs.com:
+
+| Command                      | Alias           | npm Url                                    |
+| ---------------------------- |---------------- | ------------------------------------------ |
+| `swpm open --npm`            |`son`            | `https://www.npmjs.com/package/swpm`       |
+| `swpm open --npm typescript` |`son typescript` | `https://www.npmjs.com/package/typescript` |
 
 #### Clean
 
@@ -339,7 +403,7 @@ swpm outdated [<package>] [--global]
 The `swpx` will execute the command switching automatically to the pinned Package Manager without previous installing the package.
 
 ```bash
-swpx <command> [FLAGS]
+swpx [<command>] [FLAGS]
 ```
 
 ### Help
@@ -353,11 +417,10 @@ Options:
   -u, --use    use a package manager
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -t, --test   test command (without running)
-  -t, --test   test command (without running)
                            [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
   -m, --mute   mute command translation
-      --info   show information and versions                           [boolean]
       --alias  show command alias                                      [boolean]
+      --info   show information and versions                           [boolean]
       --help   Show help                                               [boolean]
 ```
 
@@ -375,6 +438,17 @@ Options:
 ## Alias
 
 Quick and short aliases for `swpm` and `swpx` commands.
+
+### sp[?] (pin)
+
+| Alias  | Command                                     |
+| ------ | ------------------------------------------- |
+| `sp`   | `swpm --pin <npm\|yarn[@berry]\|pnpm\|bun>` |
+| `spn`  | `swpm --pin npm`                            |
+| `spy`  | `swpm --pin yarn`                           |
+| `spyb` | `swpm --pin yarn@berry`                     |
+| `spp`  | `swpm --pin pnp`                            |
+| `spb`  | `swpm --pin bun`                            |
 
 ### si (install)
 
@@ -478,16 +552,16 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn upgrade <package> --latest` | `yarn upgrade vite --latest` |
 | **yarn@berry** | `yarn up <package>`               | `yarn up vite`               |
 | **pnpm**       | `pnpm update <package> --latest`  | `pnpm update vite --latest`  |
-| **bun**        | N/A                               | N/A                          |
+| **bun**        |  N/A                              |  N/A                         |
 
 ### sui (interactive)
 
-| Package/Alias  | `sui <package>`             |
+| Package/Alias  | `sui`                       |
 | -------------- | --------------------------- |
-| **npm**        | N/A                         |
+| **npm**        |  N/A                        |
 | **yarn**       | `yarn upgrade-interactive`  |
 | **pnpm**       | `pnpm update --interactive` |
-| **bun**        | N/A                         |
+| **bun**        |  N/A                        |
 
 ### scr (create)
 
@@ -497,30 +571,6 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn create <package>` | `yarn create vite` |
 | **pnpm**       | `pnpm create <package>` | `pnpm create vite` |
 | **bun**        | `bun create <package>`  | `bun create vite`  |
-
-### sc<?> (clean)
-
-| Alias  | Command                                        |
-| ------ | ---------------------------------------------- |
-| `scn`  | `swpm clean --modules`                         |
-| `scl`  | `swpm clean --lock`                            |
-| `scb`  | `swpm clean --build`                           |
-| `scd`  | `swpm clean --dist`                            |
-| `scc`  | `swpm clean --coverage`                        |
-| `sca`  | `swpm clean --all`                             |
-| `scf`  | `swpm clean --fresh && swpm install --frozen`  |
-| `sci`  | `swpm clean --all && swpm install`             |
-
-### sp[?] (pin)
-
-| Alias  | Command                                     |
-| ------ | ------------------------------------------- |
-| `sp`   | `swpm --pin <npm\|yarn[@berry]\|pnpm\|bun>` |
-| `spn`  | `swpm --pin npm`                            |
-| `spy`  | `swpm --pin yarn`                           |
-| `spyb` | `swpm --pin yarn@berry`                     |
-| `spp`  | `swpm --pin pnp`                            |
-| `spb`  | `swpm --pin bun`                            |
 
 ### sr (run)
 
@@ -539,6 +589,56 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**          | `yarn dlx <package>` | `yarn dlx vitest` |
 | **pnpm**          | `pnpm dlx <package>` | `pnpm dlx vitest` |
 | **bun**           | `bunx <package>`     | `bunx vitest`     |
+
+### soe (open explorer)
+
+| Alias           | `soe [path]`                  |
+| --------------- | ----------------------------- |
+| **soe**         | `swpm open --explorer`        |
+| **soe [path]**  | `swpm open --explorer [path]` |
+
+### sg<?> (open git)
+
+| Alias  | Command                    |
+| ------ | -------------------------- |
+| `sgr`  | `swpm open --git-repo`     |
+| `sgb`  | `swpm open --git-branch`   |
+| `sgp`  | `swpm open --git-pipeline` |
+| `sgm`  | `swpm open --git-merge`    |
+
+### sgd (open git-diff)
+
+| Alias             | `sgd [branch]`                  |
+| ----------------- | ------------------------------- |
+| **sgd**           | `swpm open --git-diff`          |
+| **sgd [branch]**  | `swpm open --git-diff [branch]` |
+
+### soc (open coverage)
+
+| Alias           | `soc [fileName]`                  |
+| --------------- | --------------------------------- |
+| **soc**         | `swpm open --coverage`            |
+| **soc [path]**  | `swpm open --coverage [fileName]` |
+
+### son (open npm package)
+
+| Alias              | `son [package]`             |
+| ------------------ | --------------------------- |
+| **son**            | `swpm open --npm`           |
+| **son [package]**  | `swpm open --npm [package]` |
+
+### sc<?> (clean)
+
+| Alias  | Command                                        |
+| ------ | ---------------------------------------------- |
+| `scn`  | `swpm clean --modules`                         |
+| `scl`  | `swpm clean --lock`                            |
+| `scb`  | `swpm clean --build`                           |
+| `scd`  | `swpm clean --dist`                            |
+| `scc`  | `swpm clean --coverage`                        |
+| `sca`  | `swpm clean --all`                             |
+| `scf`  | `swpm clean --fresh && swpm install --frozen`  |
+| `sci`  | `swpm clean --all && swpm install`             |
 
 ⇧ [Back to menu](#menu)
 
@@ -560,7 +660,7 @@ swpx <command> [args] -u <npm|yarn[@berry]|pnpm|bun>
 It will run the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
 
 > **Info**:  
-> Previously it will run the set command when use `yarn`:  
+> Previously it will ask to run the set command when use `yarn`:  
 > `yarn set version classic` for `yarn`
 > `yarn set version berry` for `yarn@berry`
 
@@ -582,11 +682,21 @@ It will store the pinned Package Manager in the `package.json` file, so you can 
 ```
 
 > **Info**:  
-> Additionally it will run the set command when pin `yarn`:  
+> Additionally it will ask to run the set command when pin `yarn`:  
 > `yarn set version classic` for `yarn`
 > `yarn set version berry` for `yarn@berry`
 
 You also can set it manually. Just take care writing a valid Package Manager: `npm`, `yarn[@berry]`, `pnpm` or `bun`. And also remember to run the set command for `yarn` projects.
+
+### Unpin
+
+The `swpm --unpin` flag allows you to remove the current pinned Package Manager for a project.
+
+```bash
+swpm --unpin
+```
+
+It will remove the pinned Package Manager in the `package.json` file.
 
 #### Test
 
@@ -605,8 +715,8 @@ It will show the command using the selected Package Manager, no matter the `swpm
 The `<swpm|swpx> --mute` flag hide the package manager command translation.
 
 ```bash
-swpm --mute
-swpx --mute
+swpm <command> [args] --mute
+swpx <command> [args] --mute
 ```
 
 #### Alias
@@ -659,8 +769,8 @@ Create an `SWPM` environment variable with one of this values `<npm|yarn[@berry]
 | :--: | ------------------------------------------------------------ |
 | 📌   | Search the `swpm` property pinned on `package.json` file     |
 | 📦   | Search the `packageManager` property on `package.json` file  |
-| 🌐   | Search a `SWPM` environment variable                         |
 | 🔒   | Search for a `lock` file                                     |
+| 🌐   | Search a `SWPM` environment variable                         |
 
 ### What can I use as Package parameter?
 
@@ -704,6 +814,7 @@ A minimalistic solution focus only in the most common used commands:
 ### Built With
 
 - [VS Code](https://code.visualstudio.com/) - Code editing redefined.
+- [TypeScript](https://www.typescriptlang.org) - JavaScript With Syntax For Types.
 - [WSL](https://docs.microsoft.com/en-us/windows/wsl/) - Windows Subsystem for Linux.
 - [Windows Terminal](https://github.com/Microsoft/Terminal/) - A modern terminal application for users of command-line tools and shells.
 - [Bun.js](https://bun.sh/) - Bun is a fast JavaScript all-in-one toolkit.
@@ -711,11 +822,14 @@ A minimalistic solution focus only in the most common used commands:
 
 ### NPM Packages
 
-- [Chalk](https://github.com/chalk/chalk) - Terminal string styling done right.
+- [Chalk](https://www.npmjs.com/package/chalk) - Terminal string styling done right.
 - [command-exists](https://www.npmjs.com/package/command-exists) - node module to check if a command-line command exists.
 - [common-tags](https://www.npmjs.com/package/common-tags) - A set of well-tested, commonly used template literal tag functions for use in ES2015+.
 - [find-up](https://www.npmjs.com/package/find-up) - Find a file or directory by walking up parent directories.
+- [open](https://www.npmjs.com/package/open) - Open stuff like URLs, files, executables. Cross-platform.
+- [prompts](https://www.npmjs.com/package/prompts) - Lightweight, beautiful and user-friendly interactive prompts
 - [semver](https://www.npmjs.com/package/semver) - The semantic versioner for npm.
+- [spinnies](https://www.npmjs.com/package/spinnies)  create and manage multiple spinners in CLI progrags
 - [update-notifier](https://www.npmjs.com/package/update-notifier) - Update notifications for your CLI app.
 - [Yargs](https://yargs.js.org/) - Yargs be a node.js library fer hearties tryin' ter parse optstrings.
 

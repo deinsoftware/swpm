@@ -1,45 +1,71 @@
 #!/usr/bin/env node
 
-import { inspect } from 'node:util'
 import yargs from './swpm/config.js'
 
-import { pinPackageManager } from 'flags/pin'
-import { showPackageInformation } from 'flags/info'
-import { showCommandAlias } from 'flags/alias'
-import { testCommand } from 'flags/test'
+import prompts from 'prompts'
+import chalk from 'chalk'
+import { stripIndent } from 'common-tags'
+import { exit } from 'node:process'
 
-import { autoUpdate } from '../helpers/autoUpdate.js'
+import { autoUpdate } from '../libs/autoUpdate.js'
+
+import { pinPackageManager } from '../flags/pin.js'
+import { unpinPackageManager } from '../flags/unpin.js'
+import { showNoPackageDetected, showPackageInformation } from '../flags/info.js'
+import { showCommandAlias } from '../flags/alias.js'
+import { testCommand } from '../flags/test.js'
+
 import { showCommand, runCommand } from '../helpers/cmds.js'
-import { setPackageVersion } from 'helpers/set'
-import cmdr from 'translator/commander.js'
+import { setPackageVersion } from '../helpers/set.js'
+import { debug } from '../helpers/debug.js'
+import { commandVerification } from '../helpers/get.js'
+
+import cmdr from '../translator/commander.js'
 
 if (yargs.debug) {
-  console.log(
-    inspect(
-      yargs,
-      {
-        showHidden: false,
-        depth: null,
-        colors: true
-      }
-    )
-  )
+  debug(yargs)
+  debug(cmdr)
 }
 
 await autoUpdate(cmdr)
 
-if ('pin' in yargs) {
-  cmdr.cmd = yargs.pin!
-  await setPackageVersion(cmdr.cmd)
+if (yargs?.pin) {
+  const { cmd, config } = cmdr
 
-  const {cmd, config} = cmdr
+  const isInstalled = !!cmd && await commandVerification(cmd)
+
+  if (!isInstalled) {
+    const color = config?.color ?? chalk.reset()
+
+  const response = await prompts({
+      type: 'confirm',
+      name: 'value',
+      message: stripIndent`
+        ${chalk.hex(color).bold(cmd)} is not installed.
+        Do you still want to continue?
+      `,
+      initial: false
+    })
+
+    if (!response.value) {
+      exit(1)
+    }
+  }
+
+  if (cmd) {
+    await setPackageVersion(cmd)
+  }
+
   if (cmd && config) {
-    await pinPackageManager({cmd, config})
+    await pinPackageManager({ cmd, config })
   }
 }
 
-if (yargs?.pin) {
-
+if (yargs?.unpin) {
+const { config } = cmdr
+  if (config) {
+    await unpinPackageManager({ config })
+  }
 }
 
 if (yargs?.test) {
@@ -54,9 +80,11 @@ if (yargs?.alias) {
   await showCommandAlias()
 }
 
-if (cmdr?.cmd) {
+if (!cmdr?.cmd) {
+showNoPackageDetected()
+}
+
   if (!yargs?.mute) {
     showCommand(cmdr)
   }
-  await runCommand(cmdr)
-}
+  runCommand(cmdr)

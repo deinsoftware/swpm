@@ -13,9 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: oven-sh/setup-bun@v1
+      with:
           registry-url: https://registry.npmjs.org/
       - run: bun install --frozen-lockfile
-      - run: bun publish
+      - run: bun run build
+      - name: publish js project
+        run: bun publish
+        working-directory: bin
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
@@ -28,7 +32,7 @@ jobs:
         if: ${{ !github.event.repository.private }}
         with:
           tweet-message: "swpm ${{ github.event.release.tag_name }} 🐛🔨 is here 🥳\n\n
-          $ npm install swpm@latest --location=global\n\n
+          $ bun install swpm@latest --global\n\n
           #swpm #cli #npm #yarn #pnpm #bun #nodejs #javascript\n\n
           https://github.com/deinsoftware/swpm/blob/main/CHANGELOG.md"
         env:

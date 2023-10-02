@@ -1,9 +1,9 @@
 import chalk from 'chalk'
-import { exit } from 'node:process'
-import { ArgumentsCamelCase, Argv, CommandModule } from 'yargs'
-import { deleteModulesPath, deleteModulesFiles, deleteLockFiles, deleteLogFiles, deletePath } from 'helpers/delete'
+import { CommandModule } from 'yargs'
+import { deleteModulesPath, deleteModulesFiles, deleteLockFiles, deleteLogFiles, deletePath } from '../../../helpers/delete.js'
+import { checkErrorMessage } from '../../../helpers/messages.js'
 
-type Options = {
+type OptionsProps = {
   'all'?: boolean,
   'fresh'?: boolean,
   'modules'?: boolean,
@@ -14,14 +14,14 @@ type Options = {
   'coverage'?: boolean
 }
 
-const clean: CommandModule<Record<string, unknown>, Options> = {
-  command: 'clean [FLAGS]',
+const clean: CommandModule<Record<string, unknown>, OptionsProps> = {
+  command: 'clean [args]',
   aliases: ['c'],
   describe: 'clean packages',
 
   builder: (yargs) =>
     yargs
-      .conflicts('clean',['add', 'install', 'remove', 'update', 'upgrade'])
+      .conflicts('clean', ['add', 'install', 'remove', 'update', 'upgrade'])
       .option('all', {
         type: 'boolean',
         desc: 'clean project',
@@ -69,44 +69,59 @@ const clean: CommandModule<Record<string, unknown>, Options> = {
         desc: 'delete coverage folder',
         usage: '$0 clean --coverage',
         conflicts: ['all', 'fresh']
+      })
+      .check((yargs) => {
+        const options = yargs.all ||
+        yargs.fresh ||
+        yargs.modules ||
+        yargs.lock ||
+        yargs.log ||
+        yargs.build ||
+        yargs.dist ||
+        yargs.coverage
+
+        if (!options) {
+          const errorMessage = 'clean command requires to be combined with at least one available option'
+          checkErrorMessage(yargs.$0, 'clean', errorMessage)
+        }
+        return true
       }),
 
-  handler: async(yargs) => {
-
+  handler: async (yargs) => {
     console.log(`🧽 ${chalk.bold('Cleaning')}: `)
 
-    if ('all' in yargs || 'fresh' in yargs || 'modules' in yargs) {
+    if (('all' in yargs) || ('fresh' in yargs) || ('modules' in yargs)) {
       await deletePath('node_modules')
       await deleteModulesFiles()
     }
+
     if ('modules' in yargs) {
       await deleteModulesPath()
     }
+
     if ('all' in yargs) {
       await deletePath('.yarn')
     }
 
-    if ('all' in yargs || 'lock' in yargs) {
+    if (('all' in yargs) || ('lock' in yargs)) {
       await deleteLockFiles()
     }
 
-    if ('all' in yargs || 'fresh' in yargs || 'log' in yargs) {
+    if (('all' in yargs) || ('fresh' in yargs) || ('log' in yargs)) {
       await deleteLogFiles()
     }
 
-    if ('all' in yargs || 'fresh' in yargs || 'build' in yargs) {
+    if (('all' in yargs) || ('fresh' in yargs) || ('build' in yargs)) {
       await deletePath('build')
     }
 
-    if ('all' in yargs || 'fresh' in yargs || 'dist' in yargs) {
+    if (('all' in yargs) || ('fresh' in yargs) || ('dist' in yargs)) {
       await deletePath('dist')
     }
 
-    if ('all' in yargs || 'fresh' in yargs || 'coverage' in yargs) {
+    if (('all' in yargs) || ('fresh' in yargs) || ('coverage' in yargs)) {
       await deletePath('coverage')
     }
-
-    exit(0)
   }
 }
 

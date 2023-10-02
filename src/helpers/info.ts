@@ -1,5 +1,6 @@
+import { readFile } from 'fs/promises'
+
 export const getSwpmInfo = async () => {
-  const path = new URL('../../package.json', import.meta.url)
-  const file = Bun.file(path)
-  return await file.json()
+  const pkg = await readFile(new URL('../../package.json', import.meta.url), 'utf-8')
+  return JSON.parse(pkg)
 }

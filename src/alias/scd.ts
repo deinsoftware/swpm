@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import { spreadCommand } from 'helpers/cmds'
+import { spreadCommand } from '../helpers/cmds.js'
 
-spreadCommand({cmd: 'swpm', args: ['clean', '--dist']})
+spreadCommand({ cmd: 'swpm', args: ['clean', '--dist'] })

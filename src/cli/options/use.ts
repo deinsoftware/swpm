@@ -1,10 +1,10 @@
-import { availablePackages } from 'packages/list'
+import { availablePackages } from '../../packages/list.js'
 
 const use = {
   alias: 'u',
   describe: 'use a package manager',
   choices: availablePackages(),
-  conflicts: ['pin']
+  conflicts: ['pin', 'unpin']
 } as const
 
 export default use

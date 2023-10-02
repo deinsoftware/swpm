@@ -1,25 +1,21 @@
 import { CommandModule } from 'yargs'
-import { translateArgs } from 'helpers/args'
-import cmdr from 'translator/commander'
+import { translateArgs } from '../../../helpers/args.js'
+import cmdr from '../../../translator/commander.js'
 
-type Options = {
+type OptionsProps = {
   'package'?: string
   'latest'?: boolean
   'global'?: boolean
 }
 
-const interactive: CommandModule<Record<string, unknown>, Options> = {
-  command: 'interactive [args] [FLAGS]',
+const interactive: CommandModule<Record<string, unknown>, OptionsProps> = {
+  command: 'interactive [args]',
   aliases: ['ui'],
   describe: 'update packages interactive',
 
   builder: (yargs) =>
     yargs
-      .positional('package', {
-        type: 'string',
-        desc: '<package>'
-      })
-      .conflicts('interactive',['add', 'clean', 'install', 'remove', 'upgrade'])
+      .conflicts('interactive', ['add', 'clean', 'open', 'install', 'remove', 'upgrade'])
       .option('latest', {
         alias: 'L',
         type: 'boolean',
@@ -34,8 +30,10 @@ const interactive: CommandModule<Record<string, unknown>, Options> = {
       }),
 
   handler: (yargs) => {
+    if (!cmdr?.cmd) return
+
     if ('latest' in yargs) {
-      translateArgs({yargs, cmdr, flag: '--latest', alias: '-L'})
+      translateArgs({ yargs, cmdr, flag: '--latest', alias: '-L' })
     }
   }
 }
