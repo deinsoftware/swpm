@@ -48,9 +48,9 @@
     "sx": "./src/alias/sx.js"
   },
   "scripts": {
-    "prebuild": "rm -rf bin/",
+    "prebuild": "rm -rf bin/*",
     "build": "bun run build.ts",
-    "postbuild": "cp package*.json .npmignore README.md LICENSE.md CHANGELOG.md bin && (cd bin && bun install --frozen-lockfile --production --ignore-scripts)",
+    "postbuild": "cp package.json bun.lockb .npmignore README.md LICENSE.md CHANGELOG.md bin && (cd bin && bun install --frozen-lockfile --production --ignore-scripts)",
     "pack": "bun pack bin/ --pack-destination=\"bin/\"",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "eslint . --fix --ext .js,.ts",
@@ -121,7 +121,5 @@
     "eslint-plugin-promise": "6.1.1",
     "type-fest": "4.3.3",
     "typescript": "5.2.2"
-  },
-  "packageManager": "bun@1.0.3",
-  "swpm": "bun"
+  }
 }

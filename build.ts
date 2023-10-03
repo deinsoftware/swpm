@@ -1,8 +1,9 @@
 Bun.build({
   entrypoints: [
-    './src/cli/swpm.js',
-    './src/cli/swpx.js',
-    './src/alias/sa.ts',
+    './src/cli/swpm.ts',
+    './src/cli/swpx.ts',
+    './src/alias/si.ts',
+    './src/alias/sif.ts',
     './src/alias/sa.ts',
     './src/alias/sae.ts',
     './src/alias/sad.ts',
@@ -13,6 +14,14 @@ Bun.build({
     './src/alias/sup.ts',
     './src/alias/sug.ts',
     './src/alias/sui.ts',
+    './src/alias/soe.ts',
+    './src/alias/sgr.ts',
+    './src/alias/sgb.ts',
+    './src/alias/sgp.ts',
+    './src/alias/sgm.ts',
+    './src/alias/sgd.ts',
+    './src/alias/soc.ts',
+    './src/alias/son.ts',
     './src/alias/scr.ts',
     './src/alias/scn.ts',
     './src/alias/scl.ts',
@@ -31,8 +40,8 @@ Bun.build({
     './src/alias/spb.ts',
     './src/alias/sx.ts'
   ],
-  outdir: './bin',
-  target: 'node',
+  outdir: './bin/src',
+  target: 'bun',
   splitting: true,
   minify: {
     identifiers: true,
