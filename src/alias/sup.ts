@@ -1,6 +1,6 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 import { spreadCommand } from '../helpers/cmds.js'
 
-const args = ['update', ...process.argv.slice(2)]
+const args = ['update', ...Bun.argv.slice(2)]
 spreadCommand({ cmd: 'swpm', args })

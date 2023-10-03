@@ -1,6 +1,6 @@
-#!/usr/bin/env node
+#!/usr/bin/env bun
 
 import { spreadCommand } from '../helpers/cmds.js'
 
-const args = ['open', '--explorer', ...process.argv.slice(2)]
+const args = ['open', '--explorer', ...Bun.argv.slice(2)]
 spreadCommand({ cmd: 'swpm', args })

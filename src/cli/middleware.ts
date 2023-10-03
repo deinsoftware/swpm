@@ -1,4 +1,3 @@
-import { argv } from 'node:process'
 import { cleanFlag, translateArgs } from '../helpers/args.js'
 import { translateCommand } from '../helpers/cmds.js'
 import { detectVoltaPin, getCurrentPackageManager } from '../helpers/get.js'
@@ -12,7 +11,7 @@ import { PackageManagerList } from '../packages/packages.types.js'
 
 type Props = InferredOptionTypes<typeof swpmOptions> | InferredOptionTypes<typeof swpxOptions>
 const middleware: MiddlewareFunction<Props> = async (yargs) => {
-  cmdr.args = argv.slice(2)
+  cmdr.args = Bun.argv.slice(2)
 
   if ('debug' in yargs) {
     cleanFlag({ yargs, cmdr, flag: '--debug' })
