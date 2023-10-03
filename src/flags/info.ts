@@ -26,10 +26,11 @@ export const showPackageInformation = async ({ cmd, origin, config, volta }: Com
   const color = config?.color ?? chalk.reset()
   const url = config?.url ?? ''
 
-  let message = ''
+  let message = stripIndents`${chalk.hex('#368fb9').bold('s')}${chalk.hex('#4e4e4e').bold('w')}${chalk.hex('#f8ae01').bold('p')}${chalk.hex('#e32e37').bold('m')} for ${chalk.hex('#fbf0df').bold('Bun')}
+  --------------------------------`
   if (cmd) {
     message += `${chalk.bold('using')}: \t${chalk.hex(color).bold(cmd)} \n`
-} else {
+  } else {
     message += stripIndents`
       No Package Manager or Environment Variable was found.
 
@@ -64,8 +65,8 @@ export const showPackageInformation = async ({ cmd, origin, config, volta }: Com
     Install ${chalk.hex(color).bold(cmd)}.`
     if (url) {
       message += `Visit ${chalk.blue.bold(url)} for more information`
+    }
   }
-}
 
   console.log(stripIndents`${message}`)
 
