@@ -37,7 +37,7 @@ if (yargs?.pin) {
   if (!isInstalled) {
     const color = config?.color ?? chalk.reset()
 
-  const response = await prompts({
+    const response = await prompts({
       type: 'confirm',
       name: 'value',
       message: stripIndent`
@@ -62,7 +62,7 @@ if (yargs?.pin) {
 }
 
 if (yargs?.unpin) {
-const { config } = cmdr
+  const { config } = cmdr
   if (config) {
     await unpinPackageManager({ config })
   }
@@ -81,10 +81,10 @@ if (yargs?.alias) {
 }
 
 if (!cmdr?.cmd) {
-showNoPackageDetected()
+  showNoPackageDetected()
 }
 
-  if (!yargs?.mute) {
-    showCommand(cmdr)
-  }
-  runCommand(cmdr)
+if (!yargs?.mute) {
+  showCommand(cmdr)
+}
+runCommand(cmdr)

@@ -9,8 +9,4 @@ export type CommanderPackage = {
     volta?: boolean
 }
 
-export type PackageJson = BasePackageJson & {
-    volta?: {
-        [key: string]: string
-    }
-}
+export type PackageJson = BasePackageJson

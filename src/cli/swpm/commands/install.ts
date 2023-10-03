@@ -34,23 +34,23 @@ const install: CommandModule<Record<string, unknown>, OptionsProps> = {
         conflicts: ['package-lock']
       } as const)
       .check(async (yargs) => {
-    if ('args' in yargs) {
+        if ('args' in yargs) {
           const args = ['add', ...cmdr.args.slice(1)]
-      const command = chalk.blue.bold(`swpm ${args.join(' ')}`)
+          const command = chalk.blue.bold(`swpm ${args.join(' ')}`)
 
-      console.error(stripIndents`
+          console.error(stripIndents`
         ${chalk.red.bold('Error')}: to install a specific ${chalk.bold('<package>')} please use ${chalk.bold('add')} command.
       `)
 
-      const response = await prompts({
-        type: 'confirm',
-        name: 'value',
-        message: `Do you want to re-run it as ${command}`,
-        initial: true
-      })
+          const response = await prompts({
+            type: 'confirm',
+            name: 'value',
+            message: `Do you want to re-run it as ${command}`,
+            initial: true
+          })
 
-      if (!response.value) {
-        checkErrorMessage(yargs.$0, 'install')
+          if (!response.value) {
+            checkErrorMessage(yargs.$0, 'install')
           }
 
           cmdr.args = cmdr.args.map(arg => arg === 'install' ? 'add' : arg)
@@ -65,7 +65,7 @@ const install: CommandModule<Record<string, unknown>, OptionsProps> = {
       translateArgs({ yargs, cmdr, flag: '--package-lock', alias: '-P' })
     }
 
-      if ('frozen' in yargs) {
+    if ('frozen' in yargs) {
       translateArgs({ yargs, cmdr, flag: '--frozen', alias: '-F' })
     }
   }

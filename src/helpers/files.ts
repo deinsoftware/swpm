@@ -24,21 +24,20 @@ export const pathExists = async (path: string) => {
   }
 }
 
-export const getPackageJson = async (fileName: `${string}.json` = packageName): Promise<PackageJson | undefined> => {
+export const getPackageJson = async (fileName: `${string}.json` = PACKAGE_NAME): Promise<PackageJson | undefined> => {
   try {
     const closestPackageJsonPath = await findUp(fileName)
     if (!closestPackageJsonPath) {
       return undefined
     }
 
-    const file = await Bun.file(closestPackageJsonPath, { type: "application/json" })
+    const file = await Bun.file(closestPackageJsonPath, { type: 'application/json' })
     if (!file.exists()) {
       return undefined
     }
 
     const contents = await file.json()
     return contents
-
   } catch {
     return undefined
   }
@@ -51,7 +50,7 @@ export const lockFileExists = async (fileName: string) => {
   return fileExists(closestLockfilePath)
 }
 
-export const savePackageJson = async (data: PackageJson, fileName: string = packageName) => {
+export const savePackageJson = async (data: PackageJson, fileName: string = PACKAGE_NAME) => {
   const closestPackageJsonPath = await findUp(fileName)
   if (!closestPackageJsonPath) {
     console.error(`${chalk.red.bold('Error')}: there is no ${chalk.red.bold(fileName)} file on current path.`)
@@ -68,7 +67,7 @@ export const savePackageJson = async (data: PackageJson, fileName: string = pack
     const content = JSON.stringify(data, null, 2)
     await Bun.write(closestPackageJsonPath, content)
   } catch (error) {
-    console.error(`${chalk.red.bold('Error')}: ${chalk.bold(packageName)} file can't be saved.`)
+    console.error(`${chalk.red.bold('Error')}: ${chalk.bold(fileName)} file can't be saved.`)
     exit(1)
   }
 }

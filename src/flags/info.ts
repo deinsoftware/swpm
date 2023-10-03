@@ -18,8 +18,8 @@ export const showNoPackageDetected = () => {
   exit(1)
 }
 
-export const showPackageInformation = async ({ cmd, origin, config, volta }: CommanderPackage) => {
-  const bunVersion = getCommandResult({ command: 'bun --version', volta })
+export const showPackageInformation = async ({ cmd, origin, config }: CommanderPackage) => {
+  const bunVersion = getCommandResult({ command: 'bun --version' })
 
   const { version: swpmVersion } = await getSwpmInfo()
 
@@ -44,10 +44,6 @@ export const showPackageInformation = async ({ cmd, origin, config, volta }: Com
     message += `${chalk.bold('origin')}: ${getOriginIcon(origin)} ${origin} \n`
   }
 
-  if (volta) {
-    message += `${chalk.bold('volta')}: \t${chalk.yellow('⚡')} detected \n`
-  }
-
   message += `
     ${chalk.bold('Versions:')}
     ${chalk.hex('#368fb9').bold('s')}${chalk.hex('#4e4e4e').bold('w')}${chalk.hex('#f8ae01').bold('p')}${chalk.hex('#e32e37').bold('m')}: \t${swpmVersion}
@@ -55,7 +51,7 @@ export const showPackageInformation = async ({ cmd, origin, config, volta }: Com
     `
 
   const isInstalled = !!cmd && await commandVerification(cmd)
-  const packageVersion = isInstalled ? getCommandResult({ command: `${cmd} --version`, volta }) : 'not found'
+  const packageVersion = isInstalled ? getCommandResult({ command: `${cmd} --version` }) : 'not found'
   if (config?.cmd) {
     message += `${chalk.hex(color).bold(cmd)}: \t${packageVersion}`
   }

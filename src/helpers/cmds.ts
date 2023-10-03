@@ -65,13 +65,8 @@ const cleanSpecificVersion = (cmd: PackageManagerList) => {
   return cmd?.split('@')?.[0]
 }
 
-export const runCommand = ({ cmd, args, volta = false }: CommanderPackage) => {
-  let run = cleanSpecificVersion(cmd!)
-
-  if (cmd && volta && run !== 'volta') {
-    args = ['run', cmd, ...args]
-    run = 'volta'
-  }
+export const runCommand = ({ cmd, args }: CommanderPackage) => {
+  const run = cleanSpecificVersion(cmd!)
 
   const child = spawn(
     run,
@@ -83,12 +78,12 @@ export const runCommand = ({ cmd, args, volta = false }: CommanderPackage) => {
   )
 
   child.on('error', (error) => {
-if (error) {
-    console.error(stripIndents`
+    if (error) {
+      console.error(stripIndents`
         ${chalk.red.bold('Error')}:
         ${error}
       `)
-}
+    }
     child.kill()
     exit(1)
   })
@@ -110,24 +105,20 @@ export const spreadCommand = async ({ cmd, args }: SpreadCommand) => {
 
   if (child.status !== 0) {
     if (child?.stderr) {
-    console.error(stripIndents`
+      console.error(stripIndents`
         ${chalk.red.bold('Error')}:
         ${child?.stderr}
       `)
-}
+    }
     exit(1)
   }
 
   return child.status
 }
 
-export const getCommandResult = ({ command, volta = false }: GetCommandResultProps): string => {
+export const getCommandResult = ({ command }: GetCommandResultProps): string => {
   try {
-    if (volta) {
-      command = `volta run ${command}`
-    }
-
-    const {stdout} = Bun.spawnSync(
+    const { stdout } = Bun.spawnSync(
       command.split(' ')
     )
 

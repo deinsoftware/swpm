@@ -4,8 +4,7 @@ const commanderInitValues: CommanderPackage = {
   cmd: undefined,
   args: [],
   origin: undefined,
-  config: undefined,
-  volta: false
+  config: undefined
 }
 
 declare global {

@@ -1,5 +1,5 @@
 import { CommandModule } from 'yargs'
-import { findVoltaGlobals, translateArgs } from '../../../helpers/args.js'
+import { translateArgs } from '../../../helpers/args.js'
 import cmdr from '../../../translator/commander.js'
 
 type OptionsProps = {
@@ -55,14 +55,6 @@ const remove: CommandModule<Record<string, unknown>, OptionsProps> = {
 
   handler: (yargs) => {
     if (!cmdr?.cmd) return
-
-    if (findVoltaGlobals({ yargs, cmdr, flags: ['uninstall', 'remove'] })
-    ) {
-      if (('pkg' in yargs) && ('package' in yargs)) {
-          cmdr.cmd = 'volta'
-        cmdr.args = ['uninstall', yargs.package!]
-      }
-    }
 
     if ('save-dev' in yargs) {
       translateArgs({ yargs, cmdr, flag: '--save-dev', alias: '-D' })

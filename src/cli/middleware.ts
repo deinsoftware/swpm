@@ -1,6 +1,6 @@
 import { cleanFlag, translateArgs } from '../helpers/args.js'
 import { translateCommand } from '../helpers/cmds.js'
-import { detectVoltaPin, getCurrentPackageManager } from '../helpers/get.js'
+import { getCurrentPackageManager } from '../helpers/get.js'
 import { getPackageConfiguration } from '../packages/list.js'
 import { setPackageVersion } from '../helpers/set.js'
 import { InferredOptionTypes, MiddlewareFunction } from 'yargs'
@@ -47,16 +47,15 @@ const middleware: MiddlewareFunction<Props> = async (yargs) => {
   }
 
   if (cmdr?.cmd) {
-    cmdr.volta = await detectVoltaPin(cmdr) ?? false
     cmdr.config = await getPackageConfiguration(cmdr)
 
-  if ('global' in yargs) {
-    translateArgs({ yargs, cmdr, flag: '--global', alias: '-g' })
-  }
+    if ('global' in yargs) {
+      translateArgs({ yargs, cmdr, flag: '--global', alias: '-g' })
+    }
 
-  if (yargs._.length) {
-    translateCommand({ yargs, cmdr })
-}
+    if (yargs._.length) {
+      translateCommand({ yargs, cmdr })
+    }
   }
 }
 

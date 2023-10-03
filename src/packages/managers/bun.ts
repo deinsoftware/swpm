@@ -23,7 +23,7 @@ const bun: PackageConfiguration = {
   args: {
     '--save-dev': '--dev',
     '-D': '-d',
-'--save-exact': '--exact',
+    '--save-exact': '--exact',
     '-E': '--exact',
     '--save-optional': '--optional',
     '-O': '--optional',

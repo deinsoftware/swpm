@@ -102,20 +102,6 @@ export const getCurrentPackageManager = async (): Promise<{origin: CommanderPack
   }
 }
 
-// https://volta.sh/
-export const detectVoltaPin = async (cmdr: CommanderPackage) => {
-  if (!cmdr?.cmd) return
-
-  const packageJson = await getPackageJson()
-  if (!packageJson) return
-
-  const prop = 'volta'
-  if (!propertyExists(packageJson, prop)) return
-  if (packageJson[prop] === undefined) return
-
-  return (cmdr.cmd in packageJson[prop])
-}
-
 export const commandVerification = async (cmd: PackageManagerList) => {
   try {
     await commandExists(cmd)

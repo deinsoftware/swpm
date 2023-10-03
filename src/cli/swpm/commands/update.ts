@@ -17,7 +17,7 @@ const update: CommandModule<Record<string, unknown>, OptionsProps> = {
         type: 'string',
         desc: '<package>'
       })
-        .option('global', {
+      .option('global', {
         alias: 'g',
         type: 'boolean',
         desc: 'update package as global',

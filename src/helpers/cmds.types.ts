@@ -29,5 +29,4 @@ export type SpreadCommand = {
 
 export type GetCommandResultProps = {
   command: string
-  volta?: boolean
 }

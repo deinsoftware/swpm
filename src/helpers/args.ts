@@ -1,17 +1,8 @@
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
 
-import { getCommandResult } from './cmds.js'
 import { CommanderPackage } from '../translator/commander.types.js'
-import { ClanFlagProp, FindFlagIndexProps, FindVoltaGlobalsProps, GetActionProp, GetKeyProps, MoveFlagProps, ReplaceCommandProps, ReplaceFlagProps, TranslateArgsProp, TranslateFlagProp } from './args.types.js'
-
-export const findVoltaGlobals = ({ yargs, cmdr, flags }: FindVoltaGlobalsProps) => {
-  const hasGlobalOperations = (
-    yargs?.global &&
-    flags.some((flag) => cmdr?.args.includes(flag))
-  )
-  return hasGlobalOperations && getCommandResult({ command: 'volta --version' })
-}
+import { ClanFlagProp, FindFlagIndexProps, GetActionProp, GetKeyProps, MoveFlagProps, ReplaceCommandProps, ReplaceFlagProps, TranslateArgsProp, TranslateFlagProp } from './args.types.js'
 
 const findFlagIndex = ({ args, flag }: FindFlagIndexProps) => {
   return args?.findIndex((arg) => arg === flag)

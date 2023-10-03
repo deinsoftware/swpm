@@ -1,7 +1,7 @@
 type PackageManagers = 'pnpm' | 'npm' | 'yarn' | 'yarn@berry' | 'bun'
 type ExecuteManagers = 'pnpm dlx' | 'npx' | 'yarn dlx' | 'bunx'
-type VersionManagers = 'volta'
-export type PackageManagerList = PackageManagers| ExecuteManagers | VersionManagers
+
+export type PackageManagerList = PackageManagers| ExecuteManagers
 
 type ColorValueHex = `#${string}`
 

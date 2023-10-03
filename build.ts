@@ -42,6 +42,7 @@ Bun.build({
   ],
   outdir: './bin/src',
   target: 'bun',
+  format: 'esm',
   splitting: true,
   minify: {
     identifiers: true,
