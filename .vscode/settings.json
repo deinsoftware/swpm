@@ -42,7 +42,6 @@
     "unpublish",
     "unstub",
     "versioner",
-    "volta",
     "wslpath"
   ],
   "files.exclude": {

@@ -9,7 +9,6 @@
 [![npm-version](https://img.shields.io/npm/v/swpm.svg?color=blue)](https://www.npmjs.com/package/swpm)
 [![npm-downloads](https://img.shields.io/npm/dt/swpm)](https://www.npmjs.com/package/swpm)
 [![node-engine](https://img.shields.io/node/v/swpm.svg?color=blue)](https://nodejs.org)
-[![volta](https://img.shields.io/badge/%E2%9A%A1%20volta-compatible-blue)](https://volta.sh)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?color=yellow)](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)
 [![license](https://img.shields.io/github/license/deinsoftware/swpm)](LICENSE.md)
 
@@ -64,7 +63,6 @@ Install as global with any of this package managers
 | **yarn**        | `yarn global add swpm`               |
 | **pnpm**        | `pnpm install swpm --global`         |
 | **bun**         | `bun install -g swpm`                |
-| **volta**       | `volta install swpm`                 |
 
 ⇧ [Back to menu](#menu)
 
@@ -513,7 +511,6 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn add global <package>`            | `yarn add global eslint`            |
 | **pnpm**       | `pnpm add <package> --global`          | `pnpm add eslint --global`          |
 | **bun**        | `bun add <package> --global`           | `bun add eslint --global`           |
-| **volta**      | `volta install <package>`              | `volta install eslint`              |
 
 ### srm (remove)
 
@@ -532,7 +529,6 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn remove global <package>`               | `yarn remove global eslint`               |
 | **pnpm**       | `pnpm uninstall <package> --global`          | `pnpm uninstall eslint --global`          |
 | **bun**        | `bun remove <package> --global`              | `bun remove eslint --global`              |
-| **volta**      | `volta uninstall <package>`                  | `volta uninstall eslint`                  |
 
 ### sup (update)
 

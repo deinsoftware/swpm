@@ -6,7 +6,6 @@ export type CommanderPackage = {
     args: string[]
     origin?: 'pinned' | 'packageManager' | 'environment' | 'lock'
     config?: PackageConfiguration
-    volta?: boolean
 }
 
 export type PackageJson = BasePackageJson

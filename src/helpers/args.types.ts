@@ -2,12 +2,6 @@ import { PackageConfiguration } from '../packages/packages.types.js'
 import { CommanderPackage } from '../translator/commander.types.js'
 import { ArgumentsCamelCase } from 'yargs'
 
-export type FindVoltaGlobalsProps = {
-  yargs: ArgumentsCamelCase<{global?: boolean}>
-  cmdr: CommanderPackage
-  flags: ('add' | 'install' | 'uninstall' | 'remove')[]
-}
-
 export type FindFlagIndexProps = {
   args: CommanderPackage['args']
   flag: string
