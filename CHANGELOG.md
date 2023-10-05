@@ -9,44 +9,50 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 2.3.1 - 2023/10/04
+
+### Fixed
+
+- avoid `open` and `clean` finish as package manager translation
+
 ## 2.3.0 - 2023/09/26
 
-## Added
+### Added
 
 - `bun` command and flags included in new version
 
 ## 2.2.1 - 2023/09/26
 
-## Fixed
+### Fixed
 
 - Readme title
 
 ## 2.2.0 - 2023/09/26
 
-## Changed
+### Changed
 
 - `--use` and `--pin` flag now ask to the user if want to run the `set version` command for `yarn`
 
 ## 2.1.0 - 2023/09/25
 
-## Added
+### Added
 
 - `open` command to easy access the file explorer or open repository urls in the browser
 
 ## 2.0.0 - 2023/09/21
 
-## Changed
+### Changed
 
 - full migration from JavaScript to TypeScript
 - frozen translation for `bun` package manager
 - priority order detection giving priority to `lock` file of `global` environment
 
-## Fixed
+### Fixed
 
 - sequential delete folder and files previous install packages when are called from alias with multiple commands
 - `info` flag also works when no package manager was detected
 
-## Added
+### Added
 
 - ask to transform `install` to `add` command when `install` is used to add packages
 - spinner progress when deleting folders or files using the `clean` command
@@ -56,28 +62,28 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ## 1.12.1 - 2023/09/01
 
-## Fixed
+### Fixed
 
 - beta wrong publishing
 
 ## 1.12.0 - 2023/08/26
 
-## Added
+### Added
 
 - `--mute` flag to hide the command translation
 
-## Changed
+### Changed
 
 - update packages versions
 
 ## 1.11.0 - 2023/07/14
 
-## Added
+### Added
 
 - `--fresh` flag on clean command
 - `scf` alias to run `clean --fresh` command follow by `swpm install --frozen`
 
-## Changed
+### Changed
 
 - update packages versions
 
