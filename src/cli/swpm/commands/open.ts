@@ -260,6 +260,8 @@ const open: CommandModule<Record<string, unknown>, OptionsProps> = {
     else if ('git' in yargs) await openGit(yargs)
     else if ('coverage' in yargs) await openCoverage(yargs)
     else if ('npm' in yargs && yargs?.package) await openNpm(yargs)
+
+    exit(0)
   }
 }
 
