@@ -1,3 +1,4 @@
+import { exit } from 'node:process'
 import chalk from 'chalk'
 import { CommandModule } from 'yargs'
 import { deleteModulesPath, deleteModulesFiles, deleteLockFiles, deleteLogFiles, deletePath } from '../../../helpers/delete.js'
@@ -122,6 +123,8 @@ const clean: CommandModule<Record<string, unknown>, OptionsProps> = {
     if (('all' in yargs) || ('fresh' in yargs) || ('coverage' in yargs)) {
       await deletePath('coverage')
     }
+
+    exit(0)
   }
 }
 
