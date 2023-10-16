@@ -53,7 +53,7 @@ const remove: CommandModule<Record<string, unknown>, OptionsProps> = {
         implies: ['package']
       }),
 
-  handler: (yargs) => {
+  handler: async (yargs) => {
     if (!cmdr?.cmd) return
 
     if (findVoltaGlobals({ yargs, cmdr, flags: ['uninstall', 'remove'] })
@@ -65,15 +65,15 @@ const remove: CommandModule<Record<string, unknown>, OptionsProps> = {
     }
 
     if ('save-dev' in yargs) {
-      translateArgs({ yargs, cmdr, flag: '--save-dev', alias: '-D' })
+      await translateArgs({ yargs, cmdr, flag: '--save-dev', alias: '-D' })
     }
 
     if ('save-optional' in yargs) {
-      translateArgs({ yargs, cmdr, flag: '--save-optional', alias: '-O' })
+      await translateArgs({ yargs, cmdr, flag: '--save-optional', alias: '-O' })
     }
 
     if ('save-peer' in yargs) {
-      translateArgs({ yargs, cmdr, flag: '--save-peer' })
+      await translateArgs({ yargs, cmdr, flag: '--save-peer' })
     }
   }
 }

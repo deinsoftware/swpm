@@ -77,7 +77,7 @@ describe('cleanFlag()', () => {
 })
 
 describe('translateArgs()', () => {
-  it('should not fail if flag, alias or args is empty or not exists', () => {
+  it('should not fail if flag, alias or args is empty or not exists', async () => {
     const flag: string = ''
     const alias: string = ''
     const args: string[] = [flag]
@@ -89,11 +89,11 @@ describe('translateArgs()', () => {
     const cmdr: CommanderPackage = {
       args
     }
-    const result = translateArgs({ yargs, cmdr, flag, alias })
+    const result = await translateArgs({ yargs, cmdr, flag, alias })
     expect(result).toBeUndefined()
   })
 
-  it('should not fail when flag is not present on yargs', () => {
+  it('should not fail when flag is not present on yargs', async () => {
     const flag: string = '--not-exists'
     const args: string[] = [flag]
 
@@ -105,11 +105,11 @@ describe('translateArgs()', () => {
       args
     }
 
-    const result = translateArgs({ yargs, cmdr, flag })
+    const result = await translateArgs({ yargs, cmdr, flag })
     expect(result).toBeUndefined()
   })
 
-  it('should replace a flag with his config translation', () => {
+  it('should replace a flag with his config translation', async () => {
     const command: string = 'command'
     const flag: string = '--flag'
     const replace: string = '--new-flag'
@@ -130,12 +130,12 @@ describe('translateArgs()', () => {
       }
     }
 
-    translateArgs({ yargs, cmdr, flag })
+    await translateArgs({ yargs, cmdr, flag })
     expect(cmdr.args.includes(flag)).toBeFalsy()
     expect(cmdr.args[1]).toBe(replace)
   })
 
-  it('should move a flag with his config translation', () => {
+  it('should move a flag with his config translation', async () => {
     const command: string = 'command'
     const flag: string = '--flag'
     const replace: [string, number] = ['flag', 1]
@@ -156,12 +156,12 @@ describe('translateArgs()', () => {
       }
     }
 
-    translateArgs({ yargs, cmdr, flag })
+    await translateArgs({ yargs, cmdr, flag })
     expect(cmdr.args.includes(flag)).toBeFalsy()
     expect(cmdr.args[1]).toBe(replace[0])
   })
 
-  it('should replace the command when detect some flag', () => {
+  it('should replace the command when detect some flag', async () => {
     const command: string = 'command'
     const flag: string = '--flag'
     const replace = {
@@ -184,7 +184,7 @@ describe('translateArgs()', () => {
       }
     }
 
-    translateArgs({ yargs, cmdr, flag })
+    await translateArgs({ yargs, cmdr, flag })
     expect(cmdr.args.includes(command)).toBeFalsy()
     expect(cmdr.args.includes(flag)).toBeFalsy()
     expect(cmdr.args[0]).toBe(replace[flag][command])

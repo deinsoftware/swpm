@@ -43,15 +43,15 @@ const upgrade: CommandModule<Record<string, unknown>, OptionsProps> = {
         implies: ['package']
       }),
 
-  handler: (yargs) => {
+  handler: async (yargs) => {
     if (!cmdr?.cmd) return
 
     if ('save-exact' in yargs) {
-      translateArgs({ yargs, cmdr, flag: '--save-exact', alias: '-E' })
+      await translateArgs({ yargs, cmdr, flag: '--save-exact', alias: '-E' })
     }
 
     if ('latest' in yargs) {
-      translateArgs({ yargs, cmdr, flag: '--latest', alias: '-L' })
+      await translateArgs({ yargs, cmdr, flag: '--latest', alias: '-L' })
     }
   }
 }

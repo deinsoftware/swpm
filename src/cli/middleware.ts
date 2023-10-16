@@ -52,7 +52,7 @@ const middleware: MiddlewareFunction<Props> = async (yargs) => {
     cmdr.config = await getPackageConfiguration(cmdr)
 
     if ('global' in yargs) {
-      translateArgs({ yargs, cmdr, flag: '--global', alias: '-g' })
+      await translateArgs({ yargs, cmdr, flag: '--global', alias: '-g' })
     }
 
     if (yargs._.length) {

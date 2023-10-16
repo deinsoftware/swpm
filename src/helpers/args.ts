@@ -1,9 +1,11 @@
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
+import { exit } from 'node:process'
 
 import { getCommandResult } from './cmds.js'
 import { CommanderPackage } from '../translator/commander.types.js'
 import { ClanFlagProp, FindFlagIndexProps, FindVoltaGlobalsProps, GetActionProp, GetKeyProps, MoveFlagProps, ReplaceCommandProps, ReplaceFlagProps, TranslateArgsProp, TranslateFlagProp } from './args.types.js'
+import prompts from 'prompts'
 
 export const findVoltaGlobals = ({ yargs, cmdr, flags }: FindVoltaGlobalsProps) => {
   const hasGlobalOperations = (
@@ -48,7 +50,7 @@ const replaceFlag = ({ cmdr, flag, newFlag }: ReplaceFlagProps) => {
   }
 }
 
-const moveFlag = ({ yargs, cmdr, flag, argConfig }: MoveFlagProps) => {
+const moveFlag = async ({ yargs, cmdr, flag, argConfig }: MoveFlagProps) => {
   let [action, start] = argConfig
   let count = 0
 
@@ -56,6 +58,17 @@ const moveFlag = ({ yargs, cmdr, flag, argConfig }: MoveFlagProps) => {
     console.log(stripIndents`
       ${chalk.yellow.bold('Warning')}: the ${chalk.bold(flag)} flag is not compatible on ${chalk.bold(cmdr?.cmd)} Package Manager.
     `)
+
+    const response = await prompts({
+      type: 'confirm',
+      name: 'value',
+      message: `Do you want to run it excluding the ${chalk.blue.bold(flag)} flag?`,
+      initial: true
+    })
+
+    if (!response.value) {
+      exit(1)
+    }
   }
 
   if (('package' in yargs) && action.includes('<package>')) {
@@ -77,21 +90,21 @@ const getAction = ({ args, key }: GetActionProp) => {
   return args[key]
 }
 
-const translateFlag = ({ yargs, cmdr, flag }: TranslateFlagProp) => {
+const translateFlag = async ({ yargs, cmdr, flag }: TranslateFlagProp) => {
   const action = getAction({ args: cmdr?.config!.args, key: flag })
 
   if (typeof action === 'string') {
     replaceFlag({ cmdr, flag, newFlag: action })
   } else if (Array.isArray(action)) {
     cleanFlag({ yargs, cmdr, flag })
-    moveFlag({ yargs, cmdr, flag, argConfig: action })
+    await moveFlag({ yargs, cmdr, flag, argConfig: action })
   } else if (typeof action === 'object') {
     cleanFlag({ yargs, cmdr, flag })
     replaceCommand({ yargs, cmdr, cmdConfig: action })
   }
 }
 
-export const translateArgs = ({ yargs, cmdr, flag, alias = '' }: TranslateArgsProp) => {
+export const translateArgs = async ({ yargs, cmdr, flag, alias = '' }: TranslateArgsProp) => {
   const flagKey = getKey({ args: cmdr?.args, flag })
   let aliasKey = getKey({ args: cmdr?.args, flag: alias })
 
@@ -101,10 +114,10 @@ export const translateArgs = ({ yargs, cmdr, flag, alias = '' }: TranslateArgsPr
   }
 
   if (flagKey && flagKey in yargs) {
-    translateFlag({ yargs, cmdr, flag })
+    await translateFlag({ yargs, cmdr, flag })
   }
 
   if (aliasKey && aliasKey in yargs) {
-    translateFlag({ yargs, cmdr, flag: alias })
+    await translateFlag({ yargs, cmdr, flag: alias })
   }
 }
