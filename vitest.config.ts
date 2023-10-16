@@ -10,6 +10,7 @@ const exclude = [
   'src/libs/*',
   'test{,s}/**',
   'test{,-*}.{js,cjs,mjs,ts,tsx,jsx}',
+  'src/cli/swpm/commands/{install,add}.ts',
   '**/*{.,-}types.{js,cjs,mjs,ts,tsx,jsx}',
   '**/*{.,-}test.{js,cjs,mjs,ts,tsx,jsx}'
 ]
@@ -28,10 +29,10 @@ export default defineConfig({
       reporter: ['text', 'html', 'lcov'],
       include: [...include],
       exclude: [...exclude],
-      statements: 22,
-      branches: 57,
-      functions: 34,
-      lines: 22
+      statements: 24,
+      branches: 58,
+      functions: 35,
+      lines: 24
     }
   }
 })

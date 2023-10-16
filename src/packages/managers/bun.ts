@@ -30,7 +30,8 @@ const bun: PackageConfiguration = {
     '--frozen': '--frozen-lockfile',
     '-F': '--frozen-lockfile',
     '--package-lock': '--no-save',
-    '-P': '--no-save'
+    '-P': '--no-save',
+    '--save-peer': ['', -1]
   }
 }
 

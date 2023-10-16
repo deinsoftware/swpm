@@ -14,10 +14,12 @@ Security    to invite users to upgrade in case of vulnerabilities.
 ### Added
 
 - prompt to continue excluding incompatible flags
+- e2e testing for `install` and `add` commands
 
 ### Fixed
 
 - `global` flag position on `yarn` and `yarn@berry`
+- `package` parameter on `add` command
 
 ## 2.3.1 - 2023/10/04
 
