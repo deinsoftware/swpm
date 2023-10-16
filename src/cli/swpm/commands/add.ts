@@ -61,7 +61,7 @@ const add: CommandModule<Record<string, unknown>, OptionsProps> = {
       }),
 
   handler: async (yargs) => {
-    if (!yargs?.pkg) return
+    if (!yargs?.package) return
     if (!cmdr?.cmd) return
 
     if (('package' in yargs) && findVoltaGlobals({ yargs, cmdr, flags: ['add', 'install'] })
