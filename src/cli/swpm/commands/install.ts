@@ -45,7 +45,7 @@ const install: CommandModule<Record<string, unknown>, OptionsProps> = {
           const response = await prompts({
             type: 'confirm',
             name: 'value',
-            message: `Do you want to re-run it as ${command}`,
+            message: `Do you want to re-run it as ${chalk.blue.bold(command)}`,
             initial: true
           })
 
@@ -62,11 +62,11 @@ const install: CommandModule<Record<string, unknown>, OptionsProps> = {
     if (!cmdr?.cmd) return
 
     if ('package-lock' in yargs) {
-      translateArgs({ yargs, cmdr, flag: '--package-lock', alias: '-P' })
+      await translateArgs({ yargs, cmdr, flag: '--package-lock', alias: '-P' })
     }
 
     if ('frozen' in yargs) {
-      translateArgs({ yargs, cmdr, flag: '--frozen', alias: '-F' })
+      await translateArgs({ yargs, cmdr, flag: '--frozen', alias: '-F' })
     }
   }
 }

@@ -29,11 +29,11 @@ const interactive: CommandModule<Record<string, unknown>, OptionsProps> = {
         usage: '$0 update --global'
       }),
 
-  handler: (yargs) => {
+  handler: async (yargs) => {
     if (!cmdr?.cmd) return
 
     if ('latest' in yargs) {
-      translateArgs({ yargs, cmdr, flag: '--latest', alias: '-L' })
+      await translateArgs({ yargs, cmdr, flag: '--latest', alias: '-L' })
     }
   }
 }
