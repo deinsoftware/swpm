@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 2.4.0 - 2023/10/16
+
+### Added
+
+- prompt to continue excluding incompatible flags
+
+### Fixed
+
+- `global` flag position on `yarn` and `yarn@berry`
+
 ## 2.3.1 - 2023/10/04
 
 ### Fixed
