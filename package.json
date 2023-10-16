@@ -1,6 +1,6 @@
 {
   "name": "swpm",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "engines": {
     "node": ">=16"
   },
@@ -109,22 +109,22 @@
   "devDependencies": {
     "@types/command-exists": "1.2.1",
     "@types/common-tags": "1.8.2",
-    "@types/prompts": "2.4.5",
+    "@types/prompts": "2.4.6",
     "@types/semver": "7.5.3",
     "@types/spinnies": "0.5.1",
     "@types/update-notifier": "6.0.5",
-    "@types/yargs": "17.0.26",
-    "@typescript-eslint/eslint-plugin": "6.7.4",
-    "@typescript-eslint/parser": "6.7.4",
+    "@types/yargs": "17.0.28",
+    "@typescript-eslint/eslint-plugin": "6.8.0",
+    "@typescript-eslint/parser": "6.8.0",
     "@vitest/coverage-v8": "0.34.6",
-    "eslint": "8.50.0",
+    "eslint": "8.51.0",
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-import": "2.28.1",
-    "eslint-plugin-n": "16.1.0",
+    "eslint-plugin-n": "16.2.0",
     "eslint-plugin-promise": "6.1.1",
-    "type-fest": "4.3.3",
+    "type-fest": "4.4.0",
     "typescript": "5.2.2",
-    "vitest": "0.34.5"
+    "vitest": "0.34.6"
   },
   "volta": {
     "node": "18.18.0",

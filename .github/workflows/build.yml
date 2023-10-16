@@ -21,6 +21,13 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
       - run: npm ci --ignore-scripts
+
+      - run: npm run build
+
+      - name: link js project
+        run: npm link
+        working-directory: bin
+
       - run: npm run test:c
 
       - name: Display coverage files

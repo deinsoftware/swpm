@@ -60,8 +60,8 @@ const add: CommandModule<Record<string, unknown>, OptionsProps> = {
         implies: ['package']
       }),
 
-  handler: (yargs) => {
-    if (!yargs?.pkg) return
+  handler: async (yargs) => {
+    if (!yargs?.package) return
     if (!cmdr?.cmd) return
 
     if (('package' in yargs) && findVoltaGlobals({ yargs, cmdr, flags: ['add', 'install'] })
@@ -71,19 +71,19 @@ const add: CommandModule<Record<string, unknown>, OptionsProps> = {
     }
 
     if ('save-dev' in yargs) {
-      translateArgs({ yargs, cmdr, flag: '--save-dev', alias: '-D' })
+      await translateArgs({ yargs, cmdr, flag: '--save-dev', alias: '-D' })
     }
 
     if ('save-optional' in yargs) {
-      translateArgs({ yargs, cmdr, flag: '--save-optional', alias: '-O' })
+      await translateArgs({ yargs, cmdr, flag: '--save-optional', alias: '-O' })
     }
 
     if ('save-peer' in yargs) {
-      translateArgs({ yargs, cmdr, flag: '--save-peer' })
+      await translateArgs({ yargs, cmdr, flag: '--save-peer' })
     }
 
     if ('save-exact' in yargs) {
-      translateArgs({ yargs, cmdr, flag: '--save-exact', alias: '-E' })
+      await translateArgs({ yargs, cmdr, flag: '--save-exact', alias: '-E' })
     }
   }
 }
