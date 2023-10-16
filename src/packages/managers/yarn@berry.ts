@@ -31,8 +31,8 @@ const yarnBerry: PackageConfiguration = {
   args: {
     '--frozen': '--immutable',
     '-F': '--immutable',
-    '--global': ['global', 1],
-    '-g': ['global', 1],
+    '--global': ['global', 0],
+    '-g': ['global', 0],
     '--interactive': {
       upgrade: ''
     },

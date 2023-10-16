@@ -29,8 +29,8 @@ const yarn: PackageConfiguration = {
   args: {
     '--frozen': '--frozen-lockfile',
     '-F': '--frozen-lockfile',
-    '--global': ['global', 1],
-    '-g': ['global', 1],
+    '--global': ['global', 0],
+    '-g': ['global', 0],
     '--interactive': {
       upgrade: ''
     },

@@ -57,12 +57,13 @@ export const translateCommand = ({ yargs, cmdr }: TranslateCommandProp) => {
   }
 }
 
-export const showCommand = async ({ origin, cmd, args, config }: CommanderPackage) => {
-  console.log(`${(origin ? getOriginIcon(origin) + ' ' : '')}${chalk.hex(config?.color ?? '').bold(cmd)} ${args?.join(' ')}`)
-}
-
 const cleanSpecificVersion = (cmd: PackageManagerList) => {
   return cmd?.split('@')?.[0]
+}
+
+export const showCommand = async ({ origin, cmd, args, config }: CommanderPackage) => {
+  const run = cleanSpecificVersion(cmd!)
+  console.log(`${(origin ? getOriginIcon(origin) + ' ' : '')}${chalk.hex(config?.color ?? '').bold(run)} ${args?.join(' ')}`)
 }
 
 export const runCommand = ({ cmd, args, volta = false }: CommanderPackage) => {
