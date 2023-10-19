@@ -88,9 +88,9 @@ export const addPackageCases = [
   ['bun', 'bun add vite --global']
 ]
 
-describe('add --global', () => {
-  const voltaVersion = testCommandResult('volta --version')
+const voltaVersion = testCommandResult('volta --version')
 
+describe('add --global', () => {
   it.each(voltaVersion ? addVoltaCases : addPackageCases)('%s', (pkg, expected) => {
     const result = testCommandResult(`swpm add vite --global --test ${pkg}`)
     expect(result).toBe(expected)
