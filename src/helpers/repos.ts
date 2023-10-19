@@ -28,7 +28,7 @@ export const getReposStatus = async () => {
     url = url.slice(0, -4)
   }
 
-  const { hostname } = new URL(url) ?? {}
+  const { hostname } = new URL(url)
   const provider = hostname?.split('.').at(0) as Providers
   const config = await getProviderConfiguration({ id: provider })
 
