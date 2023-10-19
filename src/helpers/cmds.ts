@@ -26,8 +26,9 @@ const addArgs = ({ yargs, cmdr, flags }: AddArgs) => {
   cmdr.args = [...cmdr.args, ...textFlags]
 }
 
-const replaceCommand = ({ args, action }: ReplaceCommandProps) => {
-  args[0] = action
+const replaceCommand = ({ args, cmd, action }: ReplaceCommandProps) => {
+  const index = args?.findIndex((arg) => arg === cmd)
+  args[index] = action
 }
 
 const addPositional = ({ args, action }: Pick<AddPositionalProps, 'args'> & {action: PositionalObject}) => {
@@ -47,7 +48,7 @@ export const translateCommand = ({ yargs, cmdr }: TranslateCommandProp) => {
     const action = cmdr?.config?.cmds?.[key]
 
     if (typeof action === 'string') {
-      replaceCommand({ args: cmdr.args, action })
+      replaceCommand({ args: cmdr.args, cmd: key, action })
     }
 
     if (Array.isArray(action)) {
@@ -58,7 +59,7 @@ export const translateCommand = ({ yargs, cmdr }: TranslateCommandProp) => {
         exit(1)
       }
 
-      replaceCommand({ args: cmdr.args, action: cmd })
+      replaceCommand({ args: cmdr.args, cmd: key, action: cmd })
       addArgs({ yargs, cmdr, flags: rest })
     }
 
