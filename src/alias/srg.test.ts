@@ -1,14 +1,9 @@
 import { it, expect, describe } from 'vitest'
 import { testCommandResult } from '../../.vitest/helpers'
+import { removeGlobalCases } from '../cli/swpm/commands/remove.test'
 
 describe('srg', () => {
-  it.each([
-    ['npm', 'npm uninstall vite --location=global'],
-    ['yarn', 'yarn global remove vite'],
-    ['yarn@berry', 'yarn global remove vite'],
-    ['pnpm', 'pnpm uninstall vite --global'],
-    ['bun', 'bun remove vite --global']
-  ])('%s', (pkg, expected) => {
+  it.each(removeGlobalCases)('%s', (pkg, expected) => {
     const result = testCommandResult(`srg vite --test ${pkg}`)
     expect(result).toBe(expected)
   })

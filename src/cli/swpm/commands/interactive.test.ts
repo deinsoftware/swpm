@@ -1,14 +1,16 @@
 import { it, expect, describe } from 'vitest'
 import { testCommandResult } from '../../../../.vitest/helpers'
 
+export const interactiveCases = [
+  ['npm', ''],
+  ['yarn', 'yarn upgrade-interactive'],
+  ['yarn@berry', 'yarn upgrade-interactive'],
+  ['pnpm', 'pnpm upgrade --interactive'],
+  ['bun', '']
+]
+
 describe('interactive', () => {
-  it.each([
-    ['npm', ''],
-    ['yarn', 'yarn upgrade-interactive'],
-    ['yarn@berry', 'yarn upgrade-interactive'],
-    ['pnpm', 'pnpm upgrade --interactive'],
-    ['bun', '']
-  ])('%s', (pkg, expected) => {
+  it.each(interactiveCases)('%s', (pkg, expected) => {
     const result = testCommandResult(`swpm interactive --test ${pkg}`)
     expect(result).toBe(expected)
   })

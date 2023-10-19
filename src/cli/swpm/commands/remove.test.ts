@@ -1,14 +1,16 @@
 import { it, expect, describe } from 'vitest'
 import { testCommandResult } from '../../../../.vitest/helpers'
 
+export const removeCases = [
+  ['npm', 'npm uninstall vite'],
+  ['yarn', 'yarn remove vite'],
+  ['yarn@berry', 'yarn remove vite'],
+  ['pnpm', 'pnpm uninstall vite'],
+  ['bun', 'bun remove vite']
+]
+
 describe('remove', () => {
-  it.each([
-    ['npm', 'npm uninstall vite'],
-    ['yarn', 'yarn remove vite'],
-    ['yarn@berry', 'yarn remove vite'],
-    ['pnpm', 'pnpm uninstall vite'],
-    ['bun', 'bun remove vite']
-  ])('%s', (pkg, expected) => {
+  it.each(removeCases)('%s', (pkg, expected) => {
     const result = testCommandResult(`swpm remove vite --test ${pkg}`)
     expect(result).toBe(expected)
   })
@@ -53,14 +55,16 @@ describe('remove --save-peer', () => {
   })
 })
 
+export const removeGlobalCases = [
+  ['npm', 'npm uninstall vite --location=global'],
+  ['yarn', 'yarn global remove vite'],
+  ['yarn@berry', 'yarn global remove vite'],
+  ['pnpm', 'pnpm uninstall vite --global'],
+  ['bun', 'bun remove vite --global']
+]
+
 describe('remove --global', () => {
-  it.each([
-    ['npm', 'npm uninstall vite --location=global'],
-    ['yarn', 'yarn global remove vite'],
-    ['yarn@berry', 'yarn global remove vite'],
-    ['pnpm', 'pnpm uninstall vite --global'],
-    ['bun', 'bun remove vite --global']
-  ])('%s', (pkg, expected) => {
+  it.each(removeGlobalCases)('%s', (pkg, expected) => {
     const result = testCommandResult(`swpm remove vite --global --test ${pkg}`)
     expect(result).toBe(expected)
   })

@@ -1,7 +1,7 @@
 import { it, expect, describe } from 'vitest'
 import { testCommandResult } from '../../.vitest/helpers'
 
-describe('sif', () => {
+describe('sr', () => {
   it.each([
     ['npm', 'npm run dev -- --port 3030'],
     ['yarn', 'yarn run dev --port 3030'],
