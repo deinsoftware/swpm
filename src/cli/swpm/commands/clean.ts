@@ -1,8 +1,9 @@
 import { exit } from 'node:process'
 import chalk from 'chalk'
-import { CommandModule } from 'yargs'
 import { deleteModulesPath, deleteModulesFiles, deleteLockFiles, deleteLogFiles, deletePath } from '../../../helpers/delete.js'
 import { checkErrorMessage } from '../../../helpers/messages.js'
+
+import type { CommandModule } from 'yargs'
 
 type OptionsProps = {
   'all'?: boolean,

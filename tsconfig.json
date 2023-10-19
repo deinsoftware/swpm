@@ -1,27 +1,32 @@
 {
     "compilerOptions": {
-        // enable latest features
+        /* Base Options: */
+        "esModuleInterop": true, // allow default imports for CommonJS modules
+        "skipLibCheck": true,
+        "target": "ESNext",
+        "verbatimModuleSyntax": true,
+        "allowJs": true, // allow importing `.js` from `.ts`
+        "resolveJsonModule": true,
+        "moduleDetection": "force",
+        /* Strictness */
+        "strict": true,
+        "noUncheckedIndexedAccess": true,
+        /* If transpiling with TypeScript: */
+        "moduleResolution": "NodeNext",
+        "module": "NodeNext",
+        "outDir": "bin/src",
+        "sourceMap": false,
+        /* doesn't run in the DOM: */
         "lib": [
             "ESNext"
         ],
-        "module": "ESNext",
-        "target": "ESNext",
-        // if TS 5.x+
-        "moduleResolution": "bundler",
-        "moduleDetection": "force",
-        "allowJs": false, // allow importing `.js` from `.ts`
-        "esModuleInterop": true, // allow default imports for CommonJS modules
-        // build
+        /* building for a library: */
         "declaration": true,
         "declarationDir": "bin/types",
-        "outDir": "bin/src",
-        // best practices
-        "strict": true,
+        /* best practices */
         "forceConsistentCasingInFileNames": true,
-        "skipLibCheck": true,
         "strictNullChecks": true,
-        "resolveJsonModule": true,
-        // performance
+        /* performance */
         "incremental": true
     },
     "baseUrl": ".",

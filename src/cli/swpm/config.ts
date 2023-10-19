@@ -7,7 +7,7 @@ import { commands, options } from './cli.js'
 import middleware from '../middleware.js'
 
 const config = await yargs(hideBin(argv))
-  .scriptName(path.basename(argv[1], path.extname(argv[1])))
+  .scriptName(path.basename(argv[1] ?? 'swpm', path.extname(argv[1] ?? 'swpm')))
   .command(commands)
   .options(options)
   .middleware(middleware)

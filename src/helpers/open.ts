@@ -33,8 +33,16 @@ const osConfig: Record<string, {path: string, cmd: string}> = {
 }
 
 export const openFileExplorer = async (path: string = cwd()) => {
+  let cmd = ''
   const os = detectOs()
-  const { cmd } = osConfig[os]
+
+  if (os in osConfig) {
+    const config = osConfig[os]
+    if (config && cmd in config) {
+      cmd = config.cmd
+    }
+  }
+
   if (os === 'wsl') {
     path = wslToWindows(path)
   }

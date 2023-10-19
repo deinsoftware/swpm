@@ -3,8 +3,9 @@ import yarn from './managers/yarn.js'
 import yarnBerry from './managers/yarn@berry.js'
 import pnpm from './managers/pnpm.js'
 import bun from './managers/bun.js'
-import { PackageManagerList } from './packages.types.js'
-import { CommanderPackage } from '../translator/commander.types.js'
+
+import type { PackageManagerList } from './packages.types.js'
+import type { CommanderPackage } from '../translator/commander.types.js'
 
 const packageManagerList = [
   npm,

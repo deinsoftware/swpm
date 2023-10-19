@@ -1,5 +1,5 @@
-import { CommanderPackage } from '../translator/commander.types.js'
-import { ArgumentsCamelCase } from 'yargs'
+import type { CommanderPackage } from '../translator/commander.types.js'
+import type { ArgumentsCamelCase } from 'yargs'
 
 export type AddArgs = {
   yargs: ArgumentsCamelCase
@@ -12,9 +12,12 @@ export type ReplaceCommandProps = {
   action: string
 }
 
+export type PositionalArray = [string, number]
+export type PositionalObject = { [key: string]: string | string[] }
+
 export type AddPositionalProps = {
   args: CommanderPackage['args']
-  action: string[] | [string, number] | { [key: string]: string | string[] }
+  action: string[] | PositionalArray | PositionalObject
 }
 
 export type TranslateCommandProp = {

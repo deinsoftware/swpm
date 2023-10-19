@@ -3,9 +3,18 @@ import { spawn, spawnSync, execSync } from 'node:child_process'
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
 import { getOriginIcon } from './icons.js'
-import { PackageManagerList } from '../packages/packages.types.js'
-import { CommanderPackage } from '../translator/commander.types.js'
-import { AddArgs, AddPositionalProps, GetCommandResultProps, ReplaceCommandProps, SpreadCommand, TranslateCommandProp } from './cmds.types.js'
+
+import type { PackageManagerList } from '../packages/packages.types.js'
+import type { CommanderPackage } from '../translator/commander.types.js'
+import type {
+  AddArgs,
+  AddPositionalProps,
+  GetCommandResultProps,
+  PositionalObject,
+  ReplaceCommandProps,
+  SpreadCommand,
+  TranslateCommandProp
+} from './cmds.types.js'
 
 const addArgs = ({ yargs, cmdr, flags }: AddArgs) => {
   for (const flag of flags) {
@@ -21,17 +30,19 @@ const replaceCommand = ({ args, action }: ReplaceCommandProps) => {
   args[0] = action
 }
 
-const addPositional = ({ args, action }: AddPositionalProps) => {
-  const { 0: key, 1: value } = Object.entries(action)[0]
+const addPositional = ({ args, action }: Pick<AddPositionalProps, 'args'> & {action: PositionalObject}) => {
+  const key = Object.keys(action).at(0) ?? ''
+  const value = action[key] ?? ''
+
   const start = args?.findIndex((arg) => arg.startsWith(key))
 
-  if (start > 0) {
+  if (typeof value === 'string' && start > 0) {
     args.splice(start, 0, value)
   }
 }
 
 export const translateCommand = ({ yargs, cmdr }: TranslateCommandProp) => {
-  if (yargs?._?.length > 0) {
+  if (yargs?._?.length > 0 && yargs?._?.[0]) {
     const key = yargs._[0]
     const action = cmdr?.config?.cmds?.[key]
 
@@ -52,7 +63,8 @@ export const translateCommand = ({ yargs, cmdr }: TranslateCommandProp) => {
     }
 
     if (typeof action === 'object') {
-      addPositional({ args: cmdr.args, action })
+      const actionObject = action as PositionalObject
+      addPositional({ args: cmdr.args, action: actionObject })
     }
   }
 }
@@ -75,7 +87,7 @@ export const runCommand = ({ cmd, args, volta = false }: CommanderPackage) => {
   }
 
   const child = spawn(
-    run,
+    run!,
     [...args],
     {
       stdio: 'inherit',

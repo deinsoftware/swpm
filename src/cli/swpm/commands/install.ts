@@ -1,10 +1,11 @@
-import { CommandModule } from 'yargs'
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
 import { translateArgs } from '../../../helpers/args.js'
 import cmdr from '../../../translator/commander.js'
 import prompts from 'prompts'
 import { checkErrorMessage } from '../../../helpers/messages.js'
+
+import type { CommandModule } from 'yargs'
 
 type OptionsProps = {
   'package-lock'?: boolean,

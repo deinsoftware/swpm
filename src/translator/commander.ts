@@ -1,4 +1,4 @@
-import { CommanderPackage } from './commander.types.js'
+import type { CommanderPackage } from './commander.types.js'
 
 const commanderInitValues: CommanderPackage = {
   cmd: undefined,
