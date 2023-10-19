@@ -30,7 +30,7 @@ export default defineConfig({
       include: [...include],
       exclude: [...exclude],
       statements: 52,
-      branches: 76,
+      branches: 77,
       functions: 55,
       lines: 52
     }
