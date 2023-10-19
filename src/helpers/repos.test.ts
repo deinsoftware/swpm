@@ -1,5 +1,4 @@
 import { afterEach, it, describe, expect, vi } from 'vitest'
-import { resolve as resolvePath } from 'node:path'
 import { pathExists } from 'find-up'
 import { getCommandResult } from './cmds.js'
 import { getReposStatus, hasRepository } from './repos.js'
