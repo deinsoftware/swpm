@@ -9,6 +9,7 @@ export type AddArgs = {
 
 export type ReplaceCommandProps = {
   args: CommanderPackage['args']
+  cmd: string | number,
   action: string
 }
 
