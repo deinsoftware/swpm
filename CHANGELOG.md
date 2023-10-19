@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 2.5.0 - 2023/10/19
+
+### Changed
+
+- typescript strict configuration
+
 ## 2.4.0 - 2023/10/16
 
 ### Added
