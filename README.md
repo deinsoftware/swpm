@@ -6,6 +6,7 @@
 [![sonar-security](https://sonarcloud.io/api/project_badges/measure?project=dein%3Aswpm&metric=security_rating)](https://sonarcloud.io/dashboard?id=dein%3Aswpm)
 [![sonar-maintainability](https://sonarcloud.io/api/project_badges/measure?project=dein%3Aswpm&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=dein%3Aswpm)
 [![sonar-coverage](https://sonarcloud.io/api/project_badges/measure?project=dein%3Aswpm&metric=coverage)](https://sonarcloud.io/dashboard?id=dein%3Aswpm)  
+[![Socket Badge](https://socket.dev/api/badge/npm/package/swpm)](https://socket.dev/npm/package/swpm)
 [![npm-version](https://img.shields.io/npm/v/swpm.svg?color=blue)](https://www.npmjs.com/package/swpm)
 [![npm-downloads](https://img.shields.io/npm/dt/swpm)](https://www.npmjs.com/package/swpm)
 [![node-engine](https://img.shields.io/node/v/swpm.svg?color=blue)](https://nodejs.org)
