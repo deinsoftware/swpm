@@ -95,7 +95,6 @@
   "type": "module",
   "dependencies": {
     "chalk": "5.3.0",
-    "ci": "^2.3.0",
     "command-exists": "1.2.9",
     "common-tags": "1.8.2",
     "find-up": "6.3.0",
@@ -107,13 +106,13 @@
     "yargs": "17.7.2"
   },
   "devDependencies": {
-    "@types/command-exists": "1.2.1",
-    "@types/common-tags": "1.8.2",
-    "@types/prompts": "2.4.6",
-    "@types/semver": "7.5.3",
-    "@types/spinnies": "0.5.1",
-    "@types/update-notifier": "6.0.5",
-    "@types/yargs": "17.0.28",
+    "@types/command-exists": "1.2.2",
+    "@types/common-tags": "1.8.3",
+    "@types/prompts": "2.4.7",
+    "@types/semver": "7.5.4",
+    "@types/spinnies": "0.5.2",
+    "@types/update-notifier": "6.0.6",
+    "@types/yargs": "17.0.29",
     "@typescript-eslint/eslint-plugin": "6.8.0",
     "@typescript-eslint/parser": "6.8.0",
     "@vitest/coverage-v8": "0.34.6",
@@ -122,7 +121,7 @@
     "eslint-plugin-import": "2.28.1",
     "eslint-plugin-n": "16.2.0",
     "eslint-plugin-promise": "6.1.1",
-    "type-fest": "4.4.0",
+    "type-fest": "4.5.0",
     "typescript": "5.2.2",
     "vitest": "0.34.6"
   },

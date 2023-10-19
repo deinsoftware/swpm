@@ -14,6 +14,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 ### Changed
 
 - typescript strict configuration
+- bump package versions
 
 ## 2.4.0 - 2023/10/16
 

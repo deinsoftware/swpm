@@ -11,18 +11,17 @@
         /* Strictness */
         "strict": true,
         "noUncheckedIndexedAccess": true,
-        /* If transpiling with TypeScript: */
+        /* Transpiling with TypeScript */
         "moduleResolution": "NodeNext",
         "module": "NodeNext",
         "outDir": "bin/src",
         "sourceMap": false,
-        /* doesn't run in the DOM: */
+        /* doesn't run in the DOM */
         "lib": [
             "ESNext"
         ],
         /* building for a library: */
-        "declaration": true,
-        "declarationDir": "bin/types",
+        "declaration": false,
         /* best practices */
         "forceConsistentCasingInFileNames": true,
         "strictNullChecks": true,
