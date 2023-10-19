@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 2.5.1 - 2023/10/19
+
+### Fixed
+
+- get repository url when using ssh uri
+
+### Added
+
+- repository helpers unit test
+
 ## 2.5.0 - 2023/10/19
 
 ### Changed
