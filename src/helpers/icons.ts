@@ -1,4 +1,4 @@
-import { OriginIcons } from './icons.types.js'
+import type { OriginIcons } from './icons.types.js'
 
 export const originIcons = {
   pinned: '📌',

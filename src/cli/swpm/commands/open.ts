@@ -1,13 +1,14 @@
 import chalk from 'chalk'
 import { exit, cwd } from 'node:process'
 import { resolve as resolvePath } from 'node:path'
-import { ArgumentsCamelCase, CommandModule } from 'yargs'
 import { openBrowser, openFileExplorer } from '../../../helpers/open.js'
 import { fileExists, getPackageJson, pathExists } from '../../../helpers/files.js'
 import { getReposStatus, hasRepository } from '../../../helpers/repos.js'
 import { stripIndents } from 'common-tags'
 import { checkErrorMessage } from '../../../helpers/messages.js'
-import { Repository } from '../../../helpers/repos.types.js'
+
+import type { ArgumentsCamelCase, CommandModule } from 'yargs'
+import type { Repository } from '../../../helpers/repos.types.js'
 
 type OptionsProps = {
   'explorer'?: boolean

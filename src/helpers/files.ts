@@ -2,7 +2,8 @@ import { exit } from 'node:process'
 import fs from 'node:fs/promises'
 import chalk from 'chalk'
 import { findUp } from 'find-up'
-import { PackageJson } from '../translator/commander.types.js'
+
+import type { PackageJson } from '../translator/commander.types.js'
 
 const PACKAGE_NAME = 'package.json'
 

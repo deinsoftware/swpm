@@ -1,6 +1,6 @@
-import { PackageConfiguration } from '../packages/packages.types.js'
-import { CommanderPackage } from '../translator/commander.types.js'
-import { ArgumentsCamelCase } from 'yargs'
+import type { PackageConfiguration } from '../packages/packages.types.js'
+import type { CommanderPackage } from '../translator/commander.types.js'
+import type { ArgumentsCamelCase } from 'yargs'
 
 export type FindVoltaGlobalsProps = {
   yargs: ArgumentsCamelCase<{global?: boolean}>

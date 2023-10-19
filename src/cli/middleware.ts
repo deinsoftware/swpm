@@ -4,11 +4,12 @@ import { translateCommand } from '../helpers/cmds.js'
 import { detectVoltaPin, getCurrentPackageManager } from '../helpers/get.js'
 import { getPackageConfiguration } from '../packages/list.js'
 import { setPackageVersion } from '../helpers/set.js'
-import { InferredOptionTypes, MiddlewareFunction } from 'yargs'
 import cmdr from '../translator/commander.js'
 import { options as swpmOptions } from './swpm/cli.js'
 import { options as swpxOptions } from './swpx/cli.js'
-import { PackageManagerList } from '../packages/packages.types.js'
+
+import type { InferredOptionTypes, MiddlewareFunction } from 'yargs'
+import type { PackageManagerList } from '../packages/packages.types.js'
 
 type Props = InferredOptionTypes<typeof swpmOptions> | InferredOptionTypes<typeof swpxOptions>
 const middleware: MiddlewareFunction<Props> = async (yargs) => {

@@ -5,8 +5,9 @@ import chalk from 'chalk'
 import { getCommandResult } from '../helpers/cmds.js'
 import { getOriginIcon } from '../helpers/icons.js'
 import { getSwpmInfo } from '../helpers/info.js'
-import { CommanderPackage } from '../translator/commander.types.js'
 import { commandVerification } from '../helpers/get.js'
+
+import type { CommanderPackage } from '../translator/commander.types.js'
 
 export const showNoPackageDetected = () => {
   console.error(stripIndents`

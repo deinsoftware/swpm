@@ -548,7 +548,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 
 | Package/Alias  | `sug <package>`                   | `sug vite`                   |
 | -------------- | --------------------------------- | ---------------------------- |
-| **npm**        | `npm install <package>@latest`    | `npm install <vite>@latest`  |
+| **npm**        | `npm add <package>@latest`        | `npm add vite@latest`  |
 | **yarn**       | `yarn upgrade <package> --latest` | `yarn upgrade vite --latest` |
 | **yarn@berry** | `yarn up <package>`               | `yarn up vite`               |
 | **pnpm**       | `pnpm update <package> --latest`  | `pnpm update vite --latest`  |
@@ -579,7 +579,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **npm**        | `npm run <script>`  | `npm run dev -- --port 3030` |
 | **yarn**       | `yarn run <script>` | `yarn run dev --port 3030`   |
 | **pnpm**       | `pnpm run <script>` | `pnpm run dev --port 3030`   |
-| **bun**        | `bun run <script>`  | `bun add dev --port 3030`    |
+| **bun**        | `bun run <script>`  | `bun run dev --port 3030`    |
 
 ### sx (execute)
 
@@ -820,6 +820,7 @@ A minimalistic solution focus only in the most common used commands:
 - [Node.js](https://nodejs.org/) - A JavaScript runtime built on Chrome's V8 JavaScript engine.
 - [ESLint](https://eslint.org/) - Find and fix problems in your JavaScript code.
 - [vitest](https://vitest.dev/) - A blazing fast unit-test framework powered by Vite ⚡️.
+- [Codeium](https://codeium.com/) - Free AI code completion and chat.
 
 ### NPM Packages
 

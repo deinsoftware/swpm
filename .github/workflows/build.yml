@@ -74,3 +74,4 @@ jobs:
             -Dsonar.projectVersion=${{ steps.package.outputs.version }}
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
             -Dsonar.coverage.exclusions=**/*.test.ts
+            -Dsonar.cpd.exclusions=**/*.test.ts

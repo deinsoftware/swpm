@@ -1,11 +1,22 @@
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
 import { exit } from 'node:process'
-
-import { getCommandResult } from './cmds.js'
-import { CommanderPackage } from '../translator/commander.types.js'
-import { ClanFlagProp, FindFlagIndexProps, FindVoltaGlobalsProps, GetActionProp, GetKeyProps, MoveFlagProps, ReplaceCommandProps, ReplaceFlagProps, TranslateArgsProp, TranslateFlagProp } from './args.types.js'
 import prompts from 'prompts'
+import { getCommandResult } from './cmds.js'
+
+import type { CommanderPackage } from '../translator/commander.types.js'
+import type {
+  ClanFlagProp,
+  FindFlagIndexProps,
+  FindVoltaGlobalsProps,
+  GetActionProp,
+  GetKeyProps,
+  MoveFlagProps,
+  ReplaceCommandProps,
+  ReplaceFlagProps,
+  TranslateArgsProp,
+  TranslateFlagProp
+} from './args.types.js'
 
 export const findVoltaGlobals = ({ yargs, cmdr, flags }: FindVoltaGlobalsProps) => {
   const hasGlobalOperations = (
@@ -82,7 +93,8 @@ const replaceCommand = ({ yargs, cmdr, cmdConfig }: ReplaceCommandProps) => {
   const command = yargs._.toString()
 
   if (command && command in cmdConfig) {
-    cmdr.args[0] = cmdConfig[command]
+    const args = cmdConfig[command]
+    cmdr.args[0] = args!
   }
 }
 

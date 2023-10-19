@@ -1,11 +1,11 @@
-import chalk, { ForegroundColorName } from 'chalk'
+import chalk, { type ForegroundColorName } from 'chalk'
 import { stripIndent } from 'common-tags'
-import updateNotifier, { NotifyOptions } from 'update-notifier'
+import updateNotifier, { type NotifyOptions } from 'update-notifier'
 
 import { getCommandResult } from '../helpers/cmds.js'
 import { getSwpmInfo } from '../helpers/info.js'
 
-import { CommanderPackage } from '../translator/commander.types.js'
+import type { CommanderPackage } from '../translator/commander.types.js'
 
 const ONE_DAY_MS = 1000 * 60 * 60 * 24
 

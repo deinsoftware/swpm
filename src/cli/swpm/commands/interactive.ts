@@ -1,6 +1,7 @@
-import { CommandModule } from 'yargs'
 import { translateArgs } from '../../../helpers/args.js'
 import cmdr from '../../../translator/commander.js'
+
+import type { CommandModule } from 'yargs'
 
 type OptionsProps = {
   'package'?: string
@@ -19,14 +20,14 @@ const interactive: CommandModule<Record<string, unknown>, OptionsProps> = {
       .option('latest', {
         alias: 'L',
         type: 'boolean',
-        desc: 'upgrade the latest version of the package',
+        desc: 'upgrade interactive the latest version of packages',
         usage: '$0 interactive --latest'
       })
       .option('global', {
         alias: 'g',
         type: 'boolean',
-        desc: 'update package as global',
-        usage: '$0 update --global'
+        desc: 'upgrade interactive global packages',
+        usage: '$0 interactive --global'
       }),
 
   handler: async (yargs) => {
