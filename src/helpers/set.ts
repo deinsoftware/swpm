@@ -1,11 +1,12 @@
 import { exit } from 'node:process'
 import { runCommand, showCommand } from './cmds.js'
 import packagesList from '../packages/list.js'
-import { PackageManagerList } from '../packages/packages.types.js'
-import { CommanderPackage } from '../translator/commander.types.js'
 import prompts from 'prompts'
 import chalk from 'chalk'
 import { stripIndent } from 'common-tags'
+
+import type { PackageManagerList } from '../packages/packages.types.js'
+import type { CommanderPackage } from '../translator/commander.types.js'
 
 export const setPackageVersion = async (packageName: PackageManagerList) => {
   const getPackageVersion = packagesList.filter((pkg) => pkg.cmd === packageName) ?? []
@@ -13,7 +14,7 @@ export const setPackageVersion = async (packageName: PackageManagerList) => {
   if (getPackageVersion.length) {
     const [config] = getPackageVersion
 
-    if (config.version) {
+    if (config?.version) {
       const command = `${packageName} set command ${config.version}`
       const color = config?.color ?? chalk.reset()
 

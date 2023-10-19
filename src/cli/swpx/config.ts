@@ -8,7 +8,7 @@ import { options } from './cli.js'
 import middleware from '../middleware.js'
 
 const config = await yargs(hideBin(argv))
-  .scriptName(path.basename(argv[1], path.extname(argv[1])))
+  .scriptName(path.basename(argv[1] ?? 'swpx', path.extname(argv[1] ?? 'swpx')))
   .options(options)
   .middleware(middleware)
   .usage('$0 [<command>] [FLAGS]')

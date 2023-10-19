@@ -5,15 +5,16 @@ import semver from 'semver'
 import commandExists from 'command-exists'
 import { getPackageJson, lockFileExists } from '../helpers/files.js'
 import packagesList, { packageExists } from '../packages/list.js'
-import { PackageManagerList } from '../packages/packages.types.js'
-import { CommanderPackage, PackageJson } from '../translator/commander.types.js'
+
+import type { PackageManagerList } from '../packages/packages.types.js'
+import type { CommanderPackage, PackageJson } from '../translator/commander.types.js'
 
 const propertyExists = (packageJson: PackageJson, property: string) => {
   return (property in packageJson)
 }
 
 const getPackageManager = (packageJson: PackageJson, property: 'packageManager') => {
-  let [cmd, version] = packageJson?.[property]?.split('@') ?? ['', '']
+  let [cmd = '', version = '']: string[] = packageJson?.[property]?.split('@') ?? ['', '']
 
   if (version) {
     const compatiblePackage = packagesList.filter((pkg) => {
@@ -23,9 +24,12 @@ const getPackageManager = (packageJson: PackageJson, property: 'packageManager')
         semver.satisfies(version, pkg.semver)
       )
     }) ?? []
-    if (compatiblePackage.length) {
-      const [pkg] = compatiblePackage
-      cmd = pkg.cmd
+
+    if (compatiblePackage && compatiblePackage.length > 0) {
+      const pkg = compatiblePackage.at(0)
+      if (pkg && cmd in pkg) {
+        cmd = pkg.cmd
+      }
     }
   }
 

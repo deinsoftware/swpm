@@ -1,4 +1,4 @@
-import { PackageConfiguration } from '../packages.types.js'
+import type { PackageConfiguration } from '../packages.types.js'
 
 const npm: PackageConfiguration = {
   cmd: 'npm',
@@ -18,8 +18,8 @@ const npm: PackageConfiguration = {
     un: 'uninstall',
     up: 'update',
     ud: 'update',
-    upgrade: ['install', '--latest'],
-    ug: ['install', '--latest'],
+    upgrade: ['add', '--latest'],
+    ug: ['add', '--latest'],
     interactive: ['', -1],
     run: { '--': '--' },
     create: { '--': '--' }

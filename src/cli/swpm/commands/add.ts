@@ -1,6 +1,7 @@
-import { CommandModule } from 'yargs'
 import { findVoltaGlobals, translateArgs } from '../../../helpers/args.js'
 import cmdr from '../../../translator/commander.js'
+
+import type { CommandModule } from 'yargs'
 
 type OptionsProps = {
   package?: string

@@ -1,8 +1,9 @@
-import { Repository } from '../helpers/repos.types.js'
-import { Providers } from './providers.types.js'
 import bitBucket from './providers/bitbucket.js'
 import gitHub from './providers/github.js'
 import gitLab from './providers/gitlab.js'
+
+import type { Repository } from '../helpers/repos.types.js'
+import type { Providers } from './providers.types.js'
 
 export const providersList = [
   gitHub,

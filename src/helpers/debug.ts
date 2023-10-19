@@ -1,6 +1,7 @@
 import { inspect } from 'node:util'
-import { ArgumentsCamelCase } from 'yargs'
-import { CommanderPackage } from '../translator/commander.types'
+
+import type { ArgumentsCamelCase } from 'yargs'
+import type { CommanderPackage } from '../translator/commander.types.js'
 
 export const debug = (object: CommanderPackage | ArgumentsCamelCase) => {
   console.log(

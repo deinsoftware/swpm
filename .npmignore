@@ -1,5 +1,7 @@
 node_modules/
 types/
+**/*.types.*
+**/*.map.*
 build/
 swpm*.tgz
 tsconfig.build.tsbuildinfo

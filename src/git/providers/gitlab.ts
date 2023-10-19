@@ -1,4 +1,4 @@
-import { ProvidersConfiguration } from '../providers.types.js'
+import type { ProvidersConfiguration } from '../providers.types.js'
 
 const gitLab: ProvidersConfiguration = {
   id: 'gitlab',

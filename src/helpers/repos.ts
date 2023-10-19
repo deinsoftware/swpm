@@ -2,9 +2,10 @@ import { resolve as resolvePath } from 'node:path'
 import { pathExists } from 'find-up'
 import { cwd } from 'node:process'
 import { getCommandResult } from './cmds.js'
-import { Repository } from './repos.types.js'
 import { getProviderConfiguration } from '../git/list.js'
-import { Providers } from '../git/providers.types.js'
+
+import type { Repository } from './repos.types.js'
+import type { Providers } from '../git/providers.types.js'
 
 const gitCurrentBranch = () => {
   return getCommandResult({ command: 'git branch --show-current' })
