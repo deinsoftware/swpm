@@ -73,6 +73,6 @@ jobs:
             -Dsonar.projectName=swpm
             -Dsonar.projectVersion=${{ steps.package.outputs.version }}
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-            -Dsonar.sources=src/
+            -Dsonar.sources=src/**/*.ts
             -Dsonar.coverage.exclusions=src/alias/,src/cli/,src/libs/,**/*.test.ts,**/*.types.ts
             -Dsonar.cpd.exclusions=src/alias/,src/cli/,src/libs/,**/*.test.ts,**/*.types.ts
