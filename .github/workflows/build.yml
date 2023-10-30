@@ -10,7 +10,7 @@ on:
     branches: [main, dev]
 
 env:
-  NODE_VERSION: 18
+  NODE_VERSION: 20
 
 jobs:
   build:
@@ -68,7 +68,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectKey=dein:swpm
             -Dsonar.organization=dein
             -Dsonar.projectName=swpm
             -Dsonar.projectVersion=${{ steps.package.outputs.version }}

@@ -102,7 +102,7 @@
     "prompts": "2.4.2",
     "semver": "7.5.4",
     "spinnies": "0.5.1",
-    "update-notifier": "6.0.2",
+    "update-notifier": "7.0.0",
     "yargs": "17.7.2"
   },
   "devDependencies": {
@@ -113,22 +113,22 @@
     "@types/spinnies": "0.5.2",
     "@types/update-notifier": "6.0.6",
     "@types/yargs": "17.0.29",
-    "@typescript-eslint/eslint-plugin": "6.8.0",
-    "@typescript-eslint/parser": "6.8.0",
+    "@typescript-eslint/eslint-plugin": "6.9.1",
+    "@typescript-eslint/parser": "6.9.1",
     "@vitest/coverage-v8": "0.34.6",
-    "eslint": "8.51.0",
+    "eslint": "8.52.0",
     "eslint-config-standard": "17.1.0",
-    "eslint-plugin-import": "2.28.1",
+    "eslint-plugin-import": "2.29.0",
     "eslint-plugin-n": "16.2.0",
     "eslint-plugin-promise": "6.1.1",
-    "type-fest": "4.5.0",
+    "type-fest": "4.6.0",
     "typescript": "5.2.2",
     "vitest": "0.34.6"
   },
   "volta": {
-    "node": "18.18.0",
-    "npm": "9.8.1"
+    "node": "20.9.0",
+    "npm": "10.2.1"
   },
   "swpm": "npm",
-  "packageManager": "npm@9.8.1"
+  "packageManager": "npm@10.2.1"
 }
