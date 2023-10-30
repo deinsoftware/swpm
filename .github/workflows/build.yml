@@ -68,9 +68,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectKey=dein:swpm
             -Dsonar.organization=dein
             -Dsonar.projectName=swpm
             -Dsonar.projectVersion=${{ steps.package.outputs.version }}
-            -Dsonar.coverage.exclusions=src/alias/,src/cli/,src/libs/,**/*.test.ts,**/*.types.ts,vitest.config.ts
-            -Dsonar.cpd.exclusions=src/alias/,src/cli/,src/libs/,**/*.test.ts,**/*.types.ts,vitest.config.ts
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.coverage.exclusions=**/*.test.ts
+            -Dsonar.cpd.exclusions=**/*.test.ts
