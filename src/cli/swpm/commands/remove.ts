@@ -57,8 +57,8 @@ const remove: CommandModule<Record<string, unknown>, OptionsProps> = {
   handler: async (yargs) => {
     if (!cmdr?.cmd) return
 
-    if (findVoltaGlobals({ yargs, cmdr, flags: ['uninstall', 'remove'] })
-    ) {
+    const voltaGlobals = await findVoltaGlobals({ yargs, cmdr, flags: ['uninstall', 'remove'] })
+    if (voltaGlobals) {
       if (('pkg' in yargs) && ('package' in yargs)) {
         cmdr.cmd = 'volta'
         cmdr.args = ['uninstall', yargs.package!]
