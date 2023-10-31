@@ -110,6 +110,9 @@ export const getCurrentPackageManager = async (): Promise<{origin: CommanderPack
 export const detectVoltaPin = async (cmdr: CommanderPackage) => {
   if (!cmdr?.cmd) return
 
+  const isVoltaInstalled = await commandVerification('volta')
+  if (!isVoltaInstalled) return
+
   const packageJson = await getPackageJson()
   if (!packageJson) return
 

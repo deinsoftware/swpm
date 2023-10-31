@@ -1,5 +1,6 @@
 import { it, expect, describe } from 'vitest'
 import { testCommandResult } from '../../../../.vitest/helpers'
+import { commandVerification } from '../../../../bin/src/helpers/get'
 
 export const addCases = [
   ['npm', 'npm add vite'],
@@ -88,10 +89,10 @@ export const addPackageCases = [
   ['bun', 'bun add vite --global']
 ]
 
-const voltaVersion = testCommandResult('volta --version')
+const isVoltaInstalled = await commandVerification('volta')
 
 describe('add --global', () => {
-  it.each(voltaVersion ? addVoltaCases : addPackageCases)('%s', (pkg, expected) => {
+  it.each(isVoltaInstalled ? addVoltaCases : addPackageCases)('%s', (pkg, expected) => {
     const result = testCommandResult(`swpm add vite --global --test ${pkg}`)
     expect(result).toBe(expected)
   })

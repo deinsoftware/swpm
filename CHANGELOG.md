@@ -9,6 +9,13 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 2.5.2 - 2023/10/31
+
+## Fixed
+
+- volta version detection when not installed
+- if volta was not installed don't take in care the volta pin version on `package.json`
+
 ## 2.5.1 - 2023/10/19
 
 ### Fixed

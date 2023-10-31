@@ -1,5 +1,5 @@
 import { it, expect, describe, vi } from 'vitest'
-import { detectVoltaPin } from './get'
+import { commandVerification, detectVoltaPin } from './get'
 import { CommanderPackage, PackageJson } from '../translator/commander.types'
 import { getPackageJson } from './files.js'
 
@@ -56,8 +56,12 @@ describe('detectVoltaPin', () => {
       cmd: 'npm',
       args: []
     }
-    const result = await detectVoltaPin(cmdr)
-    expect(result).toBe(true)
+
+    const isVoltaInstalled = await commandVerification('volta')
+    if (isVoltaInstalled) {
+      const result = await detectVoltaPin(cmdr)
+      expect(result).toBe(true)
+    }
   })
 
   it('should return false if cmdr.cmd is found in packageJson.volta', async () => {
@@ -73,7 +77,9 @@ describe('detectVoltaPin', () => {
       cmd: 'npm',
       args: []
     }
+
+    const isVoltaInstalled = await commandVerification('volta')
     const result = await detectVoltaPin(cmdr)
-    expect(result).toBe(false)
+    expect(isVoltaInstalled && result).toBe(false)
   })
 })

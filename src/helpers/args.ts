@@ -2,7 +2,6 @@ import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
 import { exit } from 'node:process'
 import prompts from 'prompts'
-import { getCommandResult } from './cmds.js'
 
 import type { CommanderPackage } from '../translator/commander.types.js'
 import type {
@@ -17,13 +16,15 @@ import type {
   TranslateArgsProp,
   TranslateFlagProp
 } from './args.types.js'
+import { commandVerification } from './get.js'
 
-export const findVoltaGlobals = ({ yargs, cmdr, flags }: FindVoltaGlobalsProps) => {
+export const findVoltaGlobals = async ({ yargs, cmdr, flags }: FindVoltaGlobalsProps) => {
   const hasGlobalOperations = (
     yargs?.global &&
     flags.some((flag) => cmdr?.args.includes(flag))
   )
-  return hasGlobalOperations && getCommandResult({ command: 'volta --version' })
+  const isVoltaInstalled = await commandVerification('volta')
+  return hasGlobalOperations && isVoltaInstalled
 }
 
 const findFlagIndex = ({ args, flag }: FindFlagIndexProps) => {
