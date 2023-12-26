@@ -54,10 +54,10 @@
     "pack": "npm pack bin/ --pack-destination=\"bin/\"",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "eslint . --fix --ext .js,.ts",
-    "test": "vitest --run --reporter verbose --no-threads",
-    "test:w": "vitest --no-threads",
-    "test:c": "vitest run --coverage --no-threads",
-    "test:wc": "vitest watch --coverage --no-threads",
+    "test": "vitest --run --reporter verbose --pool=forks",
+    "test:w": "vitest --pool=forks",
+    "test:c": "vitest run --coverage --pool=forks",
+    "test:wc": "vitest watch --coverage --pool=forks",
     "test:ui": "vitest -ui",
     "ts:check": "tsc --noEmit",
     "ts:diagnostics": "tsc --extendedDiagnostics",
@@ -116,7 +116,7 @@
     "@types/yargs": "17.0.32",
     "@typescript-eslint/eslint-plugin": "6.16.0",
     "@typescript-eslint/parser": "6.16.0",
-    "@vitest/coverage-v8": "0.34.6",
+    "@vitest/coverage-v8": "1.1.0",
     "eslint": "8.56.0",
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-import": "2.29.1",
@@ -124,7 +124,7 @@
     "eslint-plugin-promise": "6.1.1",
     "type-fest": "4.8.3",
     "typescript": "5.3.3",
-    "vitest": "0.34.6"
+    "vitest": "1.1.0"
   },
   "volta": {
     "node": "20.9.0",
