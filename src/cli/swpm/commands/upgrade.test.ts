@@ -31,7 +31,7 @@ describe('upgrade --save-exact', () => {
 
 describe('upgrade --global', () => {
   it.each([
-    ['npm', 'npm add vite@latest --location=global'],
+    ['npm', 'npm add vite@latest --global'],
     ['yarn', 'yarn global upgrade vite --latest'],
     ['yarn@berry', 'yarn global up vite'],
     ['pnpm', 'pnpm update vite --global --latest'],

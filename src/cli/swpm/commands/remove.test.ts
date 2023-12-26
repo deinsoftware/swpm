@@ -56,7 +56,7 @@ describe('remove --save-peer', () => {
 })
 
 export const removeGlobalCases = [
-  ['npm', 'npm uninstall vite --location=global'],
+  ['npm', 'npm uninstall vite --global'],
   ['yarn', 'yarn global remove vite'],
   ['yarn@berry', 'yarn global remove vite'],
   ['pnpm', 'pnpm uninstall vite --global'],

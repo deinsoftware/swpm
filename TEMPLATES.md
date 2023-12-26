@@ -99,8 +99,8 @@ Example
 
 ```JavaScript
 args: {
-  '--global': '--location=global',
-  '-g': '--location=global',
+  '--save-dev': '--dev',
+  '-D': '-d',
 }
 ```
 

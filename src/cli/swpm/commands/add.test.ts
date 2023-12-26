@@ -82,7 +82,7 @@ export const addVoltaCases = [
 ]
 
 export const addPackageCases = [
-  ['npm', 'npm add vite --location=global'],
+  ['npm', 'npm add vite --global'],
   ['yarn', 'yarn global add vite'],
   ['yarn@berry', 'yarn global add vite'],
   ['pnpm', 'pnpm add vite --global'],

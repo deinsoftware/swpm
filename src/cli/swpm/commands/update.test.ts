@@ -18,7 +18,7 @@ describe('update', () => {
 
 describe('update --global', () => {
   it.each([
-    ['npm', 'npm update vite --location=global'],
+    ['npm', 'npm update vite --global'],
     ['yarn', 'yarn global upgrade vite'],
     ['yarn@berry', 'yarn global semver up vite'],
     ['pnpm', 'pnpm update vite --global'],

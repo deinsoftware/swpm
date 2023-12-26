@@ -59,7 +59,7 @@ jobs:
 
       - name: Get package info
         id: package
-        uses: codex-team/action-nodejs-package-info@v1
+        uses: kylejrp/action-nodejs-package-info@v1.2
 
       - name: Analyze with SonarCloud
         uses: sonarsource/sonarcloud-github-action@master

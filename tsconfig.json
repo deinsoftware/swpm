@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "baseUrl": ".",
         /* Base Options: */
         "esModuleInterop": true, // allow default imports for CommonJS modules
         "skipLibCheck": true,
@@ -28,7 +29,6 @@
         /* performance */
         "incremental": true
     },
-    "baseUrl": ".",
     "include": [
         "src/**/*.ts"
     ],

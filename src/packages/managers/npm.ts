@@ -10,7 +10,7 @@ const npm: PackageConfiguration = {
   modulesPath: [],
   modulesFile: [],
   logFile: 'npm-debug.log',
-  install: 'npm install swpm --location=global',
+  install: 'npm install swpm --global',
   cmds: {
     remove: 'uninstall',
     r: 'uninstall',
@@ -33,8 +33,6 @@ const npm: PackageConfiguration = {
       i: 'ci',
       install: 'ci'
     },
-    '--global': '--location=global',
-    '-g': '--location=global',
     '--latest': ['<package>@latest', 1],
     '-L': ['<package>@latest', 1],
     '--package-lock': '--no-package-lock',
