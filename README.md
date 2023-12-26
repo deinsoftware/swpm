@@ -594,38 +594,38 @@ Quick and short aliases for `swpm` and `swpx` commands.
 
 | Alias           | `soe [path]`                  |
 | --------------- | ----------------------------- |
-| **soe**         | `swpm open --explorer`        |
-| **soe [path]**  | `swpm open --explorer [path]` |
+| `soe`           | `swpm open --explorer`        |
+| `soe [path]`    | `swpm open --explorer [path]` |
 
 ### sg<?> (open git)
 
-| Alias  | Command                    |
-| ------ | -------------------------- |
-| `sgr`  | `swpm open --git-repo`     |
-| `sgb`  | `swpm open --git-branch`   |
-| `sgp`  | `swpm open --git-pipeline` |
-| `sgm`  | `swpm open --git-merge`    |
+| Alias  | Command                    | GitHub    | GitLab           | Bitbucket       |
+| ------ | -------------------------- | --------- | ---------------- | --------------- |
+| `sgr`  | `swpm open --git-repo`     |           |                  |                 |
+| `sgb`  | `swpm open --git-branch`   |           |                  |                 |
+| `sgp`  | `swpm open --git-pipeline` | `actions` | `pipelines`      | `pipelines`     |
+| `sgm`  | `swpm open --git-merge`    | `pulls`   | `merge_requests` | `pull-requests` |
 
 ### sgd (open git-diff)
 
-| Alias             | `sgd [branch]`                  |
-| ----------------- | ------------------------------- |
-| **sgd**           | `swpm open --git-diff`          |
-| **sgd [branch]**  | `swpm open --git-diff [branch]` |
+| Alias           | `sgd [branch]`                  |
+| --------------- | ------------------------------- |
+| `sgd`           | `swpm open --git-diff`          |
+| `sgd [branch]`  | `swpm open --git-diff [branch]` |
 
 ### soc (open coverage)
 
-| Alias           | `soc [fileName]`                  |
-| --------------- | --------------------------------- |
-| **soc**         | `swpm open --coverage`            |
-| **soc [path]**  | `swpm open --coverage [fileName]` |
+| Alias         | `soc [fileName]`                  |
+| ------------- | --------------------------------- |
+| `soc`         | `swpm open --coverage`            |
+| `soc [path]`  | `swpm open --coverage [fileName]` |
 
 ### son (open npm package)
 
-| Alias              | `son [package]`             |
-| ------------------ | --------------------------- |
-| **son**            | `swpm open --npm`           |
-| **son [package]**  | `swpm open --npm [package]` |
+| Alias            | `son [package]`             |
+| ---------------- | --------------------------- |
+| `son`            | `swpm open --npm`           |
+| `son [package]`  | `swpm open --npm [package]` |
 
 ### sc<?> (clean)
 
@@ -765,7 +765,7 @@ Create an `SWPM` environment variable with one of this values `<npm|yarn[@berry]
 
 `swpm` and `swpx` search some characteristics following this order.
 
-| Icon | Stage    |
+| Icon | Stage                                                        |
 | :--: | ------------------------------------------------------------ |
 | 📌   | Search the `swpm` property pinned on `package.json` file     |
 | 📦   | Search the `packageManager` property on `package.json` file  |
