@@ -60,7 +60,7 @@ Install as global with any of this package managers
 
 | Package Manager | Install Command                      |
 | --------------- | ------------------------------------ |
-| **npm**         | `npm install swpm --location=global` |
+| **npm**         | `npm install swpm --global`          |
 | **yarn**        | `yarn global add swpm`               |
 | **pnpm**        | `pnpm install swpm --global`         |
 | **bun**         | `bun install -g swpm`                |
@@ -509,7 +509,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 
 | Package/Alias  | `sag <package>`                        | `sag eslint`                        |
 | -------------- | -------------------------------------- | ----------------------------------- |
-| **npm**        | `npm add <package> --location=global`  | `npm add eslint --location=global`  |
+| **npm**        | `npm add <package> --global`           | `npm add eslint --global`           |
 | **yarn**       | `yarn add global <package>`            | `yarn add global eslint`            |
 | **pnpm**       | `pnpm add <package> --global`          | `pnpm add eslint --global`          |
 | **bun**        | `bun add <package> --global`           | `bun add eslint --global`           |
@@ -528,7 +528,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 
 | Package/Alias  | `srg <package>`                              | `srg eslint`                              |
 | -------------- | -------------------------------------------- | ----------------------------------------- |
-| **npm**        | `npm uninstall <package> --location=global`  | `npm uninstall eslint --location=global`  |
+| **npm**        | `npm uninstall <package> --global`           | `npm uninstall eslint --global`           |
 | **yarn**       | `yarn remove global <package>`               | `yarn remove global eslint`               |
 | **pnpm**       | `pnpm uninstall <package> --global`          | `pnpm uninstall eslint --global`          |
 | **bun**        | `bun remove <package> --global`              | `bun remove eslint --global`              |
@@ -548,7 +548,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 
 | Package/Alias  | `sug <package>`                   | `sug vite`                   |
 | -------------- | --------------------------------- | ---------------------------- |
-| **npm**        | `npm add <package>@latest`        | `npm add vite@latest`  |
+| **npm**        | `npm add <package>@latest`        | `npm add vite@latest`        |
 | **yarn**       | `yarn upgrade <package> --latest` | `yarn upgrade vite --latest` |
 | **yarn@berry** | `yarn up <package>`               | `yarn up vite`               |
 | **pnpm**       | `pnpm update <package> --latest`  | `pnpm update vite --latest`  |

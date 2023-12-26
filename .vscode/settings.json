@@ -74,8 +74,8 @@
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "editor.formatOnSave": false,
     "editor.codeActionsOnSave": {
-      "source.formatDocument": true,
-      "source.fixAll.eslint": true
+      "source.formatDocument": "explicit",
+      "source.fixAll.eslint": "explicit"
     },
   },
   "explorer.fileNesting.patterns": {

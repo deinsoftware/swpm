@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 2.6.0 - 2023/12/26
+
+### Changed
+
+- Revert the `--location=global` flag translation on npm, [the warning message was fixed and deprecated](https://github.com/npm/statusboard/issues/518).
+
 ## 2.5.2 - 2023/10/31
 
 ## Fixed

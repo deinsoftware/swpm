@@ -25,7 +25,7 @@ export const autoUpdate = async (cmdr: CommanderPackage) => {
   if (notifier?.update) {
     const { latest, current, type } = notifier.update
 
-    let command = 'npm install swpm --location=global'
+    let command = 'npm install swpm --global'
 
     const isVoltaInstalled = await commandVerification('volta')
     if (isVoltaInstalled) {
