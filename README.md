@@ -698,7 +698,7 @@ swpm --unpin
 
 It will remove the pinned Package Manager in the `package.json` file.
 
-#### Test
+### Test
 
 The `<swpm|swpx> --test` flag show the equivalent command using the selected Package Manager, but **it will not run the command**
 
@@ -710,7 +710,7 @@ swpx <command> -t <npm|yarn[@berry]|pnpm|bun>
 
 It will show the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
 
-#### Mute
+### Mute
 
 The `<swpm|swpx> --mute` flag hide the package manager command translation.
 
@@ -719,7 +719,7 @@ swpm <command> [args] --mute
 swpx <command> [args] --mute
 ```
 
-#### Alias
+### Alias
 
 The `<swpm|swpx> --alias` flag show the command aliases available.
 
@@ -728,7 +728,7 @@ swpm --alias
 swpx --alias
 ```
 
-#### Info
+### Info
 
 The `<swpm|swpx> --info` flag show the current Package Manager used and some versions information.
 
