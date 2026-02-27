@@ -1,4 +1,4 @@
-import { exit } from 'node:process'
+import { exit, platform } from 'node:process'
 import { spawn, spawnSync, execSync } from 'node:child_process'
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
@@ -70,6 +70,8 @@ export const translateCommand = ({ yargs, cmdr }: TranslateCommandProp) => {
   }
 }
 
+const isWindows = platform === 'win32'
+
 const cleanSpecificVersion = (cmd: PackageManagerList) => {
   return cmd?.split('@')?.[0]
 }
@@ -87,12 +89,14 @@ export const runCommand = ({ cmd, args, volta = false }: CommanderPackage) => {
     run = 'volta'
   }
 
+  const spawnCmd = isWindows ? 'cmd' : run!
+  const spawnArgs = isWindows ? ['/c', run!, ...args] : [...args]
+
   const child = spawn(
-    run!,
-    [...args],
+    spawnCmd,
+    spawnArgs,
     {
       stdio: 'inherit',
-      shell: true
     }
   )
 
@@ -113,12 +117,14 @@ export const runCommand = ({ cmd, args, volta = false }: CommanderPackage) => {
 }
 
 export const spreadCommand = async ({ cmd, args }: SpreadCommand) => {
+  const spawnCmd = isWindows ? 'cmd' : cmd
+  const spawnArgs = isWindows ? ['/c', cmd, ...args] : args
+
   const child = spawnSync(
-    cmd,
-    args,
+    spawnCmd,
+    spawnArgs,
     {
       stdio: 'inherit',
-      shell: true
     }
   )
 
