@@ -72,6 +72,10 @@ export const translateCommand = ({ yargs, cmdr }: TranslateCommandProp) => {
 
 const isWindows = platform === 'win32'
 
+const resolveSpawnArgs = (cmd: string, args: string[]): [string, string[]] => {
+  return isWindows ? ['cmd', ['/c', cmd, ...args]] : [cmd, args]
+}
+
 const cleanSpecificVersion = (cmd: PackageManagerList) => {
   return cmd?.split('@')?.[0]
 }
@@ -89,8 +93,7 @@ export const runCommand = ({ cmd, args, volta = false }: CommanderPackage) => {
     run = 'volta'
   }
 
-  const spawnCmd = isWindows ? 'cmd' : run!
-  const spawnArgs = isWindows ? ['/c', run!, ...args] : [...args]
+  const [spawnCmd, spawnArgs] = resolveSpawnArgs(run!, args)
 
   const child = spawn(
     spawnCmd,
@@ -117,8 +120,7 @@ export const runCommand = ({ cmd, args, volta = false }: CommanderPackage) => {
 }
 
 export const spreadCommand = async ({ cmd, args }: SpreadCommand) => {
-  const spawnCmd = isWindows ? 'cmd' : cmd
-  const spawnArgs = isWindows ? ['/c', cmd, ...args] : args
+  const [spawnCmd, spawnArgs] = resolveSpawnArgs(cmd, args)
 
   const child = spawnSync(
     spawnCmd,
