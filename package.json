@@ -52,8 +52,8 @@
     "build": "tsc --project tsconfig.build.json",
     "postbuild": "cp package*.json .npmignore README.md LICENSE.md CHANGELOG.md bin && (cd bin && npm ci --omit=dev --ignore-scripts)",
     "pack": "npm pack bin/ --pack-destination=\"bin/\"",
-    "lint": "eslint . --ext .js,.ts",
-    "lint:fix": "eslint . --fix --ext .js,.ts",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test": "vitest --run --reporter verbose --pool=forks",
     "test:w": "vitest --pool=forks",
     "test:c": "vitest run --coverage --pool=forks",
@@ -107,6 +107,8 @@
     "yargs": "17.7.2"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "3.3.5",
+    "@eslint/js": "10.0.1",
     "@types/command-exists": "1.2.3",
     "@types/common-tags": "1.8.4",
     "@types/prompts": "2.4.9",
@@ -114,22 +116,18 @@
     "@types/spinnies": "0.5.3",
     "@types/update-notifier": "6.0.8",
     "@types/yargs": "17.0.32",
-    "@typescript-eslint/eslint-plugin": "6.16.0",
-    "@typescript-eslint/parser": "6.16.0",
     "@vitest/coverage-v8": "1.1.0",
-    "eslint": "8.56.0",
-    "eslint-config-standard": "17.1.0",
-    "eslint-plugin-import": "2.29.1",
-    "eslint-plugin-n": "16.5.0",
-    "eslint-plugin-promise": "6.1.1",
+    "eslint": "10.2.1",
+    "globals": "17.5.0",
     "type-fest": "4.8.3",
     "typescript": "5.3.3",
+    "typescript-eslint": "8.59.0",
     "vitest": "1.1.0"
   },
   "volta": {
-    "node": "20.9.0",
-    "npm": "10.2.1"
+    "node": "24.15.0",
+    "npm": "11.12.1"
   },
   "swpm": "npm",
-  "packageManager": "npm@10.2.1"
+  "packageManager": "npm@11.12.1"
 }
