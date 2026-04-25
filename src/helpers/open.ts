@@ -1,6 +1,7 @@
 import { platform, release } from 'node:os'
 import { exit, cwd } from 'node:process'
 import { spawnSync } from 'node:child_process'
+import { resolve as resolvePath } from 'node:path'
 import { getCommandResult } from './cmds.js'
 import { spinnies } from '../libs/spinnies.js'
 import open from 'open'
@@ -68,6 +69,7 @@ export const openBrowser = async (url: string) => {
   try {
     spinnies.add(urlId)
     if (!isUrl(url)) {
+      url = resolvePath(url)  // Ensure absolute path
       if (detectOs() === 'wsl') {
         url = wslToWindows(url)
       }

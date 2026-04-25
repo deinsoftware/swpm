@@ -99,7 +99,7 @@
     "command-exists": "1.2.9",
     "common-tags": "1.8.2",
     "find-up": "8.0.0",
-    "open": "10.0.1",
+    "open": "11.0.0",
     "path-exists": "5.0.0",
     "prompts": "2.4.2",
     "semver": "7.7.4",
