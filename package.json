@@ -103,7 +103,7 @@
     "prompts": "2.4.2",
     "semver": "7.7.4",
     "spinnies": "0.5.1",
-    "update-notifier": "7.0.0",
+    "update-notifier": "7.3.1",
     "yargs": "17.7.2"
   },
   "devDependencies": {
