@@ -28,7 +28,7 @@ export const detectOs = () => {
 
 const osConfig: Record<string, {path: string, cmd: string}> = {
   win: { path: '=', cmd: 'explorer' },
-  wsl: { path: '.', cmd: 'explorer.exe' },
+  wsl: { path: '.', cmd: 'xdg-open' },
   linux: { path: '/', cmd: 'xdg-open' },
   macos: { path: '/', cmd: 'open' }
 }
@@ -39,7 +39,7 @@ export const openFileExplorer = async (path: string = cwd()) => {
 
   if (os in osConfig) {
     const config = osConfig[os]
-    if (config && cmd in config) {
+    if (config && config.cmd) {
       cmd = config.cmd
     }
   }
@@ -49,7 +49,7 @@ export const openFileExplorer = async (path: string = cwd()) => {
   }
 
   spinnies.add(path)
-  const child = spawnSync(cmd, [`"${path}"`, '2>&1'], { stdio: 'inherit', shell: true })
+  const child = spawnSync(cmd, [path], { stdio: 'ignore' })
 
   if (child.status !== 0) {
     spinnies.succeed(path)
