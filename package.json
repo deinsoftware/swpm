@@ -101,7 +101,7 @@
     "find-up": "7.0.0",
     "open": "10.0.1",
     "prompts": "2.4.2",
-    "semver": "7.5.4",
+    "semver": "7.7.4",
     "spinnies": "0.5.1",
     "update-notifier": "7.0.0",
     "yargs": "17.7.2"
@@ -112,7 +112,7 @@
     "@types/command-exists": "1.2.3",
     "@types/common-tags": "1.8.4",
     "@types/prompts": "2.4.9",
-    "@types/semver": "7.5.6",
+    "@types/semver": "7.7.1",
     "@types/spinnies": "0.5.3",
     "@types/update-notifier": "6.0.8",
     "@types/yargs": "17.0.32",
