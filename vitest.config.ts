@@ -25,14 +25,15 @@ export default defineConfig({
       '**/test.{js,cjs,mjs,ts,tsx,jsx}'
     ],
     coverage: {
-      all: true,
       reporter: ['text', 'html', 'lcov'],
       include: [...include],
       exclude: [...exclude],
-      statements: 51,
-      branches: 76,
-      functions: 55,
-      lines: 51
+      thresholds: {
+        statements: 51,
+        branches: 76,
+        functions: 55,
+        lines: 51
+      }
     }
   }
 })
