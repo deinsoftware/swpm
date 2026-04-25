@@ -14,7 +14,9 @@ const propertyExists = (packageJson: PackageJson, property: string) => {
 }
 
 const getPackageManager = (packageJson: PackageJson, property: 'packageManager') => {
-  let [cmd = '', version = '']: string[] = packageJson?.[property]?.split('@') ?? ['', '']
+  const packageProps = packageJson?.[property]?.split('@') ?? ['', '']
+  let cmd = packageProps[0] ?? ''
+  const version = packageProps[1] ?? ''
 
   if (version) {
     const compatiblePackage = packagesList.filter((pkg) => {
@@ -127,7 +129,7 @@ export const commandVerification = async (cmd: PackageManagerList) => {
   try {
     await commandExists(cmd)
     return true
-  } catch (error) {
+  } catch {
     return false
   }
 }

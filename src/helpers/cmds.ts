@@ -143,7 +143,7 @@ export const getCommandResult = ({ command, volta = false }: GetCommandResultPro
 
     const child = execSync(command)
     return child.toString().trim()
-  } catch (error) {
+  } catch {
     return ''
   }
 }
