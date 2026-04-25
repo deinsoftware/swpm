@@ -1,5 +1,5 @@
 import { afterEach, it, describe, expect, vi } from 'vitest'
-import { pathExists } from 'find-up'
+import { pathExists } from 'path-exists'
 import { getCommandResult } from './cmds.js'
 import { getReposStatus, hasRepository } from './repos.js'
 
@@ -11,8 +11,8 @@ vi.mock('./cmds.ts', async () => {
   }
 })
 
-vi.mock('find-up', async () => {
-  const mod = await vi.importActual<typeof import('find-up')>('find-up')
+vi.mock('path-exists', async () => {
+  const mod = await vi.importActual<typeof import('path-exists')>('path-exists')
 
   return {
     ...mod,

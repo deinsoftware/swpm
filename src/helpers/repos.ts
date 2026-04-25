@@ -1,5 +1,5 @@
 import { resolve as resolvePath } from 'node:path'
-import { pathExists } from 'find-up'
+import { pathExists } from 'path-exists'
 import { cwd } from 'node:process'
 import { getCommandResult } from './cmds.js'
 import { getProviderConfiguration } from '../git/list.js'
