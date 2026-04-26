@@ -13,7 +13,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ### ⚠️ BREAKING CHANGES
 
-- Node.js Requirement: The minimum supported version is now Node.js v18.12.0. This change aligns with the underlying updates in the CLI engine and modern security standards.
+- Node.js Requirement: The minimum supported version is now Node.js v20. This change aligns with the underlying updates in the CLI engine and modern security standards.
 
 ### Added
 
