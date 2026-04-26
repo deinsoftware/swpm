@@ -105,7 +105,7 @@
     "semver": "7.7.4",
     "spinnies": "0.5.1",
     "update-notifier": "7.3.1",
-    "yargs": "17.7.2"
+    "yargs": "18.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "3.3.5",
@@ -116,7 +116,7 @@
     "@types/semver": "7.7.1",
     "@types/spinnies": "0.5.3",
     "@types/update-notifier": "6.0.8",
-    "@types/yargs": "17.0.32",
+    "@types/yargs": "17.0.35",
     "@vitest/coverage-v8": "4.1.5",
     "eslint": "10.2.1",
     "globals": "17.5.0",
