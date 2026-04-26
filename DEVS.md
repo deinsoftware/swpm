@@ -1,19 +1,26 @@
 # Developer Guide
 
-Welcome to the SWPM development guide. This document explains how to set up your development environment and test changes locally.
+Welcome to the SWPM development guide. This document explains how to set up your development environment and test changes locally, specifically for the **v3.0.0** update.
 
 ## Table of Contents
 
-- [Setup](#setup)
-- [Using npm link](#using-npm-link)
+- [Prerequisites](#prerequisites)
+- [Local Development & Testing](#local-development--testing)
 - [Testing](#testing)
 - [Building](#building)
+- [Type Checking & Linting](#type-checking--linting)
 
-## Setup
+---
 
-### Prerequisites
+## Prerequisites
 
-Before you can run tests or use the development version, you need to install the following package managers globally:
+### Node.js
+
+Starting with **v3.0.0**, this project requires **Node.js >= 18.12.0**.
+
+### Package Managers
+
+To run the full test suite and validate functionality across multiple environments, you need to install the following package managers globally:
 
 ```bash
 npm install -g yarn pnpm bun
@@ -29,72 +36,56 @@ bun --version
 
 These are required because SWPM tests validate functionality across multiple package managers (npm, yarn, pnpm, bun).
 
-## Using npm link
+---
 
-### 1. Build the Project
+## Local Development & Testing
 
-First, compile the TypeScript code to JavaScript:
+Please follow these steps:
+
+### 1. Environment Setup
+
+Switch to the development branch and sync dependencies:
+
+```bash
+git fetch origin
+git checkout <branch>
+npm ci
+```
+
+### 2. Uninstall Stable Version
+
+To avoid conflicts with the official version, remove the current global installation:
+
+```bash
+npm uninstall -g swpm
+```
+
+### 3. Build and Link
+
+From the project root, build the project and create a global symlink:
 
 ```bash
 npm run build
-```
-
-This creates the compiled output in the `bin/` directory.
-
-### 2. Create a Global Link
-
-Navigate to the `bin/` folder and create a global symlink:
-
-```bash
 cd bin
 npm link
 ```
 
-This links the local development version globally, allowing you to use `swpm` and all its aliases (like `si`, `swpx`, etc.) as if it were installed from npm.
-
-### 3. Test the Development Version
-
-Now you can use any SWPM command:
+The `swpm` command (and its aliases like `si`, `swpx`, etc.) will now be available globally, pointing to your local development code. You can verify the version with:
 
 ```bash
 swpm --version
-swpm --help
-si --help
-swpx --help
 ```
 
-Or in any project directory:
+### 4. Reverting Changes
+
+Once you are finished testing, you can revert to the stable version by running this inside the `bin` folder:
 
 ```bash
-swpm install
-swpm add lodash
-```
-
-### 4. Updating After Code Changes
-
-After making code changes, you need to rebuild:
-
-```bash
-npm run build
-cd bin
-npm link
-```
-
-The symlink points to the compiled files in `bin/`, so rebuilding automatically updates the global version.
-
-### 5. Unlinking (Optional)
-
-To remove the global link and return to the npm-installed version:
-
-```bash
-npm unlink -g swpm
-```
-
-Or reinstall the official version:
-
-```bash
+npm unlink
 npm install -g swpm
 ```
+
+---
 
 ## Testing
 
@@ -106,48 +97,16 @@ npm run test
 
 This runs all test files in the `src/` directory with verbose output.
 
-### Running Tests in Watch Mode
+### Advanced Testing Commands
 
-Useful during development to automatically rerun tests when files change:
+- **Watch Mode:** `npm run test:w` (auto-rerun on changes)
+- **Coverage:** `npm run test:c` (reports saved in `.vitest/`)
+- **Watch + Coverage:** `npm run test:wc`
+- **UI Mode:** `npm run test:ui` (visual test interface)
 
-```bash
-npm run test:w
-```
+> **Note:** The test suite includes integration tests for **npm**, **yarn**, **pnpm**, and **bun**. If any of these are not installed globally, their corresponding tests will skip or timeout.
 
-### Running Tests with Coverage
-
-Generate a coverage report:
-
-```bash
-npm run test:c
-```
-
-Coverage reports are saved in the `.vitest/` directory.
-
-### Running Tests in Watch Mode with Coverage
-
-```bash
-npm run test:wc
-```
-
-### Running Tests with UI
-
-For a visual test interface:
-
-```bash
-npm run test:ui
-```
-
-### Why Tests Need Multiple Package Managers
-
-The test suite includes integration tests that verify SWPM works correctly with different package managers:
-
-- **npm** - Always available
-- **yarn** - Classic and Berry versions
-- **pnpm** - Modern package manager
-- **bun** - Fast JavaScript runtime
-
-If any of these are not installed globally, their corresponding tests will skip or timeout. Install all of them to get complete test coverage.
+---
 
 ## Building
 
@@ -157,69 +116,49 @@ If any of these are not installed globally, their corresponding tests will skip 
 npm run build
 ```
 
-This runs:
+This command triggers:
 
-1. `prebuild`: Cleans the `bin/` directory
-2. `build`: Compiles TypeScript to JavaScript
-3. `postbuild`: Copies necessary files (`package.json`, `README.md`, `LICENSE.md`, `CHANGELOG.md`) to `bin/`
+1. `prebuild`: Cleans the `bin/` directory.
+2. `build`: Compiles TypeScript source files into JavaScript.
+3. `postbuild`: Copies necessary metadata files (`package.json`, `README.md`, `LICENSE.md`, `CHANGELOG.md`) to the `bin/` folder.
 
 ### Create a Package
+
+To create a `.tgz` file for distribution:
 
 ```bash
 npm run pack
 ```
 
-This creates a `.tgz` file that can be distributed or installed globally.
-
-### Install Your Package Globally
+### Install Your Package Locally
 
 ```bash
-npm install -g ./bin/swpm-2.6.0.tgz
+npm install -g ./bin/swpm-3.0.0.tgz
 ```
 
-(Adjust the version number if it differs.)
+---
 
-## Type Checking
+## Type Checking & Linting
 
-Run TypeScript compiler without emitting files:
+### TypeScript Diagnostics
 
 ```bash
-npm run ts:check
+npm run ts:check      # Run compiler without emitting files
+npm run ts:diagnostics # Get detailed TS diagnostics
+npm run ts:trace       # To debug module resolution
 ```
 
-### Extended Diagnostics
-
-For detailed TypeScript diagnostics:
+### Linting
 
 ```bash
-npm run ts:diagnostics
+npm run lint          # Check for code style issues
+npm run lint:fix      # Automatically fix linting issues
 ```
 
-### Trace Resolution
-
-To debug module resolution:
-
-```bash
-npm run ts:trace
-```
-
-## Linting
-
-Check for code style issues:
-
-```bash
-npm run lint
-```
-
-Fix issues automatically:
-
-```bash
-npm run lint:fix
-```
+---
 
 ## Notes
 
 - This document is not included in npm distributions. It's for local development only.
-- Always install all package managers (npm, yarn, pnpm, bun) before running tests.
-- After pulling changes from the repository, run `npm install` to update dependencies.
-- Use `npm run build` frequently during development to test your compiled output.
+- Always run `npm install` (or `npm ci`) after pulling changes from the repository.
+- Since `npm link` points to the `bin/` directory, you must run `npm run build` whenever you modify the source code to see those changes reflected in the global command.
