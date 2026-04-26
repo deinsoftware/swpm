@@ -11,7 +11,6 @@
     "Codeium",
     "dein",
     "deinsoftware",
-    "Dsonar",
     "Eomm",
     "equiman",
     "esnext",
@@ -35,8 +34,6 @@
     "postbuild",
     "sade",
     "setx",
-    "sonarcloud",
-    "sonarsource",
     "spyb",
     "swpm",
     "swpx",
@@ -77,13 +74,9 @@
   },
   "explorer.fileNesting.patterns": {
     "README*": "BRAND*, CHANGELOG*, CODE_OF_CONDUCT.md, CONTRIBUTING.md, LICENSE*, README*, CHEATSHEET*, TEMPLATES*",
-    "package*": "sonar-project*, .gitignore, bunfig.toml, .npmignore, .eslintignore, .eslintrc.cjs, bun.lockb, tsconfig.json, vitest.config.ts, globals.d.ts",
+    "package*": ".gitignore, bunfig.toml, .npmignore, .eslintignore, .eslintrc.cjs, bun.lockb, tsconfig.json, vitest.config.ts, globals.d.ts",
     "*.js": "$(capture).*.js, $(capture).d.js.map, $(capture)_*.js, $(capture)*.snap",
     "*.ts": "$(capture).*.ts, $(capture).d.ts.map, $(capture)_*.ts, $(capture)*.snap",
-  },
-  "sonarlint.connectedMode.project": {
-    "connectionId": "dein-vscode",
-    "projectKey": "dein:swpm"
   },
   "markdownlint.config": {
     "MD024": {
