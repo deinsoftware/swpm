@@ -54,18 +54,14 @@
     },
     "**/node_modules": false
   },
-  "javascript.autoClosingTags": true,
-  "javascript.suggest.autoImports": true,
+  "js/ts.autoClosingTags": true,
+  "js/ts.suggest.autoImports": true,
   "search.exclude": {
     "**/coverage": true,
     "**/node_modules": true
   },
-  "typescript.autoClosingTags": true,
-  "typescript.suggest.autoImports": true,
-  "javascript.format.enable": false,
-  "javascript.validate.enable": true,
-  "typescript.format.enable": false,
-  "typescript.validate.enable": true,
+  "js/ts.format.enable": false,
+  "js/ts.validate.enable": true,
   "editor.formatOnSave": true,
   "eslint.validate": [
     "javascript",
@@ -92,7 +88,6 @@
   "markdownlint.config": {
     "MD024": {
       "siblings_only": true,
-      "allow_different_nesting": true
     }
   },
   "testing.automaticallyOpenPeekView": "never",
