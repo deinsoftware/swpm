@@ -1,33 +1,29 @@
 import { configDefaults, defineConfig } from 'vitest/config'
 
-const include = [
-  'src/**/*'
-]
-
-const exclude = [
-  ...configDefaults.exclude,
-  'src/alias/*',
-  'src/cli/*',
-  'src/libs/*',
-  'test{,s}/**',
-  'test{,-*}.{js,cjs,mjs,ts,tsx,jsx}',
-  '**/*{.,-}types.{js,cjs,mjs,ts,tsx,jsx}',
-  '**/*{.,-}test.{js,cjs,mjs,ts,tsx,jsx}'
-]
-
 export default defineConfig({
   test: {
     globals: true,
     reporters: ['verbose'],
-    include: ['./src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     exclude: [
       ...configDefaults.exclude,
+      'bin/**',
+      'dist/**',
       '**/test.{js,cjs,mjs,ts,tsx,jsx}'
     ],
     coverage: {
+      provider: 'v8', // o 'istanbul'
       reporter: ['text', 'html', 'lcov'],
-      include: [...include],
-      exclude: [...exclude],
+      include: ['src/**/*'],
+      exclude: [
+        ...configDefaults.exclude,
+        'bin/**',
+        'src/alias/**',
+        'src/cli/**',
+        'src/libs/**',
+        '**/*.types.ts',
+        '**/*.test.ts'
+      ],
       thresholds: {
         statements: 51,
         branches: 76,
