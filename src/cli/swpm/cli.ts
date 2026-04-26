@@ -6,6 +6,7 @@ import upgrade from './commands/upgrade.js'
 import interactive from './commands/interactive.js'
 import open from './commands/open.js'
 import clean from './commands/clean.js'
+import status from './commands/status.js'
 
 import debug from '../options/debug.js'
 import use from '../options/use.js'
@@ -24,7 +25,8 @@ const commands = [
   upgrade,
   interactive,
   open,
-  clean
+  clean,
+  status
 ]
 
 const options = {

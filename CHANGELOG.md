@@ -17,6 +17,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ### Added
 
+- Status Command: Introduced `swpm status` (alias `s`) to show current configuration in different formats (`json`, `json:path`, `plain:path`). Especially useful for CI tools and scripts.
 - Formal validation for the latest Node.js LTS releases.
 
 ### Changed

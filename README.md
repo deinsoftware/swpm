@@ -19,6 +19,17 @@
   - [Prerequisites](#prerequisites)
   - [Installing](#installing)
 - [swpm](#swpm)
+  - [Help](#help)
+  - [Commands](#commands)
+    - [Install](#install)
+    - [Add](#add)
+    - [Remove](#remove)
+    - [Update](#update)
+    - [Upgrade](#upgrade)
+    - [Interactive](#interactive)
+    - [Open](#open)
+    - [Clean](#clean)
+    - [Status](#status)
 - [swpx](#swpx)
 - [Alias](#alias)
 - [Flags](#flags)
@@ -90,6 +101,7 @@ Commands:
   swpm interactive [args]        update packages interactive       [aliases: ui]
   swpm open [resource] [args]    open in the file explore or browser[aliases: o]
   swpm clean [args]              clean packages                     [aliases: c]
+  swpm status [format]           show information in different formats [aliases: s]
 
 Options:
   -u, --use    use a package manager
@@ -304,7 +316,47 @@ swpm clean [args]
 | `--all`           |       | Run all args and also delete the **.yarn** folder                                    |
 
 > `--fresh` is a good choice when you want to clean the project and reinstall all packages again with `swpm install --frozen` and preserving the lock files intact.  
-> `--all` is a good choice when you want to clean the project and migrate to a different Package Manager or reinstalling all packages and create/update the lock files.  
+> `--all` is a good choice when you want to clean the project and migrate to a different Package Manager or reinstalling all packages and create/update the lock files.
+
+#### Status
+
+Show current configuration in different formats. Useful for CI tools or scripts.
+
+```bash
+swpm status [format]
+```
+
+> Alias: `s`
+
+The `[format]` parameter allows you to choose the output format:
+
+| Format         | Description                                                        |
+| -------------- | ------------------------------------------------------------------ |
+| `json`         | Full information in JSON format (default)                          |
+| `json:<path>`  | A specific property in JSON format (e.g., `json:versions.node`)    |
+| `plain:<path>` | A specific property in plain text (e.g., `plain:using`)            |
+
+**Examples:**
+
+```bash
+swpm status
+# {
+#   "_": "npm",
+#   "using": "npm",
+#   "origin": "pinned",
+#   "versions": {
+#     "swpm": "3.0.0",
+#     "node": "24.15.0",
+#     "npm": "11.12.1"
+#   }
+# }
+
+swpm status json:using
+# "npm"
+
+swpm status plain:using
+# npm
+```
 
 ⇧ [Back to menu](#menu)
 
