@@ -6,7 +6,8 @@ export const installCases = [
   ['yarn', 'yarn install'],
   ['yarn@berry', 'yarn install'],
   ['pnpm', 'pnpm install'],
-  ['bun', 'bun install']
+  ['bun', 'bun install'],
+  ['deno', 'deno install']
 ]
 
 describe('install', () => {
@@ -21,7 +22,8 @@ export const installFrozenCases = [
   ['yarn', 'yarn install --frozen-lockfile'],
   ['yarn@berry', 'yarn install --immutable'],
   ['pnpm', 'pnpm install --frozen-lockfile'],
-  ['bun', 'bun install --frozen-lockfile']
+  ['bun', 'bun install --frozen-lockfile'],
+  ['deno', 'deno install --frozen']
 ]
 
 describe('install --frozen', () => {
@@ -36,7 +38,8 @@ export const installLockCases = [
   ['yarn', 'yarn install --no-lockfile'],
   ['yarn@berry', 'yarn install --no-lockfile'],
   ['pnpm', ''], // not available
-  ['bun', 'bun install --no-save']
+  ['bun', 'bun install --no-save'],
+  ['deno', 'deno install --no-lock']
 ]
 
 describe('install --package-lock', () => {

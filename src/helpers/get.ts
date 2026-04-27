@@ -64,6 +64,18 @@ const searchForLockFiles = async () => {
   }
 }
 
+const searchForDenoConfig = async () => {
+  const denoJson = await getPackageJson('deno.json')
+  if (denoJson) {
+    return 'deno' as const
+  }
+
+  const denoJsonc = await getPackageJson('deno.jsonc')
+  if (denoJsonc) {
+    return 'deno' as const
+  }
+}
+
 const searchForEnv = (name: 'SWPM') => {
   if (!(name in env)) {
     return
@@ -76,7 +88,7 @@ const searchForEnv = (name: 'SWPM') => {
 
   console.error(stripIndents`
     ${chalk.red.bold('Error')}: the value (${chalk.bold(value)}) in SWPM environment variable is not valid.
-    Fix it using one of this values ${chalk.blue.bold('<npm|yarn[@berry]|pnpm|bun>')}.
+    Fix it using one of this values ${chalk.blue.bold('<npm|yarn[@berry]|pnpm|bun|deno>')}.
   `)
   exit(1)
 }
@@ -95,6 +107,11 @@ export const getCurrentPackageManager = async (): Promise<{origin: CommanderPack
     if (packageManager && packageExists(packageManager)) {
       return { origin: 'packageManager', cmd: packageManager }
     }
+  }
+
+  const deno = await searchForDenoConfig()
+  if (deno) {
+    return { origin: 'lock', cmd: deno }
   }
 
   const lock = await searchForLockFiles() as PackageManagerList
@@ -125,6 +142,8 @@ export const detectVoltaPin = async (cmdr: CommanderPackage) => {
   return (cmdr.cmd in packageJson[prop])
 }
 
+import { getCommandResult } from './cmds.js'
+
 export const commandVerification = async (cmd: PackageManagerList) => {
   try {
     await commandExists(cmd)
@@ -132,4 +151,18 @@ export const commandVerification = async (cmd: PackageManagerList) => {
   } catch {
     return false
   }
+}
+
+export const getPackageVersion = (cmd: PackageManagerList, volta: boolean) => {
+  const version = getCommandResult({ command: `${cmd} --version`, volta })
+
+  if (!version) {
+    return 'not found'
+  }
+
+  if (cmd === 'deno') {
+    return version.split('\n')[0]?.replace(/deno\s/, '') ?? 'not found'
+  }
+
+  return version
 }

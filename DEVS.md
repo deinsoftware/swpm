@@ -23,7 +23,7 @@ Starting with **v3.0.0**, this project requires **Node.js >= 18.12.0**.
 To run the full test suite and validate functionality across multiple environments, you need to install the following package managers globally:
 
 ```bash
-npm install -g yarn pnpm bun
+npm install -g yarn pnpm bun deno
 ```
 
 Verify the installations:
@@ -32,6 +32,7 @@ Verify the installations:
 yarn --version
 pnpm --version
 bun --version
+deno --version
 ```
 
 These are required because SWPM tests validate functionality across multiple package managers (npm, yarn, pnpm, bun).

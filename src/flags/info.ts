@@ -5,7 +5,7 @@ import chalk from 'chalk'
 import { getCommandResult } from '../helpers/cmds.js'
 import { getOriginIcon } from '../helpers/icons.js'
 import { getSwpmInfo } from '../helpers/info.js'
-import { commandVerification } from '../helpers/get.js'
+import { commandVerification, getPackageVersion } from '../helpers/get.js'
 
 import type { CommanderPackage } from '../translator/commander.types.js'
 
@@ -55,7 +55,7 @@ export const showPackageInformation = async ({ cmd, origin, config, volta }: Com
   `
 
   const isInstalled = !!cmd && await commandVerification(cmd)
-  const packageVersion = isInstalled ? getCommandResult({ command: `${cmd} --version`, volta }) : 'not found'
+  const packageVersion = isInstalled ? getPackageVersion(cmd, volta ?? false) : 'not found'
   if (config?.cmd) {
     message += `${chalk.hex(color).bold(cmd)}: \t${packageVersion}`
   }

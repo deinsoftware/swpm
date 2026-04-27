@@ -1,7 +1,7 @@
 import { exit } from 'node:process'
 import { getCommandResult } from '../../../helpers/cmds.js'
 import { getSwpmInfo } from '../../../helpers/info.js'
-import { commandVerification } from '../../../helpers/get.js'
+import { commandVerification, getPackageVersion } from '../../../helpers/get.js'
 import { checkErrorMessage } from '../../../helpers/messages.js'
 import cmdr from '../../../translator/commander.js'
 
@@ -49,7 +49,7 @@ const status: CommandModule<Record<string, unknown>, StatusProps> = {
     const { version: swpmVersion } = await getSwpmInfo()
 
     const isInstalled = !!cmd && await commandVerification(cmd)
-    const packageVersion = isInstalled ? getCommandResult({ command: `${cmd} --version`, volta }) : 'not found'
+    const packageVersion = isInstalled ? getPackageVersion(cmd, volta ?? false) : 'not found'
 
     const data: StatusData = {
       _: cmd || 'unknown',

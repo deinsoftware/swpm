@@ -1,5 +1,5 @@
 import { it, expect, describe, vi } from 'vitest'
-import { commandVerification, detectVoltaPin } from './get'
+import { commandVerification, detectVoltaPin, getCurrentPackageManager } from './get'
 import { CommanderPackage, PackageJson } from '../translator/commander.types'
 import { getPackageJson } from './files.js'
 
@@ -7,12 +7,13 @@ vi.mock('./files.ts', async () => {
   const mod = await vi.importActual<typeof import('./files.ts')>('./files.ts')
   return {
     ...mod,
-    getPackageJson: await vi.fn()
+    getPackageJson: vi.fn()
   }
 })
 
 describe('detectVoltaPin', () => {
   it('should return undefined if cmdr is undefined', async () => {
+    vi.mocked(getPackageJson).mockResolvedValue(undefined)
     const cmdr = undefined
     // @ts-expect-error cmdr is intentionally undefined
     const result = await detectVoltaPin(cmdr)
@@ -20,6 +21,7 @@ describe('detectVoltaPin', () => {
   })
 
   it('should return undefined if cmd in cmdr is undefined', async () => {
+    vi.mocked(getPackageJson).mockResolvedValue(undefined)
     const cmdr: CommanderPackage = {
       args: []
     }
@@ -81,5 +83,33 @@ describe('detectVoltaPin', () => {
     const isVoltaInstalled = await commandVerification('volta')
     const result = await detectVoltaPin(cmdr)
     expect(isVoltaInstalled && result).toBe(false)
+  })
+})
+
+describe('getCurrentPackageManager', () => {
+  it('should return deno if deno.json exists', async () => {
+    vi.mocked(getPackageJson).mockReset()
+    vi.mocked(getPackageJson).mockImplementation(async (fileName) => {
+      if (fileName === 'deno.json') {
+        return { name: 'deno-project' } as PackageJson
+      }
+      return undefined
+    })
+
+    const result = await getCurrentPackageManager()
+    expect(result).toEqual({ origin: 'lock', cmd: 'deno' })
+  })
+
+  it('should return deno if deno.jsonc exists', async () => {
+    vi.mocked(getPackageJson).mockReset()
+    vi.mocked(getPackageJson).mockImplementation(async (fileName) => {
+      if (fileName === 'deno.jsonc') {
+        return { name: 'deno-project' } as PackageJson
+      }
+      return undefined
+    })
+
+    const result = await getCurrentPackageManager()
+    expect(result).toEqual({ origin: 'lock', cmd: 'deno' })
   })
 })

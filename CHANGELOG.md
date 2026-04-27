@@ -9,6 +9,23 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 3.1.0 - 2026/04/26
+
+### Added
+
+- Deno Support: Full integration for Deno 2.0+ as a package manager. Includes automatic detection of `deno.json` and `deno.jsonc` files, command translations for `install`, `add`, `remove`, `task`, `test`, and more.
+- Unified Developer Setup: Updated `DEVS.md` to include Deno in the global installation requirements for contributors.
+
+### Changed
+
+- Version Handling: Improved internal version extraction logic to handle multi-line outputs (specifically for Deno) across all info-related commands and flags.
+- Enhanced Detection Priority: Refined the package manager detection order to prioritize Deno configuration files when present.
+
+### Fixed
+
+- TypeScript Integrity: Resolved multiple strict typing issues, including implicit `any` types and potential `undefined` object access during command execution.
+- Configuration Parsing: Fixed a type mismatch in configuration file reading that previously limited support to strictly `.json` files.
+
 ## 3.0.0 - 2026/04/25
 
 ### ⚠️ BREAKING CHANGES

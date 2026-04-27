@@ -3,6 +3,7 @@ import yarn from './managers/yarn.js'
 import yarnBerry from './managers/yarn@berry.js'
 import pnpm from './managers/pnpm.js'
 import bun from './managers/bun.js'
+import deno from './managers/deno.js'
 
 import type { PackageManagerList } from './packages.types.js'
 import type { CommanderPackage } from '../translator/commander.types.js'
@@ -12,7 +13,8 @@ const packageManagerList = [
   yarn,
   yarnBerry,
   pnpm,
-  bun
+  bun,
+  deno
 ]
 
 export const availablePackages = () => {

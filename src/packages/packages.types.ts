@@ -1,5 +1,5 @@
-type PackageManagers = 'pnpm' | 'npm' | 'yarn' | 'yarn@berry' | 'bun'
-type ExecuteManagers = 'pnpm dlx' | 'npx' | 'yarn dlx' | 'bunx'
+type PackageManagers = 'pnpm' | 'npm' | 'yarn' | 'yarn@berry' | 'bun' | 'deno'
+type ExecuteManagers = 'pnpm dlx' | 'npx' | 'yarn dlx' | 'bunx' | 'deno run'
 type VersionManagers = 'volta'
 export type PackageManagerList = PackageManagers| ExecuteManagers | VersionManagers
 
