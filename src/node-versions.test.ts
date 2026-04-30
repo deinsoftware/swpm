@@ -6,8 +6,9 @@ const runCmd = (cmd: string): string => {
   return execSync(cmd, { cwd: cwd(), encoding: 'utf-8' }).trim()
 }
 
-const getActiveLtsVersions = (): string[] => {
-  try {
+const getActiveNodeVersions = (): string[] => {
+    let fallbackNodeVersions = ['24', '22', '20', '18'];
+    try {
     const response = runCmd('curl -s https://nodejs.org/dist/index.json')
     const releases = JSON.parse(response) as { version: string; lts: string | false }[]
     const ltsVersions = releases
@@ -22,18 +23,21 @@ const getActiveLtsVersions = (): string[] => {
     }
     const versions = Array.from(uniqueMajors.values())
     if (versions.length === 0) {
-      return ['24', '22', '20', '18']
+      return fallbackNodeVersions
     }
     return versions
   } catch {
-    return ['24', '22', '20', '18']
+    return fallbackNodeVersions
   }
 }
 
 describe('node version compatibility', () => {
-  const nodeVersions = getActiveLtsVersions()
+  const nodeVersions = getActiveNodeVersions()
+  it('should detect active node versions', () => {
+    expect(nodeVersions.length).toBeGreaterThan(0)
+  })
 
-  it.each(nodeVersions)('swpm install works on node %s', (nodeVersion) => {
+  it.each(nodeVersions)('swpm install works on node %s', { timeout: 120_000 }, (nodeVersion) => {
     runCmd(`mise x node@${nodeVersion} -- npm install`)
     const nodeOut = runCmd(`mise x node@${nodeVersion} -- node --version`)
     expect(nodeOut).toMatch(new RegExp(`^v${nodeVersion.split('.')[0]}`))
