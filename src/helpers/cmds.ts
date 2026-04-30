@@ -72,7 +72,8 @@ export const translateCommand = ({ yargs, cmdr }: TranslateCommandProp) => {
 }
 
 const resolveSpawnArgs = (cmd: string, args: string[]): [string, string[]] => {
-  return detectOs() === 'win' ? ['cmd', ['/c', cmd, ...args]] : [cmd, args]
+  const isWindows = detectOs() === 'win'
+  return isWindows ? ['cmd', ['/c', cmd, ...args]] : [cmd, args]
 }
 
 const cleanSpecificVersion = (cmd: PackageManagerList) => {
@@ -98,7 +99,7 @@ export const runCommand = ({ cmd, args, volta = false }: CommanderPackage) => {
     spawnCmd,
     spawnArgs,
     {
-      stdio: 'inherit',
+      stdio: 'inherit'
     }
   )
 
@@ -125,7 +126,7 @@ export const spreadCommand = async ({ cmd, args }: SpreadCommand) => {
     spawnCmd,
     spawnArgs,
     {
-      stdio: 'inherit',
+      stdio: 'inherit'
     }
   )
 
@@ -150,7 +151,7 @@ export const getCommandResult = ({ command, volta = false }: GetCommandResultPro
 
     const child = execSync(command)
     return child.toString().trim()
-  } catch (error) {
+  } catch {
     return ''
   }
 }

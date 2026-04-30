@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-        "baseUrl": ".",
         /* Base Options: */
         "esModuleInterop": true, // allow default imports for CommonJS modules
         "skipLibCheck": true,
@@ -15,6 +14,7 @@
         /* Transpiling with TypeScript */
         "moduleResolution": "NodeNext",
         "module": "NodeNext",
+        "rootDir": "src",
         "outDir": "bin/src",
         "sourceMap": false,
         /* doesn't run in the DOM */

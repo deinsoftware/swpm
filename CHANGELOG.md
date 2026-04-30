@@ -9,6 +9,28 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## 3.0.0 - 2026/04/25
+
+### ⚠️ BREAKING CHANGES
+
+- Node.js Requirement: The minimum supported version is now Node.js v20. This change aligns with the underlying updates in the CLI engine and modern security standards.
+
+### Added
+
+- Status Command: Introduced `swpm status` (alias `s`) to show current configuration in different formats (`json`, `json:path`, `plain:path`). Especially useful for CI tools and scripts.
+- Formal validation for the latest Node.js LTS releases.
+
+### Changed
+
+- Major CLI Engine Upgrade: Migrated yargs from v17.7.2 to v18.0.0, providing better performance and modern ESM argument parsing.
+- Dependency Refresh: Comprehensive update of core libraries including chalk, update-notifier, semver, and open to ensure compatibility with the new major version.
+- Typing System: Updated @types/yargs to v17.0.35 for improved developer experience and type safety.
+
+### Fixed
+
+- Security & Vulnerabilities: Applied multiple patches identified by Snyk across the dependency tree.
+- Parser Consistency: Refined the internal command mapping to ensure that flags and aliases behave consistently across all supported package managers (npm, pnpm, yarn, and bun) under the new v18 parser.
+
 ## 2.6.0 - 2023/12/26
 
 ### Changed

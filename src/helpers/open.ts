@@ -1,6 +1,7 @@
 import { platform, release } from 'node:os'
 import { exit, cwd } from 'node:process'
 import { spawnSync } from 'node:child_process'
+import { resolve as resolvePath } from 'node:path'
 import { getCommandResult } from './cmds.js'
 import { spinnies } from '../libs/spinnies.js'
 import open from 'open'
@@ -9,7 +10,7 @@ import chalk from 'chalk'
 
 const wslToWindows = (path: string) => {
   const newPath = getCommandResult({ command: `wslpath -aw "${path}"` })?.replaceAll('\\', '\\\\')
-  return newPath || path
+  return !newPath ? path : newPath
 }
 
 const isWSL = () => {
@@ -18,13 +19,16 @@ const isWSL = () => {
 }
 
 export const detectOs = () => {
-  const os = platform().toLowerCase().replaceAll(/\d/g, '')
-  return (os === 'linux') && isWSL() ? 'wsl' : os
+  let os = platform().toLowerCase().replace(/\d/g, '')
+  if (os === 'linux') {
+    os = isWSL() ? 'wsl' : os
+  }
+  return os
 }
 
-const osConfig: Record<string, { path: string, cmd: string }> = {
+const osConfig: Record<string, {path: string, cmd: string}> = {
   win: { path: '=', cmd: 'explorer' },
-  wsl: { path: '.', cmd: 'explorer.exe' },
+  wsl: { path: '.', cmd: 'xdg-open' },
   linux: { path: '/', cmd: 'xdg-open' },
   macos: { path: '/', cmd: 'open' }
 }
@@ -35,7 +39,7 @@ export const openFileExplorer = async (path: string = cwd()) => {
 
   if (os in osConfig) {
     const config = osConfig[os]
-    if (config && cmd in config) {
+    if (config && config.cmd) {
       cmd = config.cmd
     }
   }
@@ -45,7 +49,7 @@ export const openFileExplorer = async (path: string = cwd()) => {
   }
 
   spinnies.add(path)
-  const child = spawnSync(cmd, [`"${path}"`, '2>&1'], { stdio: 'inherit', shell: true })
+  const child = spawnSync(cmd, [path], { stdio: 'ignore' })
 
   if (child.status !== 0) {
     spinnies.succeed(path)
@@ -65,6 +69,7 @@ export const openBrowser = async (url: string) => {
   try {
     spinnies.add(urlId)
     if (!isUrl(url)) {
+      url = resolvePath(url)  // Ensure absolute path
       if (detectOs() === 'wsl') {
         url = wslToWindows(url)
       }
@@ -75,7 +80,7 @@ export const openBrowser = async (url: string) => {
     spinnies.succeed(urlId)
     exit(0)
   } catch (error) {
-    spinnies.fail(urlId)
+    await spinnies.fail(urlId)
 
     if (error instanceof Error) {
       let browserId = ''
@@ -83,7 +88,7 @@ export const openBrowser = async (url: string) => {
         browserId = error.message.split(':').at(-1)?.trim() ?? ''
       }
       console.error(stripIndents`
-        ${chalk.red.bold('Error')}: no compatible browser ${chalk.bold(`${browserId ?? ' '}`)}found.
+        ${chalk.red.bold('Error')}: no compatible browser ${chalk.bold(`${!browserId ? browserId : ' '}`)}found.
       `)
     }
     exit(1)

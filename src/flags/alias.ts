@@ -9,7 +9,7 @@ const commandVerification = async (cmd: string) => {
   try {
     await commandExists(cmd)
     return true
-  } catch (error) {
+  } catch {
     return false
   }
 }

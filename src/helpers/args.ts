@@ -63,7 +63,8 @@ const replaceFlag = ({ cmdr, flag, newFlag }: ReplaceFlagProps) => {
 }
 
 const moveFlag = async ({ yargs, cmdr, flag, argConfig }: MoveFlagProps) => {
-  let [action, start] = argConfig
+  let action = argConfig[0]
+  const start = argConfig[1]
   let count = 0
 
   if (start === -1) {
