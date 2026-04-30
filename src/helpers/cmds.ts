@@ -1,8 +1,9 @@
-import { exit, platform } from 'node:process'
+import { exit } from 'node:process'
 import { spawn, spawnSync, execSync } from 'node:child_process'
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
 import { getOriginIcon } from './icons.js'
+import { detectOs } from './open.js'
 
 import type { PackageManagerList } from '../packages/packages.types.js'
 import type { CommanderPackage } from '../translator/commander.types.js'
@@ -70,10 +71,8 @@ export const translateCommand = ({ yargs, cmdr }: TranslateCommandProp) => {
   }
 }
 
-const isWindows = platform === 'win32'
-
 const resolveSpawnArgs = (cmd: string, args: string[]): [string, string[]] => {
-  return isWindows ? ['cmd', ['/c', cmd, ...args]] : [cmd, args]
+  return detectOs() === 'win' ? ['cmd', ['/c', cmd, ...args]] : [cmd, args]
 }
 
 const cleanSpecificVersion = (cmd: PackageManagerList) => {

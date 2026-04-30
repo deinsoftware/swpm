@@ -17,7 +17,7 @@ const isWSL = () => {
   return version.includes('wsl') && version.includes('microsoft')
 }
 
-const detectOs = () => {
+export const detectOs = () => {
   let os = platform().toLowerCase().replace(/\d/g, '')
   if (os === 'linux') {
     os = isWSL() ? 'wsl' : os
