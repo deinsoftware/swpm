@@ -9,7 +9,7 @@ import chalk from 'chalk'
 
 const wslToWindows = (path: string) => {
   const newPath = getCommandResult({ command: `wslpath -aw "${path}"` })?.replaceAll('\\', '\\\\')
-  return !newPath ? path : newPath
+  return newPath || path
 }
 
 const isWSL = () => {
@@ -18,14 +18,11 @@ const isWSL = () => {
 }
 
 export const detectOs = () => {
-  let os = platform().toLowerCase().replace(/\d/g, '')
-  if (os === 'linux') {
-    os = isWSL() ? 'wsl' : os
-  }
-  return os
+  const os = platform().toLowerCase().replaceAll(/\d/g, '')
+  return (os === 'linux') && isWSL() ? 'wsl' : os
 }
 
-const osConfig: Record<string, {path: string, cmd: string}> = {
+const osConfig: Record<string, { path: string, cmd: string }> = {
   win: { path: '=', cmd: 'explorer' },
   wsl: { path: '.', cmd: 'explorer.exe' },
   linux: { path: '/', cmd: 'xdg-open' },
@@ -78,7 +75,7 @@ export const openBrowser = async (url: string) => {
     spinnies.succeed(urlId)
     exit(0)
   } catch (error) {
-    await spinnies.fail(urlId)
+    spinnies.fail(urlId)
 
     if (error instanceof Error) {
       let browserId = ''
@@ -86,7 +83,7 @@ export const openBrowser = async (url: string) => {
         browserId = error.message.split(':').at(-1)?.trim() ?? ''
       }
       console.error(stripIndents`
-        ${chalk.red.bold('Error')}: no compatible browser ${chalk.bold(`${!browserId ? browserId : ' '}`)}found.
+        ${chalk.red.bold('Error')}: no compatible browser ${chalk.bold(`${browserId ?? ' '}`)}found.
       `)
     }
     exit(1)

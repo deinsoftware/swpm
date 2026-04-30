@@ -58,7 +58,7 @@
     "test:w": "vitest --pool=forks",
     "test:c": "vitest run --coverage --pool=forks",
     "test:wc": "vitest watch --coverage --pool=forks",
-    "test:ui": "vitest -ui",
+    "test:ui": "vitest --ui",
     "ts:check": "tsc --noEmit",
     "ts:diagnostics": "tsc --extendedDiagnostics",
     "ts:trace": "tsc --traceResolution"
