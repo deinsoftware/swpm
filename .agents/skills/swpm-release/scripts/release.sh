@@ -21,19 +21,21 @@ if [ -n "$MANUAL_VERSION" ]; then
   echo "Current version: $currentVersion"
   echo "Using manual version: $newVersion"
 else
-  # Get commits to analyze (current branch vs main)
-  get_commit_messages() {
-    for branch in "main" "master"; do
-      if git log "${branch}..HEAD" --no-merges --format="%s" 2>/dev/null; then
-        return
-      fi
-    done
-  }
+  # Get commits to analyze
+  commits=""
+  for branch in "main" "master"; do
+    if commits=$(git log "${branch}..HEAD" --no-merges --format="%s" 2>/dev/null) && [ -n "$commits" ]; then
+      break
+    fi
+  done
 
   # Analyze commits to determine version bump
-  analyze_commits() {
-    local hasBreaking=false hasFeat=false hasFix=false
-    
+  suggestedBump="patch"
+  hasBreaking=false
+  hasFeat=false
+  hasFix=false
+
+  if [ -n "$commits" ]; then
     while IFS= read -r commit; do
       if [[ "$commit" == *"BREAKING CHANGE"* ]] || [[ "$commit" == *"!:"* ]]; then
         hasBreaking=true
@@ -44,20 +46,16 @@ else
       if [[ "$commit" == fix* ]] || [[ "$commit" == perf* ]]; then
         hasFix=true
       fi
-    done
-    
-    if [ "$hasBreaking" = true ]; then
-      echo "major"
-    elif [ "$hasFeat" = true ]; then
-      echo "minor"
-    else
-      echo "patch"
-    fi
-  }
+    done <<< "$commits"
+  fi
 
-  # Determine version bump
-  commits=$(get_commit_messages)
-  suggestedBump=$(echo "$commits" | analyze_commits)
+  if [ "$hasBreaking" = true ]; then
+    suggestedBump="major"
+  elif [ "$hasFeat" = true ]; then
+    suggestedBump="minor"
+  else
+    suggestedBump="patch"
+  fi
 
   echo "Current version: $currentVersion"
 
@@ -91,72 +89,67 @@ else
   fi
 fi
 
-# Update package.json
-node -e "const pkg = require('./${PACKAGE}'); pkg.version = '${newVersion}'; require('fs').writeFileSync('${PACKAGE}', JSON.stringify(pkg, null, 2) + '\n')"
-echo "Updating ${PACKAGE} to ${newVersion}..."
-
-# Read CHANGELOG.md
-changelog=$(cat "$CHANGELOG")
-
-# Get today's date in YYYY-MM-DD format
-today=$(date +%Y-%m-%d)
-
-# Find [Unreleased] section and extract content
-unreleasedContent=$(node -e "
-const fs = require('fs');
-let content = fs.readFileSync('${CHANGELOG}', 'utf-8');
-const unreleasedRegex = /(## \[Unreleased\]\n\n)([\s\S]*?)(?=\n## \[|$)/i;
-const match = content.match(unreleasedRegex);
-if (match) {
-  const content = match[2].trim();
-  if (!content) {
-    console.error('[Unreleased] section is empty');
-    process.exit(1);
-  }
-  console.log(content);
-}
-")
-
-if [ -z "$unreleasedContent" ]; then
-  echo "Error: [Unreleased] section is empty. Nothing to release."
-  exit 1
-fi
-
-# Update CHANGELOG using Node.js for reliability
+# Update package.json and package-lock.json
 node -e "
 const fs = require('fs');
-let content = fs.readFileSync('${CHANGELOG}', 'utf-8');
-const unreleasedRegex = /(## \[Unreleased\]\n\n)([\s\S]*?)(?=\n## \[|$)/i;
-const match = content.match(unreleasedRegex);
-if (match) {
-  const unreleasedContent = match[2].trim();
-  if (!unreleasedContent) {
-    console.error('[Unreleased] section is empty');
-    process.exit(1);
-  }
-  const today = new Date().toISOString().split('T')[0];
-  const newVersionSection = \`\\\n## [${newVersion}] - \${today}\\\n\\\n\${unreleasedContent}\\\n\`;
-  content = content.replace(unreleasedRegex, '## [Unreleased]\n\n');
-  const unreleasedIndex = content.indexOf('## [Unreleased]');
-  const insertIndex = content.indexOf('\n\n', unreleasedIndex) + 2;
-  content = content.slice(0, insertIndex) + newVersionSection + content.slice(insertIndex);
-  
-  // Update comparison links
-  content = content.replace(/(\[unreleased\]: .*?compare\/v.*?...HEAD)/i, '[unreleased]: https://github.com/deinsoftware/swpm/compare/v${newVersion}...HEAD');
-  const newLink = '[${newVersion}]: https://github.com/deinsoftware/swpm/compare/v${currentVersion}...v${newVersion}\n';
-  content = content.replace(/\[unreleased\]:/i, newLink + '[unreleased]:');
-  
-  fs.writeFileSync('${CHANGELOG}', content);
-  console.log('Moving [Unreleased] entries to [${newVersion}] - ' + today + '...');
-  console.log('Updating comparison links...');
+const pkg = JSON.parse(fs.readFileSync('${PACKAGE}', 'utf-8'));
+pkg.version = '${newVersion}';
+fs.writeFileSync('${PACKAGE}', JSON.stringify(pkg, null, 2) + '\n');
+
+const lockPath = 'package-lock.json';
+if (fs.existsSync(lockPath)) {
+  const lock = JSON.parse(fs.readFileSync(lockPath, 'utf-8'));
+  lock.version = '${newVersion}';
+  fs.writeFileSync(lockPath, JSON.stringify(lock, null, 2) + '\n');
+  console.log('Updating ${PACKAGE} and package-lock.json to ${newVersion}...');
+} else {
+  console.log('Updating ${PACKAGE} to ${newVersion}...');
 }
+"
+
+# Update CHANGELOG.md using Node.js
+node -e "
+const fs = require('fs');
+const path = '${CHANGELOG}';
+let content = fs.readFileSync(path, 'utf-8');
+const unreleasedRegex = /(## \\[Unreleased\\]\\n\\n)([\\s\\S]*?)(?=\\n## \\[|$)/i;
+const match = content.match(unreleasedRegex);
+
+if (!match) {
+  console.error('Could not find [Unreleased] section');
+  process.exit(1);
+}
+
+const unreleasedContent = match[2].trim();
+if (!unreleasedContent) {
+  console.error('[Unreleased] section is empty');
+  process.exit(1);
+}
+
+const today = new Date().toISOString().split('T')[0];
+const newVersionSection = '\\n## [${newVersion}] - ' + today + '\\n\\n' + unreleasedContent + '\\n';
+
+content = content.replace(unreleasedRegex, '## [Unreleased]\\n\\n');
+
+const unreleasedIndex = content.indexOf('## [Unreleased]');
+const insertIndex = content.indexOf('\\n\\n', unreleasedIndex) + 2;
+content = content.slice(0, insertIndex) + newVersionSection + content.slice(insertIndex);
+
+// Update comparison links
+content = content.replace(/(\[unreleased\]: .*?compare\\/v.*?...HEAD)/i, '[unreleased]: https://github.com/deinsoftware/swpm/compare/v${newVersion}...HEAD');
+const newLink = '[${newVersion}]: https://github.com/deinsoftware/swpm/compare/v${currentVersion}...v${newVersion}\\n';
+content = content.replace(/\[unreleased\]:/i, newLink + '[unreleased]:');
+
+fs.writeFileSync(path, content);
+console.log('Moving [Unreleased] entries to [${newVersion}] - ' + today + '...');
+console.log('Updating comparison links...');
 "
 
 # Extract the new version section for display
 versionContent=$(node -e "
 const fs = require('fs');
 let content = fs.readFileSync('${CHANGELOG}', 'utf-8');
-const versionSectionRegex = new RegExp(\`## \\[${newVersion}\\\\] - .*?\\\\n\\\\n([\\\\s\\\\S]*?)(?=\\\\n## \\\\[|\\\\n\\\\[)\`, 'i');
+const versionSectionRegex = new RegExp('## \\[${newVersion}\\] - .*?\\\\n\\\\n([\\\\s\\\\S]*?)(?=\\\\n## \\\\[|\\\\n\\\\[)', 'i');
 const match = content.match(versionSectionRegex);
 if (match) {
   console.log(match[1].trim());

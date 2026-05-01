@@ -65,6 +65,33 @@
 `- **`examples/patterns-examples.md`** - Ternaries, early returns, exports, try/catch, arrow functions
 `- **`examples/solid-clean-examples.md`** - SOLID principles, Clean Code, architecture patterns
 `
+`## Markdown Linting Standards
+`
+`When modifying `.md` files (README.md, CHANGELOG.md, SKILL.md files):
+`
+`### Formatting Rules
+`
+`- ✅ **No trailing whitespace** (lines should not end with spaces)
+`- ✅ **No multiple consecutive blank lines** (max 1 blank line between sections)
+`- ✅ **Proper code block syntax**: Use triple backticks with language identifier
+  ` ```typescript` not just ` ``` `
+`- ✅ **No escaped backticks** inside code blocks (use double backticks if needed)
+`- ✅ **Line length**: Keep lines under 120 characters when possible
+`
+`### CHANGELOG.md Specific
+`
+`- ✅ **Date format**: ISO 8601 (`YYYY-MM-DD`), e.g., `2023-12-26`
+`- ✅ **Version format**: `## [X.Y.Z] - YYYY-MM-DD` with brackets
+`- ✅ **Sections**: `### Added`, `### Changed`, `### Deprecated`, `### Removed`, `### Fixed`, `### Security`
+`- ✅ **Comparison links**: At bottom of file, format: `[X.Y.Z]: https://github.com/.../compare/vOLD...vNEW`
+`
+`### SKILL.md Specific
+`
+`- ✅ **Frontmatter**: Use YAML between `---` delimiters
+`- ✅ **Required fields**: `name`, `id`, `version`, `tags`, `description`
+`- ✅ **Executable scripts**: Set `disable-model-invocation: true` and `user-invocable: false`
+`- ✅ **Knowledge skills**: Set `user-invocable: true`
+`
 `## Common Patterns in Codebase
 `
 `### Manager config structure
