@@ -605,13 +605,13 @@ Quick and short aliases for `swpm` and `swpx` commands.
 
 ### sup (update)
 
-| Package/Alias  | `sup [<package>]`            | `sup vite`            |
-| -------------- | ---------------------------- | --------------------- |
-| **npm**        | `npm update [<package>]`     | `npm update vite`     |
-| **yarn**       | `yarn upgrade [<package>]`   | `yarn upgrade vite`   |
-| **yarn@berry** | `yarn semver up [<package>]` | `yarn semver up vite` |
-| **pnpm**       | `pnpm update [<package>]`    | `pnpm update vite`    |
-| **bun**        | `bun update [<package>]`     | `bun update vite`     |
+| Package/Alias  | `sup [<package>]`            | `sup vite`                    |
+| -------------- | ---------------------------- | ----------------------------- |
+| **npm**        | `npm update [<package>]`     | `npm update vite`             |
+| **yarn**       | `yarn upgrade [<package>]`   | `yarn upgrade vite`           |
+| **yarn@berry** | `yarn semver up [<package>]` | `yarn semver up vite`         |
+| **pnpm**       | `pnpm update [<package>]`    | `pnpm update vite`            |
+| **bun**        | `bun update [<package>]`     | `bun update vite`             |
 | **deno**       | `deno outdated --update`     | `deno outdated --update vite` |
 
 ### sug (upgrade)
@@ -650,12 +650,12 @@ Quick and short aliases for `swpm` and `swpx` commands.
 
 ### sr (run)
 
-| Package/Alias  | `sr <script>`       | `sr dev --port 3030`         |
-| -------------- | ------------------- | ---------------------------- |
-| **npm**        | `npm run <script>`  | `npm run dev -- --port 3030` |
-| **yarn**       | `yarn run <script>` | `yarn run dev --port 3030`   |
-| **pnpm**       | `pnpm run <script>` | `pnpm run dev --port 3030`   |
-| **bun**        | `bun run <script>`  | `bun run dev --port 3030`    |
+| Package/Alias  | `sr <script>`        | `sr dev --port 3030`         |
+| -------------- | -------------------- | ---------------------------- |
+| **npm**        | `npm run <script>`   | `npm run dev -- --port 3030` |
+| **yarn**       | `yarn run <script>`  | `yarn run dev --port 3030`   |
+| **pnpm**       | `pnpm run <script>`  | `pnpm run dev --port 3030`   |
+| **bun**        | `bun run <script>`   | `bun run dev --port 3030`    |
 | **deno**       | `deno task <script>` | `deno task dev --port 3030`  |
 
 ### sx (execute)
@@ -827,9 +827,9 @@ You can set a default or **global** pin Package Manager in order to avoid the `-
 
 Create an `SWPM` environment variable with one of this values `<npm|yarn[@berry]|pnpm|bun|deno>`.
 
-| OS    | Command                                                                              |
-| ----- | ------------------------------------------------------------------------------------ |
-| win   | `setx SWPM "<npm\|yarn[@berry]\|pnpm\|bun\|deno>"`                                   |
+| OS    | Command                                                                                    |
+| ----- | ------------------------------------------------------------------------------------------ |
+| win   | `setx SWPM "<npm\|yarn[@berry]\|pnpm\|bun\|deno>"`                                         |
 | macOS | `echo 'export SWPM="<npm\|yarn[@berry]\|pnpm\|bun\|deno>"' >> <~/.bash_profile\|~/.zshrc>` |
 | linux | `echo 'export SWPM="<npm\|yarn[@berry]\|pnpm\|bun\|deno>"' >> <~/.bash_profile\|~/.zshrc>` |
 
