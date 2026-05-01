@@ -3,14 +3,14 @@ name: swpm-code-review
 id: swpm-code-review
 version: 1.0.0
 tags: [swpm, code-review, standards, lint, quality]
-description: Automated code review script for SWPM. Checks typing standards (type vs interface, no any), naming conventions, file structure, export patterns, and project constraints. Invoke via executable script.
+description: Automated code review bash script for SWPM. Checks typing standards (type vs interface, no any), naming conventions, file structure, export patterns, and project constraints. Invoke via executable script.
 disable-model-invocation: true
-user-invocable: true
+user-invocable: false
 ---
 
 # SWPM Code Review
 
-Use this skill to perform automated code reviews ensuring compliance with SWPM development standards. The skill provides an executable script that checks multiple aspects of the codebase.
+Use this skill to perform automated code reviews ensuring compliance with SWPM development standards. The skill provides an executable bash script that checks multiple aspects of the codebase.
 
 ## When to Use
 
@@ -21,122 +21,118 @@ Use this skill to perform automated code reviews ensuring compliance with SWPM d
 
 ## What the Script Checks
 
-The executable script `scripts/code-review.js` validates:
+The executable script `scripts/code-review.sh` validates:
 
 1. **Typing Standards**
-   - No `interface` keyword usage
-   - No `any` type usage
-   - Correct `import type` usage for type-only imports
-   - Types in separate `*.types.ts` files
+    - No `interface` keyword usage
+    - No `any` type usage
+    - Correct `import type` usage for type-only imports
+    - Types in separate `*.types.ts` files
 
 2. **Naming Conventions**
-   - Files: kebab-case or lowercase
-   - Functions: camelCase, arrow functions preferred
-   - Constants: UPPER_SNAKE_CASE
+    - Files: kebab-case or lowercase
+    - Functions: camelCase, arrow functions preferred
+    - Constants: UPPER_SNAKE_CASE
 
 3. **Export Patterns**
-   - Default exports for configs/commands
-   - Named exports for utilities
-   - No anonymous function exports
+    - Default exports for configs/commands
+    - Named exports for utilities
+    - No anonymous function exports
 
 4. **File Structure**
-   - Tests in same directory as source
-   - Type files in `*.types.ts`
-   - Aliases in `src/alias/*.js`
+    - Tests in same directory as source
+    - Type files in `*.types.ts`
+    - Aliases in `src/alias/*.js`
 
 5. **Project Constraints**
-   - Node.js >= 20
-   - ESM only (check package.json)
-   - TypeScript strict mode
-   - @yargs v18 API
+    - Node.js >= 20
+    - ESM only (check package.json)
+    - TypeScript strict mode
+    - @yargs v18 API
 
-6. **Markdown Lint**
-   - No escaped backticks
-   - Proper code block syntax
-   - Correct date formats in CHANGELOG.md
+6. **Lint and Tests**
+    - Runs `npm run lint`
+    - Runs `npm run ts:check`
+    - Runs tests for changed test files
+
+7. **Markdown Lint**
+    - No trailing whitespace
+    - No multiple consecutive blank lines
+    - Correct date formats in CHANGELOG.md
 
 ## Usage
 
 ### Make it executable (required)
 
 ```bash
-chmod +x .agents/skills/swpm-code-review/scripts/code-review.js
+chmod +x .agents/skills/swpm-code-review/scripts/code-review.sh
 ```
 
 ### Run the review script
 
 ```bash
-./agents/skills/swpm-code-review/scripts/code-review.js
+./agents/skills/swpm-code-review/scripts/code-review.sh
 ```
 
 Or without execute permission:
 
 ```bash
-node .agents/skills/swpm-code-review/scripts/code-review.js
+bash .agents/skills/swpm-code-review/scripts/code-review.sh
 ```
 
-### Review specific files
-
-```bash
-node .agents/skills/swpm-code-review/scripts/code-review.js src/helpers/cmds.ts src/helpers/args.ts
-```
-
-### Review changes from master (production)
+### Review changes from master branch
 
 Reviews only files changed compared to master branch:
 
 ```bash
-node .agents/skills/swpm-code-review/scripts/code-review.js --master
+bash .agents/skills/swpm-code-review/scripts/code-review.sh --master
+```
+
+### Review changes from main branch
+
+```bash
+bash .agents/skills/swpm-code-review/scripts/code-review.sh --main
 ```
 
 ### Review staged changes
 
 ```bash
-node .agents/skills/swpm-code-review/scripts/code-review.js --staged
+bash .agents/skills/swpm-code-review/scripts/code-review.sh --staged
 ```
 
 ### Review specific files
 
 ```bash
-node .agents/skills/swpm-code-review/scripts/code-review.js src/helpers/cmds.ts src/helpers/args.ts
-```
-
-### Review staged changes
-
-```bash
-node .agents/skills/swpm-code-review/scripts/code-review.js --staged
+bash .agents/skills/swpm-code-review/scripts/code-review.sh --files "src/helpers/cmds.ts src/helpers/args.ts"
 ```
 
 ## Example Output
 
 ```
-SWPM Code Review
-================
+=== SWPM Code Review ===
 
-Checking typing standards...
-✅ No 'interface' usage found
-❌ Found 'any' type in src/helpers/debug.ts:15
-   - const data: any = getData()
+Checking changes vs master branch...
+Files to review:
+  - src/helpers/repos.ts
+  - .agents/skills/swpm-release/scripts/release.sh
 
-Checking naming conventions...
-✅ All files follow kebab-case/lowercase
-✅ Functions use camelCase
+=== Running lint ===
+...
 
-Checking export patterns...
-✅ Default exports for configs
-✅ Named exports for utilities
+=== Running type check ===
+...
 
-Checking project constraints...
-✅ Node.js version: 20.9.0
-✅ ESM enabled
-✅ TypeScript strict mode
-❌ @yargs version: 17.7.2 (expected: v18+)
+=== Checking typing standards ===
+  WARNING: Found 'any' type in src/helpers/debug.ts
+  WARNING: Found 'interface' in src/config.ts (use 'type' instead)
 
-Checking CHANGELOG.md...
-❌ Date format error in line 374: '2023/12/14' should be '2023-12-14'
+=== Checking naming conventions ===
+  WARNING: Found PascalCase export in src/components/Button.ts (use camelCase)
 
-================
-Review Complete: 2 errors, 0 warnings
+=== Checking markdown files ===
+  WARNING: Found trailing whitespace in README.md
+
+=== Code Review Complete ===
 ```
 
 ## Script Location
@@ -145,19 +141,19 @@ Review Complete: 2 errors, 0 warnings
 .agents/skills/swpm-code-review/
 ├── SKILL.md
 └── scripts/
-    └── code-review.js
+    └── code-review.sh
 ```
 
 ## Example Questions
 
 **Q**: "Can you review my changes?"
-**A**: Run `node .agents/skills/swpm-code-review/scripts/code-review.js`
+**A**: Run `bash .agents/skills/swpm-code-review/scripts/code-review.sh`
 
 **Q**: "What does the code review check?"
-**A**: Typing (no any, no interface), naming, exports, file structure, and project constraints.
+**A**: Typing (no any, no interface), naming, exports, file structure, lint, tests, and project constraints.
 
 **Q**: "How do I check specific files?"
-**A**: Pass file paths as arguments: `node .../code-review.js src/file1.ts src/file2.ts`
+**A**: Use `--files` flag: `bash .../code-review.sh --files "src/file1.ts src/file2.ts"`
 
 ## Observations
 
@@ -170,8 +166,8 @@ Before running the review:
 
 ## Configuration
 
-The script reads configuration from:
+The script uses:
 
 - `package.json` - version, engines, type field
 - `tsconfig.json` - TypeScript configuration
-- `.eslintrc` or eslint config - linting rules
+- npm scripts: `lint`, `ts:check`, `test`
