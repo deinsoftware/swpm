@@ -1,11 +1,11 @@
 # Developer Guide
 
-Welcome to the SWPM development guide. This document explains how to set up your development environment and test changes locally, specifically for the **v3.0.0** update.
+Welcome to the SWPM development guide. This document explains how to set up your development environment and test changes locally.
 
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
-- [Local Development & Testing](#local-development--testing)
+- [Local Development](#local-development)
 - [Testing](#testing)
 - [Building](#building)
 - [Type Checking & Linting](#type-checking--linting)
@@ -38,7 +38,7 @@ These are required because SWPM tests validate functionality across multiple pac
 
 ---
 
-## Local Development & Testing
+## Local Development
 
 Please follow these steps:
 
@@ -133,7 +133,7 @@ npm run pack
 ### Install Your Package Locally
 
 ```bash
-npm install -g ./bin/swpm-3.0.0.tgz
+npm install -g ./bin/swpm-<#.#.#>.tgz
 ```
 
 ---
