@@ -45,6 +45,7 @@
     "spyb": "./src/alias/spyb.js",
     "spp": "./src/alias/spp.js",
     "spb": "./src/alias/spb.js",
+    "spd": "./src/alias/spd.js",
     "sx": "./src/alias/sx.js"
   },
   "scripts": {

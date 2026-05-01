@@ -161,6 +161,9 @@ swpm add <package> [args]
 | `--save-exact`    | `-E`  | Dependencies will be configured with an exact version rather than using default semver range operator |
 | `--global`        | `-g`  | Remove the current package context as a global package                                                |
 
+> **Warning**:  
+> The `--save-exact` argument is not available on **deno** Package Manager.
+
 #### Remove
 
 This command, no arguments, will remove a package to local `package.json` file. Package will be removed as **dependencies** by default.
@@ -230,7 +233,7 @@ swpm interactive [args]
 | `--global`        | `-g`  | Update the current package context as a global package                |
 
 > **Warning**:  
-> This command is not available on **npm** and **bun** Package Manager.
+> This command is not available on **npm**, **bun** and **deno** Package Manager.
 
 #### Open
 
@@ -465,9 +468,9 @@ swpx [<command>] [FLAGS]
 
 Options:
   -u, --use    use a package manager
-                           [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
+                   [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun", "deno"]
   -t, --test   test command (without running)
-                           [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
+                   [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun", "deno"]
   -m, --mute   mute command translation
       --alias  show command alias                                      [boolean]
       --info   show information and versions                           [boolean]
@@ -480,6 +483,7 @@ Options:
 | **yarn**          | `yarn dlx <package>` | `yarn dlx vitest` |
 | **pnpm**          | `pnpm dlx <package>` | `pnpm dlx vitest` |
 | **bun**           | `bunx <package>`     | `bunx vitest`     |
+| **deno**          | `deno run <package>` | `deno run vitest` |
 
 ⇧ [Back to menu](#menu)
 
@@ -491,14 +495,14 @@ Quick and short aliases for `swpm` and `swpx` commands.
 
 ### sp[?] (pin)
 
-| Alias  | Command                                     |
-| ------ | ------------------------------------------- |
-| `sp`   | `swpm --pin <npm\|yarn[@berry]\|pnpm\|bun>` |
-| `spn`  | `swpm --pin npm`                            |
-| `spy`  | `swpm --pin yarn`                           |
-| `spyb` | `swpm --pin yarn@berry`                     |
-| `spp`  | `swpm --pin pnp`                            |
-| `spb`  | `swpm --pin bun`                            |
+| Alias  | Command                                           |
+| ------ | ------------------------------------------------- |
+| `sp`   | `swpm --pin <npm\|yarn[@berry]\|pnpm\|bun\|deno>` |
+| `spn`  | `swpm --pin npm`                                  |
+| `spy`  | `swpm --pin yarn`                                 |
+| `spp`  | `swpm --pin pnpm`                                 |
+| `spb`  | `swpm --pin bun`                                  |
+| `spd`  | `swpm --pin deno`                                 |
 
 ### si (install)
 
@@ -508,6 +512,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**      | `yarn install` |
 | **pnpm**      | `pnpm install` |
 | **bun**       | `bun install`  |
+| **deno**      | `deno install` |
 
 ### sif (install frozen)
 
@@ -518,6 +523,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn@berry** | `yarn install --immutable`       |
 | **pnpm**       | `pnpm install --frozen-lockfile` |
 | **bun**        | `bun install --frozen-lockfile`  |
+| **deno**       | `deno install --frozen`          |
 
 ### sa (add)
 
@@ -527,6 +533,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn add <package>` | `yarn add vite` |
 | **pnpm**       | `pnpm add <package>` | `pnpm add vite` |
 | **bun**        | `bun add <package>`  | `bun add vite`  |
+| **deno**       | `deno add <package>` | `deno add vite` |
 
 ### sae (add save exact)
 
@@ -536,6 +543,10 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn add <package> --exact`      | `yarn add vite --exact`      |
 | **pnpm**       | `pnpm add <package> --save-exact` | `pnpm add vite --save-exact` |
 | **bun**        | `bun add <package> --save-exact`  | `bun add vite --save-exact`  |
+| **deno**       |  N/A                              |  N/A                         |
+
+> **Warning**:  
+> The `--save-exact` argument is not available on **deno** Package Manager.
 
 ### sad (add save dev)
 
@@ -545,6 +556,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn add <package> --dev`      | `yarn add vite --dev`      |
 | **pnpm**       | `pnpm add <package> --save-dev` | `pnpm add vite --save-dev` |
 | **bun**        | `bun add <package> --save-dev`  | `bun add vite --save-dev`  |
+| **deno**       | `deno add <package> --dev`      | `deno add vite --dev`      |
 
 ### sade (add save dev exact)
 
@@ -554,6 +566,10 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn add <package> --dev --exact`           | `yarn add vite --dev --exact`           |
 | **pnpm**       | `pnpm add <package> --save-dev --save-exact` | `pnpm add vite --save-dev --save-exact` |
 | **bun**        | `bun add <package> --save-dev --save-exact`  | `bun add vite --save-dev --save-exact`  |
+| **deno**       |  N/A                                         |  N/A                                    |
+
+> **Warning**:  
+> The `--save-exact` argument is not available on **deno** Package Manager.
 
 ### sag (add global)
 
@@ -563,6 +579,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn add global <package>`            | `yarn add global eslint`            |
 | **pnpm**       | `pnpm add <package> --global`          | `pnpm add eslint --global`          |
 | **bun**        | `bun add <package> --global`           | `bun add eslint --global`           |
+| **deno**       | `deno install -g <package>`            | `deno install -g eslint`            |
 | **volta**      | `volta install <package>`              | `volta install eslint`              |
 
 ### srm (remove)
@@ -573,6 +590,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn remove <package>`    | `yarn remove vite`    |
 | **pnpm**       | `pnpm uninstall <package>` | `pnpm uninstall vite` |
 | **bun**        | `bun remove <package>`     | `bun remove vite`     |
+| **deno**       | `deno remove <package>`    | `deno remove vite`    |
 
 ### srg (remove global)
 
@@ -582,6 +600,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn remove global <package>`               | `yarn remove global eslint`               |
 | **pnpm**       | `pnpm uninstall <package> --global`          | `pnpm uninstall eslint --global`          |
 | **bun**        | `bun remove <package> --global`              | `bun remove eslint --global`              |
+| **deno**       | `deno uninstall -g <package>`                | `deno uninstall -g eslint`                |
 | **volta**      | `volta uninstall <package>`                  | `volta uninstall eslint`                  |
 
 ### sup (update)
@@ -593,6 +612,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn@berry** | `yarn semver up [<package>]` | `yarn semver up vite` |
 | **pnpm**       | `pnpm update [<package>]`    | `pnpm update vite`    |
 | **bun**        | `bun update [<package>]`     | `bun update vite`     |
+| **deno**       | `deno outdated --update`     | `deno outdated --update vite` |
 
 ### sug (upgrade)
 
@@ -603,6 +623,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn@berry** | `yarn up <package>`               | `yarn up vite`               |
 | **pnpm**       | `pnpm update <package> --latest`  | `pnpm update vite --latest`  |
 | **bun**        |  N/A                              |  N/A                         |
+| **deno**       | `deno add <package>`              | `deno add vite`              |
 
 ### sui (interactive)
 
@@ -612,6 +633,10 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn upgrade-interactive`  |
 | **pnpm**       | `pnpm update --interactive` |
 | **bun**        |  N/A                        |
+| **deno**       |  N/A                        |
+
+> **Warning**:  
+> This command is not available on **npm**, **bun** and **deno** Package Manager.
 
 ### scr (create)
 
@@ -621,6 +646,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn create <package>` | `yarn create vite` |
 | **pnpm**       | `pnpm create <package>` | `pnpm create vite` |
 | **bun**        | `bun create <package>`  | `bun create vite`  |
+| **deno**       | `deno init <package>`   | `deno init vite`   |
 
 ### sr (run)
 
@@ -630,6 +656,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**       | `yarn run <script>` | `yarn run dev --port 3030`   |
 | **pnpm**       | `pnpm run <script>` | `pnpm run dev --port 3030`   |
 | **bun**        | `bun run <script>`  | `bun run dev --port 3030`    |
+| **deno**       | `deno task <script>` | `deno task dev --port 3030`  |
 
 ### sx (execute)
 
@@ -639,6 +666,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn**          | `yarn dlx <package>` | `yarn dlx vitest` |
 | **pnpm**          | `pnpm dlx <package>` | `pnpm dlx vitest` |
 | **bun**           | `bunx <package>`     | `bunx vitest`     |
+| **deno**          | `deno run <package>` | `deno run vitest` |
 
 ### soe (open explorer)
 
@@ -703,8 +731,8 @@ Flags are important to `swpm` and `swpx` because can modify or set his behavior.
 The `<swpm|swpx> --use` flag allows you to choose your Package Manager for a project.
 
 ```bash
-swpm <command> [args] --use <npm|yarn[@berry]|pnpm|bun>
-swpx <command> [args] -u <npm|yarn[@berry]|pnpm|bun>
+swpm <command> [args] --use <npm|yarn[@berry]|pnpm|bun|deno>
+swpx <command> [args] -u <npm|yarn[@berry]|pnpm|bun|deno>
 ```
 
 It will run the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
@@ -719,8 +747,8 @@ It will run the command using the selected Package Manager, no matter the `swpm`
 The `swpm --pin` flag allows you to choose your Package Manager for a project.
 
 ```bash
-swpm --pin <npm|yarn[@berry]|pnpm|bun>
-swpm -p <npm|yarn[@berry]|pnpm|bun>
+swpm --pin <npm|yarn[@berry]|pnpm|bun|deno>
+swpm -p <npm|yarn[@berry]|pnpm|bun|deno>
 ```
 
 It will store the pinned Package Manager in the `package.json` file, so you can commit your choice of tools to version control:
@@ -736,7 +764,7 @@ It will store the pinned Package Manager in the `package.json` file, so you can 
 > `yarn set version classic` for `yarn`
 > `yarn set version berry` for `yarn@berry`
 
-You also can set it manually. Just take care writing a valid Package Manager: `npm`, `yarn[@berry]`, `pnpm` or `bun`. And also remember to run the set command for `yarn` projects.
+You also can set it manually. Just take care writing a valid Package Manager: `npm`, `yarn[@berry]`, `pnpm`, `bun` or `deno`. And also remember to run the set command for `yarn` projects.
 
 ### Unpin
 
@@ -753,9 +781,9 @@ It will remove the pinned Package Manager in the `package.json` file.
 The `<swpm|swpx> --test` flag show the equivalent command using the selected Package Manager, but **it will not run the command**
 
 ```bash
-swpm <command> [args] --test <npm|yarn[@berry]|pnpm|bun>
-swpm <command> [args] -t <npm|yarn[@berry]|pnpm|bun>
-swpx <command> -t <npm|yarn[@berry]|pnpm|bun>
+swpm <command> [args] --test <npm|yarn[@berry]|pnpm|bun|deno>
+swpm <command> [args] -t <npm|yarn[@berry]|pnpm|bun|deno>
+swpx <command> -t <npm|yarn[@berry]|pnpm|bun|deno>
 ```
 
 It will show the command using the selected Package Manager, no matter the `swpm` property in your `package.json`.
@@ -797,13 +825,13 @@ It will search firs the `swpm` property on the `package.json` file, and if doesn
 
 You can set a default or **global** pin Package Manager in order to avoid the `--use` flag on paths where no exist a `package.json` or `--pin` flag on each project.
 
-Create an `SWPM` environment variable with one of this values `<npm|yarn[@berry]|pnpm|bun>`.
+Create an `SWPM` environment variable with one of this values `<npm|yarn[@berry]|pnpm|bun|deno>`.
 
 | OS    | Command                                                                              |
 | ----- | ------------------------------------------------------------------------------------ |
-| win   | `setx SWPM "<npm\|yarn[@berry]\|pnpm\|bun>"`                                         |
-| macOS | `echo 'export SWPM="<npm\|yarn[@berry]\|pnpm\|bun>"' >> <~/.bash_profile\|~/.zshrc>` |
-| linux | `echo 'export SWPM="<npm\|yarn[@berry]\|pnpm\|bun>"' >> <~/.bash_profile\|~/.zshrc>` |
+| win   | `setx SWPM "<npm\|yarn[@berry]\|pnpm\|bun\|deno>"`                                   |
+| macOS | `echo 'export SWPM="<npm\|yarn[@berry]\|pnpm\|bun\|deno>"' >> <~/.bash_profile\|~/.zshrc>` |
+| linux | `echo 'export SWPM="<npm\|yarn[@berry]\|pnpm\|bun\|deno>"' >> <~/.bash_profile\|~/.zshrc>` |
 
 ⇧ [Back to menu](#menu)
 
