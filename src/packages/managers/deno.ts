@@ -10,7 +10,7 @@ const deno: PackageConfiguration = {
   modulesPath: ['node_modules'],
   modulesFile: ['deno.json', 'deno.jsonc'],
   logFile: '',
-  install: 'deno install -g swpm',
+  install: 'deno install -g npm:swpm',
   cmds: {
     remove: 'remove',
     r: 'remove',

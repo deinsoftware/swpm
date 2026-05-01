@@ -71,6 +71,7 @@ Install as global with any of this package managers
 | **yarn**        | `yarn global add swpm`               |
 | **pnpm**        | `pnpm install swpm --global`         |
 | **bun**         | `bun install -g swpm`                |
+| **deno**        | `deno install -g npm:swpm`           |
 | **volta**       | `volta install swpm`                 |
 
 ⇧ [Back to menu](#menu)
@@ -101,16 +102,17 @@ Commands:
   swpm interactive [args]        update packages interactive       [aliases: ui]
   swpm open [resource] [args]    open in the file explore or browser[aliases: o]
   swpm clean [args]              clean packages                     [aliases: c]
-  swpm status [format]           show information in different formats [aliases: s]
+  swpm status [format]           show information in different formats
+                                                                    [aliases: s]
 
 Options:
   -u, --use    use a package manager
-                           [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
+                   [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun", "deno"]
   -p, --pin    pin a package manager
-                           [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
+                   [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun", "deno"]
       --unpin  unpin current package manager
   -t, --test   test command (without running)
-                           [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun"]
+                   [choices: "npm", "yarn", "yarn@berry", "pnpm", "bun", "deno"]
   -m, --mute   mute command translation
       --alias  show command alias                                      [boolean]
       --info   show information and versions                           [boolean]
