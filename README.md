@@ -380,7 +380,7 @@ swpm init [--yes]
 swpm create <name> [<args>]
 ```
 
-> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn[@berry]|pnpm|bun>` at the end or setup an `SWPM` environment variable.
+> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn[@berry]|pnpm|bun|deno>` at the end or setup an `SWPM` environment variable.
 
 #### Login/Logout
 
@@ -392,7 +392,7 @@ swpm login
 swpm logout
 ```
 
-> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn[@berry]|pnpm|bun>` at the end or setup an `SWPM` environment variable.
+> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn[@berry]|pnpm|bun|deno>` at the end or setup an `SWPM` environment variable.
 
 #### Scripts
 
@@ -435,7 +435,7 @@ swpm config set save-exact true
 swpm config set save-prefix '~'
 ```
 
-> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn[@berry]|pnpm|bun>` at the end.
+> To run these commands in a path where a `package.json` didn't exist add the flag `--use <npm|yarn[@berry]|pnpm|bun|deno>` at the end.
 
 #### Versions
 
@@ -445,7 +445,7 @@ swpm config set save-prefix '~'
 swpm outdated [<package>] [--global]
 ```
 
-> To run this commands in a path where a `package.json` didn't exist with flag `--global` add the flag `--use <npm|yarn[@berry]|pnpm|bun>` at the end or setup an `SWPM` environment variable.
+> To run this commands in a path where a `package.json` didn't exist with flag `--global` add the flag `--use <npm|yarn[@berry]|pnpm|bun|deno>` at the end or setup an `SWPM` environment variable.
 
 ⇧ [Back to menu](#menu)
 

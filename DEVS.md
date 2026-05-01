@@ -35,7 +35,7 @@ bun --version
 deno --version
 ```
 
-These are required because SWPM tests validate functionality across multiple package managers (npm, yarn, pnpm, bun).
+These are required because SWPM tests validate functionality across multiple package managers (npm, yarn, pnpm, bun, deno).
 
 ---
 

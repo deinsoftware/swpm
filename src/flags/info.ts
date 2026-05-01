@@ -14,7 +14,7 @@ export const showNoPackageDetected = () => {
   ${chalk.red.bold('Error')}: no Package Manager or Environment Variable was found.
 
   Please review if the current path has a ${chalk.bold('package.json')} or a ${chalk.bold('lock')} file.
-  Highly recommend pin a Package Manager with ${chalk.blue.bold('swpm --pin <npm|yarn[@berry]|pnpm|bun>')} command.
+  Highly recommend pin a Package Manager with ${chalk.blue.bold('swpm --pin <npm|yarn[@berry]|pnpm|bun|deno>')} command.
 `)
   exit(1)
 }
@@ -35,7 +35,7 @@ export const showPackageInformation = async ({ cmd, origin, config, volta }: Com
       No Package Manager or Environment Variable was found.
 
       Please review if the current path has a ${chalk.bold('package.json')} or a ${chalk.bold('lock')} file.
-      Highly recommend pin a Package Manager with ${chalk.blue.bold('swpm --pin <npm|yarn[@berry]|pnpm|bun>')} command.
+      Highly recommend pin a Package Manager with ${chalk.blue.bold('swpm --pin <npm|yarn[@berry]|pnpm|bun|deno>')} command.
     `
     message += '\n'
   }
