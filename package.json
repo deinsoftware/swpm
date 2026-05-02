@@ -112,6 +112,7 @@
     "@eslint/js": "10.0.1",
     "@types/command-exists": "1.2.3",
     "@types/common-tags": "1.8.4",
+    "@types/node": "25.6.0",
     "@types/prompts": "2.4.9",
     "@types/semver": "7.7.1",
     "@types/spinnies": "0.5.3",
