@@ -20,8 +20,11 @@ const isWSL = () => {
 
 /** returns node platform and 'wsl' if running in wsl */
 export const detectOs = () => {
-  const os = platform().toLowerCase().replaceAll(/\d/g, '')
-  return (os === 'linux') && isWSL() ? 'wsl' : os
+  let os = platform().toLowerCase().replaceAll(/\d/g, '')
+  if (os === 'linux') {
+    os = isWSL() ? 'wsl' : os
+  }
+  return os
 }
 
 const osConfig: Record<string, {path: string, cmd: string}> = {
