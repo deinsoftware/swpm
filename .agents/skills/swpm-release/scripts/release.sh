@@ -112,6 +112,8 @@ node -e "
 const fs = require('fs');
 const path = '${CHANGELOG}';
 let content = fs.readFileSync(path, 'utf-8');
+
+// Find [Unreleased] section
 const unreleasedRegex = /(## \\[Unreleased\\]\\n\\n)([\\s\\S]*?)(?=\\n## \\[|$)/i;
 const match = content.match(unreleasedRegex);
 
@@ -120,17 +122,21 @@ if (!match) {
   process.exit(1);
 }
 
-const unreleasedContent = match[2].trim();
+let unreleasedContent = match[2].trim();
+
+// If unreleased is empty, check if we added content earlier
 if (!unreleasedContent) {
-  console.error('[Unreleased] section is empty');
+  console.error('[Unreleased] section is empty. Nothing to release.');
   process.exit(1);
 }
 
 const today = new Date().toISOString().split('T')[0];
 const newVersionSection = '\\n## [${newVersion}] - ' + today + '\\n\\n' + unreleasedContent + '\\n';
 
+// Replace [Unreleased] content with empty (keep the header)
 content = content.replace(unreleasedRegex, '## [Unreleased]\\n\\n');
 
+// Insert new version section after [Unreleased]
 const unreleasedIndex = content.indexOf('## [Unreleased]');
 const insertIndex = content.indexOf('\\n\\n', unreleasedIndex) + 2;
 content = content.slice(0, insertIndex) + newVersionSection + content.slice(insertIndex);
@@ -149,7 +155,7 @@ console.log('Updating comparison links...');
 versionContent=$(node -e "
 const fs = require('fs');
 let content = fs.readFileSync('${CHANGELOG}', 'utf-8');
-const versionSectionRegex = new RegExp('## \\[${newVersion}\\] - .*?\\\\n\\\\n([\\\\s\\\\S]*?)(?=\\\\n## \\\\[|\\\\n\\\\[)', 'i');
+const versionSectionRegex = new RegExp('## \\\\[${newVersion}\\\\] - .*?\\\\n\\\\n([\\\\s\\\\S]*?)(?=\\\\n## \\\\[|\\\\n\\\\[)', 'i');
 const match = content.match(versionSectionRegex);
 if (match) {
   console.log(match[1].trim());
