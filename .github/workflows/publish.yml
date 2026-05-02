@@ -8,14 +8,14 @@ on:
     types: [published]
 
 env:
-  NODE_VERSION: 20
+  NODE_VERSION: 24
 
 jobs:
   publish-package:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: https://registry.npmjs.org/
@@ -33,7 +33,7 @@ jobs:
     if: ${{ success() }}
     runs-on: ubuntu-latest
     steps:
-      - uses: Eomm/why-don-t-you-tweet@v1
+      - uses: Eomm/why-don-t-you-tweet@v2
         if: ${{ !github.event.repository.private }}
         with:
           tweet-message: "swpm ${{ github.event.release.tag_name }} 🐛🔨 is here 🥳\n\n
