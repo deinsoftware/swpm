@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.7.0] - 2026-05-02
+
+### Added
+
+- Add AI agent skills system with 8 self-contained skills in `.agents/skills/`
+- Add `swpm-release` skill with bash script for automated version bumping
+- Add `swpm-code-review` skill with bash script for automated code review
+- Add `swpm-manage-commands-args` skill with templates for cmds/args mappings
+- Add `swpm-dev-guide` skill for local development setup
+- Add `swpm-dev-standards` skill with examples (typing, naming, patterns, SOLID)
+- Add `swpm-semver` skill for Semantic Versioning 2.0.0 guidelines
+- Add `swpm-conventional-commits` skill for Conventional Commits 1.0.0
+- Add `swpm-keepachangelog` skill for Keep a Changelog 1.1.0 standards
+
+### Changed
+
+- Update `CHANGELOG.md` to Keep a Changelog 1.1.0 standard (ISO dates, comparison links)
+- Update `AGENTS.md` with all 8 skills references
+
+### Removed
+
+- Remove `DEVS.md` (replaced by `swpm-dev-guide` skill)
+- Remove `TEMPLATES.md` (replaced by skill templates)
+
 ## [2.6.0] - 2023-12-26
 
 ### Changed
@@ -598,7 +622,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `pin`, `use`, `get`, `see` and `info` options
 - Pinned validation
 
-[unreleased]: https://github.com/deinsoftware/swpm/compare/v2.6.0...HEAD
+[2.7.0]: https://github.com/deinsoftware/swpm/compare/v2.6.0...v2.7.0
+[unreleased]: https://github.com/deinsoftware/swpm/compare/v2.8.0...HEAD
 [2.6.0]: https://github.com/deinsoftware/swpm/compare/v2.5.2...v2.6.0
 [2.5.2]: https://github.com/deinsoftware/swpm/compare/v2.5.1...v2.5.2
 [2.5.1]: https://github.com/deinsoftware/swpm/compare/v2.5.0...v2.5.1
