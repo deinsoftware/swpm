@@ -12,10 +12,6 @@ const deno: PackageConfiguration = {
   logFile: '',
   install: 'deno install -g npm:swpm',
   cmds: {
-    install: 'install',
-    i: 'install',
-    add: 'add',
-    a: 'add',
     remove: 'remove',
     r: 'remove',
     rm: 'remove',
@@ -24,33 +20,26 @@ const deno: PackageConfiguration = {
     update: ['outdated', '--update'],
     up: ['outdated', '--update'],
     ud: ['outdated', '--update'],
-    upgrade: 'add',
-    ug: 'add',
+    upgrade: ['outdated', '--update'],
+    ug: ['outdated', '--update'],
     interactive: ['', -1],
     run: 'task',
-    test: 'test',
-    init: 'init',
-    create: 'init',
-    build: 'task',
-    publish: 'publish',
-    outdated: 'outdated'
+    create: 'init'
   },
   args: {
-    '--frozen': '--frozen',
-    '-F': '--frozen',
     '--package-lock': '--no-lock',
     '-P': '--no-lock',
     '--save-dev': '--dev',
     '-D': '--dev',
     '--save-optional': '--optional',
     '-O': '--optional',
-    '--save-peer': '--peer',
+    '--save-peer': ['', -1],
     '--save-exact': ['', -1],
     '-E': ['', -1],
-    '--global': '-g',
-    '-g': '-g',
-    '--latest': ['', -1],
-    '-L': ['', -1]
+    '--global': ['', -1],
+    '-g': ['', -1],
+    '--latest': ['<package>@latest', 1],
+    '-L': ['<package>@latest', 1]
   }
 }
 

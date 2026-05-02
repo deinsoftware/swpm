@@ -162,7 +162,7 @@ swpm add <package> [args]
 | `--global`        | `-g`  | Remove the current package context as a global package                                                |
 
 > **Warning**:  
-> The `--save-exact` argument is not available on **deno** Package Manager.
+> The `--save-exact` and `--save-peer` arguments are not available on **deno** Package Manager.
 
 #### Remove
 
@@ -215,7 +215,7 @@ swpm upgrade <package> [args]
 | `--global`        | `-g`  | Upgrade the current package context as a global package                                               |
 
 > **Warning**:  
-> This command is not available on **bun** Package Manager.
+> This command is not available on **bun** and **deno** Package Managers.
 
 #### Interactive
 
@@ -623,7 +623,7 @@ Quick and short aliases for `swpm` and `swpx` commands.
 | **yarn@berry** | `yarn up <package>`               | `yarn up vite`               |
 | **pnpm**       | `pnpm update <package> --latest`  | `pnpm update vite --latest`  |
 | **bun**        |  N/A                              |  N/A                         |
-| **deno**       | `deno add <package>`              | `deno add vite`              |
+| **deno**       | `deno add <package>@latest`       | `deno add vite@latest`       |
 
 ### sui (interactive)
 
