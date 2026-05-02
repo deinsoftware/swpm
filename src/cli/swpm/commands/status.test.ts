@@ -1,8 +1,11 @@
 import { it, expect, describe } from 'vitest'
 import { execSync } from 'node:child_process'
+import { readFileSync } from 'node:fs'
 import { testCommandResult } from '../../../../.vitest/helpers'
 
 const swpm = 'node bin/src/cli/swpm.js'
+const packageJson = JSON.parse(readFileSync('package.json', 'utf-8'))
+const swpmVersion = packageJson.version
 
 describe('status', () => {
   it('should return json by default', () => {
@@ -25,7 +28,7 @@ describe('status', () => {
 
   it('should return a nested property with json:path', () => {
     const result = testCommandResult(`${swpm} status json:versions.swpm`)
-    expect(result).toBe('"3.0.0"')
+    expect(result).toBe(`"${swpmVersion}"`)
   })
 
   it('should return a specific property with plain:path', () => {
@@ -35,7 +38,7 @@ describe('status', () => {
 
   it('should return a nested property with plain:path', () => {
     const result = testCommandResult(`${swpm} status plain:versions.swpm`)
-    expect(result).toBe('3.0.0')
+    expect(result).toBe(swpmVersion)
   })
 
   it('should return error if property not found', () => {

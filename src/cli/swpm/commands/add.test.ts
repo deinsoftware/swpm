@@ -55,7 +55,7 @@ describe('add --save-peer', () => {
     ['yarn@berry', 'yarn add vite --peer'],
     ['pnpm', 'pnpm add vite --save-peer'],
     ['bun', ''], // not available
-    ['deno', 'deno add vite --peer']
+    ['deno', ''] // not available
   ])('%s', (pkg, expected) => {
     const result = testCommandResult(`swpm add vite --save-peer --test ${pkg}`)
     expect(result).toBe(expected)
@@ -92,7 +92,7 @@ export const addPackageCases = [
   ['yarn@berry', 'yarn global add vite'],
   ['pnpm', 'pnpm add vite --global'],
   ['bun', 'bun add vite --global'],
-  ['deno', 'deno add vite -g']
+  ['deno', ''] // not available
 ]
 
 const isVoltaInstalled = await commandVerification('volta')

@@ -6,7 +6,8 @@ export const removeCases = [
   ['yarn', 'yarn remove vite'],
   ['yarn@berry', 'yarn remove vite'],
   ['pnpm', 'pnpm uninstall vite'],
-  ['bun', 'bun remove vite']
+  ['bun', 'bun remove vite'],
+  ['deno', 'deno remove vite']
 ]
 
 describe('remove', () => {
@@ -48,7 +49,8 @@ describe('remove --save-peer', () => {
     ['yarn', 'yarn remove vite --peer'],
     ['yarn@berry', 'yarn remove vite --peer'],
     ['pnpm', 'pnpm uninstall vite --save-peer'],
-    ['bun', ''] // not available
+    ['bun', ''], // not available
+    ['deno', ''] // not available
   ])('%s', (pkg, expected) => {
     const result = testCommandResult(`swpm remove vite --save-peer --test ${pkg}`)
     expect(result).toBe(expected)
@@ -60,7 +62,8 @@ export const removeGlobalCases = [
   ['yarn', 'yarn global remove vite'],
   ['yarn@berry', 'yarn global remove vite'],
   ['pnpm', 'pnpm uninstall vite --global'],
-  ['bun', 'bun remove vite --global']
+  ['bun', 'bun remove vite --global'],
+  ['deno', ''] // not available
 ]
 
 describe('remove --global', () => {
