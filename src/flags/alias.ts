@@ -9,18 +9,19 @@ const commandVerification = async (cmd: string) => {
   try {
     await commandExists(cmd)
     return true
-  } catch (error) {
+  } catch {
     return false
   }
 }
 
 const aliases = {
-  sp: 'swpm --pin <npm|yarn[@berry]|pnpm|bun>',
+  sp: 'swpm --pin <npm|yarn[@berry]|pnpm|bun|deno>',
   spn: 'swpm --pin npm',
   spy: 'swpm --pin yarn',
   spyb: 'swpm --pin yarn@berry',
   spp: 'swpm --pin pnpm',
   spb: 'swpm --pin bun',
+  spd: 'swpm --pin deno',
   si: 'swpm install',
   sif: 'swpm install --frozen',
   sa: 'swpm add <package>',

@@ -1,11 +1,53 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+<!-- http://keepachangelog.com/en/1.0.0/
+Added       for new features.
+Changed     for changes in existing functionality.
+Deprecated  for once-stable features removed in upcoming releases.
+Removed     for deprecated features removed in this release.
+Fixed       for any bug fixes.
+Security    to invite users to upgrade in case of vulnerabilities.
+-->
 
 ## [Unreleased]
+
+## 3.1.0 - 2026/04/26
+
+### Added
+
+- Deno Support: Full integration for Deno 2.0+ as a package manager. Includes automatic detection of `deno.json` and `deno.jsonc` files, command translations for `install`, `add`, `remove`, `task`, `test`, and more.
+
+### Changed
+
+- Version Handling: Improved internal version extraction logic to handle multi-line outputs (specifically for Deno) across all info-related commands and flags.
+- Enhanced Detection Priority: Refined the package manager detection order to prioritize Deno configuration files when present.
+
+### Fixed
+
+- TypeScript Integrity: Resolved multiple strict typing issues, including implicit `any` types and potential `undefined` object access during command execution.
+- Configuration Parsing: Fixed a type mismatch in configuration file reading that previously limited support to strictly `.json` files.
+
+## [3.0.0] - 2026-04-25
+
+### ⚠️ BREAKING CHANGES
+
+- Node.js Requirement: The minimum supported version is now Node.js v20. This change aligns with the underlying updates in the CLI engine and modern security standards.
+
+### Added
+
+- Status Command: Introduced `swpm status` (alias `s`) to show current configuration in different formats (`json`, `json:path`, `plain:path`). Especially useful for CI tools and scripts.
+- Formal validation for the latest Node.js LTS releases.
+
+### Changed
+
+- Major CLI Engine Upgrade: Migrated yargs from v17.7.2 to v18.0.0, providing better performance and modern ESM argument parsing.
+- Dependency Refresh: Comprehensive update of core libraries including chalk, update-notifier, semver, and open to ensure compatibility with the new major version.
+- Typing System: Updated @types/yargs to v17.0.35 for improved developer experience and type safety.
+
+### Fixed
+
+- Security & Vulnerabilities: Applied multiple patches identified by Snyk across the dependency tree.
+- Parser Consistency: Refined the internal command mapping to ensure that flags and aliases behave consistently across all supported package managers (npm, pnpm, yarn, and bun) under the new v18 parser.
 
 ## [2.7.0] - 2026-05-02
 
@@ -622,8 +664,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `pin`, `use`, `get`, `see` and `info` options
 - Pinned validation
 
+[unreleased]: https://github.com/deinsoftware/swpm/compare/v3.1.0...HEAD
+[3.0.0]: https://github.com/deinsoftware/swpm/compare/v3.0.0...v3.1.0
 [2.7.0]: https://github.com/deinsoftware/swpm/compare/v2.6.0...v2.7.0
-[unreleased]: https://github.com/deinsoftware/swpm/compare/v2.8.0...HEAD
 [2.6.0]: https://github.com/deinsoftware/swpm/compare/v2.5.2...v2.6.0
 [2.5.2]: https://github.com/deinsoftware/swpm/compare/v2.5.1...v2.5.2
 [2.5.1]: https://github.com/deinsoftware/swpm/compare/v2.5.0...v2.5.1

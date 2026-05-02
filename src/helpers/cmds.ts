@@ -3,6 +3,7 @@ import { spawn, spawnSync, execSync } from 'node:child_process'
 import chalk from 'chalk'
 import { stripIndents } from 'common-tags'
 import { getOriginIcon } from './icons.js'
+import { detectOs } from './open.js'
 
 import type { PackageManagerList } from '../packages/packages.types.js'
 import type { CommanderPackage } from '../translator/commander.types.js'
@@ -70,6 +71,11 @@ export const translateCommand = ({ yargs, cmdr }: TranslateCommandProp) => {
   }
 }
 
+const resolveSpawnArgs = (cmd: string, args: string[]): [string, string[]] => {
+  const isWindows = detectOs() === 'win'
+  return isWindows ? ['cmd', ['/c', cmd, ...args]] : [cmd, args]
+}
+
 const cleanSpecificVersion = (cmd: PackageManagerList) => {
   return cmd?.split('@')?.[0]
 }
@@ -87,12 +93,13 @@ export const runCommand = ({ cmd, args, volta = false }: CommanderPackage) => {
     run = 'volta'
   }
 
+  const [spawnCmd, spawnArgs] = resolveSpawnArgs(run!, args)
+
   const child = spawn(
-    run!,
-    [...args],
+    spawnCmd,
+    spawnArgs,
     {
-      stdio: 'inherit',
-      shell: true
+      stdio: 'inherit'
     }
   )
 
@@ -113,12 +120,13 @@ export const runCommand = ({ cmd, args, volta = false }: CommanderPackage) => {
 }
 
 export const spreadCommand = async ({ cmd, args }: SpreadCommand) => {
+  const [spawnCmd, spawnArgs] = resolveSpawnArgs(cmd, args)
+
   const child = spawnSync(
-    cmd,
-    args,
+    spawnCmd,
+    spawnArgs,
     {
-      stdio: 'inherit',
-      shell: true
+      stdio: 'inherit'
     }
   )
 
@@ -143,7 +151,7 @@ export const getCommandResult = ({ command, volta = false }: GetCommandResultPro
 
     const child = execSync(command)
     return child.toString().trim()
-  } catch (error) {
+  } catch {
     return ''
   }
 }

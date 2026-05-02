@@ -11,3 +11,10 @@ describe('sag', () => {
     expect(result).toBe(expected)
   })
 })
+
+describe('sag --global not available for deno', () => {
+  it('deno', () => {
+    const result = testCommandResult('sag vite --test deno')
+    expect(result).toBe('')
+  })
+})

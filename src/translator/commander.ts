@@ -9,7 +9,6 @@ const commanderInitValues: CommanderPackage = {
 }
 
 declare global {
-  // eslint-disable-next-line no-var
   var commander: CommanderPackage
 }
 

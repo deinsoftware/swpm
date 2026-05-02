@@ -1,6 +1,7 @@
 import { platform, release } from 'node:os'
 import { exit, cwd } from 'node:process'
 import { spawnSync } from 'node:child_process'
+import { resolve as resolvePath } from 'node:path'
 import { getCommandResult } from './cmds.js'
 import { spinnies } from '../libs/spinnies.js'
 import open from 'open'
@@ -17,7 +18,7 @@ const isWSL = () => {
   return version.includes('wsl') && version.includes('microsoft')
 }
 
-const detectOs = () => {
+export const detectOs = () => {
   let os = platform().toLowerCase().replace(/\d/g, '')
   if (os === 'linux') {
     os = isWSL() ? 'wsl' : os
@@ -38,7 +39,7 @@ export const openFileExplorer = async (path: string = cwd()) => {
 
   if (os in osConfig) {
     const config = osConfig[os]
-    if (config && cmd in config) {
+    if (config && config.cmd) {
       cmd = config.cmd
     }
   }
@@ -48,7 +49,7 @@ export const openFileExplorer = async (path: string = cwd()) => {
   }
 
   spinnies.add(path)
-  const child = spawnSync(cmd, [`"${path}"`, '2>&1'], { stdio: 'inherit', shell: true })
+  const child = spawnSync(cmd, [path], { stdio: 'ignore' })
 
   if (child.status !== 0) {
     spinnies.succeed(path)
@@ -68,6 +69,7 @@ export const openBrowser = async (url: string) => {
   try {
     spinnies.add(urlId)
     if (!isUrl(url)) {
+      url = resolvePath(url)  // Ensure absolute path
       if (detectOs() === 'wsl') {
         url = wslToWindows(url)
       }
