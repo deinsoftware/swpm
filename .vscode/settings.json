@@ -80,9 +80,7 @@
     "*.ts": "$(capture).*.ts, $(capture).d.ts.map, $(capture)_*.ts, $(capture)*.snap",
   },
   "markdownlint.config": {
-    "MD024": {
-      "siblings_only": true,
-    }
+    "MD024": false
   },
   "testing.automaticallyOpenPeekView": "never",
 }

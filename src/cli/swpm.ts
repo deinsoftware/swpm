@@ -80,11 +80,6 @@ if (yargs?.alias) {
   await showCommandAlias()
 }
 
-if (yargs?.done) {
-  // Add done command logic here
-  console.log('Done command executed')
-}
-
 if (!cmdr?.cmd) {
   showNoPackageDetected()
 }

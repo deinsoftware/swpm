@@ -6,10 +6,10 @@ const include = [
 
 const exclude = [
   ...configDefaults.exclude,
-  'bin/**',              // Evita que el código compilado ensucie el reporte
-  'src/alias/**',        // Excluido por falta de tests actuales
-  'src/cli/**',          // Excluido (lógica de entrada difícil de testear)
-  'src/flags/**',        // Excluido (actualmente al 0% de cobertura)
+  'bin/**',
+  'src/alias/**',
+  'src/cli/**',
+  'src/flags/**',
   'src/libs/**',
   'test{,s}/**',
   'test{,-*}.{js,cjs,mjs,ts,tsx,jsx}',
@@ -31,7 +31,6 @@ export default defineConfig({
       reporter: ['text', 'html', 'lcov'],
       include: [...include],
       exclude: [...exclude],
-      // La clave es mover los mínimos aquí dentro:
       thresholds: {
         statements: 42,
         branches: 26,

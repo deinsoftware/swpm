@@ -4,7 +4,6 @@ import globals from 'globals'
 
 export default tseslint.config(
   {
-    // Ignorar carpetas de salida y dependencias
     ignores: ['**/build/**', '**/coverage/**', '**/bin/**', '**/dist/**', '**/node_modules/**']
   },
   js.configs.recommended,
@@ -19,11 +18,10 @@ export default tseslint.config(
       }
     },
     rules: {
-      // Definimos manualmente el estilo "Standard" que te gusta:
-      'semi': ['error', 'never'],            // Sin puntos y coma
-      'quotes': ['error', 'single'],         // Comillas simples
-      'indent': ['error', 2],                // 2 espacios
-      'comma-dangle': ['error', 'never'],    // Sin coma final
+      'semi': ['error', 'never'],            // without ;
+      'quotes': ['error', 'single'],         // single quotes
+      'indent': ['error', 2],                // 2 spaces
+      'comma-dangle': ['error', 'never'],    // no trailing comma
       'object-curly-spacing': ['error', 'always'],
 
       // Reglas de TypeScript para swpm

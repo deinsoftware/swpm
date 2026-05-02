@@ -28,7 +28,7 @@ export const detectOs = () => {
 
 const osConfig: Record<string, {path: string, cmd: string}> = {
   win: { path: '=', cmd: 'explorer' },
-  wsl: { path: '.', cmd: 'xdg-open' },
+  wsl: { path: '.', cmd: 'explorer.exe' },
   linux: { path: '/', cmd: 'xdg-open' },
   macos: { path: '/', cmd: 'open' }
 }
