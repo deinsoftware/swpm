@@ -9,7 +9,6 @@ const commanderInitValues: CommanderPackage = {
 }
 
 declare global {
-   
   var commander: CommanderPackage
 }
 
