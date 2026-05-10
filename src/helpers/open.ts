@@ -88,8 +88,9 @@ export const openBrowser = async (url: string) => {
       if (error.message !== 'Exited with code 1') {
         browserId = error.message.split(':').at(-1)?.trim() ?? ''
       }
+      if (browserId) browserId += ' ' // append space if we have an ID
       console.error(stripIndents`
-        ${chalk.red.bold('Error')}: no compatible browser ${chalk.bold(`${browserId ?? ' '}`)}found.
+        ${chalk.red.bold('Error')}: no compatible browser ${chalk.bold(browserId)}found.
       `)
     }
     exit(1)
