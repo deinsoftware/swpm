@@ -18,9 +18,8 @@ const isWSL = () => {
   return version.includes('wsl') && version.includes('microsoft')
 }
 
-/** returns node platform and 'wsl' if running in wsl */
 export const detectOs = () => {
-  let os = platform().toLowerCase().replaceAll(/\d/g, '')
+  let os = platform().toLowerCase().replace(/\d/g, '')
   if (os === 'linux') {
     os = isWSL() ? 'wsl' : os
   }
@@ -88,7 +87,7 @@ export const openBrowser = async (url: string) => {
       if (error.message !== 'Exited with code 1') {
         browserId = error.message.split(':').at(-1)?.trim() ?? ''
       }
-      if (browserId) browserId += ' ' // append space if we have an ID
+      if (browserId) browserId += ' '
       console.error(stripIndents`
         ${chalk.red.bold('Error')}: no compatible browser ${chalk.bold(browserId)}found.
       `)
