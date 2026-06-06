@@ -903,7 +903,7 @@ If you want to help, spread the word of `swpm` in a project or web, please use t
 
 [![equiman](https://avatars.githubusercontent.com/u/933393?s=60&v=4)](https://github.com/equiman)
 [![TylerBarnes](https://avatars.githubusercontent.com/u/14190743?s=60&v=4)](https://github.com/TylerBarnes)
-[![ptandler](https://avatars.githubusercontent.com/u/14190743?s=60&v=4)](https://github.com/ptandler)
+[![ptandler](https://avatars.githubusercontent.com/u/934595?s=60&v=4)](https://github.com/ptandler)
 
 See also the list of [contributors](https://github.com/deinsoftware/swpm/contributors) who participated in this project.
 
