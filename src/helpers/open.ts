@@ -1,6 +1,7 @@
 import { platform, release } from 'node:os'
 import { exit, cwd } from 'node:process'
 import { spawnSync } from 'node:child_process'
+import { resolve as resolvePath } from 'node:path'
 import { getCommandResult } from './cmds.js'
 import { spinnies } from '../libs/spinnies.js'
 import open from 'open'
@@ -9,7 +10,7 @@ import chalk from 'chalk'
 
 const wslToWindows = (path: string) => {
   const newPath = getCommandResult({ command: `wslpath -aw "${path}"` })?.replaceAll('\\', '\\\\')
-  return !newPath ? path : newPath
+  return newPath || path
 }
 
 const isWSL = () => {
@@ -17,7 +18,7 @@ const isWSL = () => {
   return version.includes('wsl') && version.includes('microsoft')
 }
 
-const detectOs = () => {
+export const detectOs = () => {
   let os = platform().toLowerCase().replace(/\d/g, '')
   if (os === 'linux') {
     os = isWSL() ? 'wsl' : os
@@ -38,7 +39,7 @@ export const openFileExplorer = async (path: string = cwd()) => {
 
   if (os in osConfig) {
     const config = osConfig[os]
-    if (config && cmd in config) {
+    if (config?.cmd) {
       cmd = config.cmd
     }
   }
@@ -48,7 +49,7 @@ export const openFileExplorer = async (path: string = cwd()) => {
   }
 
   spinnies.add(path)
-  const child = spawnSync(cmd, [`"${path}"`, '2>&1'], { stdio: 'inherit', shell: true })
+  const child = spawnSync(cmd, [path], { stdio: 'ignore' })
 
   if (child.status !== 0) {
     spinnies.succeed(path)
@@ -68,6 +69,7 @@ export const openBrowser = async (url: string) => {
   try {
     spinnies.add(urlId)
     if (!isUrl(url)) {
+      url = resolvePath(url)  // Ensure absolute path
       if (detectOs() === 'wsl') {
         url = wslToWindows(url)
       }
@@ -78,15 +80,16 @@ export const openBrowser = async (url: string) => {
     spinnies.succeed(urlId)
     exit(0)
   } catch (error) {
-    await spinnies.fail(urlId)
+    spinnies.fail(urlId)
 
     if (error instanceof Error) {
       let browserId = ''
       if (error.message !== 'Exited with code 1') {
         browserId = error.message.split(':').at(-1)?.trim() ?? ''
       }
+      if (browserId) browserId += ' '
       console.error(stripIndents`
-        ${chalk.red.bold('Error')}: no compatible browser ${chalk.bold(`${!browserId ? browserId : ' '}`)}found.
+        ${chalk.red.bold('Error')}: no compatible browser ${chalk.bold(browserId)}found.
       `)
     }
     exit(1)

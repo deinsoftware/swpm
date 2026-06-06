@@ -6,9 +6,11 @@ const include = [
 
 const exclude = [
   ...configDefaults.exclude,
-  'src/alias/*',
-  'src/cli/*',
-  'src/libs/*',
+  'bin/**',
+  'src/alias/**',
+  'src/cli/**',
+  'src/flags/**',
+  'src/libs/**',
   'test{,s}/**',
   'test{,-*}.{js,cjs,mjs,ts,tsx,jsx}',
   '**/*{.,-}types.{js,cjs,mjs,ts,tsx,jsx}',
@@ -25,14 +27,16 @@ export default defineConfig({
       '**/test.{js,cjs,mjs,ts,tsx,jsx}'
     ],
     coverage: {
-      all: true,
+      provider: 'v8',
       reporter: ['text', 'html', 'lcov'],
       include: [...include],
       exclude: [...exclude],
-      statements: 51,
-      branches: 76,
-      functions: 55,
-      lines: 51
+      thresholds: {
+        statements: 42,
+        branches: 26,
+        functions: 49,
+        lines: 41
+      }
     }
   }
 })

@@ -1,16 +1,26 @@
 import { afterEach, it, describe, expect, vi } from 'vitest'
-import { pathExists } from 'find-up'
+import { pathExists } from 'path-exists'
 import { getCommandResult } from './cmds.js'
 import { getReposStatus, hasRepository } from './repos.js'
 
+vi.mock('./cmds.ts', async () => {
+  const mod = await vi.importActual<typeof import('./cmds.ts')>('./cmds.ts')
+  return {
+    ...mod,
+    getCommandResult: vi.fn()
+  }
+})
+
+vi.mock('path-exists', async () => {
+  const mod = await vi.importActual<typeof import('path-exists')>('path-exists')
+
+  return {
+    ...mod,
+    pathExists: vi.fn()
+  }
+})
+
 describe('getReposStatus()', () => {
-  vi.mock('./cmds.ts', async () => {
-    const mod = await vi.importActual<typeof import('./cmds.ts')>('./cmds.ts')
-    return {
-      ...mod,
-      getCommandResult: vi.fn()
-    }
-  })
 
   afterEach(() => {
     vi.clearAllMocks()
@@ -33,8 +43,6 @@ describe('getReposStatus()', () => {
       provider: 'github',
       current: 'main'
     })
-
-    vi.mocked(getCommandResult).mockRestore()
   })
 
   it('should return ssh repository object without .git extension', async () => {
@@ -53,8 +61,6 @@ describe('getReposStatus()', () => {
       provider: 'github',
       current: 'main'
     })
-
-    vi.mocked(getCommandResult).mockRestore()
   })
 
   it('should return http repository object', async () => {
@@ -73,8 +79,6 @@ describe('getReposStatus()', () => {
       provider: 'github',
       current: 'main'
     })
-
-    vi.mocked(getCommandResult).mockRestore()
   })
 
   it('should return http repository object without .git extension', async () => {
@@ -93,20 +97,10 @@ describe('getReposStatus()', () => {
       provider: 'github',
       current: 'main'
     })
-
-    vi.mocked(getCommandResult).mockRestore()
   })
 })
 
 describe('hasRepository()', () => {
-  vi.mock('find-up', async () => {
-    const mod = await vi.importActual<typeof import('find-up')>('find-up')
-
-    return {
-      ...mod,
-      pathExists: await vi.fn()
-    }
-  })
 
   const pathMock = vi.mocked(pathExists)
 
@@ -120,8 +114,6 @@ describe('hasRepository()', () => {
     const result = await hasRepository()
     expect(pathMock).toHaveBeenCalledTimes(1)
     expect(result).toBeTruthy()
-
-    vi.mocked(pathExists).mockRestore()
   })
 
   it('should found not found a repository in current path', async () => {
@@ -129,7 +121,5 @@ describe('hasRepository()', () => {
     const result = await hasRepository()
     expect(pathMock).toHaveBeenCalledTimes(1)
     expect(result).toBeFalsy()
-
-    vi.mocked(pathExists).mockRestore()
   })
 })

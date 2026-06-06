@@ -11,7 +11,7 @@ export const fileExists = async (path: string) => {
   try {
     await fs.stat(path)
     return true
-  } catch (error) {
+  } catch {
     return false
   }
 }
@@ -20,7 +20,7 @@ export const pathExists = async (path: string) => {
   try {
     await fs.access(path)
     return true
-  } catch (error) {
+  } catch {
     return false
   }
 }
@@ -70,7 +70,7 @@ export const savePackageJson = async (data: PackageJson, fileName: string = PACK
         encoding: 'utf8',
         flag: 'w+'
       })
-  } catch (error) {
+  } catch {
     console.error(`${chalk.red.bold('Error')}: ${chalk.bold(fileName)} file can't be saved.`)
     exit(1)
   }
